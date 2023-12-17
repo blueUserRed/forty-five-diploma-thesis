@@ -95,7 +95,7 @@
 %% bessere Suche im PDF
 %% #+# YGGDRASIL: Auskommentiert, weil er sich sonst beschwert
 % \input{glyphtounicode}
-\pdfgentounicode=1
+%\pdfgentounicode=1
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %  Kopf und Fußzeilen -- links und rechts verschieden
@@ -104,6 +104,15 @@
 \newcommand{\kopfkapr}{{\bfseries\rightmark}}
 \newcommand{\kopfbild}{\voffset7mm\includegraphics[width=25mm]{HTL3RLogoRGB}}
 \newcommand{\kopfHTL}{Höhere Technische Bundeslehranstalt Wien 3, \\Rennweg 	Abteilung für Informationstechnologie}
+
+\usepackage{fontspec}
+\setmainfont{Bahnschrift.ttf} % todo: bahnschrift as main font might be a bad decision
+\newfontfamily\headingfont[]{Redwing-medium.otf}
+\newfontfamily\codefont{JetBrains Mono Regular Nerd Font Complete Mono Windows Compatible.ttf}[NFSSFamily=JetBrainsMonoFamily]
+\setkomafont{chapter}{\headingfont}
+\setkomafont{section}{\headingfont}
+\setkomafont{subsection}{\headingfont}
+\setkomafont{subsubsection}{\headingfont}
 
 \usepackage[automark,headsepline,footsepline,plainfootsepline]{scrlayer-scrpage}
 %\automark[chapter]{chapter}% Eventuell wenn doppelseitig
@@ -130,18 +139,19 @@
 % Verzeichnisse - aufwändiger
 %\usepackage{tocloft}
 
-
 %% Code Beispiele
 %% eine Variante
 %\renewcommand{\lstlistingname}{\inputencoding{utf8}Listing}
 %% andere Variante
-%\usepackage{minted}
-%\setminted{
-%  linenos,
-%  frame=lines,
-%  framesep=2mm,
-%  breaklines=true
-%}
+\usepackage{minted}
+\usemintedstyle{friendly}
+\setminted{
+    linenos,
+    frame=lines,
+    framesep=2mm,
+    breaklines=true,
+    fontfamily=JetBrainsMonoFamily
+}
 % Beispiel
 %\begin{listing}[H]
 %\begin{minted}{bash}
@@ -336,6 +346,7 @@ Mögliche Variante: Ziele laut Antrag, mit Querverweisen zu den einzelnen Kapite
 
 \input{text/demo_kap1.tex}
 
+\input{text/code_listings_test.tex}
 
 \chapter{Planung}
 

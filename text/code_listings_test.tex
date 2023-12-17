@@ -1,0 +1,37 @@
+
+\chapter{Code-Blöcke Test}\label{ch:code-blocke-test}
+
+\renewcommand{\kapitelautor}{Autor: Marvin}
+
+\Blindtext
+
+\begin{minted}{kotlin}
+    /**
+     * creates a new instance of the card named [name] and puts it in the hand of the player
+     */
+    @AllThreadsAllowed
+    fun tryToPutCardsInHandTimeline(name: String, amount: Int = 1): Timeline = Timeline.timeline {
+        var cardsToDraw = 0
+        action {
+            val maxCards = hardMaxCards - cardHand.cards.size
+            cardsToDraw = min(maxCards, amount)
+        }
+        action {
+            if (cardsToDraw == 0) return@action
+            val cardProto = cardPrototypes
+                .firstOrNull { it.name == name }
+                ?: throw RuntimeException("unknown card: $name")
+            repeat(cardsToDraw) {
+                cardHand.addCard(cardProto.create())
+            }
+            FortyFiveLogger.debug(logTag, "card $name entered hand")
+            checkCardMaximums()
+        }
+    }
+\end{minted}
+
+\Blindtext
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% wer hat diese Kapitel geschrieben oder leer
+\renewcommand{\kapitelautor}{}

@@ -1,4 +1,4 @@
-set LATEX=pdflatex
+set LATEX=xelatex
 
 set PANDOCMODULES=markdown+auto_identifiers
 set PANDOCMODULES=%PANDOCMODULES%+definition_lists
@@ -15,8 +15,12 @@ cd markdown
 for %%f in (*.md) do pandoc %PANDOCOPT% %%f -o "%%f%.tex"
 cd ..
 
-%LATEX% diplomarbeit.tex -aux-directory="./build" -output-directory="./out" -halt-on-error
-makeindex -c -q diplomarbeit.idx 
-bibtex diplomarbeit
-%LATEX% diplomarbeit.tex -aux-directory="./build" -output-directory="./out" -halt-on-error
-%LATEX% diplomarbeit.tex -aux-directory="./build" -output-directory="./out" -halt-on-error
+cd build
+
+%LATEX% ../diplomarbeit.tex -shell-escape -include-directory=".." -output-directory="../out" -halt-on-error
+makeindex -c -q diplomarbeit.idx
+bibtex -include-directory=".." diplomarbeit
+%LATEX% ../diplomarbeit.tex -shell-escape -include-directory=".." -output-directory="../out" -halt-on-error
+%LATEX% ../diplomarbeit.tex -shell-escape -include-directory=".." -output-directory="../out" -halt-on-error
+
+cd ..
