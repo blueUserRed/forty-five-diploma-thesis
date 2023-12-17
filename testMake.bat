@@ -16,7 +16,3 @@ for %%f in (*.md) do pandoc %PANDOCOPT% %%f -o "%%f%.tex"
 cd ..
 
 %LATEX% diplomarbeit.tex -aux-directory="./build" -output-directory="./out" -halt-on-error
-makeindex -c -q diplomarbeit.idx 
-bibtex diplomarbeit
-%LATEX% diplomarbeit.tex -aux-directory="./build" -output-directory="./out" -halt-on-error
-%LATEX% diplomarbeit.tex -aux-directory="./build" -output-directory="./out" -halt-on-error

@@ -27,37 +27,35 @@
 
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-
 \usepackage[english, ngerman]{babel, varioref} % your native language must be the last one!!
-
 \usepackage{lastpage}
 \usepackage{listings}
 \usepackage{blindtext}
+\usepackage[inline]{enumitem} %% Aufzählungen nicht so weit einrücken
 
-%% Aufzählungen nicht so weit einrücken
-\usepackage[inline]{enumitem}
 %\setitemize{leftmargin=*}
 % Listen etwas wenige einrücken, erfordert enumitem
 \setitemize{leftmargin=*}
 
 \usepackage{lmodern}
-
 \usepackage{xspace}
-
 \usepackage{graphicx}
 
 %%? \usepackage{textcomp}
 \usepackage[hyphens]{url}
+
 \usepackage{makeidx}
 \makeindex
+
 %%? \usepackage{graphicx}
 \usepackage[numbers]{natbib}
 \PassOptionsToPackage{normalem}{ulem}
-\usepackage{ulem}
 
+\usepackage{ulem}
 \usepackage{needspace}
 
 \setlength\partopsep{0.5ex}%schoenere Listen
+
 \usepackage[bottom]{footmisc}%fussnote ganz unten
 
 \usepackage[]{microtype}
@@ -70,7 +68,6 @@
 \usepackage[usenames,dvipsnames,table]{xcolor} % Allows the definition and use of colors. This package has to be included before tikz.
 \usepackage{nag}       % Issues warnings when best practices in writing LaTeX documents are violated.
 \usepackage{todonotes} % Provides tooltip-like todo notes.
-
 \usepackage{color}
 \usepackage[binary-units]{siunitx}
 
@@ -86,14 +83,14 @@
 
 %\usepackage{footbib} %  footcite, needs other tooling
 %% for pandoc2 images
-\makeatletter
-\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
-\makeatother
+%\makeatletter
+%\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+%\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+%\makeatother
 % Scale images if necessary, so that they will not overflow the page
 % margins by default, and it is still possible to overwrite the defaults
 % using explicit options in \includegraphics[width, height, ...]{}
-\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+%\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
 
 %% bessere Suche im PDF
 %% #+# YGGDRASIL: Auskommentiert, weil er sich sonst beschwert
@@ -136,8 +133,7 @@
 
 %% Code Beispiele
 %% eine Variante
-\usepackage{listings}
-\renewcommand{\lstlistingname}{\inputencoding{utf8}Listing}
+%\renewcommand{\lstlistingname}{\inputencoding{utf8}Listing}
 %% andere Variante
 %\usepackage{minted}
 %\setminted{
@@ -184,10 +180,12 @@
  bookmarks=true,bookmarksnumbered=false,bookmarksopen=false,
  breaklinks=true,pdfborder={0 0 0},backref=false,colorlinks=false]
  {hyperref}
-\hypersetup{pdftitle={Diplomarbeit Titel},
- pdfauthor={Wer auch immer},
- pdfsubject={Diplomarbeit},
- pdfkeywords={dies, das}}
+\hypersetup{
+    pdftitle={.Forty-Five},
+    pdfauthor={Wer auch immer},
+    pdfsubject={Diplomarbeit},
+    pdfkeywords={dies, das}
+}
 \urlstyle{same} % don't use monospace font for urls
 
 % \usepackage{cleveref}  % optional, noch bessere Querverweise
@@ -249,7 +247,8 @@ Fachschule für Informationstechnik}
 
 
 \begin{center}
-\textbf{\LARGE{}Diplomarbeit}{\large{}}\\
+
+\textbf{\LARGE{}Diplomarbeit}{\large{}}\\ % todo: figure out what is going on with this line
 {\large{}\vspace{15mm}
  }\textbf{\large{}\todo{TODO}eventuell KURZTITEL}\\
 \textbf{\large{}Ausgeschriebener Titel der Diplomarbeit}\\
@@ -257,11 +256,11 @@ Fachschule für Informationstechnik}
  \vfill
 
  ausgeführt an der\\
- Höheren Abteilung für Informationstechnologie/??Ausbildungsschwerpunkt??\\
+ Höheren Abteilung für Informationstechnologie/Medientechnik\\
  der Höheren Technischen Lehranstalt Wien 3 Rennweg\\
 
  \vfill
- im Schuljahr 20??/20??\\
+ im Schuljahr 2023/2024\\
 
 \vspace{1cm}
 
@@ -269,10 +268,11 @@ Fachschule für Informationstechnik}
 \renewcommand{\arraystretch}{1.8}
 \begin{tabular}{l c r}
 durch  & \hfill & unter Anleitung von \\
-\textbf{\large{}Mitarbeiter:in Eins (alphabetisch)} && Individualbetreuer:in Eins \\
-\textbf{\large{}Mitarbeiter:in Zwei} && Individualbetreuer:in Zwei \\
-\textbf{\large{}Mitarbeiter:in Drei} && Individualbetreuer:in Drei \\
-\textbf{\large{}Mitarbeiter:in Vier} && Individualbetreuer:in Vier \\
+\textbf{\large{}Böheim Markus} && Nussbaumer Vincent \\
+\textbf{\large{}Hubmann Nils} && Sturm Gerhard \\
+\textbf{\large{}Jankovic Philip} && Nussbaumer Vincent \\
+\textbf{\large{}Kurka Marvin} && Weiss Florian \\
+\textbf{\large{}Zwickelstorfer Felix} && Weiss Florian \\
 \end{tabular}
 }
 
@@ -343,9 +343,9 @@ Mögliche Variante: Ziele laut Antrag, mit Querverweisen zu den einzelnen Kapite
 % Es wird an dieser Stelle im Dokument eingebaut.
 % Damit ist es möglich, mehrere Personen an diversen Teilen der Diplomarbeit arbeiten zu lassen.
 
-\input{markdown/diplomarbeit2.md.tex}
+%\input{markdown/diplomarbeit2.md.tex}
 
-\input{markdown/einstellungen.md.tex}
+%\input{markdown/einstellungen.md.tex}
 
 \input{text/demo_fuelltext.tex}
 
