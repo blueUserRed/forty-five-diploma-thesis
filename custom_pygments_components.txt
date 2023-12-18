@@ -3,5 +3,8 @@
 2) open C:\Users\<User>\AppData\Local\Programs\Python\Python310\Lib\site-packages\pygments\lexers
 3) copy onj.py in this directory
 4) open _mapping.py and add the following line:
-
 'OnjLexer': ('pygments.lexers.onj', 'Onj', ('onj', 'Onjschema', 'onjschema'), ('*.onj', '*.onjschema'), ('text/onj',)),
+5) open C:\Users\<User>\AppData\Local\Programs\Python\Python310\Lib\site-packages\pygments\styles
+6) copy forty_five_style.py in this directory
+7) open _mapping.py and add the following line:
+'FortyFiveStyle': ('pygments.styles.forty_five_style', 'forty_five_style', ()),
