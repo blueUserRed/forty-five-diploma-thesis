@@ -3,7 +3,13 @@
 
 \renewcommand{\kapitelautor}{Autor: Marvin}
 
-\Blindtext
+Das in einem Wild-West Stil gehaltene Spiel ist ein neuartiger Spin von dem klassischen Genre des "Rogue Lites".
+Der Spieler erkundet eine Welt die aus verschiedenen Landschaften wie einem verzauberten Wald oder einer trockenen Wüste,
+sammelt Karten in Form von Bullets, baut Decks und bekämpft Gegner in spannenden Kämpfen.
+Die Karten/Bullets können in den Revolver geladen und abgefeuert werden.
+Je nachdem, wie die Karten im Revolver platziert werden, können die einzigartigen Fähigkeiten jeder Karte sowie die
+Drehung der Revolvertrommel dazu verwendet werden, immer stärkere Combos zu spielen und dem Gegner Effeckte und Schaden zuzufügen.
+Die verschiedenen computergesteuerten Gegnertypen verfügen jedoch über ihre eigenen Tricks und setzen den Spieler mit Attacken unter Druck.
 
 \begin{minted}{kotlin}
     /**
@@ -31,26 +37,55 @@
 \end{minted}
 
 \begin{minted}{onj}
+import "imports/colors.onj" as color;
+import "screens/input_maps.onj" as inputMaps;
+import "screens/shared_components.onj" as sharedComponents;
+
+use Common;
+use Screen;
+use Style;
+
+var worldWidth = 1600.0;
+var worldHeight = 900.0;
+
+options: {
+    transitionAwayTime: 1.0,
+    background: "hover_detail_background",
+    inputMap: [
+        ...(inputMaps.defaultInputMap),
+        ...(inputMaps.healOrMaxInputMap),
+        ...(inputMaps.addMaxHPInputMap),
+    ],
+    screenController: $HealOrMaxHPScreenController {
+        addLifeActorName: "add_lives_option",
+    }
+},
+styles: [
     {
-        name: "hollowpointBullet",
-        title: "Hollowpoint Bullet",
-        flavourText: "hollowpoint Bullet",
-        description: "If the enemy has SHIELD: this Bullet has +6 dmg",
-        baseDamage: 10,
-        coverValue: 0,
-        traitEffects: [],
-        rotation: $Right { amount: 1 },
-        highlightType: "standard",
-        effects: [
-            buffDmg("enter", bSelects.self, 6#val, $TargetedEnemyShieldIsAtLeast { value: 1 }#activeChecker)
-        ],
-        forceLoadCards: [],
-        dark: false,
-        cost: 1,
-        type: $Bullet { },
-        tags: ["pool1"],
-        price: 0,
+        width: 40#percent,
+        height: 83#percent,
+        flexDirection: flexDirection.column,
+        alignItems: align.center,
+        justifyContent: justify.center,
+        touchable: touchable.enabled,
+        background: "heal_or_max_selector_background",
+        marginRight: 0#percent,
+        positionRight: 0#percent,
     },
+    {
+        style_priority: 2,
+        background: "heal_or_max_selector_background_selected",
+        width: 70#percent,
+        height: 125#percent,
+        style_condition: actorState("selected"),
+        marginRight: -30#percent,
+        positionRight: 22#percent,
+    },
+],
+root $Box {
+} chilren [
+
+]
 \end{minted}
 
 \Blindtext
