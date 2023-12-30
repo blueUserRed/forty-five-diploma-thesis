@@ -1,3 +1,4 @@
+$erroractionpreference = "stop"
 
 cd build
 

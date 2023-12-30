@@ -1,3 +1,4 @@
+
 \documentclass[
     headings=optiontotocandhead,% Erweiterung für das optionale Argument der
                                 % Gliederungsbefehle aktiviert.
@@ -20,221 +21,21 @@
     %%der zeilen ende
     a4paper,DIV=14,
     BCOR=15mm,
-    % captions=tablesignature,
+% captions=tablesignature,
 ]{scrbook}
 
-\setcounter{secnumdepth}{3}
-
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
-\usepackage[english, ngerman]{babel, varioref} % your native language must be the last one!!
-\usepackage{lastpage}
-\usepackage{listings}
-\usepackage{blindtext}
-\usepackage[inline]{enumitem} %% Aufzählungen nicht so weit einrücken
-
-%\setitemize{leftmargin=*}
-% Listen etwas wenige einrücken, erfordert enumitem
-\setitemize{leftmargin=*}
-
-\usepackage{lmodern}
-\usepackage{xspace}
-\usepackage{graphicx}
-
-%%? \usepackage{textcomp}
-\usepackage[hyphens]{url}
-
-\usepackage{makeidx}
-\makeindex
-
-%%? \usepackage{graphicx}
-\usepackage[numbers]{natbib}
-\PassOptionsToPackage{normalem}{ulem}
-
-\usepackage{ulem}
-\usepackage{needspace}
-
-\setlength\partopsep{0.5ex}%schoenere Listen
-
-\usepackage[bottom]{footmisc}%fussnote ganz unten
-
-\usepackage[]{microtype}
-\UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
-
-\usepackage{multirow}   % Allows table elements to span several rows.
-\usepackage{booktabs}   % Improves the typesettings of tables.
-\usepackage{subcaption} % Allows the use of subfigures and enables their referencing.
-\usepackage[ruled,linesnumbered,algochapter]{algorithm2e} % Enables the writing of pseudo code.
-\usepackage[usenames,dvipsnames,table]{xcolor} % Allows the definition and use of colors. This package has to be included before tikz.
-\usepackage{nag}       % Issues warnings when best practices in writing LaTeX documents are violated.
-\usepackage{todonotes} % Provides tooltip-like todo notes.
-\usepackage{color}
-\usepackage[binary-units]{siunitx}
-
-%% Override default figure placement To be within the flow of the text rather
-%% than on it's own page.
-% \usepackage{float}
-% \makeatletter
-% \def\fps@figure{H}
-% \makeatother
-
-%% bei vielen Bildern o.ä sinnvoll: Seite muss nicht bis ganz unten gefüllt werden
-% \raggedbottom
-
-%\usepackage{footbib} %  footcite, needs other tooling
-%% for pandoc2 images
-%\makeatletter
-%\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-%\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
-%\makeatother
-% Scale images if necessary, so that they will not overflow the page
-% margins by default, and it is still possible to overwrite the defaults
-% using explicit options in \includegraphics[width, height, ...]{}
-%\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-
-%% bessere Suche im PDF
-%% #+# YGGDRASIL: Auskommentiert, weil er sich sonst beschwert
-% \input{glyphtounicode}
-%\pdfgentounicode=1
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-%  Kopf und Fußzeilen -- links und rechts verschieden
-\newcommand{\kopfseitenummer}{{\bfseries \thepage}}
-\newcommand{\kopfkapl}{{\bfseries\leftmark}}
-\newcommand{\kopfkapr}{{\bfseries\rightmark}}
-\newcommand{\kopfbild}{\voffset7mm\includegraphics[width=25mm]{HTL3RLogoRGB}}
-\newcommand{\kopfHTL}{Höhere Technische Bundeslehranstalt Wien 3, \\Rennweg 	Abteilung für Informationstechnologie}
-
-\usepackage{fontspec}
-\usepackage{scalefnt}
-\setmainfont{Bahnschrift.ttf} % todo: bahnschrift as main font might be a bad decision
-\newfontfamily\headingfont[]{Redwing-medium.otf}
-\newfontfamily\codefont{JetBrainsMono-Regular.ttf}[NFSSFamily=JetBrainsMonoFamily]
-\setkomafont{chapter}{\headingfont\scalefont{1.5}}
-\setkomafont{section}{\headingfont\scalefont{1.4}}
-\setkomafont{subsection}{\headingfont\scalefont{1.2}}
-\setkomafont{subsubsection}{\headingfont\scalefont{1.1}}
-
-\usepackage[automark,headsepline,footsepline,plainfootsepline]{scrlayer-scrpage}
-%\automark[chapter]{chapter}% Eventuell wenn doppelseitig
-\setkomafont{pageheadfoot}{\normalcolor\footnotesize\scshape}
-\setkomafont{pagenumber}{\normalfont\normalsize}
-\clearpairofpagestyles
-\ihead{\headmark}
-\ohead{\kopfbild}
-\ifoot{\kapitelautor}
-\ofoot{\pagemark}
-\ModifyLayer[addvoffset=-.6ex]{scrheadings.foot.above.line}% Linie verschieben
-\ModifyLayer[addvoffset=-.6ex]{plain.scrheadings.foot.above.line}% Linie verschieben
-\setlength{\headheight}{32pt}
-
-% alle Seiten mit Kopfzeile
-\renewcommand{\chapterpagestyle}{scrheadings}
-
-%% Kapitel - aufwändige Kapitelüberschriften
-%Options: Sonny, Lenny, Glenn, Conny, Rejne, Bjarne, Bjornstrup
-%\usepackage[Bjornstrup]{fncychap}
-% Alternative:
-%\usepackage{titlesec}
-
-% Verzeichnisse - aufwändiger
-%\usepackage{tocloft}
-
-%% Code Beispiele
-%% eine Variante
-%\renewcommand{\lstlistingname}{\inputencoding{utf8}Listing}
-%% andere Variante
-\usepackage{minted}
-\usemintedstyle{forty_five_style}
-\setminted{
-    linenos,
-    frame=lines,
-    framesep=2mm,
-    breaklines=true,
-    fontfamily=JetBrainsMonoFamily,
-    fontsize=\scriptsize
-}
-% Beispiel
-%\begin{listing}[H]
-%\begin{minted}{bash}
-%...
-%\end{minted}
-%\caption{Beschreibung}
-%\end{listing}
-%% dritte Variante
-% mit/für pandoc
-\input{text/00_pandoclisting.tex}
-
-%% should be last packages
-\usepackage{scrhack}
-
-%% glossar
-% kann man löschen falls kein Glossar gebraucht
-\usepackage[acronym, toc]{glossaries}
-\makeglossaries
-\input{text/00_Glossar.tex}
-
-% für Titelseite
-% https://www.reddit.com/r/LaTeX/comments/sfyusz/vertical_line_before_all_bullets_in_itemize/
-\usepackage{tcolorbox}
-\tcbuselibrary{xparse,skins,breakable}
-%% Farbe rgb: 255,51,0
-\definecolor{htl3red}{RGB}{255,51,0}
-\newtcolorbox{TitlePageBox}{%
-    breakable,
-    blanker,
-    left=1em,
-    borderline west={0.15cm}{3pt}{htl3red},
-}
-
-%% sollte das letzte Package sein
-\usepackage[unicode=true,
- bookmarks=true,bookmarksnumbered=false,bookmarksopen=false,
- breaklinks=true,pdfborder={0 0 0},backref=false,colorlinks=false]
- {hyperref}
-\hypersetup{
-    pdftitle={.Forty-Five},
-    pdfauthor={Wer auch immer},
-    pdfsubject={Diplomarbeit},
-    pdfkeywords={dies, das}
-}
-\urlstyle{same} % don't use monospace font for urls
-
-% \usepackage{cleveref}  % optional, noch bessere Querverweise
-
-% \usepackage{showkeys} %% DEBUG, Label anzeigen
-
-%% for pandoc
-\providecommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-
-%% braucht man manchmal -- wenn er über passthrough mault -- TODO: warum?
-%\newcommand{\passthrough}[1]{\lstset{mathescape=false}\texttt{#1}\lstset{mathescape=true}}
-
-% Auch Fußnoten bündig ausrichten
-\deffootnote[]{1em}{1em}{\textsuperscript{\thefootnotemark\ }}
-%% setup
-\sloppy % weniger Meldungen
-\voffset7mm % etwas nach unten
-
-%% schöner: 10000 -- gar keine, 1000 als Mittelweg
-\clubpenalty = 1000 % Schusterjungen verhindern
-\widowpenalty = 1000 % Hurenkinder verhindern
-\displaywidowpenalty = 1000
+\input{text/preamble.tex}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
-%% wir schreiben keine Umlaut mit "a "o
+
 \shorthandoff{"}
 %% mit kapitelautor kann man den Autor festlegen oder auf leer setzen - steht dann in der Fußzeile.
 %% bitte immer (gleich) nach der Überschrift setzen, nicht vorher -- sonst steht es bei Kapiteln eventuell eine Seite zu früh
 \newcommand{\kapitelautor}{}
 
-\input{text/00_latex_shortcuts.tex}
-%%%%%Anfang Titelseite
-%\pagenumbering{roman}
+\input{text/latex_shortcuts.tex}
 
-%% Farbe rgb: 255,51,0 Strich + neuer Text
 
 \frontmatter % Switches to roman numbering
 \title{Diplomarbeit}
@@ -293,18 +94,18 @@ durch  & \hfill & unter Anleitung von \\
 Wien, \today
 \par\end{center}
 
-\end{titlepage}%%%%%%%%%%%%%%%%%%%%% Ende Titelseite %%%%%%%%%%%%%%%%%%%%%%
-% \renewcommand{\kapitelautor}{}  % bleibt leer (allg. Teil)
+\end{titlepage}
+
 \chapter*{Kurzfassung}
-\input{text/00_kurzfassung.tex}
+\input{text/general/kurzfassung.tex}
 
 \chapter*{Abstract}
 \selectlanguage{english}
-\input{text/00_abstract.tex}
+\input{text/general/abstract.tex}
 \selectlanguage{ngerman}
 
 \chapter*{Ehrenwörtliche Erklärung}
-\input{text/00_erklaerung.tex}
+\input{text/general/erklaerung.tex}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \cleardoublepage{}
@@ -346,9 +147,9 @@ Mögliche Variante: Ziele laut Antrag, mit Querverweisen zu den einzelnen Kapite
 % wer hat diese Kapitel geschrieben oder leer
 \renewcommand{\kapitelautor}{Autor: Hans Huber}
 
-\input{text/demo_kap1.tex}
+\input{text/demo_files/demo_kap1.tex}
 
-\input{text/code_listings_test.tex}
+\input{text/demo_files/code_listings_test.tex}
 
 \chapter{Planung}
 
@@ -360,7 +161,7 @@ Mögliche Variante: Ziele laut Antrag, mit Querverweisen zu den einzelnen Kapite
 
 %\input{markdown/einstellungen.md.tex}
 
-\input{text/demo_fuelltext.tex}
+\input{text/demo_files/demo_fuelltext.tex}
 
 
 \appendix
