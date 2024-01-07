@@ -1,11 +1,162 @@
 
 \section{Null Safety}\label{sec:null-safety}
 
-\renewcommand{\kapitelautor}{Autor: Irgendwer} % todo: replace
+\renewcommand{\kapitelautor}{Autor: Marvin Kurka}
 
-%
-% text goes here
-%
+% todo: quelle für basic infos zu null
+\inlineCode{null}, auch unter den Namen \inlineCode{nil} oder \inlineCode{None} bekannt, wird in Programmiersprachen
+verwendet, um einen nicht vorhandenen Wert zu repräsentieren.
+\inlineCode{null} hat in den meisten Programmiersprachen die Eigenschaft, dass es für alle möglichen Typen einstehen
+kann und weist so gewisse Ähnlichkeiten zu einem Bottom-Typen auf. % todo: link zu Nothing-Section
+Wird ein Zugriff auf \inlineCode{null} ausgeführt, sei es ein Funktionsaufruf oder Property-access, kommt es zu
+einem Fehler.
+
+\subsection{Situation in Java}
+Ein Beispiel für den Einsatz eines Null-Werts ist die \inlineJava{File::getParent} Funktion, die, unter normalen
+Umständen, die übergeordnete Datei zurückgibt.
+Allerdings ist das nicht in allen Fällen möglich, und in diesen wird \inlineJava{null} stattdessen als Rückgabewert
+verwendet.\cite{jdocFile}
+Dieser Umstand ist aber nicht in der Funktionssignatur reflektiert, in dieser ist als Rückgabewert einfach
+\inlineJava{String} angegeben.
+Für den Programmierer ist es also nicht sofort offensichtlich, dass ein Wert auch null sein kann, ein Blick in die
+Dokumentation ist hier notwendig.
+Dieser Umstand erhöht nicht nur den Aufwand für den Programmierer, er macht auch eine statische Analyse unmöglich.
+So kann ein Compiler oder Linter nicht aus den Typen lesen, ob er \inlineJava{null} sein kann, und so auch in den
+meisten Fällen nicht vor wahrscheinlichen Programmierfehlern warnen.
+Außerdem haben \inlineJava{null}-Werte die Eigenschaft durch das Programm zu propagieren, entsteht also ein
+\inlineJava{null}-Wert am Beginn einer langen Funktionsaufrufskette, kann es zu Situationen kommen in der das Programm
+an einer Stelle crasht, die mit dem eigentlichen Fehler nichts zu tun hat.
+Aus diesen Gründen ist \inlineJava{null} eine häufige Fehlerursache in Java, laut Google sind
+NullPointerExceptions sogar die häufigste Crash-Ursache von Android-Apps im Google Play Store.\cite{androidDevNPE}
+
+\subsection{Lösungsansätze}
+Wie im letzten Absatz argumentiert, ist \inlineJava{null}, wie es in Sprachen wie Java implementiert ist, schlechtes
+Programmiersprachendesign.
+So hat auch Tony Hoare, der im Jahr 1965 zuerst das Konzept eines \inlineJava{null}-Pointers in die Sprache ALGOL W
+eingeführt hat, diese Entscheidung in einer berühmten Präsentation als seinen "Milliarden Dollar Fehler" bezeichnet.\cite{infoqNullRefs}
+Deswegen haben über die Jahre Designer von Programmiersprachen nach Wegen gesucht, optionale Werte auf eine sinnvollere
+und weniger fehleranfällige Weise zu repräsentieren.
+So auch in der Sprache Java, die 2014 um die \inlineJava{Optional<T>} Klasse erweitert wurde.\cite{jdocOptional}
+Diese kann als Wrapper um Werte verwendet werden und stellt Funktionen zur Verfügung, die auf Präsenz eines Wertes
+testen und/oder abhängig davon Code ausführen.
+
+\begin{minted}{java}
+getOptionalValue().ifPresentOrElse(
+    value -> System.out.println("result was: " + value),
+    () -> System.out.println("no value")
+);
+\end{minted}
+\codeblockCaption{Beispiel für die Verwendung von \inlineJava{Optional<T>}}
+
+Trotz der höheren Sicherheit findet \inlineJava{Optional<T>} wenig Verwendung, da, durch die nachträgliche und relative
+späte Einführung in die Sprache große Teile der Standard-Bibliothek selbst keine Optionals verwenden (Siehe
+File-Beispiel).
+Außerdem ist das Nachziehen von Optional in existierenden Code-Bases mit viel Arbeit verbunden, da sämtliche
+Funktionssignaturen und die Usages der Funktionen angepasst werden müssten.
+All das führt dazu, dass ein anderer Weg \inlineJava{null}-Werte zu markieren eine wesentliche höhere Verbreitung
+erzielt hat.
+
+Diese Alternative sind Annotations.\label{java-null-annotations}
+Annotations können von dem Programmierer verwendet werden, um Metadaten in den Code einzufügen, so auch ob ein Wert null
+sein kann, mittels der \inlineJava{@NotNull} und \inlineJava{@Nullable} Annotations.
+Wichtig anzumerken ist, dass diese Annotations nichts an der tatsächlichen Funktion des Codes ändern und auch keine
+Compiler-Fehler versuchen, sollten sie nicht respektiert werden.
+Allerdings können sie von statischen Analyse-Tools verwendet werden, um Warnings bei verdächtigem Code auszugeben.
+Der Fakt, dass diese Annotations den Code nicht beeinflussen, macht es einfacher diese in bereits existierende Projekte
+einzubinden, auch wenn mit ihnen gegenüber Optionals einiges an Sicherheit verloren geht.
+Da die Java-Standardbibliothek diese Annotations nicht enthält, sind mehrere konkurrierende Bibliotheken entstanden,
+die diese zur Verfügung stellen.
+Zum Beispiel:
+\begin{itemize}
+    \item Jetbrains Annotations \url{https://central.sonatype.com/artifact/org.jetbrains/annotations/24.0.1}
+    \item The Checker Framework \url{https://checkerframework.org/}
+    \item Eclipse \url{https://help.eclipse.org/latest/index.jsp?topic=%2Forg.eclipse.jdt.doc.user%2Ftasks%2Ftask-using_null_type_annotations.htm}
+\end{itemize}
+
+Die Programmiersprache Rust, die dafür bekannt ist, hohen Wert auf Sicherheit und fehlerfreien Code zu legen, erlaubt
+gar keine \inlineJava{null}-Werte.
+Stattdessen bietet sie ein \inlineCode{Option<T>} enum an, dass zwei mögliche Werte hat:
+\inlineCode{None} und \inlineCode{Some(T)}.
+In vielerlei Hinsicht ist diese Lösung ähnlich zu Javas Optionals, da Rust allerdings keine klassischen
+\inlineJava{null}-Werte erlaubt und die Standard-Bibliothek mit diesem Enum im Hinterkopf designet wurde, funktioniert
+diese Lösung in Rust besser als in Java.\cite{rustDocOptional}
+
+\subsection{Nulls in Kotlin}
+In Kotlin müssen Typen, die den Wert \inlineKotlin{null} annehmen dürfen, explizit als nullable markiert werden.
+Das wird mittels eines Fragezeichens hinter dem Typen umgesetzt.
+Der Compiler analysiert zur compile-time welche Werte null sein könnten und gibt einen Fehler aus, wenn mit
+\inlineKotlin{null} nicht richtig umgegangen wird.\cite{kdocNullSafety}
+
+%! language = kotlin
+\begin{minted}{kotlin}
+    var a = "Hello"
+    a = null // Compile-time Fehler
+
+    var b: String? = "Hello"
+    b = null // erlaubt
+\end{minted}
+\codeblockCaption{Variable a hat implizit den Typen \inlineKotlin{String}, der kein null erlaubt.}
+
+%! language = kotlin
+\begin{minted}{kotlin}
+    fun someFunction(string: String?) {
+        if (string != null) println(string.length) // erlaubt
+        println(string.length) // Compile-time Fehler
+    }
+\end{minted}
+\codeblockCaption{
+Bevor Funktionen auf einer Variable, die \inlineKotlin{null} sein könnte aufgerufen werden, ist ein Check erforderlich.
+}
+
+Diese Schutzmechanismen zwingen den Programmierer mit \inlineKotlin{null}-Werten sinnvoll umzugehen und helfen so dabei
+Code zu schreiben, der weniger fehleranfällig ist.
+Laut Google war das Team von Google Home durch den (teilweisen) Umstieg auf Kotlin in der Lage, die Zahl ihrer
+NullPointerExceptions um 33\% Prozent zu reduzieren.\cite{androidDevGoogleHome}
+
+Neben dem statischen Überprüfen auf mögliche \inlineKotlin{null}-Werte ist es auch wichtig, den notwendigen
+Syntax und/oder die notwendigen Funktionen zur Verfügung zu stellen, die gebraucht werden, um mit ihnen sinnvoll
+umzugehen.
+Während if-Bedingungen für \inlineKotlin{null} Checks theoretisch ausreichen, führen sie zu langen und schlecht lesbaren
+Code, weswegen Kotlin eigene Operatoren für \inlineKotlin{null}-Werte hat.\cite{kdocNullSafety}
+
+%! language = kotlin
+\begin{minted}{kotlin}
+// Der safe call operator führt einen Zugriff nur aus, wenn der Wert nicht null ist
+// Ist der Wert null, gibt auch der operator null zurück
+nullableVariable?.nullableProperty?.someFunction()
+
+// Der not null assertion operator wirft eine Exception, wenn auf einem null-Wert angewendet wird
+nullableVariable!!.nullableProperty!!.someFunction() // kann NullPointerException werfen
+
+// Der elvis operator überprüft, ob ein Wert null ist, und verwendet dann einen anderen Wert stattdessen
+val result = nullableVariable?.nullableProperty?.someFunction() ?: "default Value"
+\end{minted}
+\codeblockCaption{Demonstration vom Umgang mit \inlineKotlin{null}-Werten}
+
+\subsection{Interoperabilität mit Java}
+Ein wichtiger Aspekt von Kotlin ist die gute Kompatibilität mit Java.
+Diese erlaubt es Entwicklern Code stückweise von Java zu Kotlin zu migrieren und erlaubt auch die Verwendung von
+Java-Bibliotheken in Kotlin-Projekten.
+Da Java allerdings keine \inlineKotlin{null}-safe Sprache ist, stellt sich die Frage wie mit Rückgabewerten von
+Java-Funktionen umgegangen wird, da an der Funktionssignatur nicht erkannt werden kann, ob dieser Wert
+\inlineKotlin{null} sein kann.
+
+In frühen Kotlin Versionen wurde dieses Problem so umgangen, dass der Kotlin-Compiler alle von Java kommenden Typen als
+nullable interpretiert hat.
+Diese Herangehensweise hat sich allerdings als nicht praktikabel herausgestellt, da absurde Mengen an \inlineKotlin{null}
+Checks dadurch notwendig wurden.
+Neue Kotlin Versionen suchen nach den vorher erwähnten Annotations und verwenden diese um herauszufinden, ob ein Type
+nullable ist oder nicht.
+Wird keine solche Annotation gefunden, verwendet Kotlin einen sogenannten Platform Type stattdessen.\cite{kdocNullInterop,kblogNullSafety}
+
+Platform types werden mit einem Rufzeichen nach dem Typen gekennzeichnet: \inlineKotlin{String!}.
+Diese Typen können nicht direkt definiert werden, sondern entstehen nur bei Interaktion mit Java-Code, wenn der Compiler
+nicht aus Annotations schließen kann, ob der Typ nullable ist oder nicht.
+Kotlin schreibt bei Platform Types keine \inlineKotlin{null} Checks vor, gibt aber auch keine Warnings aus, wenn
+welche gemacht werden.
+Wird ein Platform Typ einer Variable zugewiesen sollte explizit ein Typ angegeben werden, um die nullability zu
+definieren.
+Wird das nicht gemacht, gibt der Compiler eine Warning aus.\cite{kdocNullInterop}
 
 % resets author
 \renewcommand{\kapitelautor}{}
