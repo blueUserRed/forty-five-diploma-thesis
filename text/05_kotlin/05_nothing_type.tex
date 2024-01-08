@@ -1,11 +1,92 @@
 
 \section{Nothing Typ}\label{sec:nothing-type}
 
-\renewcommand{\kapitelautor}{Autor: Irgendwer} % todo: replace
+\renewcommand{\kapitelautor}{Autor: Marvin Kurka}
 
-%
-% text goes here
-%
+Der \inlineKotlin{kotlin.Nothing} Typ ist in der Kotlin Standard-Bibliothek definiert, er hat allerdings einige
+spezielle Eigenschaften.
+Zum Beispiel handelt sich bei Nothing um einen unified subtype (auch bottom Type genannt) für alle in Kotlin
+definierten Typen.
+Das heißt, eine Instanz von Nothing wäre auch eine Instanz jeder anderen Klasse, sei es \inlineKotlin{String},
+\inlineKotlin{Int} oder \inlineKotlin{() -> Boolean}.
+Da so ein Objekt einen logischen Widerspruch darstellt, handelt es sich bei Nothing auch um einen uninhabited Type.
+Das heißt, dass niemals eine tatsächliche Instanz von Nothing existieren kann.
+
+Auf den ersten Blick mag so ein Typ nicht sehr nützlich wirken, er erlaubt den Compiler aber einige nützliche
+Annahmen über den Control Flow zu machen.
+Sollte jemals eine Variable den Wert Nothing annehmen, was einen logischen Widerspruch darstellt, weiß der Compiler,
+dass dieser Code niemals erreicht werden kann.\cite{kspeCFG,kspecNothing}
+
+%! language = kotlin
+\begin{minted}{kotlin}
+fun getNothing(): Nothing {
+    ...
+}
+
+fun test() {
+    // Nothing ist ein Subtype von String, daher ist der folgende Code erlaubt
+    val s: String = getNothing()
+
+    // für diesen Code gibt der Compiler eine Warning aus, da er niemals erreicht werden kann
+    println("Hello World")
+}
+\end{minted}
+\codeblockCaption{
+Dadurch das die Funktion \inlineKotlin{getNothing()} den Rückgabewert Nothing hat, der niemals existieren kann,
+weiß der Compiler, dass diese Funktion niemals auf normale Art und Weise returnen kann und in einer Exception
+resultieren muss.
+}
+
+Um den Nothing-Typen tatsächlich nützlich zu machen, sind in Kotlin Statements, die einen Control-Flow Transfer
+verursachen eigentlich Expressions mit dem Rückgabewert Nothing.
+Beispiele sind: \inlineKotlin{throw}, \inlineKotlin{return}, \inlineKotlin{break} und \inlineKotlin{continue}.
+Da diese Expressions einen sofortigen Wechsel des Control-Flows verursachen hat das zur Folge, dass der nachfolgende
+Code niemals ausgeführt wird.
+Damit können diese Expressions den Wert Nothing haben.\cite{kspeCFG}
+
+%! language = kotlin
+\begin{minted}{kotlin}
+operator fun Int?.plus(other: Int?): Int? {
+    // return hat den Wert Nothing, was ein Subtype von Int ist,
+    // daher ist die Verwendung nach dem elvis operator erlaubt
+    val first = this ?: return null
+    val second = other ?: return null
+    return first + second
+}
+\end{minted}
+\codeblockCaption{Praktisches Beispiel für die Verwendung des Nothing-Typen}
+
+Dadurch das \inlineKotlin{return} in Kotlin eine Expression ist, ist auch der folgende Code gültiges Kotlin:
+
+%! language = kotlin
+\begin{minted}{kotlin}
+fun test() {
+    println("Hello")
+    return return return return return
+}
+\end{minted}
+
+Funktionen, die den Rückgabewert Nothing haben, müssen immer eine Exception werfen.
+
+%! language = kotlin
+\begin{minted}{kotlin}
+fun crashProgram(cause: String): Nothing {
+    MyLogger.log("Program crashed because of: $cause")
+    throw RuntimeException(cause)
+}
+
+fun doSomething(input: String?) {
+    otherFunction(input ?: crashProgram("input must not be null"))
+}
+\end{minted}
+
+Ein Beispiel für eine Funktion aus der Kotlin Standard-Bibliothek die Nothing zurückgibt, ist die
+\inlineKotlin{TODO()} Funktion.
+
+%! language = kotlin
+\begin{minted}{kotlin}
+fun someFunction(): Int = TODO("not yet implemented")
+\end{minted}
 
 % resets author
 \renewcommand{\kapitelautor}{}
