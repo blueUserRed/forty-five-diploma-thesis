@@ -1,11 +1,144 @@
 
 \section{Flow Typing}\label{sec:flow-typing}
 
-\renewcommand{\kapitelautor}{Autor: Irgendwer} % todo: replace
+\renewcommand{\kapitelautor}{Autor: Marvin Kurka}
 
-%
-% text goes here
-%
+Flow Typing bedeutet, dass der Compiler Annahmen über den Typen von Variablen machen kann, basierend auf dem Control
+Flow von dem Programm.
+
+%! language = kotlin
+\begin{minted}{kotlin}
+fun test(s: Any?): Unit = when (s) {
+
+    null -> println("s is null")
+
+    // s hat hier den Typ String
+    is String -> println("s is a string with length ${s.length}")
+
+    // s hat hier den Typ List<*>
+    is List<*> -> println("s is a list with ${s.distinct().size} distinct items")
+
+    // s hat durch den anfänglichen null-Check hier den Typ Any
+    else -> println("nothing matched with ${s::class.simpleName}")
+}
+\end{minted}
+\codeblockCaption{Demonstration von Flow Typing in Kotlin}
+
+Kotlin implementiert Flow-Typing mittels Smart-Casts, die automatisch in den Code eingefügt werden, wenn gewisse
+Control-Flow Instruktionen verwendet werden.
+Das inkludiert \zB whens, ifs, not-null-assertions, casts, is-checks, \usw.
+
+%! language = kotlin
+\begin{minted}{kotlin}
+
+sealed class A {
+
+    object B : A() {
+        fun funInB() = 1
+    }
+
+    object C : A()
+
+}
+
+fun test(nullable: String?, a: A) {
+    nullable!!
+    // Ist nullable tatsächlich null, wäre die letzte Zeile gecrasht, daher ist nullable jetzt von Typ String
+    println(nullable.length)
+
+    if (a is A.C) {
+        // a hat in diesem Scope den Typen A.C
+    }
+
+    if (a !is A.B) throw RuntimeException()
+    // a hat jetzt Typ A.B
+    a.funInB()
+}
+\end{minted}
+\codeblockCaption{Mehr Beispiele für die Anwendung von Flow-Typing}
+
+%! language = kotlin
+\begin{minted}{kotlin}
+fun test() {
+    var a: Any? = ""
+    a = 4
+    a.inc() // .inc() Aufruf funktioniert, obwohl a als Any? deklariert wurde
+}
+\end{minted}
+\codeblockCaption{Auch ein simples Assignment kann einen Smart Cast einfügen.}
+
+Mittels Vereinfachung von komplexen Expressions \bzw desugaring baut der Kotlin-Compiler einen Control-Flow-Graph (CFG)
+auf, der den Control Flow innerhalb einer Funktion modelliert und es dem Compiler erlaubt basierend auf diesem effizient
+Analysen durchzuführen.
+Das Smart-Cast-System verwendet den CFG um an einer bestimmten Stelle im Programm die möglichen Typen einer Expression
+(die sogenannte Smart-Cast Sink) zu ermitteln.
+Eine Smart-Cast Sink kann zum Beispiel eine lokale Variable sein, oder eine beliebige Verkettung nicht-mutierbarer
+(mit \inlineKotlin{val} deklarierter) Properties.
+
+%! language = kotlin
+\begin{minted}{kotlin}
+
+data class Container<T>(val value: T)
+class A {
+
+    val a = Container<Any>("Hello")
+
+    var c: Any = "Hello"
+
+    fun test() {
+        // hier ist die smart cast sink a.value, eine Verkettung von zwei nicht-mutierbaren Properties
+        a.value as String
+        println(a.value.length)
+
+        // c ist eine mutierbare Property (mit var deklariert) und kann daher nicht für Smart Casts verwendet werden
+        c as String
+        println(c.length) // compile time fehler
+    }
+}
+\end{minted}
+\codeblockCaption{Demo von möglichen Smart-Cast Sinks}
+
+Wie in dem vorherigen Code-Snippet ersichtlich, ist es nicht erlaubt eine mutierbare Property für Smart-Casts zu
+verwenden.
+Das ist der Fall, da sich der Wert der Property durch Code, der nicht im CFG erfasst ist, ändern kann (In diesem Fall
+könnte ein anderer Thread den Wert überschreiben).
+Solche Smart-Cast Sinks werden als instabil bezeichnet.
+Andere instabile Smart-Cast Sinks sind \zB Properties mit custom Gettern, delegierte Properties oder Properties die
+in anderen Modulen definiert werden.
+
+%! language = kotlin
+\begin{minted}{kotlin}
+class A {
+
+    // Pair ist eine Klasse aus Kotlins Standard-Bibliothek, die in einem anderen Modul definiert ist.
+    val a: Pair<Any, Any> = "Hello" to "World"
+
+    val b: Any by lazy {
+        "Hello"
+    }
+
+    val c: Any
+        get() = "Hello"
+
+    fun test() {
+        a.first as String
+        println(a.first.length) // compile time Fehler
+
+        b as String
+        println(b.length) // compile time Fehler
+
+        c as String
+        println(c.length) // compile time Fehler
+    }
+
+}
+\end{minted}
+\codeblockCaption{Demonstration von weiteren instabilen Smart-Cast Sinks}
+
+In all diesen Fällen kann der Compiler nicht garantieren, das der Wert der Smart-Cast Sink sich nicht durch Code,
+der nicht im CFG erfasst ist, ändert.
+So enthalten \inlineKotlin{b} und \inlineKotlin{c} zum Beispiel custom Getter, die theoretisch bei jedem Aufruf einen
+anderen Wert zurückgeben könnten.\cite{kspecSmartCasts}
 
 % resets author
 \renewcommand{\kapitelautor}{}
