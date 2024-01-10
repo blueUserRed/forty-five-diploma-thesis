@@ -88,5 +88,8 @@ Ein Beispiel für eine Funktion aus der Kotlin Standard-Bibliothek die Nothing z
 fun someFunction(): Int = TODO("not yet implemented")
 \end{minted}
 
+Ein weiterer Anwendungsfall von Nothing ist als generischer Parameter, um \zB eine leere Liste zu signalisieren.
+Eine \inlineKotlin{List<Nothing>} muss immer leer sein, da keine Instanz von Nothing existieren kann.
+
 % resets author
 \renewcommand{\kapitelautor}{}

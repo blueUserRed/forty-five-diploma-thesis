@@ -1,11 +1,163 @@
 
 \section{Lambdas}\label{sec:lambdas}
 
-\renewcommand{\kapitelautor}{Autor: Irgendwer} % todo: replace
+\renewcommand{\kapitelautor}{Autor: Marvin Kurka}
 
-%
-% text goes here
-%
+\subsection{Lambdas in Java und Javascript}
+Anders als Kotlin wurde Java ursprünglich ohne Lambdas entwickelt, diese wurden erst in der Version Java 8 hinzugefügt.
+Durch diesen Umstand entstand eine wesentliche Limitation der Java Lambdas, nämlich den Fakt das Closures nicht
+funktionieren wie man es von anderen Sprachen wie \zB Javascript erwartet.
+Generell ist es so, das ein Lambda Werte, die in äußeren Scopes definiert wurden in einer sogenannten Closure captured
+und so weiter sowohl lesend als auch schreibend auf diese zugreifen kann.
+Java allerdings erlaubt nur den lesenden Zugriff, und nur wenn auch Code außerhalb des Lambdas niemals schreibend auf
+die Variable zugreift.\cite{mdnDocsClosures, jarticleLambdas}
+
+\begin{minted}{javascript}
+function createClosure() {
+    let i = 0;
+    const getter = () => i;
+    const setter = value => { i = value; };
+    return [getter, setter];
+}
+const [getter, setter] = createClosure();
+setter(10);
+console.log(getter()); // => 10
+setter(getter() * 2);
+console.log(getter()); // => 20
+\end{minted}
+\codeblockCaption{Demonstration von closures in Javascript}
+
+\begin{minted}{java}
+int i = 0;
+String effectivelyFinal = "hi";
+AtomicInteger a = new AtomicInteger(0);
+Runnable r = () -> {
+    i++; // compile time fehler
+    a.incrementAndGet(); // workaround mit AtomicInteger, funktioniert
+    System.out.println(effectivelyFinal); // erlaubt, weil effectivelyFinal nie zugewiesen wird
+};
+\end{minted}
+\codeblockCaption{Demonstration von limitierten closures in Java}
+
+Kotlin wurde anders als Java von Anfang an mit Lambdas entwickelt und weist daher keine solchen Limitationen auf.
+Da Kotlin sich selbst als Sprache mit vielen Elementen aus der funktionalen Programmierung bezeichnet, ist es wichtig,
+dass Lambdas und Closures so funktionieren wie erwartet und gut in die Sprache integriert sind.\cite{kspecIntroduction}
+
+\subsection{Lambda Syntax in Kotlin}
+Ein Aspekt der Kotlins Lambdas von Lambda-Implementation in anderen Sprachen besonders unterscheidet ist der Syntax.
+Eine geschwungene Klammer, die frei im Code auftaucht, eröffnet nicht wie anderen Sprachen wie \zB Java oder Javascript
+einen neuen Code-Block, sondern deklariert ein Lambda.
+Lambda Parameter werden in den geschwungenen Klammern angegeben.\cite{kspecLambdaLiteral}
+
+%! language = kotlin
+\begin{minted}{kotlin}
+fun test() {
+    {
+        println("hi")
+    }
+}
+\end{minted}
+\codeblockCaption{
+Das hier gezeigte \inlineKotlin{println()} wird nie tatsächlich ausgeführt, das es in einem Lambda
+definiert wurde, das selbst nie ausgeführt wird
+}
+
+%! language = kotlin
+\begin{minted}{kotlin}
+fun test() {
+    val lambda: (String) -> Unit = { string -> println(string) }
+    lambda("hello")
+    lambda("world")
+}
+\end{minted}
+\codeblockCaption{Lambda-Literal mit einem Parameter}
+
+Zusätzlich stellt Kotlin einige syntaktische Vereinfachen zur Verfügung, wenn eine Funktion als letzten Parameter
+ein Lambda nimmt.
+In diesem Fall kann das Lambda nämlich außerhalb der Klammern des Funktionsaufrufs geschrieben werden.
+
+%! language = kotlin
+\begin{minted}{kotlin}
+fun test() {
+    // repeat ist keine Control-Flow-Struktur, sondern eine normale Funktion, die in der
+    // Standard-Bibliothek definiert ist.
+    repeat(5) {
+        println("hi")
+    }
+}
+\end{minted}
+\codeblockCaption{Demonstration von einem Funktionsaufruf mit Lambda}
+
+Wenn die Funktion sonst keine Parameter nimmt, können die Klammern sogar komplett weggelassen werden.
+
+%! language = kotlin
+\begin{minted}{kotlin}
+fun test() {
+    run {
+    }
+    // ist gleich
+    run() {
+    }
+    // ist gleich
+    run({ })
+}
+\end{minted}
+
+\inlineKotlin{run} ist eine Funktion aus der Standard-Bibliothek, die ein Lambda entgegennimmt und einmal ausführt.
+Diese Funktion wird in der Praxis verwendet, um normal Code-Blöcke zu ersetzen.
+
+Achtung!
+Ist eine geschwungene Klammer Teil einer syntaktischen Struktur eröffnet sie einen normalen Code-Block, kein Lambda!
+
+%! language = kotlin
+\begin{minted}{kotlin}
+fun test() {
+    if (someCondition) { // Diese geschwungene Klammer eröffnet kein Lambda!
+    }
+}
+\end{minted}
+
+Eine weitere Vereinfachung ist, dass ein Lambda, das nur einen Parameter nimmt, diesen nicht explizit angeben muss.
+Stattdessen wird implizit eine lokale Variable namens \inlineKotlin{it} erschaffen.
+Das erleichtert vor allem lange Aufrufketten auf Iterables.
+
+%! language = kotlin
+\begin{minted}{kotlin}
+data class Country(val name: String, val population: Int)
+fun test() {
+    val countries = listOf<Country>()
+    // erstellt einen String mit den Anfangsbuchstaben aller Länder mit mehr als 500 Einwohnern die mit "land" enden
+    val result = countries
+        .filter { it.population > 500 }
+        .map { it.name }
+        .filter { it.endsWith("land") }
+        .map { it.first() }
+        .fold("") { acc, cur -> acc + cur }
+}
+\end{minted}
+\codeblockCaption{Praxisnahes Beispiel für Lambdas}
+
+Wie im letzten Beispiel ersichtlich, ist es nicht notwendig explizit eine \inlineKotlin{return} expression in einem
+Lambda zu verwenden.
+Stattdessen wird der Wert der letzten Expression im Block automatisch als return-Wert angenommen.
+
+%! language = kotlin
+\begin{minted}{kotlin}
+
+enum class ColorMode { LightMode, DarkMode }
+data class UserPrefs(val selectedColorMode: ColorMode?)
+data class Defaults(val defaultColorMode: ColorMode = ColorMode.DarkMode)
+
+fun test() {
+    val colorPicker: (UserPrefs, Defaults) -> String = { prefs, defaults ->
+        val colorMode = prefs.selectedColorMode ?: defaults.defaultColorMode
+        when (colorMode) { // when ist die letzte Expression im Lambda, daher wird ihr Wert als return-Wert genommen
+            ColorMode.LightMode -> "#ffffff"
+            ColorMode.DarkMode -> "#000000"
+        }
+    }
+}
+\end{minted}
 
 % resets author
 \renewcommand{\kapitelautor}{}

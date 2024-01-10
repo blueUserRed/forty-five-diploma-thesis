@@ -1,11 +1,27 @@
 
 \section{Inline Functions}\label{sec:inline-functions}
 
-\renewcommand{\kapitelautor}{Autor: Irgendwer} % todo: replace
+\renewcommand{\kapitelautor}{Autor: Marvin Kurka}
 
-%
-% text goes here
-%
+\subsection{inline Funktionen in anderen Sprachen}
+In C/C++ werden von den Compilern häufig kurze Funktionen geinlined.
+Das heißt, der Funktionsaufruf wird mit den tatsächlichen Body der Funktion ersetzt, und kein tatsächlicher
+Funktionsaufruf findet statt.
+C und C++ haben den \inlineCode{inline} Modifier, der als Hinweis für den Compiler dient, dass diese Funktion
+geinlined werden soll.
+Der Compiler darf allerdings selber entscheiden, ob er das tut \bzw auch nicht mit \inlineCode{inline} markierte
+Funktionen inlinen.
+Der Grund für Funktions-inlining ist in erster Linie Performance, da dadurch ein Funktionsaufruf gespart wird.\cite{crefInline}
+
+In Kotlin ist der Grund für Funktions-inlining explizit nicht um den Overhead eines Funktionsaufrufs zu sparen,
+der Compiler warnt sogar, wenn der \inlineKotlin{inline} Modifier verwendet wird und kein sonstiger Grund für
+inlining besteht.
+
+\subsection{Effizientere Lambdas und non-local returns}
+Eine Anwendung für inline-Funktionen sind higher-order-functions, also Funktionen, die andere Funktionen als Parameter
+nehmen.
+
+
 
 % resets author
 \renewcommand{\kapitelautor}{}

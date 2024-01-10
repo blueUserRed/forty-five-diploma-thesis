@@ -1,11 +1,61 @@
 
 \section{Extension Functions}\label{sec:extension-functions}
 
-\renewcommand{\kapitelautor}{Autor: Irgendwer} % todo: replace
+\renewcommand{\kapitelautor}{Autor: Marvin Kurka}
 
-%
-% text goes here
-%
+Kotlin erlaubt es Funktionen zu definieren, die auf einem Objekt aufgerufen werden können, ohne tatsächlich in der
+Klasse dieses Objekts definiert worden zu sein.
+Solche Funktionen nennt man Extension Functions.
+Sie werden definiert, indem man vor dem Funktionsnamen einen sogenannten Receiver-Typen gefolgt von einem Punkt angibt.
+Bei dem Aufruf einer Extension Function wird der Receiver als Parameter mitgegeben, und ist dann in der Funktion als
+\inlineKotlin{this} verfügbar.
+Das heißt auch, dass Extension Function statisch, also zur compile time, resolved werden.
+Es finden also keine virtuellen Lookups statt.\cite{kdocExtensions}
+
+%! language = kotlin
+\begin{minted}{kotlin}
+fun String.escapeNewLines(): String = this.replace("\n", "\\n")
+
+fun test() {
+    val s = "String\nwith\nNewlines"
+    println(s.escapeNewLines())
+}
+\end{minted}
+
+Wenn Receiver-Typen generische Parameter haben, kann die Extension Function entweder selbst einen generischen Parameter
+verwenden, oder auch einen konkreten Typen einsetzen.
+Das erlaubt es Funktionen zu definieren, die nur verfügbar sind, wenn bestimmte Typen für die generischen Parameter
+eingesetzt wurden, was mit normalen member Functions nicht möglich ist.\cite{kdocExtensions}
+
+%! language = kotlin
+\begin{minted}{kotlin}
+fun Iterable<Int>.evenNumbers(): List<Int> = this.filter { it % 2 == 0 }
+\end{minted}
+
+Wichtig zu erwähnen ist auch, dass Encapsulation nicht durch Extension Functions gebrochen wird.
+Das heißt, dass Extension Functions nicht auf private Funktionen/Properties des Receivers zugreifen können.
+So ein Zugriff wäre spätestens auf dem Level der JVM verboten, da Extension Functions nicht in der Klasse des Receivers
+definiert sind.
+
+Nicht nur Funktionen können Receiver angeben, sondern auch Lambdas.
+Auch hier wird der Receiver-Typ mit einem Punkt vor dem Lambda-Typ geschrieben, und der Receiver ist als
+\inlineKotlin{this} im Lambda verwendbar.\cite{kdocLambdas}
+
+%! language = kotlin
+\begin{minted}{kotlin}
+fun <T> createList(listInitializer: MutableList<T>.() -> Unit): List<T> =
+    mutableListOf<T>().apply { listInitializer(this) }
+
+fun test() {
+    val list = createList<String> {
+        // Aufrufe werden implizit auf 'this' ausgeführt
+        add("Hi")
+        add("Hello")
+        add("World")
+        removeFirst()
+    }
+}
+\end{minted}
 
 % resets author
 \renewcommand{\kapitelautor}{}
