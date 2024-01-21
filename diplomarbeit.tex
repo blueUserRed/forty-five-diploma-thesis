@@ -153,23 +153,23 @@ Mögliche Variante: Ziele laut Antrag, mit Querverweisen zu den einzelnen Kapite
 
 \appendix
 
-\chapter{Anhang 1}\label{ch:anhang-1}
+\input{text/anhänge/00_anhänge.tex}
 
-was auch immer: technische Dokumentationen etc.
-
-Zusätzlich sollte es geben:
-\begin{itemize}
-\item Abkürzungsverzeichnis
-\item Quellenverzeichnis (hier: Bibtex im Stil plaindin)
-\item optional: Akronyme und Glossar
-\end{itemize}
+%was auch immer: technische Dokumentationen etc.
+%
+%Zusätzlich sollte es geben:
+%\begin{itemize}
+%\item Abkürzungsverzeichnis
+%\item Quellenverzeichnis (hier: Bibtex im Stil plaindin)
+%\item optional: Akronyme und Glossar
+%\end{itemize}
 
 %% optional: Akronyme und Glossar
 % kann man löschen falls kein Glossar gebraucht
-\printglossary[type=\acronymtype, title=Abkürzungsverzeichnis, toctitle=Abkürzungsverzeichnis]
-\printglossary[type=main, title=Glossar, toctitle=Glossar]
+%\printglossary[type=\acronymtype, title=Abkürzungsverzeichnis, toctitle=Abkürzungsverzeichnis]
+%\printglossary[type=main, title=Glossar, toctitle=Glossar]
 
-\printindex{}
+%\printindex{}
 
 %% Flattersatz -- damit werden die langen URLs besser umgebrochen
 \raggedright %% eventuell auskommentieren

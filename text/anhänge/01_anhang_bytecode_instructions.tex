@@ -1,0 +1,87 @@
+
+\chapter{Anhang 1 - Erklärung Bytecode Instruktionen}\label{ch:anhang-1}
+
+\renewcommand{\kapitelautor}{Autor: Marvin Kurka}
+
+Zuerst, hier nochmal der Code-Block:
+
+%! language = kotlin
+\begin{minted}{kotlin}
+fun runLambda(lambda: () -> Unit) = lambda()
+inline fun runLambdaInline(lambda: () -> Unit) = lambda()
+
+fun test() {
+    runLambda {
+        println("runLambda")
+    }
+    runLambdaInline {
+        println("runLambdaInline")
+    }
+}
+\end{minted}
+
+Und der Byte-Code:
+
+\begin{minted}{text}
+ 0: getstatic     #34                 // Field TestKt$test$1.INSTANCE:LTestKt$test$1;
+ 3: checkcast     #18                 // class kotlin/jvm/functions/Function0
+ 6: invokestatic  #36                 // Method runLambda:(Lkotlin/jvm/functions/Function0;)V
+ 9: iconst_0
+10: istore_0
+11: iconst_0
+12: istore_1
+13: ldc           #37                 // String runLambdaInline
+15: getstatic     #43                 // Field java/lang/System.out:Ljava/io/PrintStream;
+18: swap
+19: invokevirtual #49                 // Method java/io/PrintStream.println:(Ljava/lang/Object;)V
+22: nop
+23: nop
+24: return
+\end{minted}
+
+Zwei Stellen im Bytecode ergeben auf den ersten Blick nicht wirklich Sinn, nämlich 9--12 und 22--23.
+Diese sind hier erklärt.
+
+\section{Stelle 1: 9-12}
+
+\begin{minted}{text}
+ 9: iconst_0
+10: istore_0
+11: iconst_0
+12: istore_1
+\end{minted}
+
+Hier schreibt der Compiler 0 in die Register 0 und 1, liest die Werte aber nie aus.
+Ein Blick in den LVT der Funktion liefert einen Hinweis:
+
+\begin{minted}{text}
+LocalVariableTable:
+    Start  Length  Slot  Name   Signature
+    13      10     1 $i$a$-runLambdaInline-TestKt$test$2   I
+    11      13     0 $i$f$runLambdaInline   I
+\end{minted}
+
+Der LVT oder Local Variable Table speichert Informationen zu den lokalen Variablen einer Funktion, die normalerweise
+bei der Kompilation verloren gehen würden.
+Er ist optional und nicht für die korrekte Ausführung des Codes notwendig, kann aber von
+Debuggern verwendet werden.\cite{jvmspecLVT}
+
+Da durch das inlinen der Funktion kein Frame am Callstack generiert wird, geht nützliche Information im Stacktrace
+verloren.
+Diese lokalen Variablen speichern Informationen zu aufgerufenen inline-Funktionen in ihren Namen, die dann von
+Debugging-Tools ausgelesen werden können.\cite{youTrackFakeVariables}
+
+\section{Stelle 2: 22-23}
+
+Hier generiert der Compiler zwei nicht notwendige nop-Instruktionen.
+Wie sich herausstellt, hat auch dieser Bytecode mit inline-Funktionen zu tun.
+Unter gewissen Umständen, \zB wenn eine inline-Funktion nur eine andere inline-Funktion aufruft,
+wird für die erste Funktion kein Bytecode generiert.
+Das führt zu mehreren Problemen, zum Beispiel kann dadurch keine Assoziation zu einer Zeilennummer hergestellt werden,
+da Informationen im LineNumberTable immer mit einem Bytecode-Offset verknüpft sind.
+Außerdem führt das zu Problemen beim debuggen, da auch Breakpoints immer auf eine Instruktion im Bytecode verweisen.
+Deswegen wird für eine inline-Funktion immer ein \inlineCode{nop} ausgegeben, um zu garantieren, dass
+zumindest eine Instruktion für jede inline-Funktion ausgegeben wird.\cite{youTrackNops}
+
+% resets author
+\renewcommand{\kapitelautor}{}
