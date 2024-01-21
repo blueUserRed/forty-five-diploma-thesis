@@ -15,7 +15,7 @@ Der Grund für Funktions-inlining ist in erster Linie Performance, da dadurch ei
 
 In Kotlin ist der Grund für Funktions-inlining explizit nicht um den Overhead eines Funktionsaufrufs zu sparen,
 der Compiler warnt sogar, wenn der \inlineKotlin{inline} Modifier verwendet wird und kein sonstiger Grund für
-inlining besteht.
+inlining besteht.\cite{kdocInline}
 
 \subsection{Effizientere Lambdas}
 Dieser Abschnitt hat nur für Kotlin/JVM Gültigkeit.
@@ -26,7 +26,7 @@ nehmen.
 Im Normalfall muss der Compiler für das Lambda eine anonyme Klasse generieren, die da Lambda enthält, und alle Variablen,
 die Teil der Closure sind, speichern.
 Wenn eine solche Funktion als \inlineKotlin{inline} markiert ist, kann der Compiler nicht nur die Funktion, sondern auch
-das Lambda inlinen, was diesen Overhead spart.
+das Lambda inlinen, was diesen Overhead spart.\cite{kdocInline}
 
 Beispiel für higher-order inline Funktionen:
 
@@ -76,6 +76,34 @@ aufgerufen, da das Lambda geinlined wurde.
 In der Disassembly sind auch mehrere merkwürdige Instruktionen zu sehen, \zB von Offset 9--12 oder von 22--23.
 Diese sind Anhang\ref{ch:anhang-1} erklärt.
 \end{infoBox}
+
+\subsection{reified Generics}
+
+Während Sprachen wie Java oder Kotlin Support für Generics haben, können auf der JVM nur konkrete Klassen oder
+Interfaces als Typ angegeben werden.
+Deshalb kommt es bei der Kompilation zur "Type-Erasure", bei der generische Typen mit konkreten Typen, in den meisten
+Fällen \inlineKotlin{Object}, ersetzt werden.
+Durch diesen Prozess geht Runtime-Information zu generischen Typen verloren, was \zB dazu führt, dass Casts zu
+generischen Typen in Java nicht funktionieren wie erwartet.\cite{jdocTypeErasure}
+
+\begin{minted}{java}
+public static <T> T test(Object arg) {
+    boolean isInstance = arg instanceof T; // Compile-time Fehler
+    return (T) arg; // Warning: Unchecked Cast
+}
+\end{minted}
+
+Der Compiler erlaubt den Cast zwar, kann ihn aber nicht tatsächlich durchführen, \dah die Funktion könnte einen Wert
+zurückgeben, der nicht von Typ \inlineJava{T} ist.
+
+In Kotlin bieten inline-Funktionen einen Workaround für dieses Problem.
+Da der Typ an der Call-site vorhanden ist, kann eine inline Funktion einen generischen Parameter als
+\inlineKotlin{reified} deklarieren, was Casts/is-checks möglich macht.\cite{kdocInline}
+
+%! language = kotlin
+\begin{minted}{kotlin}
+inline fun <reified T> Iterable<Any>.findInstance(): T? = this.find { it is T } as T?
+\end{minted}
 
 % resets author
 \renewcommand{\kapitelautor}{}

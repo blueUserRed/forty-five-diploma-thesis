@@ -81,7 +81,9 @@ Das führt zu mehreren Problemen, zum Beispiel kann dadurch keine Assoziation zu
 da Informationen im LineNumberTable immer mit einem Bytecode-Offset verknüpft sind.
 Außerdem führt das zu Problemen beim debuggen, da auch Breakpoints immer auf eine Instruktion im Bytecode verweisen.
 Deswegen wird für eine inline-Funktion immer ein \inlineCode{nop} ausgegeben, um zu garantieren, dass
-zumindest eine Instruktion für jede inline-Funktion ausgegeben wird.\cite{youTrackNops}
+zumindest eine Instruktion für jede inline-Funktion ausgegeben wird.
+Im oberen Code sind zwei \inlineCode{nop} Instruktionen vorhanden, da in Kotlin \inlineKotlin{println} auch eine
+inline-Funktion ist.\cite{youTrackNops}
 
 % resets author
 \renewcommand{\kapitelautor}{}
