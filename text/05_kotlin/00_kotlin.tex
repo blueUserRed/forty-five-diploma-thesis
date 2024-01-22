@@ -1,12 +1,36 @@
 
 \chapter{Kotlin}\label{ch:kotlin}
 
-\input{text/05_kotlin/01_code_clarity.tex}
-\input{text/05_kotlin/02_null_safety.tex}
-\input{text/05_kotlin/03_flow_typing.tex}
-\input{text/05_kotlin/04_lambdas.tex}
-\input{text/05_kotlin/05_nothing_type.tex}
-\input{text/05_kotlin/06_extension_functions.tex}
-\input{text/05_kotlin/07_inline_functions.tex}
-\input{text/05_kotlin/08_getter_und_setter.tex}
-\input{text/05_kotlin/09_kotlin_vs_java.tex}
+Kotlin ist eine objektorientierte Programmiersprache mit funktionalen Elementen, einem statischen Typensystem und
+Multiplatform-Support.
+
+Zu den besonderen Merkmalen von Kotlin gehören:
+\begin{itemize}
+    \item Null-Safety, was die Fehleranfälligkeit reduziert,
+    \item Java-Interoperabilität, was das stückweise Migrieren von Code erlaubt,
+    \item Multiplatform-Support, was das Verwenden von Kotlin auf verschieden Plattformen erlaubt,
+    \item Moderner Syntax, was Boilerplate reduziert und Code leichter lesbar macht
+\end{itemize}
+
+2016 wurde die erste stabile Version von JetBrains offiziell released und seitdem ist Kotlins Userbase
+stetig gewachsen und die Sprache hat besonderen Anklang in der Android-Entwicklung gefunden.
+2017 hat Google angekündigt, das Kotlin als Sprache für Android-Entwicklung supported wird und seit 2019 ist Android
+sogar Kotlin-First, was heißt, dass neue Features vermehrt mit/für Kotlin entwickelt werden.
+
+Trotz Kotlins geringen Alters hat es bereits Popularität bei Entwicklern erlangt, und das nicht nur im
+Android-Development.
+In der Stackoverflow Developer Survey 2023 gaben 9\% der Entwickler an, Kotlin zu verwenden, und 60\% der
+Umfrageteilnehmer, die die Sprache verwendet haben, wollen das im nächste Jahr wieder tun.
+
+Außerdem erlaubt Kotlin Multiplatform das Teilen von Code über mehrere Plattformen hinweg.
+Kotlin kompiliert nicht nur zu JVM-Bytecode, sondern andere Compilation-Targets inkludieren JavaScript, WASM, oder
+nativer Binärcode.\cite{androidDevKotlinFirst, kspecIntroduction, soDevSurvey23, kMediaKit}
+
+\input{text/05_kotlin/01_null_safety.tex}
+\input{text/05_kotlin/02_flow_typing.tex}
+\input{text/05_kotlin/03_lambdas.tex}
+\input{text/05_kotlin/04_nothing_type.tex}
+\input{text/05_kotlin/05_extension_functions.tex}
+\input{text/05_kotlin/06_inline_functions.tex}
+\input{text/05_kotlin/07_getter_und_setter.tex}
+\input{text/05_kotlin/08_kotlin_vs_java.tex}
