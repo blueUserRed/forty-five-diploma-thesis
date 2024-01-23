@@ -1,11 +1,78 @@
 
 \subsection{Named Objects}\label{subsec:named-objects}
 
-\renewcommand{\kapitelautor}{Autor: Irgendwer} % todo: replace
+\renewcommand{\kapitelautor}{Autor: Marvin Kurka}
 
-%
-% text goes here
-%
+Bei der Validation von komplexen Onj-Strukturen kann es unter gewissen Umständen zu Problemen können, vor allem wenn
+an einer Stelle mehrere verschiedene Objekte möglich sind.
+Um das Problem besser erkenntlich zu machen, hier ein Beispiel:
+
+%! language = Onj
+\begin{minted}{onj}
+// onj struktur
+uiElements: [
+    {
+        type: "label",
+        text: "Hello World",
+        font: "red wing",
+    },
+    {
+        type: "image",
+        path: "./some/image.png"
+    }
+]
+\end{minted}
+
+%! language = Onj
+\begin{minted}{onj}
+// onj schema
+var uiElement = {
+    type: string,
+    ...*
+};
+uiElements: uiElement[]
+\end{minted}
+
+Im Schema kann nur garantiert werden, das ein UI-Element einen \inlineOnj{type}-Key hat, alles andere wird offen
+gelassen.
+Das macht die Schema-Validierung in diesem Fall praktisch nutzlos.
+Die Lösung, die Onj für dieses Problem bietet, sind Named Objects.
+Im Schema kann eine Named Object Group definiert werden, die mehrere Named Objects enthält.
+Jedes Named Object hat einen Namen, über den es identifiziert wird und kann beliebige Keys mit beliebigen Typen
+definieren.
+Im Schema kann dann der Name der Named Object Group als Typ verwendet werden, der alle Named Objects, die Teil der Group
+sind, erlaubt.
+
+Hier noch einmal das selbe Beispiel, implementiert mit Named Objects:
+
+%! language = Onj
+\begin{minted}{onj}
+// onj struktur
+uiElements: [
+    $Label {
+        text: "Hello World",
+        font: "red wing",
+    },
+    $Image {
+        path: "./some/image.png"
+    }
+]
+\end{minted}
+
+%! language = Onj
+\begin{minted}{onj}
+// onj schema
+$UiElement {
+    $Label {
+        text: string,
+        font: string
+    }
+    $Image {
+        path: string
+    }
+}
+uiElements: $UiElement[]
+\end{minted}
 
 % resets author
 \renewcommand{\kapitelautor}{}

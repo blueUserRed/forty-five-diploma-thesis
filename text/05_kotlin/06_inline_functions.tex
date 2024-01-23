@@ -5,7 +5,7 @@
 
 \subsection{inline Funktionen in anderen Sprachen}
 In C/C++ werden von den Compilern häufig kurze Funktionen geinlined.
-Das heißt, der Funktionsaufruf wird mit den tatsächlichen Body der Funktion ersetzt, und kein tatsächlicher
+Das heißt, der Funktionsaufruf wird mit dem Body der Funktion ersetzt, und kein tatsächlicher
 Funktionsaufruf findet statt.
 C und C++ haben den \inlineCode{inline} Modifier, der als Hinweis für den Compiler dient, dass diese Funktion
 geinlined werden soll.
@@ -69,7 +69,7 @@ Wie in der Disassembly zu sehen ist, hat der Compiler für das erste Lambda (Off
 (TestKt\$test\$1) erstellt.
 Da das Lambda in diesem Fall keine Variablen in einer Closure speichert, kann der Compiler ein Singleton generieren,
 was zumindest den Konstruktor-Aufruf spart.
-Wie von Offset 12--21 zu sehen ist, wird das \inlineKotlin{println} der zweiten direkt in der test-Funktion
+Wie von Offset 13--21 zu sehen ist, wird das \inlineKotlin{println} der zweiten Funktion direkt in der test-Funktion
 aufgerufen, da das Lambda geinlined wurde.
 
 \begin{infoBox}
