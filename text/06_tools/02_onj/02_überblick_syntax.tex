@@ -1,11 +1,42 @@
 
 \subsection{Überblick Syntax}\label{subsec:ueberblick-syntax}
 
-\renewcommand{\kapitelautor}{Autor: Irgendwer} % todo: replace
+\renewcommand{\kapitelautor}{Autor: Marvin Kurka}
 
-%
-% text goes here
-%
+Onjs Syntax ähnelt stark den von Json, jedoch gibt es einige Unterschiede:
+\begin{itemize}
+    \item Bei Keys ohne Sonderzeichen sind Anführungszeichen optional
+    \item Das Top-Level Objekt ist implizit
+    \item Top-Level Arrays sind nicht erlaubt
+    \item Trailing Kommas sind erlaubt
+    \item Funktionen in verschiedenen Notationen sind supported
+    \item Besondere Strukturen wie Variablen-Deklarationen oder import-statements
+    \item Der Triple-Dot (include) Syntax
+    \item Mathematische expressions sind erlaubt
+\end{itemize}
+
+%! language = Onj
+\begin{minted}{onj}
+import "color.onj" as color;
+
+use SomeNamespace;
+
+var favoriteColor = color.red;
+var boringColors = [color.black, color.white, color.gray];
+
+string: "a\nstring",
+colors: [color.blue, favoriteColor, ...boringColors,],
+number: 2 + 2 * 2,
+otherNumber: 4 * (10 pow 5),
+functionCall: someFunction(10, 5),
+conversion: 5#string,
+isWhiteBoring: color.white in boringColors,
+\end{minted}
+\codeblockCaption{Beispiel in Onj}
+
+\begin{infoBox}
+Die vollständige Grammatik von Onj kann im Anhang\ref{ch:anhang-2} gefunden werden.
+\end{infoBox}
 
 % resets author
 \renewcommand{\kapitelautor}{}

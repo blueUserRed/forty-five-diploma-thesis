@@ -1,11 +1,40 @@
 
 \subsection{Imports}\label{subsec:imports}
 
-\renewcommand{\kapitelautor}{Autor: Irgendwer} % todo: replace
+\renewcommand{\kapitelautor}{Autor: Marvin Kurka}
 
-%
-% text goes here
-%
+Oft ist es so, dass gewisse Strukturen öfter verwendet werden müssen.
+Das kann Probleme mit der maintainability verursachen, da, falls eine Änderung vorgenommen wird, diese dann an vielen
+Stellen repliziert werden muss.
+Um solche Redundanzen innerhalb einer Datei zu vermeiden können Variablen verwendet werden, oft treten jedoch auch
+dateiübergreifende Redundanzen auf.
+Import-Statements erlauben häufige Strukturen in eine eigene Datei auszulagern und diese dann in anderen Dateien zu
+importieren.
+Bei einem Import-Statement wird neben dem Pfad der zu importierenden Datei auch ein Variablenname angegeben, unter dem
+dann eine Variable mit dem Inhalt der importierten Datei erschaffen wird.
+
+%! language = Onj
+\begin{minted}{onj}
+// toImport.onj
+myValue: 5
+\end{minted}
+
+%! language = Onj
+\begin{minted}{onj}
+// importer.onj
+import "toImport.onj" as imported;
+importedValue: imported.myValue,
+\end{minted}
+
+Der Pfad kann, ähnlich wie ein Variablenzugriff, dynamisch gemacht werden.
+Dazu werden Klammern verwendet.
+
+%! language = Onj
+\begin{minted}{onj}
+var colorSchemes = ["lightMode.onj", "darkMode.onj"];
+import "userPrefs.onj" as userPrefs;
+import (colorSchemes.(userPrefs.preferredColorScheme)) as colorScheme;
+\end{minted}
 
 % resets author
 \renewcommand{\kapitelautor}{}

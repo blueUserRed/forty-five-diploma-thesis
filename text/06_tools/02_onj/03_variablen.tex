@@ -1,11 +1,53 @@
 
-\subsection{Variabled}\label{subsec:variablen}
+\subsection{Variablen}\label{subsec:variablen}
 
-\renewcommand{\kapitelautor}{Autor: Irgendwer} % todo: replace
+\renewcommand{\kapitelautor}{Autor: Marvin Kurka}
 
-%
-% text goes here
-%
+Um das Wiederholen von Code so gering wie möglich zu halten, werden in Onj Variablen verwendet, um häufige Strukturen
+zu extrahieren.
+Mittels des Variablennamen kann dan auf diese zugegriffen werden, auch Verknüpfungen mit Punkten sind erlaubt.
+
+%! language = Onj
+\begin{minted}{onj}
+
+var number = 5;
+favoriteNumber: number,
+otherNumber: (number + 1) * number,
+
+var colors = {
+    red: "#ff0000",
+    green: "#00ff00",
+    blue: "#0000ff",
+};
+favoriteColor: colors.blue,
+
+var fruits = ["apple", "banana", "grape"];
+// auf arrays wird mittels des Indexes zugegriffen
+favoriteFruit = fruits.0,
+\end{minted}
+
+Es können auch drei Punkte verwendet werden, um den Inhalt einer Variable in die aktuelle Struktur zu übernehmen.
+
+%! language = Onj
+\begin{minted}{onj}
+var fruits = ["apple", "pear"];
+fruitSalad: [
+    "banana",
+    "grape",
+    ...fruits
+],
+\end{minted}
+
+Statt bei einem Zugriff einfach den Key-Namen oder den Index anzugeben, kann auch in Klammern eine Expression angegeben
+werden.
+Diese wird evaluiert und das Resultat wird für den Zugriff verwendet.
+
+%! language = Onj
+\begin{minted}{onj}
+var index = 1;
+var arr = [0, 1, 2, 3, 4, 5];
+myValue: arr.(index + 2)
+\end{minted}
 
 % resets author
 \renewcommand{\kapitelautor}{}

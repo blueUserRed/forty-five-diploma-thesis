@@ -1,6 +1,18 @@
 
 \section{Onj}\label{sec:onj}
 
+Onj ist eine selbst entwickelte Markupsprache, die Ähnlichkeiten zu Sprachen wie Json, Toml oder Yaml aufweist,
+diese allerdings um einige Features erweitert.
+Onj-Dateien sind dafür ausgelegt, von Hand geschrieben zu werden und haben daher einige Quality of Life Features, die
+ähnliche Sprachen nicht aufweisen.
+Außerdem soll Onj auch für größere Projekte geeignet sein, ohne das der Wartungsaufwand zu groß wird.
+Daher hat Onj Mechanismen um repetitiven Code zu vermeiden, wie imports oder Variablen, die Möglichkeit Strukturen
+mit Schemas zu validieren und die Fähigkeit mittels Namespaces mit Kotlin-Code zu interagieren.
+
+Onj-Dateien können nicht nur von Programmen eingelesen werden, Onj-Strukturen können auch mittels der
+\inlineKotlin{buildOnjObject}-Funktion im Programm gebaut und in Dateien geschrieben werden.
+Dabei können die Strukturen nicht nur zu gültigen Onj, sondern auch zu Json serialisiert werden.
+
 \input{text/06_tools/02_onj/01_warum_onj.tex}
 \input{text/06_tools/02_onj/02_überblick_syntax.tex}
 \input{text/06_tools/02_onj/03_variablen.tex}

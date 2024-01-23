@@ -1,11 +1,53 @@
 
 \subsection{Onj Schemas}\label{subsec:onj-schemas}
 
-\renewcommand{\kapitelautor}{Autor: Irgendwer} % todo: replace
+\renewcommand{\kapitelautor}{Autor: Marvin Kurka}
 
-%
-% text goes here
-%
+Wenn Configdateien vom Programm eingelesen werden, muss überprüft werden, dass diese im richtigen Format sind.
+Das kann vom Programmierer manuell gemacht werden, dies ist aber sehr umständlich, vor allem großen/komplexen Strukturen.
+Stattdessen werden Schemas verwendet, die definieren wie eine Onj-Datei strukturiert sein darf.
+Diese Schema-Dateien können vom Programm eingelesen und mit den Onj-Strukturen verglichen werden.
+
+Schemas werden in \inlineCode{.onjschema} Dateien definiert.
+Diese haben prinzipiell einen ähnlichen Syntax zu normalen \inlineCode{.onj} Dateien, statt Werten werden jedoch
+Typen angegeben und einige Features sind nicht supported.
+
+Die konkreten Unterschiede sind:
+\begin{itemize}
+    \item Werte (\zB Zahlen, String, Booleans, \ldots) sind nicht erlaubt, stattdessen werden Typen angegeben.
+    \item Funktionen sind nicht erlaubt.
+    \item Variablenzugriffe (\inlineOnj{color.green}) sind nicht erlaubt.
+\end{itemize}
+
+Anders als normale Onj-Dateien stellen Onjschema-Dateien allerdings Syntax um Typen zu definieren zur Verfügung.
+Neben simplen literals (\inlineOnj{int}, \inlineOnj{float}, \inlineOnj{boolean}, \inlineOnj{string}) können auch
+Objekte definiert werden.
+Der Syntax für Objekte ist ident zu normalen Onj-Dateien.
+
+\begin{minted}{onj}
+myObject: {
+    myNumber: int,
+    myString: string
+}
+\end{minted}
+
+Arrays können auf zwei Arten definiert werden.
+Entweder als Literal, die den Typen an jeder Stelle definiert, oder als Typ gefolgt von eckigen Klammern.
+Bei der zweiten Variante kann in den Klammern optional die Länge des Arrays definiert werden.
+
+\begin{minted}{onj}
+myArray: [string, boolean, float],
+myNumbers: int[],
+threeNumbers: int[3]
+\end{minted}
+
+Um anzugeben, dass ein Typ null sein darf, wird ein Fragezeichen verwendet (\inlineOnj{int?}).
+Um anzugeben, dass ein beliebiger Typ verwendet werden darf, wird ein Stern (\inlineOnj{*}) verwendet.
+
+Wenn in einem Schema ein Objekt definiert wird, darf dieses nur die Keys haben, die tatsächlich im Schema angegeben
+wurden.
+Hat ein Objekt einen Key, der im Schema nicht zu finden ist, führt das zu einem Fehler.
+Um anzugeben, dass ein Objekt auch andere Keys erlauben soll wird der \inlineOnj{...*}-Syntax verwendet.
 
 % resets author
 \renewcommand{\kapitelautor}{}
