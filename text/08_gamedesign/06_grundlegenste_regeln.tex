@@ -14,14 +14,14 @@ Während der Entwicklung wurden jene Elemente, die in das nächste Leben überge
 
 
 %zuerst erklären was roads und so sind????
-\subsection{.Forty-Fives Rogue-Lite-Elemente}\label{rogue_lite_elemente:}
+\subsection{.Forty-Fives Rogue-Lite-Elemente}\label{rogue_lite_elemente}
 
 Um das Spielerlebnis des Spielers nicht allzu frustrierend zu gestalten, wurden zwei verschiedene Mechaniken eingeführt.
 Bei der ersten Mechanik handelt es sich um die Erhöhung der maximalen Lebenspunkte des Spielers bei Heilpunkten im Spiel. Der Spieler hat die Möglichkeit
 sich zu entscheiden, ob er sich lieber nur für diesen Run heilt und dafür auch eine größere Menge an Lebenspunkten erhält, oder ob er
 lieber in das Erhöhen seiner Lebenspunktkapazität investiert. Bei letzterem handelt es sich natürlich um eine kleinere Zahl als bei der anderen Wahl.
 Dies dient dazu, dem Spieler die Entscheidung offen zu halten, entweder etwas Langwieriges aber Bleibendes zu investieren oder lieber noch einmal ordentlich
-Lebenspunkte aufzutanken, was bei der zweiten Mechanik ins Spiel kommt.
+Lebenspunkte aufzutanken, was bei der zweiten Mechanik ins Spiel kommt. %todo quelle füg max hp und hp generell
 
 Schafft der Spieler einen Abschnitt des Spiels, also eine sogenannte Road, werden seine bis zu dem Zeitpunkt gesammelten Karten
 gespeichert und sind ab dann selbst nach einem Tod jederzeit zugänglich und spielbar. Verknüpft mit der ersten Mechanik
@@ -30,7 +30,76 @@ Ist er der Meinung, es sowieso nicht mehr zu dem Abschnittsende zu schaffen, wä
 Lebenspunkte, um so zumindest einen Vorteil in den nächsten Runs zu haben. Der Spieler muss also das Risiko und die
 Belohnung abwägen und daran entscheiden, welche Wahl er trifft.
 
+\subsection{Das Sammeln der Karten}\label{sammeln_der_Karten}
 
+Nach jedem überlebten Kampf bekommt der Spieler eine neue Karte. Er bekommt drei verschiedene Karten zur Auswahl gezeigt und darf sich eine davon aussuchen.
+Außerdem gibt es auf der Map verteilt noch zusätzliche Events, die der Spieler aufsuchen kann, um seine Sammlung zu erweitern.
+Das bringt nicht nur wieder eine Entscheidung des Spielers mit sich, die den Verlauf des Runs ändert, sondern bringt auch mehr Abwechslung,
+da der Spieler nicht immer nur die Karten nehmen kann, die er gerne hätte. Es bringt auch eine Art Entdeckerlust mit sich, da der Spieler
+auf diese Weise natürlich die Karten erst nach und nach sieht und nicht alle gleich auf einmal (siehe z.B. Magic Arena, wo alle Karten sofort in einer eigenen Liste zugänglich sind). %todo: Quelle
+Diese Art des Erwerbs von Karten wird "Draft" genannt %TODO Quelle
+und zwingt den Spieler mit begrenzter Wahl und Ressourcen das Beste daraus zu machen. Diese Designpolitik wird beim Design der Karten beachtet und wird zu einem späteren Zeitpunkt genauer erläutert %TODO macht man das so?
+Viele Rogue-like Deckbuilder haben ein ähnliches System. Inspiriert wurde das Sammeln der Karten in ".Forty-Five" von Spielen wie Inscription und Slay the Spire, %Todo Quelle
+hat jedoch einen großen Unterschied. Anders als in z.B. Slay the Spire können Karten ganz einfach aus dem Kartendeck entfernt werden, nachdem sie einmal ausgewählt wurden.
+Karten können aus dem Deck in den Backpack verschoben werden und ermöglichen dadurch ein flexibleres Spielerlebnis. %todo Quelle. Es gibt auch einen Deckbuilder, der das so macht, keine Ahnung wie der heißt.
+
+
+\subsection{Der Backpag und das Deck}\label{backpack_and_deck}
+Note: Zu diesem Zeitpunkt geht es nicht um die Designprinzipien hinter dem Deck und den Karten,
+sondern nur um die Erklärung der grundlegenden Mechaniken. Das Gamedesign wird zu einem späteren Zeitpunkt beschrieben.
+
+Der Backbag und das Deck dienen beide als Speicherort für Karten, mit dem Unterschied, dass die Karten im Deck aktiv im
+Kampf eingesetzt werden und die Karten im Backbag mehr als Reserve gelten.
+Karten können frei zwischen den beiden verschoben werden, solange die festgelegte Mindestanzahl an Karten im Deck eingehalten wird.
+Da Forty-Five viele verschiedene Strategien bietet, gibt es mehrere Decks, zwischen denen man einfach wechseln kann.
+Das hat zur Folge, dass der Spieler nicht immer ein Deck zerlegen muss, um eine andere Strategie auszutesten.
+Außerdem können Decks umbenannt werden, um besser wiedergefunden und erkannt zu werden.
+Karten können im Backbag nach Kriterien wie Kosten oder Namen auf- und absteigend sortiert werden.
+Sammelt der Spieler eine neue Karte, kann er sich entscheiden, ob er die Karte gleich seinem Deck oder doch eher seinem
+Backbag hinzufügen möchte.
+Der Backbag und das Deck ermöglichen es dem Spieler, Karten, die er gesammelt hat, aus dem Deck zu nehmen und damit
+nicht zu verwenden, sowie Decks zu bauen, die zu einer Strategie passen.
+Startet der Spieler nun einen Kampf, wird das zuletzt ausgewählte deck verwendet.
+
+
+\subsection{Der Kampf}\label{backpack_and_deck}
+%grundsätzliche sachen wie reserves, gegner und spieler, gewonnen wenn gegner tod usw karten am anfang ziehe zwei karten am anfang vom turn
+
+Während der Spieler über die Map reißt, sind Kämpfe unausweichlich. Gekämpft wird mit den gesammelten Karten, mit dem
+Ziel den oder die Gegner zu besiegen und dabei so wenig Lebenspunkte wie möglich zu verlieren beziehungsweise nicht zu sterben.
+Gewonnen hat der Spieler, wenn alle Gegner besiegt wurden.
+Ein kampf ist aufgeteilt in Züge, immer abwechselnd ist jemals der SPieler und danach der Gegner dran. Am Anfang des Kampfes werden
+eine vordefinierte Anzahl an Karten von dem Deck des Spielers gezogen %TODO genauen nummer fehlt noch 5 oder 6?
+Amschließend hat der Spieler die möglichkeit nach belieben seinen Zug auszuführen.
+Ein Spieler Zug wird mit dem End Turn Button beendet, und das Betätigen der Knopfes startet den automatischen Ablauf des Gegnerzuges.
+Der Gegner fügt eine mehr oder weniger Zufällige Aktion auf und danach ist wieder der Zug des Spielers.
+Am start des Zuges des Spielers werden zwei Karten vom Deck gezogen.
+Pro Zug des Spielers stehen dem Spieler 4 "reserves" zur Verfügung. Diese werden jeweils auch immer am Anfang des Zuges.
+Reserves können dazu verwendet werden Karten zu bezahlen und damit auch zu Spielen.
+
+
+\subsection{Karten}\label{backpack_and_deck}
+%anfangen mit reserves
+%das es Bullets sind usw cost, dmg usw
+%übergang zum revolver
+
+\subsection{Der Revolver}\label{backpack_and_deck}
+%slots rotationen usw karten weg wenn shot und karten unters deck gelegt wenn shot usw
+
+
+\subsection{Zonen}\label{backpack_and_deck}
+%probbaly unnötig
+
+\subsection{Der Gegner}\label{backpack_and_deck}
+%aktionen, sein zug usw
+
+\subsection{parrying}\label{backpack_and_deck}
+%slbsterklärend, wie es funktioniert warum usw
+
+\subsection{Spezifische Regeln}\label{spezifische_regeln}
+%overkill dmg
+
+\subsection{Encounter Modifier}\label{backpack_and_deck}
 %
 
 % resets author
