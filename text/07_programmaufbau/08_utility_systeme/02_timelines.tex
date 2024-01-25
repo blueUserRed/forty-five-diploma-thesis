@@ -1,0 +1,63 @@
+
+\subsection{Timelines}\label{subsec:timelines}
+
+\renewcommand{\kapitelautor}{Autor: Marvin Kurka}
+
+Ein Encounter in \FF ist zu einem großen Teil aus linearen Abfolgen von Aktionen aufgebaut.
+
+Ein Beispiel: Der Spieler drückt die "shoot"-Taste:
+\begin{itemize}
+    \item Die Karte im Slot 5 des Revolvers wird entfernt
+    \item Dem Gegner wird Schaden hinzugefügt
+    \item Die Schadensanimation des Gegners wird gestartet (und läuft ab dann parallel und selbstständig)
+    \item Es wird überprüft, ob die geschossene Karte Effekte mit dem Trigger "ON\_SHOT" hat
+    \item Wenn ja, werden diese ausgeführt
+    \item Die Rotations-Animation des Revolvers wird abgespielt
+    \item Es wird darauf gewartet, dass die Rotations-Animation fertig ist, bevor weitere Aktionen durchgeführt werden
+\end{itemize}
+
+Dieses Beispiel ist etwas simplifiziert, in Wahrheit müssen auch Statuseffekte, Encounter Modifier und weitere Mechaniken
+beachtet werden.
+
+Um solche lineare Abfolgen einfach verwalten zu können, wurde die Timeline-Klasse entwickelt.
+Diese Klasse speichert eine Serie an Aktionen und führt eine nach der anderen aus.
+Eine Aktion kann dabei auch nachfolgende auch blockieren, zum Beispiel die Ausführung um eine Anzahl an
+Millisekunden verzögern oder warten, bis eine Bedingung zutrifft.
+
+Timelines können einfach mittels der \inlineKotlin{Timeline::timeline} Funktion erstellt werden.
+Diese nimmt ein Builder-Lambda mit der \inlineKotlin{TimelineBuilderDSL} Klasse als Receiver, die diverse Funktionen
+zur Verfügung stellt.
+
+%! language = Kotlin
+\begin{minted}{kotlin}
+fun createTimeline() = Timeline.timeline {
+    action {
+        println("Hello")
+    }
+    delay(500)
+    action {
+        println("World")
+    }
+}
+\end{minted}
+\codeblockCaption{Dieser Code printet Hello, wartet eine halbe Sekunde und printet dann World}
+
+Mittels der \inlineKotlin{TimelineBuilderDSL::include} Funktion können auch die Aktionen anderer Timelines inkludiert
+werden.
+Hängt eine Sub-Timeline von Werten ab, die während des Bauens noch nicht bekannt sind, kann die
+\inlineKotlin{TimelineBuilderDSL::includeLater} Funktion verwendet werden, die mit dem Erstellen der Sub-Timeline
+wartet, bis die Aktion tatsächlich an der Reihe ist.
+Mit der \inlineKotlin{TimelineBuilderDSL::delayUntil} Funktion kann die Ausführung der Timeline verzögert werden, bis
+eine Bedingung zutrifft.
+
+In der GameController Klasse, die große Teile des Encounters kontrolliert, sind viele Funktionen so aufgebaut, dass
+sie statt eine gewisse Aufgabe zu erfüllen eine Timeline zurückgeben, die diese Aufgabe erfüllt.
+Ein Beispiel ist die \inlineKotlin{GameController::rotateRevolver} Funktion, die, wenn sie aufgerufen wird, erst einmal
+nichts tut.
+Stattdessen gibt sie eine Timeline zurück, die erst wenn sie gestartet wird den Revolver rotiert.
+Funktionen wie die \inlineKotlin{GameController::shoot} Funktion binden diese Timeline dann in ihre eigene ein.
+Das erlaubt es dem GameController nach einem Userinput dynamisch eine Timeline aufzubauen, die Schritt für Schritt alle
+notwendigen Aktionen durchführt.
+
+% resets author
+\renewcommand{\kapitelautor}{}
