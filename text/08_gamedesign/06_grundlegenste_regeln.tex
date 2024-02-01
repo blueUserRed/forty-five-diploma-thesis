@@ -65,25 +65,59 @@ Startet der Spieler nun einen Kampf, wird das zuletzt ausgewählte deck verwende
 \subsection{Der Kampf}\label{backpack_and_deck}
 %grundsätzliche sachen wie reserves, gegner und spieler, gewonnen wenn gegner tod usw karten am anfang ziehe zwei karten am anfang vom turn
 
-Während der Spieler über die Map reißt, sind Kämpfe unausweichlich. Gekämpft wird mit den gesammelten Karten, mit dem
-Ziel den oder die Gegner zu besiegen und dabei so wenig Lebenspunkte wie möglich zu verlieren beziehungsweise nicht zu sterben.
-Gewonnen hat der Spieler, wenn alle Gegner besiegt wurden.
-Ein kampf ist aufgeteilt in Züge, immer abwechselnd ist jemals der SPieler und danach der Gegner dran. Am Anfang des Kampfes werden
-eine vordefinierte Anzahl an Karten von dem Deck des Spielers gezogen %TODO genauen nummer fehlt noch 5 oder 6?
-Amschließend hat der Spieler die möglichkeit nach belieben seinen Zug auszuführen.
-Ein Spieler Zug wird mit dem End Turn Button beendet, und das Betätigen der Knopfes startet den automatischen Ablauf des Gegnerzuges.
-Der Gegner fügt eine mehr oder weniger Zufällige Aktion auf und danach ist wieder der Zug des Spielers.
-Am start des Zuges des Spielers werden zwei Karten vom Deck gezogen.
-Pro Zug des Spielers stehen dem Spieler 4 "reserves" zur Verfügung. Diese werden jeweils auch immer am Anfang des Zuges.
-Reserves können dazu verwendet werden Karten zu bezahlen und damit auch zu Spielen.
+Während der Spieler über die Map reist, sind Kämpfe unausweichlich.
+Gekämpft wird mit den gesammelten Karten, mit dem Ziel, den oder die Gegner zu besiegen und dabei so wenig Lebenspunkte
+wie möglich zu verlieren bzw. nicht zu sterben. Gewonnen hat der Spieler, wenn alle Gegner besiegt wurden.
+Ein Kampf ist aufgeteilt in Züge. Immer abwechselnd ist entweder der Spieler oder der Gegner dran. Am Anfang des Kampfes
+werden eine vordefinierte Anzahl an Karten vom Deck des Spielers gezogen. %todo die genaue Anzahl fehlt noch (5 oder 6?)
+Anschließend hat der Spieler die Möglichkeit, nach Belieben seinen Zug auszuführen. Ein Spielerzug wird mit dem "End Turn"
+Button beendet, und das Betätigen des Knopfes startet den automatischen Ablauf des Gegnerzuges. Der Gegner führt eine mehr oder weniger zufällige Aktion aus, und danach ist wieder der Zug des Spielers.
+Am Start des Zuges des Spielers werden zwei Karten vom Deck gezogen. Pro Zug des Spielers stehen dem Spieler 4 "Reserves"
+zur Verfügung. Diese werden jeweils auch am Anfang des Zuges wieder auf die maximale Anzahl aufgefüllt.
+Reserves können dazu verwendet werden, Karten zu bezahlen und damit auch zu spielen.
 
 
-\subsection{Karten}\label{backpack_and_deck}
-%anfangen mit reserves
-%das es Bullets sind usw cost, dmg usw
-%übergang zum revolver
+\subsection{Karten}\label{Karten}
+Cards in \FF are Bullets. Each Bullet has a cost that must be paid in order to play the card.
+The reserves needed for the Bullet are paid automatically IF the player is able to afford the Bullet, the moment the Bullet is played.
+Das Management von diesen Reserves und die Reihenfolge, in der man die Karten spielt, ist wichtig, um besser in Forty-Five zu werden. %TODO Mehr dazu ist im Gamedesign.
+Jede Bullet hat außerdem einen Damage-Wert, welcher angibt, wie viele Lebenspunkte dem Gegner durch die Karte abgezogen werden,
+falls die Karte auf den Gegner geschossen wird. Fast alle Karten haben außerdem einen einzigartigen Effekt,
+welcher angesehen werden kann, indem der Spieler mit der Maus über die gewünschte Bullet hovert.
+In dem Popup, welches nach dem Hovern sichtbar ist, befinden sich die Infos zu dem Effekt der Karte,
+dazu gehört fast immer ein Trigger und der Effekt selbst.
+Der Trigger gibt an, wann sich der Effekt aktiviert. Es gibt verschiedene Trigger, wie zum Beispiel das Aktivieren des Effektes beim Spielen der Bullet. %TODO siehe mehr später bei trigger
+Zusätzlich zu dem Effekt und dem Trigger steht bei vielen Karten außerdem noch ein Flavortext dabei.
+Ein Flavortext ist ein Spruch, der der Bullet ein wenig Kontext hinzufügt.
+Dies kann passieren durch einen dummen Spruch, einen Witz, eine Anspielung oder einen story- bzw. worldbuilding-relevanten Text.
+Falls nötig werden relevante Infos zu dem Effekt in einer extra Box rechts oder links angezeigt.
+Bullets werden, wenn sie gespielt werden in den Revolver geladen.
 
 \subsection{Der Revolver}\label{backpack_and_deck}
+Der Revolver ist das Spielfeld von \FF, in weleches die Bullets platziert bzw "geladen" werden.Mithilfe von Drag and drop,
+kann der PSieler die Karte aus seiner hand in den Revolver legen. Dies ist das bereits erwähnte spielen einer Karte, zu dem auch das Bezahlen dazugehört.
+Der genaue ablauf des Spielen einer Karte ist wie Folgt:
+Drag and drop in den gewünschten revolver platz > bezahlen der Reserves, abbruch falls nicht genug Reserves vorhanden sind >
+platzieren der Bullet > womöglich aktivieren von Triggern, falls die Bullet einen Effekt hat der einen On-Placedown Trigger hat.
+Der  Revolver besteht aus 5 kammern bzw felder in die Bullets geladen werden können. nummeriert sind sie von 1 -5. %TODO bild und noch umdrehen von 5 zu 1
+Der revolver kann von dem Spieler geschossen werden. Wird geschossen wird die Bullet in der obersten chamber auf den Gegner geschossen,
+verlässt sie den Rvolvr und der Gegner verliert Lebenspunkte in der Höhe der Dmg Value der gecshossenen Bullet.
+Die Bullet wird unter das deck gelegt und der revolver dreht sich einmal nach rechts.
+Die Revolverrotation ist ein wichtiger Teil von forty-five, da man das Placement der Bullets
+im revolver sich genau überlegen muss um das meiste aus seinen Bullets raussuchen. %todo mehr in game design.
+Es gibt außerdem einen Trigger, wlecher aktiviert wird wenn die Karte geschossen wird namens On-Shot.
+Zusätzlich gibt es Karten mit Effekten, welche die Rvolverrotation verändern wie z.B Bewitched Bullet, welche den Revolver nach links statt nach rechts rotiert
+
+Die Komplexität von \FF kommt von dem Mastern des Revolvers. Das strategische platuieren von Bullets,
+die reihenfolge der Bullets und das verstehen wie eine Revolver rotation sich auf Bullets, den Spieler oder den gegner auswirken.
+Die gerade erwähnte Bewitched Bullet kann zum Biepiel dazu verwendet werden Karten , weleche davon profetieren lange im revolver zu bleiben,
+wieder weiter von dem Schießen wegzuschibene. Bull et zum Beipeil fügt dem gegner Schaden zu wenn sich Bull et Rotiert im Revolver. %TODO BILDER!!!
+Bewitched Bullet kann dazu verwendet werden zwei zusätzliche rotationen rauszuholen in dem man den revolver einmal nach links dreht bevor Bull et den Revolver verlässt.
+Bewitched Bullet kann zumm beipeil auch zum einschieben von Bullets verwendet werden und so wieter udn so fort.
+Die kombinationsmöglichkeiten sind endlos und fast jeder effekt einer Bullet kann mit dem einer anderen Bullet verknmüpft werden.
+
+
+
 %slots rotationen usw karten weg wenn shot und karten unters deck gelegt wenn shot usw
 
 
@@ -91,7 +125,8 @@ Reserves können dazu verwendet werden Karten zu bezahlen und damit auch zu Spie
 %probbaly unnötig
 
 \subsection{Der Gegner}\label{backpack_and_deck}
-%aktionen, sein zug usw
+Der Gegner, auf welche die Bullets des Spielers geschossen werden, besteht aus mehreren Komponenten.
+Genuase wie der Spieler, verfügt der Gegner über einen HP wert. Hat der Wert null erreicht, stirbt der Gegner.
 
 \subsection{parrying}\label{backpack_and_deck}
 %slbsterklärend, wie es funktioniert warum usw
