@@ -1,0 +1,31 @@
+
+## Setup Anleitung
+
+- dieses Repo klonen: ``git clone https://github.com/blueUserRed/forty-five-diploma-thesis.git``
+- MikeTex installieren: https://miktex.org/download
+- Zwei Ordner erstellen:
+  - ``forty-five-diploma-thesis/out``
+  - ``forty-five-diploma-thesis/build``
+- Sicherstellen, dass Python bzw. pip installiert ist ``pip --version``
+  - Wenn nicht: Python installieren: https://www.python.org/downloads/
+- pygments installieren ``pip install pygments``
+- Installations-Directory von pygments herausfinden: ``pip show pygments``
+  - Falls es nicht geht: einmal neu starten
+- Installations-Directory im Explorer öffnen
+- in den Ordner ``/lexers`` wechseln
+- onj.py von dem Ordner ``./pygments_lexer`` in diesen Ordner kopieren
+- _mapping.py öffnen
+- In den Array folgende Zeile hinzufügen:
+  - ``'OnjLexer': ('pygments.lexers.onj', 'Onj', ('onj', 'Onjschema', 'onjschema'), ('*.onj', '*.onjschema'), ('text/onj',)),``
+- Einen Ordner herausgehen, dann in den ``/styles`` Ordner wechseln
+- forty_five_style.py von dem Ordner ``./pygments_style`` in diesen Ordner kopieren
+- - _mapping.py öffnen
+- In den Array folgende Zeile hinzufügen:
+  - ``'FortyFiveStyle': ('pygments.styles.forty_five_style', 'forty_five_style', ()),``
+- Kommandozeile (muss Powershell sein!) öffnen und in den Projektordner wechseln
+- ``./makeWin.ps1`` ausführen um die Diplomarbeit zu bauen
+  - Das Resultat wird in ``./out`` abgelegt
+  - ``./testMake.ps1`` läuft um einiges schneller, allerdings funktionieren Zitationen/Inhaltsverzeichnisse/Glossare nicht
+- Beim Arbeiten:
+  - Vorher pullen ``git pull``
+  - regelmäßig commiten und pushen
