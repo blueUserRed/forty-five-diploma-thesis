@@ -46,10 +46,9 @@ Karten können aus dem Deck in den Backpack verschoben werden und ermöglichen d
 
 \subsection{Der Backpag und das Deck}\label{backpack_and_deck}
 \begin{infoBox}
-\end{infoBox}
 Note: Zu diesem Zeitpunkt geht es nicht um die Designprinzipien hinter dem Deck und den Karten,
 sondern nur um die Erklärung der grundlegenden Mechaniken. Das Gamedesign wird zu einem späteren Zeitpunkt beschrieben.
-
+\end{infoBox}
 Der Backbag und das Deck dienen beide als Speicherort für Karten, mit dem Unterschied, dass die Karten im Deck aktiv im
 Kampf eingesetzt werden und die Karten im Backbag mehr als Reserve gelten.
 Karten können frei zwischen den beiden verschoben werden, solange die festgelegte Mindestanzahl an Karten im Deck eingehalten wird.
@@ -80,14 +79,16 @@ Reserves können dazu verwendet werden, Karten zu bezahlen und damit auch zu spi
 
 
 \subsection{Karten}\label{Karten}
-Cards in \FF are Bullets. Each Bullet has a cost that must be paid in order to play the card.
-The reserves needed for the Bullet are paid automatically IF the player is able to afford the Bullet, the moment the Bullet is played.
+Karten in \FF sind Bullets. Jede Bullet hat einen Kosten, die bezahlt werden müssen, um die Karte zu spielen.
+Die Reserven, die für die Bullet benötigt werden, werden automatisch bezahlt, WENN der Spieler sich die Bullet leisten kann, sobald die Bullet gespielt wird.
 Das Management von diesen Reserves und die Reihenfolge, in der man die Karten spielt, ist wichtig, um besser in Forty-Five zu werden. %TODO Mehr dazu ist im Gamedesign.
 Jede Bullet hat außerdem einen Damage-Wert, welcher angibt, wie viele Lebenspunkte dem Gegner durch die Karte abgezogen werden,
 falls die Karte auf den Gegner geschossen wird. Fast alle Karten haben außerdem einen einzigartigen Effekt,
 welcher angesehen werden kann, indem der Spieler mit der Maus über die gewünschte Bullet hovert.
 In dem Popup, welches nach dem Hovern sichtbar ist, befinden sich die Infos zu dem Effekt der Karte,
 dazu gehört fast immer ein Trigger und der Effekt selbst.
+
+
 Der Trigger gibt an, wann sich der Effekt aktiviert. Es gibt verschiedene Trigger, wie zum Beispiel das Aktivieren des Effektes beim Spielen der Bullet. %TODO siehe mehr später bei trigger
 Zusätzlich zu dem Effekt und dem Trigger steht bei vielen Karten außerdem noch ein Flavortext dabei.
 Ein Flavortext ist ein Spruch, der der Bullet ein wenig Kontext hinzufügt.
@@ -96,27 +97,35 @@ Falls nötig werden relevante Infos zu dem Effekt in einer extra Box rechts oder
 Bullets werden, wenn sie gespielt werden in den Revolver geladen.
 
 \subsection{Der Revolver}\label{der_revolver}
-Der Revolver ist das Spielfeld von \FF, in weleches die Bullets platziert bzw "geladen" werden.Mithilfe von Drag and drop,
-kann der PSieler die Karte aus seiner hand in den Revolver legen. Dies ist das bereits erwähnte spielen einer Karte, zu dem auch das Bezahlen dazugehört.
-Der genaue ablauf des Spielen einer Karte ist wie Folgt:
-Drag and drop in den gewünschten revolver platz > bezahlen der Reserves, abbruch falls nicht genug Reserves vorhanden sind >
-platzieren der Bullet > womöglich aktivieren von Triggern, falls die Bullet einen Effekt hat der einen On-Placedown Trigger hat.
-Der  Revolver besteht aus 5 kammern bzw felder in die Bullets geladen werden können. nummeriert sind sie von 1 -5. %TODO bild und noch umdrehen von 5 zu 1
-Der revolver kann von dem Spieler geschossen werden. Wird geschossen wird die Bullet in der obersten chamber auf den Gegner geschossen,
-verlässt sie den Rvolvr und der Gegner verliert Lebenspunkte in der Höhe der Dmg Value der gecshossenen Bullet.
-Die Bullet wird unter das deck gelegt und der revolver dreht sich einmal nach rechts.
-Die Revolverrotation ist ein wichtiger Teil von forty-five, da man das Placement der Bullets
-im revolver sich genau überlegen muss um das meiste aus seinen Bullets raussuchen. %todo mehr in game design.
-Es gibt außerdem einen Trigger, wlecher aktiviert wird wenn die Karte geschossen wird namens On-Shot.
-Zusätzlich gibt es Karten mit Effekten, welche die Rvolverrotation verändern wie z.B Bewitched Bullet, welche den Revolver nach links statt nach rechts rotiert
+Der Revolver ist das Spielfeld von \FF, in welches die Bullets platziert bzw. "geladen" werden.
+Mithilfe von Drag and Drop kann der Spieler die Karte aus seiner Hand in den Revolver legen.
+Dies ist das bereits erwähnte Spielen einer Karte, zu dem auch das Bezahlen gehört.
+Der genaue Ablauf des Spielens einer Karte ist wie folgt:
+Drag and Drop in den gewünschten Revolverplatz > Bezahlen der Reserven, Abbruch falls nicht genug Reserven vorhanden sind > Platzieren der Bullet > möglicherweise Aktivieren von Triggern, falls die Bullet einen Effekt hat, der einen On-Placedown Trigger hat.
 
-Die Komplexität von \FF kommt von dem meistern des Revolvers. Das strategische platuieren von Bullets,
-die reihenfolge der Bullets und das verstehen wie eine Revolver rotation sich auf Bullets, den Spieler oder den gegner auswirken.
-Die gerade erwähnte Bewitched Bullet kann zum Biepiel dazu verwendet werden Karten , weleche davon profetieren lange im revolver zu bleiben,
-wieder weiter von dem Schießen wegzuschibene. Bull et zum Beipeil fügt dem gegner Schaden zu wenn sich Bull et Rotiert im Revolver. %TODO BILDER!!!
-Bewitched Bullet kann dazu verwendet werden zwei zusätzliche rotationen rauszuholen in dem man den revolver einmal nach links dreht bevor Bull et den Revolver verlässt.
-Bewitched Bullet kann zumm beipeil auch zum einschieben von Bullets verwendet werden und so wieter udn so fort.
-Die kombinationsmöglichkeiten sind endlos und fast jeder effekt einer Bullet kann mit dem einer anderen Bullet verknmüpft werden.
+
+Der Revolver besteht aus 5 Kammern bzw. Feldern, in die Bullets geladen werden können.
+Sie sind von 1-5 nummeriert. %TODO Bild und noch Umdrehen von 5 zu 1
+Der Revolver kann von dem Spieler geschossen werden. Wenn geschossen wird, wird die Bullet in der obersten Kammer auf den Gegner geschossen.
+Verlässt sie den Revolver, verliert der Gegner Lebenspunkte in Höhe des Dmg Value der geschossenen Bullet.
+Die Bullet wird unter das Deck gelegt und der Revolver dreht sich einmal nach rechts.
+
+
+Die Revolverrotation ist ein wichtiger Teil von Forty-Five, da man das Placement der Bullets im Revolver sich genau überlegen muss,
+um das Meiste aus seinen Bullets herauszuholen. %todo mehr in Game Design.
+Es gibt außerdem einen Trigger, welcher aktiviert wird, wenn die Karte geschossen wird,
+namens On-Shot. Zusätzlich gibt es Karten mit Effekten, welche die Revolverrotation verändern, wie z.B. Bewitched Bullet,
+welche den Revolver nach links statt nach rechts rotiert.
+
+Die Komplexität von \FF kommt vom Meistern des Revolvers.
+Das strategische Platzieren von Bullets, die Reihenfolge der Bullets und das Verstehen, wie eine Revolverrotation sich auf Bullets,
+den Spieler oder den Gegner auswirkt. Die gerade erwähnte Bewitched Bullet kann zum Beispiel dazu verwendet werden, Karten,
+welche davon profitieren, lange im Revolver zu bleiben, weiter von dem Schießen wegzuschieben. Bullet zum Beispiel fügt dem Gegner Schaden zu,
+wenn sich Bullet rotiert im Revolver. %TODO BILDER!!!
+Bewitched Bullet kann dazu verwendet werden, zwei zusätzliche Rotationen rauszuholen, indem man den Revolver einmal nach
+links dreht, bevor Bullet den Revolver verlässt. Bewitched Bullet kann zum Beispiel auch zum Einschieben von Bullets verwendet
+werden und so weiter und so fort. Die Kombinationsmöglichkeiten sind endlos, und fast jeder Effekt einer Bullet kann mit dem einer
+anderen Bullet verknüpft werden.
 
 
 
@@ -127,38 +136,82 @@ Die kombinationsmöglichkeiten sind endlos und fast jeder effekt einer Bullet ka
 %probbaly unnötig
 
 \subsection{Der Gegner}\label{der_gegner}
-Der Gegner, auf welche die Bullets des Spielers geschossen werden, besteht aus mehreren Komponenten.
-Genuase wie der Spieler, verfügt der Gegner über einen HP wert. Hat der Wert null erreicht, stirbt der Gegner.
-Nachdem der Spieler End turn druückt, beendeter seinen zug und der Gegner ist dran.Beierite während dem Zug des Spielers zeigt der Gegner die AKTIOn an, welche er in seinem Zug ausführen wird.
-Gegner aktionen werden "zufällig ausgewählt aus dem pool von Aktio  nen des Gegners.
-Jedcoh wurden die aktionen angepasst um nicht nur fairness zu garantieren,
-sondern auch eine balance zwischen zu leicht und zu schwer zu finden.
-Mehr zu dem Balancen der Gegner kann in 07 Gamedesign nachgelsene werden.
-Sobald der Gegner dran ist, wird die Aktion automatisch ausgeführt. Je nach Gegnertyp gibt es andere Aktionen welche ein Gegner ausführen kann. Universell ist jedoch die Aktion des Schaden zufügens.
-Es gibt viele verschieden Arten von aggner aktionen, die dafür entwickelt werden, mehr Abwechslung beim Bekämpfen der Gegner zu besiegen.
-Außerdem sollte noch erwähnt werden, dass es auch passieren aknn, dass der Spieler gegen mehr als einen Gegner kämpft. Ist das der fall, sucht sch der Spieler das Ziel der REvolverschüsse durch klickn auf den gwolten gegner aus.
-Dargetsellt durch ein symbol über dem Kopf des Gegners, sind die Aktionen weniger eine Reaktion auf den Spieler, sondern eher wird erwartet, dass der Spieler die Aktion des Gegner in das palnnn seines Zuges miiteinbezieht.
-Bei der eben ganananten Schadenaktion, kann der Spieler darauf reagieren und schaden verhindern indem er die Karte parried.
+Der Gegner, auf den die Bullets des Spielers geschossen werden, besteht aus mehreren Komponenten.
+Genau wie der Spieler verfügt der Gegner über einen HP-Wert. Wenn der Wert null erreicht, stirbt der Gegner.
+Nachdem der Spieler "End turn" gedrückt hat, beendet er seinen Zug und der Gegner ist dran. Während dem Zug des Spielers
+zeigt der Gegner die Aktion an, die er in seinem Zug ausführen wird.
+Gegneraktionen werden "zufällig ausgewählt aus dem Pool von Aktionen des Gegners.
+Jedoch wurden die Aktionen angepasst, um nicht nur Fairness zu garantieren,
+sondern auch eine Balance zwischen zu leicht und zu schwer zu finden.
+Mehr zum Balancen der Gegner kann in 07 Gamedesign nachgelesen werden.
+
+
+Sobald der Gegner dran ist, wird die Aktion automatisch ausgeführt. Je nach Gegnertyp gibt es andere Aktionen,
+die ein Gegner ausführen kann. Universell ist jedoch die Aktion des Schadens zufügens.
+Es gibt viele verschiedene Arten von Gegneraktionen, die dafür entwickelt wurden, mehr Abwechslung beim Bekämpfen der Gegner zu bieten.
+Außerdem sollte noch erwähnt werden, dass es auch passieren kann, dass der Spieler gegen mehr als einen Gegner kämpft.
+Ist das der Fall, sucht der Spieler das Ziel der Revolverschüsse, indem er auf den gewünschten Gegner klickt.
+Dargestellt durch ein Symbol über dem Kopf des Gegners, sind die Aktionen weniger eine Reaktion auf den Spieler,
+sondern es wird eher erwartet, dass der Spieler die Aktion des Gegners in das Planen seines Zuges miteinbezieht.
+Bei der eben genannten Schadenaktion kann der Spieler darauf reagieren und Schaden verhindern, indem er die Karte parried.
 
 \subsection{parrying}\label{backpack_and_deck}
-Das paarryien des Schadens der von dem Gegner verursachtet wird wird in  \FF durch Bullet gemacht.
-Die Idee dahinter ist, dass die eigenen Bullet verwendet wird um den Angriff des Gegners abzuhalten, indem man seinen Bullet gegen die vom gegner schießt.
-Der Spieler bekommt die Wahl ob er parrien möchte oder nicht, was durch ein eigenen popup während dem gegner zug geregelt wird.
-entscheidet sich der Spieler dazu zu parrien, wir ddafür die Bullet im vordersten Slot verwnedet.
-Dann wird der dmg wert des Gegners mit dem dr Bullet substituiert. Ist der dmg wert der Bullet größer als der des Gegners,
-Geht kein Schaden durch. Ist es anders rum, bekommt der Spieler so viel Schaden wie die Differenz ausmacht.
-Es ist wichtig zu erwähnen, das nicht geparried werden muss, soollte der Spieler die Bullet lieber behaltn wollen,
-bzw wenn er der  Meinung ist, den Schaden einfach einzustecken zu können. Durch einen Parry geht die Bullet verloren,
-es aktivieren keine effekte und sie wird danach wieder unters deck gelegt.
+Das Parieren des Schadens, der vom Gegner verursacht wird, wird in \FF durch Bullet gemacht.
+Die Idee dahinter ist, dass die eigene Bullet verwendet wird, um den Angriff des Gegners abzuhalten, indem man
+seine Bullet gegen die des Gegners schießt.
+Der Spieler bekommt die Wahl, ob er parrieren möchte oder nicht, was durch ein eigenes Popup während des gegnerischen Zugs geregelt wird.
+Entscheidet sich der Spieler dazu zu parieren, wird dafür die Bullet im vordersten Slot verwendet.
+Dann wird der Schadenswert des Gegners mit dem der Bullet substituiert. Ist der Schadenswert der Bullet größer als der des Gegners,
+geht kein Schaden durch. Ist es andersrum, bekommt der Spieler so viel Schaden wie die Differenz ausmacht.
+Es ist wichtig zu erwähnen, dass nicht geparriert werden muss, sollte der Spieler die Bullet lieber behalten wollen,
+bzw. wenn er der Meinung ist, den Schaden einfach einzustecken zu können. Durch einen Parry geht die Bullet verloren,
+es aktiviert keine Effekte und sie wird danach wieder unters Deck gelegt.
 
-Als zusatz gibt es Bullets, die einen devensiven effejt haben, mit denenn sich der Spieler zusätzlich schützen kann.
+
+Als Zusatz gibt es Bullets, die einen defensiven Effekt haben, mit denen sich der Spieler zusätzlich schützen kann.
 
 \subsection{Spezifische Regeln}\label{spezifische_regeln}
-%overkill dmg
-% leer schiesen.
+
+Es gibt ein paar zusätzliche Regeln in \FF, die nun angeführt werden.
+
+
+Die erste ist der sogenannte Overkill-Schaden.
+Die Regel besagt, dass jeglicher Schaden, der dem Gegner zugefügt wird, nachdem seine Lebenspunkte bereits unter 0 sind,
+in Geld umgewandelt wird. Das Geld kann benutzt werden, um sich bei einem Shop weitere Karten zu kaufen.
+Die Overkill-Regel gilt jedoch nur für den aktuellen Zug. Drückt der Spieler auf "End Turn", wird der Zug und der Kampf beendet.
+Overkill-Cash ist nicht nur eine gute Möglichkeit, Belohnungen anhand der Leistung des Spielers zu berechnen,
+sondern löst auch gleichzeitig folgendes Problem: In \FF ist der Aufbau des Revolvers und damit von Combos sehr wichtig.
+Oft kommt es vor, dass der Spieler eine Combo aufgebaut hat, der Gegner jedoch einfach schneller tot ist.
+Das ist nicht nur frustrierend, sondern gibt dem Spieler auch einfach keinen Grund, überhaupt starke Combos aufzubauen,
+wenn er sich einmal über dem Standard-Gegnerschwierigkeitslevel befindet. Overkill-Schaden löst diese beiden Probleme.
+
+
+Die zweite Regel bezieht sich auf das Schießen des Revolvers.
+Die Regel besagt, dass, wenn der Revolver leer geschossen wird, also kein Bullet in der vordersten Kammer vorhanden ist,
+der Spieler 5 Lebenspunkte Schaden erleidet. Das Wann, das Wo und das Wie ist das Wichtigste beim Bullet platzieren.
+Einen Bullet in den hintersten oder ersten Slot zu platzieren, ist eine Entscheidung, die überlegt sein sollte.
+Ohne diese Regel ist es jedoch möglich, Bullets, die man weiter hinten platziert hat, sofort wieder vorrotieren zu lassen,
+was das gesamte Spielprinzip der Revolverdrehung ruinieren würde, da das Platzieren keine Konsequenzen hätte.
+Es würde dazu führen, dass Bullets nacheinander einfach in den Revolver geladen werden, wo es gerade passt, und sofort
+geschossen werden, da die Schussreihenfolge der Bullets ja sowieso egal ist. Jedoch wollten die Entwickler das Rotieren
+des Revolvers ohne ein Bullet in dem vordersten Slot durch das Schießen nicht verbieten, sondern führten ein,
+dass 5 Lebenspunkte abgezogen werden. Das bedeutet also, dass es im Notfall gemacht werden kann, z.B. falls es einmal für
+eine Combo nötig ist, jedoch nicht durchgehend benutzt werden kann, da der Spieler durch das Abziehen der Lebenspunkte sonst stirbt.
+Es ist eigentlich ein perfektes Beispiel, wie man durch das nicht direkte Verbieten einer Mechanik die Komplexität und
+Möglichkeitsvielfalt wachsen lassen kann.
+
 
 \subsection{Encounter Modifier}\label{backpack_and_deck}
-%
+
+Um noch mehr Abwechslung in das Spiel zu bringen und um den Spieler auch manchmal zum Wechseln der Kartenstrategien zu bringen.
+Encounter Modifier sind extra Regeln, die einem Kampf hinzugefügt werden.
+Sie sind vor dem Kampf einsehbar, um das Umbauen oder Wechseln eines Decks noch zu ermöglichen.
+Encounter Modifier können ganz verschieden sein.
+Es gibt welche, die gut für den Spieler sind, welche, die ihm schaden und welche, die es schwieriger machen und welche, die die Regeln von \FF auf den Kopf stellen.
+Frost zum Beispiel friert den Revolver ein, was zur Auswirkung hat, dass sich der Revolver nicht mehr nach einem Schuss dreht.
+Bewitched Mist lässt den Revolver immer statt nach rechts nach links drehen, was natürlich auch sehr verwirrend sein kann.
+
+
 
 % resets author
 \renewcommand{\kapitelautor}{}
