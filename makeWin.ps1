@@ -8,6 +8,7 @@ cp ../diplom.bib .
 cp ../HTL3RLogo.png .
 cp ../HTL3RLogoRGB.eps .
 cp -r ../text ./text
+cp -r ../images ./images
 
 xelatex ./diplomarbeit.tex -shell-escape -halt-on-error
 makeindex -c -q diplomarbeit.idx
