@@ -1,11 +1,93 @@
 
 \section{Effektsystem}\label{sec:effectsystem}
 
-\renewcommand{\kapitelautor}{Autor: Irgendwer} % todo: replace
+\renewcommand{\kapitelautor}{Autor: Marvin Kurka}
 
-%
-% text goes here
-%
+\FF zeichnet sich vor allem durch die Effekte der Karten aus, die es dem Spieler ermöglichen, komplexe Kombinationen
+von Karten zu spielen, um verschiedene Effektketten auszulösen.
+Um es möglich zu machen, solche Effekte schnell und einfach zu definieren, wurde ein System entwickelt, dass es
+ermöglichen soll, neue Effekte zu definieren ohne viel in vorhandenen Code eingreifen zu müssen.
+
+Effekte werden in zwei Kategorien eingeteilt: Trait Effekte und normale Effekte.
+Trait Effekte werden nicht von dem Effektsystem verwaltet und werden für alle Situationen verwendet, in denen das
+normale Effetsystem nicht ausreicht.
+So gibt es zm Beispiel den "reinforced" Trait-Effekt, der dafür sorgt, dass eine Bullet immer den ganzen Damage
+des Gegners parried, unabhängig von ihrem eigenen Damage-Wert.
+Da diese Logik von dem Parry-System übernommen werden muss, ist dieser Effekt ein Trait-Effekt und wird somit nicht
+über das normale Effektsystem definiert.
+
+Normale Effekte bestehen aus zwei Teilen: dem Trigger und dem Effekt selber.
+Der Trigger gibt an, wann der Effekt aktiv wird.
+Beispiele sind: \inlineKotlin{ON_SHOT}, \inlineKotlin{ON_ENTER} oder \inlineKotlin{ON_REVOLVER_ROTATION}.
+Jedes Mal, wenn der GameController eine Aktion ausführt, die Effekte auslösen könnte, werden alle relevanten Karten
+im Spiel auf den zu der Aktion passenden Trigger überprüft.
+Trigger können auch kaskadieren, das heißt, wenn \zB die \inlineKotlin{ON_BOUNCE} oder \inlineKotlin{ON_DESTROY}
+Trigger ausgelöst werden, wird automatisch auch der \inlineKotlin{ON_LEAVE} Trigger ausgelöst.
+Definiert eine Karte einen oder mehrere Effekte für diesen Trigger, wird dieser aktiv.
+
+Die Effekte machen starken Gebrauch von Timelines, die in Kapitel~\ref{subsec:timelines} erklärt sind.
+Wird ein Effekt ausgelöst, wird die \inlineKotlin{Effect::onTrigger} Funktion aufgerufen, die eine Timeline zurückgibt.
+Diese wird in zusammen mit anderen Timelines, die \zB von anderen Effekten stammen, in eine Timeline eingearbeitet,
+die dann ausgeführt wird.
+Um das Spiel zu beeinflussen, kann der Effekt einige Funktionen aus dem GameController verwenden, um Timelines
+zu bekommen, die \zB den Revolver drehen, oder eine Karte zerstören.
+
+Effekte, die sich auf andere Bullets im Revolver beziehen, verwenden die \inlineKotlin{BulletSelector} Klasse um
+auszuwählen, auf welche Bullets der Effekt angewandt wird.
+Je nach Definition des Effekts wird dann ein Popup geöffnet, das den Spieler nach einer Target-Bullet für den Effekt
+fragt, oder ein anderes Kriterium wird verwendet, um festzustellen, welche Bullets betroffen sind.
+
+Effekte, die Damage-Werte von anderen Karten im Revolver verändern, verwenden die \inlineKotlin{Card.CardModifier}
+Klasse.
+Diese erlaubt es eine temporäre Damage-Änderung zu definieren, entweder in der Form einer Addition oder der eines
+multiplikativen Faktors.
+Über den Konstruktor dieser Klasse können auch Lambdas mitgegeben werden, die bestimmen, wann der Modifier wieder
+entfernt wird, oder in welchem Zeitraum er gültig ist.
+Die Leaders Bullet zum Beispiel gibt allen anderen Karten im Revolver einen Modifier, der abläuft, wenn Leaders Bullet
+den Revolver verlässt.
+Die +P+ Bullet verwendet dieses System, um sich selbst einen Modifier zu geben, der nur aktiv ist, wenn der Gegner einen
+Status Effekt hat.
+
+Alle Karten im Spiel werden in \inlineCode{assets/config/cards.onj} definiert.
+Diese Datei inkludiert den Cards-Namespace, der Funktionen zur Verfügung stellt um Effekte, Status-Effekte, und
+Ähnliches zu definieren.
+Eine Definition für eine Karte sieht zum Beispiel so aus:
+
+%! language = Onj
+\begin{minted}{onj}
+    {
+        name: "hollowpointBullet",
+        title: "Hollowpoint Bullet",
+        flavourText: "",
+        description: "If the enemy has shield:\nThis Bullet has +6 dmg",
+        baseDamage: 10,
+        coverValue: 0,
+        traitEffects: [],
+        rotation: $Right { amount: 1 },
+        highlightType: "standard",
+        effects: [
+            buffDmg("enter", bSelects.self, 6#val, $TargetedEnemyShieldIsAtLeast { value: 1 }#activeChecker)
+        ],
+        forceLoadCards: [],
+        dark: false,
+        cost: 1,
+        type: $Bullet { },
+        tags: ["pool1", "rarity2"],
+        price: 0,
+    },
+\end{minted}
+
+Hier wird die \inlineOnj{buffDmg()} Funktion verwendet, um den Effekt der Karte zu definieren.
+Der erste Parameter ist der Trigger, der zweite ist der \inlineKotlin{BulletSelector} und der dritte der Schadenswert.
+Der Schadenswert ist vom Typ \inlineKotlin{EffectValue}, was ein typealias für
+\inlineKotlin{(controller: GameController, card: Card?) -> Int} ist.
+Den Wert in ein Lambda zu wrappen erlaubt es, den Wert von anderen Werten abhängig zu machen.
+Die Glass Bullet verwendet dieses System zum Beispiel, um den Spieler so viele Karten ziehen zu lassen, wie die teuerste
+Bullet im Revolver kostet.
+Der letzte Parameter in der \inlineOnj{buffDmg()} Funktion ist ein ActiveChecker, der, wie schon vorher erklärt,
+bestimmt, wann der Damage-Modifier aktiv ist.
+In diesem Fall wird das \inlineKotlin{GamePredicate} \inlineKotlin{TargetedEnemyShieldIsAtLeast} verwendet, um
+festzustellen ob der Enemy gerade Shield hat, und den Modifier nur dann zu aktivieren.
 
 % resets author
 \renewcommand{\kapitelautor}{}
