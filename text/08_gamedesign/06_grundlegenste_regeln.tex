@@ -56,6 +56,12 @@ Belohnung abwägen und daran entscheiden, welche Wahl er trifft.
 
 Nach jedem überlebten Kampf bekommt der Spieler eine neue Karte. Er bekommt drei verschiedene Karten zur Auswahl gezeigt und darf sich eine davon aussuchen.
 Außerdem gibt es auf der Map verteilt noch zusätzliche Events, die der Spieler aufsuchen kann, um seine Sammlung zu erweitern.
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{choosebullet.png}
+    \caption{Eine von drei Karten kann ausgesucht werden.}
+\end{figure}
+
 Das bringt nicht nur wieder eine Entscheidung des Spielers mit sich, die den Verlauf des Runs ändert, sondern bringt auch mehr Abwechslung,
 da der Spieler nicht immer nur die Karten nehmen kann, die er gerne hätte. Es bringt auch eine Art Entdeckerlust mit sich, da der Spieler
 auf diese Weise natürlich die Karten erst nach und nach sieht und nicht alle gleich auf einmal (siehe z.B. Magic Arena, wo alle Karten sofort in einer eigenen Liste zugänglich sind). %todo: Quelle
@@ -65,30 +71,59 @@ Viele Rogue-like Deckbuilder haben ein ähnliches System. Inspiriert wurde das S
 hat jedoch einen großen Unterschied. Anders als in z.B. Slay the Spire können Karten ganz einfach aus dem Kartendeck entfernt werden, nachdem sie einmal ausgewählt wurden.
 Karten können aus dem Deck in den Backpack verschoben werden und ermöglichen dadurch ein flexibleres Spielerlebnis. %todo Quelle. Es gibt auch einen Deckbuilder, der das so macht, keine Ahnung wie der heißt.
 
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{deckandbackpack.png}
+    \caption{Eine Karte kann entweder gleich in das Deck gegeben werden, und ist damit im Kampf aktiv, oder in den Backpack also die reserve verschoben werden.}
+\end{figure}
 
-\subsection{Der Backpag und das Deck}\label{backpack_and_deck}
+\subsection{Der Backpack und das Deck}\label{backpack_and_deck}
 \begin{infoBox}
 Note: Zu diesem Zeitpunkt geht es nicht um die Designprinzipien hinter dem Deck und den Karten,
 sondern nur um die Erklärung der grundlegenden Mechaniken. Das Gamedesign wird zu einem späteren Zeitpunkt beschrieben.
 \end{infoBox}
-Der Backbag und das Deck dienen beide als Speicherort für Karten, mit dem Unterschied, dass die Karten im Deck aktiv im
-Kampf eingesetzt werden und die Karten im Backbag mehr als Reserve gelten.
+Der Backpack und das Deck dienen beide als Speicherort für Karten, mit dem Unterschied, dass die Karten im Deck aktiv im
+Kampf eingesetzt werden und die Karten im Backpack mehr als Reserve gelten.
 Karten können frei zwischen den beiden verschoben werden, solange die festgelegte Mindestanzahl an Karten im Deck eingehalten wird.
 Da Forty-Five viele verschiedene Strategien bietet, gibt es mehrere Decks, zwischen denen man einfach wechseln kann.
 Das hat zur Folge, dass der Spieler nicht immer ein Deck zerlegen muss, um eine andere Strategie auszutesten.
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{deckview.png}
+    \caption{Ansicht des Decks und des Backpacks}
+\end{figure}
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{deckview.png}
+    \caption{Ui für das Wechseln des Deckes}
+\end{figure}
+
+
 Außerdem können Decks umbenannt werden, um besser wiedergefunden und erkannt zu werden.
-Karten können im Backbag nach Kriterien wie Kosten oder Namen auf- und absteigend sortiert werden.
+
+Karten können im Backpack nach Kriterien wie Kosten oder Namen auf- und absteigend sortiert werden.
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{sortdeck.png}
+    \caption{Durch klicken kann durch verschiedene Sortierungs-Möglichkeiten durchgewechselt werden.}
+\end{figure}
+
 Sammelt der Spieler eine neue Karte, kann er sich entscheiden, ob er die Karte gleich seinem Deck oder doch eher seinem
-Backbag hinzufügen möchte.
-Der Backbag und das Deck ermöglichen es dem Spieler, Karten, die er gesammelt hat, aus dem Deck zu nehmen und damit
+Backpack hinzufügen möchte.
+Der Backpack und das Deck ermöglichen es dem Spieler, Karten, die er gesammelt hat, aus dem Deck zu nehmen und damit
 nicht zu verwenden, sowie Decks zu bauen, die zu einer Strategie passen.
-Startet der Spieler nun einen Kampf, wird das zuletzt ausgewählte deck verwendet.
+Startet der Spieler nun einen Kampf, wird das zuletzt ausgewählte Deck verwendet.
 
 
 \subsection{Der Kampf}\label{backpack_and_deck}
 %grundsätzliche sachen wie reserves, gegner und spieler, gewonnen wenn gegner tod usw karten am anfang ziehe zwei karten am anfang vom turn
 
 Während der Spieler über die Map reist, sind Kämpfe unausweichlich.
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{playericon.png}
+    \caption{Kämpfe werden auf der Map durch zwei gekreuzte Revolver dargestellt. Um weiter auf der Map fortzuschreiten müssen sie absolviert werden.}
+\end{figure}
+
 Gekämpft wird mit den gesammelten Karten, mit dem Ziel, den oder die Gegner zu besiegen und dabei so wenig Lebenspunkte
 wie möglich zu verlieren bzw. nicht zu sterben. Gewonnen hat der Spieler, wenn alle Gegner besiegt wurden.
 Ein Kampf ist aufgeteilt in Züge. Immer abwechselnd ist entweder der Spieler oder der Gegner dran. Am Anfang des Kampfes
@@ -99,16 +134,34 @@ Am Start des Zuges des Spielers werden zwei Karten vom Deck gezogen. Pro Zug des
 zur Verfügung. Diese werden jeweils auch am Anfang des Zuges wieder auf die maximale Anzahl aufgefüllt.
 Reserves können dazu verwendet werden, Karten zu bezahlen und damit auch zu spielen.
 
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{turngrafic.png}
+    \caption{Durch die Kampf Ui werden alle wichtigen Informationen an den Spieler weitergegeben.}
+\end{figure}
+
+
 
 \subsection{Karten}\label{Karten}
 Karten in \FF sind Bullets. Jede Bullet hat einen Kosten, die bezahlt werden müssen, um die Karte zu spielen.
 Die Reserven, die für die Bullet benötigt werden, werden automatisch bezahlt, WENN der Spieler sich die Bullet leisten kann, sobald die Bullet gespielt wird.
 Das Management von diesen Reserves und die Reihenfolge, in der man die Karten spielt, ist wichtig, um besser in Forty-Five zu werden. %TODO Mehr dazu ist im Gamedesign.
 Jede Bullet hat außerdem einen Damage-Wert, welcher angibt, wie viele Lebenspunkte dem Gegner durch die Karte abgezogen werden,
-falls die Karte auf den Gegner geschossen wird. Fast alle Karten haben außerdem einen einzigartigen Effekt,
+falls die Karte auf den Gegner geschossen wird.
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{bulletgrafic.png}
+    \caption{Die wichtigsten Infos werden auf der Karte angezeigt.}
+\end{figure}
+
+Fast alle Karten haben außerdem einen einzigartigen Effekt,
 welcher angesehen werden kann, indem der Spieler mit der Maus über die gewünschte Bullet hovert.
 In dem Popup, welches nach dem Hovern sichtbar ist, befinden sich die Infos zu dem Effekt der Karte,
 dazu gehört fast immer ein Trigger und der Effekt selbst.
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{hovergrafic.png}
+    \caption{Um genauere Infos über den Effekt und Hintergründe der Karte zu erhlaten, kann man über sie drüber hovern.}
+\end{figure}
 
 
 Der Trigger gibt an, wann sich der Effekt aktiviert. Es gibt verschiedene Trigger, wie zum Beispiel das Aktivieren des Effektes beim Spielen der Bullet. %TODO siehe mehr später bei trigger
@@ -131,6 +184,11 @@ Sie sind von 1-5 nummeriert. %TODO Bild und noch Umdrehen von 5 zu 1
 Der Revolver kann von dem Spieler geschossen werden. Wenn geschossen wird, wird die Bullet in der obersten Kammer auf den Gegner geschossen.
 Verlässt sie den Revolver, verliert der Gegner Lebenspunkte in Höhe des Dmg Value der geschossenen Bullet.
 Die Bullet wird unter das Deck gelegt und der Revolver dreht sich einmal nach rechts.
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{rotategrafic.png}
+    \caption{Der Revolver dreht sich normalerweiße nach dem feuern des Revolvers einmal nach rechts.}
+\end{figure}
 
 
 Die Revolverrotation ist ein wichtiger Teil von Forty-Five, da man das Placement der Bullets im Revolver sich genau überlegen muss,
