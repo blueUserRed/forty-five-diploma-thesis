@@ -13,6 +13,7 @@ Ein Durchlauf bzw. ein Leben des Spielers wird als "Run" bezeichnet. Ein Run end
 Während der Entwicklung wurden jene Elemente, die in das nächste Leben übergehen, als "Rogue-Lite-Elemente" bezeichnet.
 
 
+
 %zuerst erklären was roads und so sind????
 \subsection{.Forty-Fives Rogue-Lite-Elemente}\label{rogue_lite_elemente}
 
@@ -23,12 +24,33 @@ lieber in das Erhöhen seiner Lebenspunktkapazität investiert. Bei letzterem ha
 Dies dient dazu, dem Spieler die Entscheidung offen zu halten, entweder etwas Langwieriges aber Bleibendes zu investieren oder lieber noch einmal ordentlich
 Lebenspunkte aufzutanken, was bei der zweiten Mechanik ins Spiel kommt. %todo quelle füg max hp und hp generell
 
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{healeventgrafic.png}
+\caption{Ein Heilevent}
+\end{figure}
+
+
 Schafft der Spieler einen Abschnitt des Spiels, also eine sogenannte Road, werden seine bis zu dem Zeitpunkt gesammelten Karten
-gespeichert und sind ab dann selbst nach einem Tod jederzeit zugänglich und spielbar. Verknüpft mit der ersten Mechanik
+gespeichert und sind ab dann selbst nach einem Tod jederzeit zugänglich und spielbar.
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{bulletssavedPopup.png}
+    \caption{Das Popup, welches am Ende der Road erscheint um zu zeigen welche Karten gespeichert wurden}
+\end{figure}
+
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{bulletsaved.png}
+    \caption{Karten die gespeichert wurden, werden mit diesem Symbol in der rechten unteren Ecke der Karte markiert.}
+\end{figure}
+
+Verknüpft mit der ersten Mechanik
 hat der Spieler die Möglichkeit, sich dazu zu entscheiden, seine Leben wieder aufzuheilen und das Ende der Road anzustreben.
 Ist er der Meinung, es sowieso nicht mehr zu dem Abschnittsende zu schaffen, wählt er die Erhöhung der maximalen
 Lebenspunkte, um so zumindest einen Vorteil in den nächsten Runs zu haben. Der Spieler muss also das Risiko und die
 Belohnung abwägen und daran entscheiden, welche Wahl er trifft.
+
+
 
 \subsection{Das Sammeln der Karten}\label{sammeln_der_Karten}
 
@@ -71,7 +93,7 @@ Gekämpft wird mit den gesammelten Karten, mit dem Ziel, den oder die Gegner zu 
 wie möglich zu verlieren bzw. nicht zu sterben. Gewonnen hat der Spieler, wenn alle Gegner besiegt wurden.
 Ein Kampf ist aufgeteilt in Züge. Immer abwechselnd ist entweder der Spieler oder der Gegner dran. Am Anfang des Kampfes
 werden eine vordefinierte Anzahl an Karten vom Deck des Spielers gezogen. %todo die genaue Anzahl fehlt noch (5 oder 6?)
-Anschließend hat der Spieler die Möglichkeit, nach Belieben seinen Zug auszuführen. Ein Spielerzug wird mit dem "End Turn"
+Anschließend hat der Spieler die Möglichkeit, nach Belieben seinen Zug auszuführen. Ein Spielerzug wird mit dem "Holster"
 Button beendet, und das Betätigen des Knopfes startet den automatischen Ablauf des Gegnerzuges. Der Gegner führt eine mehr oder weniger zufällige Aktion aus, und danach ist wieder der Zug des Spielers.
 Am Start des Zuges des Spielers werden zwei Karten vom Deck gezogen. Pro Zug des Spielers stehen dem Spieler 4 "Reserves"
 zur Verfügung. Diese werden jeweils auch am Anfang des Zuges wieder auf die maximale Anzahl aufgefüllt.
@@ -155,7 +177,7 @@ Dargestellt durch ein Symbol über dem Kopf des Gegners, sind die Aktionen wenig
 sondern es wird eher erwartet, dass der Spieler die Aktion des Gegners in das Planen seines Zuges miteinbezieht.
 Bei der eben genannten Schadenaktion kann der Spieler darauf reagieren und Schaden verhindern, indem er die Karte parried.
 
-\subsection{parrying}\label{backpack_and_deck}
+\subsection{Parrying}\label{parrying}
 Das Parieren des Schadens, der vom Gegner verursacht wird, wird in \FF durch Bullet gemacht.
 Die Idee dahinter ist, dass die eigene Bullet verwendet wird, um den Angriff des Gegners abzuhalten, indem man
 seine Bullet gegen die des Gegners schießt.
@@ -201,7 +223,7 @@ Es ist eigentlich ein perfektes Beispiel, wie man durch das nicht direkte Verbie
 Möglichkeitsvielfalt wachsen lassen kann.
 
 
-\subsection{Encounter Modifier}\label{backpack_and_deck}
+\subsection{Encounter Modifier}\label{encounter_modifier}
 
 Um noch mehr Abwechslung in das Spiel zu bringen und um den Spieler auch manchmal zum Wechseln der Kartenstrategien zu bringen.
 Encounter Modifier sind extra Regeln, die einem Kampf hinzugefügt werden.

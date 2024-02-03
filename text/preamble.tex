@@ -13,9 +13,15 @@
 % Listen etwas wenige einrücken, erfordert enumitem
 \setitemize{leftmargin=*}
 
+
+\usepackage{float}
+\usepackage{graphicx}
+%\usepackage{graphicx}
+\graphicspath{{./images/}}
+
+
 \usepackage{lmodern}
 \usepackage{xspace}
-\usepackage{graphicx}
 
 %%? \usepackage{textcomp}
 \usepackage[hyphens]{url}
@@ -83,7 +89,7 @@
 
 \usepackage{fontspec}
 \usepackage{scalefnt}
-\setmainfont{Aptos} % todo: choose a proper main font
+%\setmainfont{Aptos} % todo: choose a proper main font
 \newfontfamily\headingfont[]{Redwing-medium.otf}
 \newfontfamily\codefont{JetBrainsMono-Regular.ttf}[NFSSFamily=JetBrainsMonoFamily]
 \setkomafont{chapter}{\headingfont\scalefont{1.5}}
