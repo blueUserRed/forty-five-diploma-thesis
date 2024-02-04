@@ -25,7 +25,7 @@ Dies dient dazu, dem Spieler die Entscheidung offen zu halten, entweder etwas La
 Lebenspunkte aufzutanken, was bei der zweiten Mechanik ins Spiel kommt. %todo quelle füg max hp und hp generell
 
 \begin{figure}[H]
-\includegraphics[width=\textwidth]{healeventgrafic}
+\includegraphics[width=\textwidth]{healeventgrafic.png}
 \caption{Ein Heilevent}
 \end{figure}
 
@@ -65,11 +65,14 @@ Außerdem gibt es auf der Map verteilt noch zusätzliche Events, die der Spieler
 Das bringt nicht nur wieder eine Entscheidung des Spielers mit sich, die den Verlauf des Runs ändert, sondern bringt auch mehr Abwechslung,
 da der Spieler nicht immer nur die Karten nehmen kann, die er gerne hätte. Es bringt auch eine Art Entdeckerlust mit sich, da der Spieler
 auf diese Weise natürlich die Karten erst nach und nach sieht und nicht alle gleich auf einmal (siehe z.B. Magic Arena, wo alle Karten sofort in einer eigenen Liste zugänglich sind). %todo: Quelle
-Diese Art des Erwerbs von Karten wird "Draft" genannt %TODO Quelle
+
+"It is not that players build a deck in order to play the game, it is that they play the game in order to build a deck."\cite{zitatdeckbuilding}
+
 und zwingt den Spieler mit begrenzter Wahl und Ressourcen das Beste daraus zu machen. Diese Designpolitik wird beim Design der Karten beachtet und wird zu einem späteren Zeitpunkt genauer erläutert %TODO macht man das so?
-Viele Rogue-like Deckbuilder haben ein ähnliches System. Inspiriert wurde das Sammeln der Karten in ".Forty-Five" von Spielen wie Inscription und Slay the Spire, %Todo Quelle
+Viele Rogue-like Deckbuilder haben ein ähnliches System. Inspiriert wurde das Sammeln der Karten in ".Forty-Five" von Spielen wie Inscription und Slay the Spire,
 hat jedoch einen großen Unterschied. Anders als in z.B. Slay the Spire können Karten ganz einfach aus dem Kartendeck entfernt werden, nachdem sie einmal ausgewählt wurden.
-Karten können aus dem Deck in den Backpack verschoben werden und ermöglichen dadurch ein flexibleres Spielerlebnis. %todo Quelle. Es gibt auch einen Deckbuilder, der das so macht, keine Ahnung wie der heißt.
+Karten können aus dem Deck in den Backpack verschoben werden und ermöglichen dadurch ein flexibleres Spielerlebnis.\cite{slaythespire, inscryption}
+
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{deckandbackpack.png}
@@ -135,7 +138,7 @@ zur Verfügung. Diese werden jeweils auch am Anfang des Zuges wieder auf die max
 Reserves können dazu verwendet werden, Karten zu bezahlen und damit auch zu spielen.
 
 \begin{figure}[H]
-    \includegraphics[width=\textwidth]{turngrafic.png}
+    \includegraphics[width=\textwidth]{turngrafic.jpg}
     \caption{Durch die Kampf Ui werden alle wichtigen Informationen an den Spieler weitergegeben.}
 \end{figure}
 
@@ -149,7 +152,7 @@ Jede Bullet hat außerdem einen Damage-Wert, welcher angibt, wie viele Lebenspun
 falls die Karte auf den Gegner geschossen wird.
 
 \begin{figure}[H]
-    \includegraphics[width=\textwidth]{bulletgrafic.png}
+    \includegraphics[width=\textwidth]{bulletgrafic.jpg}
     \caption{Die wichtigsten Infos werden auf der Karte angezeigt.}
 \end{figure}
 
@@ -159,7 +162,7 @@ In dem Popup, welches nach dem Hovern sichtbar ist, befinden sich die Infos zu d
 dazu gehört fast immer ein Trigger und der Effekt selbst.
 
 \begin{figure}[H]
-    \includegraphics[width=\textwidth]{hovergrafic.png}
+    \includegraphics[width=\textwidth]{hovergrafic.jpg}
     \caption{Um genauere Infos über den Effekt und Hintergründe der Karte zu erhlaten, kann man über sie drüber hovern.}
 \end{figure}
 
@@ -186,7 +189,7 @@ Verlässt sie den Revolver, verliert der Gegner Lebenspunkte in Höhe des Dmg Va
 Die Bullet wird unter das Deck gelegt und der Revolver dreht sich einmal nach rechts.
 
 \begin{figure}[H]
-    \includegraphics[width=\textwidth]{rotategrafic.png}
+    \includegraphics[width=\textwidth]{rotategrafic.jpg}
     \caption{Der Revolver dreht sich normalerweiße nach dem feuern des Revolvers einmal nach rechts.}
 \end{figure}
 
@@ -293,5 +296,7 @@ Bewitched Mist lässt den Revolver immer statt nach rechts nach links drehen, wa
 
 
 
+
+\printbibliography %Prints bibliography
 % resets author
 \renewcommand{\kapitelautor}{}
