@@ -11,18 +11,23 @@ gehen verloren und er startet wieder am Anfang. Da es sich jedoch um ein "Rogue-
 gibt es eine Art von speicherbarem Fortschritt, den der Spieler in sein nächstes Leben mitnehmen kann.
 Ein Durchlauf bzw. ein Leben des Spielers wird als "Run" bezeichnet. Ein Run endet mit dem Tod des Spielers.
 Während der Entwicklung wurden jene Elemente, die in das nächste Leben übergehen, als "Rogue-Lite-Elemente" bezeichnet.
+\cite{roguelikedeckbuilder}
 
 
 
 %zuerst erklären was roads und so sind????
 \subsection{.Forty-Fives Rogue-Lite-Elemente}\label{rogue_lite_elemente}
 
-Um das Spielerlebnis des Spielers nicht allzu frustrierend zu gestalten, wurden zwei verschiedene Mechaniken eingeführt.
+Da es sich bei \FF um eein Rogue lite und kein Rogue-like handelt, hat der Spieler die Möglichkeit, gemachten Fortschritt mit in sein nächstes Leben zu nehmen.
+Wie genau der mitgenommene Fortschritt ausschaut ist unterschiedlich von Spiel zu Spiel.\cite{roguelite}
+
+
+Um das Spielerlebnis des Spielers nicht allzu frustrierend zu gestalten, wurden in \FF zwei verschiedene Mechaniken eingeführt.
 Bei der ersten Mechanik handelt es sich um die Erhöhung der maximalen Lebenspunkte des Spielers bei Heilpunkten im Spiel. Der Spieler hat die Möglichkeit
 sich zu entscheiden, ob er sich lieber nur für diesen Run heilt und dafür auch eine größere Menge an Lebenspunkten erhält, oder ob er
 lieber in das Erhöhen seiner Lebenspunktkapazität investiert. Bei letzterem handelt es sich natürlich um eine kleinere Zahl als bei der anderen Wahl.
 Dies dient dazu, dem Spieler die Entscheidung offen zu halten, entweder etwas Langwieriges aber Bleibendes zu investieren oder lieber noch einmal ordentlich
-Lebenspunkte aufzutanken, was bei der zweiten Mechanik ins Spiel kommt. %todo quelle füg max hp und hp generell
+Lebenspunkte aufzutanken, was bei der zweiten Mechanik ins Spiel kommt.
 
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{healeventgrafic.png}
@@ -71,7 +76,7 @@ auf diese Weise natürlich die Karten erst nach und nach sieht und nicht alle gl
 und zwingt den Spieler mit begrenzter Wahl und Ressourcen das Beste daraus zu machen. Diese Designpolitik wird beim Design der Karten beachtet und wird zu einem späteren Zeitpunkt genauer erläutert %TODO macht man das so?
 Viele Rogue-like Deckbuilder haben ein ähnliches System. Inspiriert wurde das Sammeln der Karten in ".Forty-Five" von Spielen wie Inscription und Slay the Spire,
 hat jedoch einen großen Unterschied. Anders als in z.B. Slay the Spire können Karten ganz einfach aus dem Kartendeck entfernt werden, nachdem sie einmal ausgewählt wurden.
-Karten können aus dem Deck in den Backpack verschoben werden und ermöglichen dadurch ein flexibleres Spielerlebnis.\cite{slaythespire, inscryption}
+Karten können aus dem Deck in den Backpack verschoben werden und ermöglichen dadurch ein flexibleres Spielerlebnis.\cite{slaythespire, inscryption, zitatdeckbuilding}
 
 
 \begin{figure}[H]
@@ -167,7 +172,7 @@ dazu gehört fast immer ein Trigger und der Effekt selbst.
 \end{figure}
 
 
-Der Trigger gibt an, wann sich der Effekt aktiviert. Es gibt verschiedene Trigger, wie zum Beispiel das Aktivieren des Effektes beim Spielen der Bullet. %TODO siehe mehr später bei trigger
+Der Trigger gibt an, wann sich der Effekt aktiviert. Es gibt verschiedene Trigger, wie zum Beispiel das Aktivieren des Effektes beim Spielen der Bullet.
 Zusätzlich zu dem Effekt und dem Trigger steht bei vielen Karten außerdem noch ein Flavortext dabei.
 Ein Flavortext ist ein Spruch, der der Bullet ein wenig Kontext hinzufügt.
 Dies kann passieren durch einen dummen Spruch, einen Witz, eine Anspielung oder einen story- bzw. worldbuilding-relevanten Text.
@@ -183,7 +188,7 @@ Drag and Drop in den gewünschten Revolverplatz > Bezahlen der Reserven, Abbruch
 
 
 Der Revolver besteht aus 5 Kammern bzw. Feldern, in die Bullets geladen werden können.
-Sie sind von 1-5 nummeriert. %TODO Bild und noch Umdrehen von 5 zu 1
+Sie sind von 1-5 nummeriert.
 Der Revolver kann von dem Spieler geschossen werden. Wenn geschossen wird, wird die Bullet in der obersten Kammer auf den Gegner geschossen.
 Verlässt sie den Revolver, verliert der Gegner Lebenspunkte in Höhe des Dmg Value der geschossenen Bullet.
 Die Bullet wird unter das Deck gelegt und der Revolver dreht sich einmal nach rechts.
@@ -195,7 +200,7 @@ Die Bullet wird unter das Deck gelegt und der Revolver dreht sich einmal nach re
 
 
 Die Revolverrotation ist ein wichtiger Teil von Forty-Five, da man das Placement der Bullets im Revolver sich genau überlegen muss,
-um das Meiste aus seinen Bullets herauszuholen. %todo mehr in Game Design.
+um das Meiste aus seinen Bullets herauszuholen.
 Es gibt außerdem einen Trigger, welcher aktiviert wird, wenn die Karte geschossen wird,
 namens On-Shot. Zusätzlich gibt es Karten mit Effekten, welche die Revolverrotation verändern, wie z.B. Bewitched Bullet,
 welche den Revolver nach links statt nach rechts rotiert.
@@ -204,7 +209,7 @@ Die Komplexität von \FF kommt vom Meistern des Revolvers.
 Das strategische Platzieren von Bullets, die Reihenfolge der Bullets und das Verstehen, wie eine Revolverrotation sich auf Bullets,
 den Spieler oder den Gegner auswirkt. Die gerade erwähnte Bewitched Bullet kann zum Beispiel dazu verwendet werden, Karten,
 welche davon profitieren, lange im Revolver zu bleiben, weiter von dem Schießen wegzuschieben. Bullet zum Beispiel fügt dem Gegner Schaden zu,
-wenn sich Bullet rotiert im Revolver. %TODO BILDER!!!
+wenn sich Bullet rotiert im Revolver.
 Bewitched Bullet kann dazu verwendet werden, zwei zusätzliche Rotationen rauszuholen, indem man den Revolver einmal nach
 links dreht, bevor Bullet den Revolver verlässt. Bewitched Bullet kann zum Beispiel auch zum Einschieben von Bullets verwendet
 werden und so weiter und so fort. Die Kombinationsmöglichkeiten sind endlos, und fast jeder Effekt einer Bullet kann mit dem einer
@@ -237,6 +242,8 @@ Ist das der Fall, sucht der Spieler das Ziel der Revolverschüsse, indem er auf 
 Dargestellt durch ein Symbol über dem Kopf des Gegners, sind die Aktionen weniger eine Reaktion auf den Spieler,
 sondern es wird eher erwartet, dass der Spieler die Aktion des Gegners in das Planen seines Zuges miteinbezieht.
 Bei der eben genannten Schadenaktion kann der Spieler darauf reagieren und Schaden verhindern, indem er die Karte parried.
+
+Die Gegner sin dentstanden durch das neobachten von Spielen im selben Genre, wie zum Beipsiel Slay the Spire. %TODO quelle
 
 \subsection{Parrying}\label{parrying}
 Das Parieren des Schadens, der vom Gegner verursacht wird, wird in \FF durch Bullet gemacht.
@@ -297,6 +304,5 @@ Bewitched Mist lässt den Revolver immer statt nach rechts nach links drehen, wa
 
 
 
-\printbibliography %Prints bibliography
 % resets author
 \renewcommand{\kapitelautor}{}
