@@ -14,7 +14,7 @@ Typen angegeben und einige Features sind nicht supported.
 
 Die konkreten Unterschiede sind:
 \begin{itemize}
-    \item Werte (\zB Zahlen, String, Booleans, \ldots) sind nicht erlaubt, stattdessen werden Typen angegeben.
+    \item Werte (\zB Zahlen, Strings, Booleans, \ldots) sind nicht erlaubt, stattdessen werden Typen angegeben.
     \item Funktionen sind nicht erlaubt.
     \item Variablenzugriffe (\inlineOnj{color.green}) sind nicht erlaubt.
 \end{itemize}
@@ -24,22 +24,22 @@ Neben simplen literals (\inlineOnj{int}, \inlineOnj{float}, \inlineOnj{boolean},
 Objekte definiert werden.
 Der Syntax für Objekte ist ident zu normalen Onj-Dateien.
 
-\begin{minted}{onj}
+\begin{codeBlock}{onj}{Demo: Objekt in OnjSchema}
 myObject: {
     myNumber: int,
     myString: string
 }
-\end{minted}
+\end{codeBlock}
 
 Arrays können auf zwei Arten definiert werden.
 Entweder als Literal, die den Typen an jeder Stelle definiert, oder als Typ gefolgt von eckigen Klammern.
 Bei der zweiten Variante kann in den Klammern optional die Länge des Arrays definiert werden.
 
-\begin{minted}{onj}
+\begin{codeBlock}{onj}{Demo: Arrays in OnjSchema}
 myArray: [string, boolean, float],
 myNumbers: int[],
 threeNumbers: int[3]
-\end{minted}
+\end{codeBlock}
 
 Um anzugeben, dass ein Typ null sein darf, wird ein Fragezeichen verwendet (\inlineOnj{int?}).
 Um anzugeben, dass ein beliebiger Typ verwendet werden darf, wird ein Stern (\inlineOnj{*}) verwendet.

@@ -27,7 +27,7 @@ Das funktioniert nur für numerische Werte.
 Hier ein Beispiel aus \inlineCode{choose_card_screen.onj}, dass das System in Verwendung zeigt.
 
 %! language = Onj
-\begin{minted}{onj}
+\begin{codeBlock}{onj}{Beispiel: Definition eines animierten Widgets aus chooseCardScreen.onj}
 styles: [
     {
         style_priority: 1, // setzt die priority für alle instructions in diesem style
@@ -62,7 +62,7 @@ styles: [
         },
     },
 ]
-\end{minted}
+\end{codeBlock}
 
 Die \inlineOnj{actorState}-Funktion fragt hier den Zustand des Widgets ab.
 In welchen States ein Widget ist, wird vom Programm mittels den \inlineKotlin{StyledActor::enterActorState} und

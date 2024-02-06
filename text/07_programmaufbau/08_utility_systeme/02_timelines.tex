@@ -25,11 +25,11 @@ Eine Aktion kann dabei auch nachfolgende auch blockieren, zum Beispiel die Ausf�
 Millisekunden verzögern oder warten, bis eine Bedingung zutrifft.
 
 Timelines können einfach mittels der \inlineKotlin{Timeline::timeline} Funktion erstellt werden.
-Diese nimmt ein Builder-Lambda mit der \inlineKotlin{TimelineBuilderDSL} Klasse als Receiver, die diverse Funktionen
-zur Verfügung stellt.
+Diese nimmt ein Builder-Lambda mit einer Instanz der \inlineKotlin{TimelineBuilderDSL} Klasse als Receiver, die
+diverse Funktionen zur Verfügung stellt.
 
 %! language = Kotlin
-\begin{minted}{kotlin}
+\begin{codeBlock}{kotlin}{Demo: Definition einer Timeline}
 fun createTimeline() = Timeline.timeline {
     action {
         println("Hello")
@@ -39,8 +39,7 @@ fun createTimeline() = Timeline.timeline {
         println("World")
     }
 }
-\end{minted}
-\codeblockCaption{Dieser Code printet Hello, wartet eine halbe Sekunde und printet dann World}
+\end{codeBlock}
 
 Mittels der \inlineKotlin{TimelineBuilderDSL::include} Funktion können auch die Aktionen anderer Timelines inkludiert
 werden.

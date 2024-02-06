@@ -14,27 +14,27 @@ Bei einem Import-Statement wird neben dem Pfad der zu importierenden Datei auch 
 dann eine Variable mit dem Inhalt der importierten Datei erschaffen wird.
 
 %! language = Onj
-\begin{minted}{onj}
+\begin{codeBlock}{onj}{Demo: Imports in Onj 1}
 // toImport.onj
 myValue: 5
-\end{minted}
+\end{codeBlock}
 
 %! language = Onj
-\begin{minted}{onj}
+\begin{codeBlock}{onj}{Demo: Imports in Onj 2}
 // importer.onj
 import "toImport.onj" as imported;
 importedValue: imported.myValue,
-\end{minted}
+\end{codeBlock}
 
 Der Pfad kann, ähnlich wie ein Variablenzugriff, dynamisch gemacht werden.
 Dazu werden Klammern verwendet.
 
 %! language = Onj
-\begin{minted}{onj}
+\begin{codeBlock}{onj}{Beispiel: Dynamischer Import in Onj}
 var colorSchemes = ["lightMode.onj", "darkMode.onj"];
 import "userPrefs.onj" as userPrefs;
 import (colorSchemes.(userPrefs.preferredColorScheme)) as colorScheme;
-\end{minted}
+\end{codeBlock}
 
 % resets author
 \renewcommand{\kapitelautor}{}

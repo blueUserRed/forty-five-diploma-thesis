@@ -14,20 +14,20 @@ Um herauszufinden, welche Funktion tatsächlich aufgerufen werden soll, vergleic
 Parameter mit dem Schema und ruft die erste Funktion auf, bei der diese übereinstimmen.
 
 %! language = Kotlin
-\begin{minted}{kotlin}
+\begin{codeBlock}{kotlin}{Demo: Deklaration einer Onj-Funktion in Kotlin}
 @OnjNamespace
 object MyNamespace {
 
     @RegisterOnjFunction(schema = "params: [string, int]")
     fun repeatString(s: OnjString, times: OnjInt) = OnjString(s.value.repeat(times.value))
 }
-\end{minted}
+\end{codeBlock}
 
 Neben normalen Funktionen stellt Onj noch drei spezielle Arten von Funktionen zur Verfügung:
 
 \begin{itemize}
     \item Conversions: Diese werden mit folgendem Syntax aufgerufen: \inlineOnj{value#function}.
-        Solche Funktion werden zum Beispiel verwendet, um einen Wert von einem Datentypen zu einem anderen z
+        Solche Funktion werden zum Beispiel verwendet, um einen Wert von einem Datentypen zu einem anderen zu
         konvertieren.
     \item Infix Funktionen: Diese werden mit folgendem Syntax aufgerufen: \inlineOnj{value1 function value2}.
         Beispiele sind die pow-Funktion (\inlineOnj{10 pow 5}) oder die in-Funktion (\inlineOnj{3 in [1, 2, 3, 4]}).
@@ -38,19 +38,19 @@ Neben normalen Funktionen stellt Onj noch drei spezielle Arten von Funktionen zu
 Wird so eine spezielle Funktion verwendet, wird das in der \inlineKotlin{@RegisterOnjFunction} Annotation angegeben.
 
 %! language = Kotlin
-\begin{minted}{kotlin}
+\begin{codeBlock}{kotlin}{Demo: Deklaration einer Onj-Conversion in Kotlin}
 @OnjNamespace
 object MyNamespace {
 
     @RegisterOnjFunction(schema = "params: [string]", type = OnjFunctionType.CONVERSION)
     fun greeting(name: OnjString) = OnjString("Hello, ${name.value}")
 }
-\end{minted}
+\end{codeBlock}
 
 Weiters können Namespaces globale Variablen definieren.
 
 %! language = Kotlin
-\begin{minted}{kotlin}
+\begin{codeBlock}{kotlin}{Demo: Deklaration von globalen Onj-Variablen in Kotlin}
 @OnjNamespace
 object MyNamespace {
 
@@ -59,18 +59,18 @@ object MyNamespace {
         "myGlobal" to OnjInt(5)
     )
 }
-\end{minted}
+\end{codeBlock}
 
 In Onj kann ein use-Statement verwendet werden, um einen Namespace zu inkludieren.
 
 %! language = Onj
-\begin{minted}{onj}
+\begin{codeBlock}{onj}{Demo: Verwendung eines Onj-Namespaces}
 use MyNamespace;
 
 global: myGlobal,
 greeting: "Reader"#greeting,
 string: repeatString("a", 5)
-\end{minted}
+\end{codeBlock}
 
 % resets author
 \renewcommand{\kapitelautor}{}

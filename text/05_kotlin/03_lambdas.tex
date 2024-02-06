@@ -12,7 +12,7 @@ und so weiter sowohl lesend als auch schreibend auf diese zugreifen kann.
 Java allerdings erlaubt nur den lesenden Zugriff, und nur wenn auch Code außerhalb des Lambdas niemals schreibend auf
 die Variable zugreift.\cite{mdnDocsClosures, jarticleLambdas}
 
-\begin{minted}{javascript}
+\begin{codeBlock}{javascript}{Demo: Closures in Javascript}
 function createClosure() {
     let i = 0;
     const getter = () => i;
@@ -24,20 +24,18 @@ setter(10);
 console.log(getter()); // => 10
 setter(getter() * 2);
 console.log(getter()); // => 20
-\end{minted}
-\codeblockCaption{Demonstration von closures in Javascript}
+\end{codeBlock}
 
-\begin{minted}{java}
+\begin{codeBlock}{java}{Demo: Limitierte Closures in Java}
 int i = 0;
 String effectivelyFinal = "hi";
 AtomicInteger a = new AtomicInteger(0);
 Runnable r = () -> {
     i++; // compile time fehler
-    a.incrementAndGet(); // workaround mit AtomicInteger, funktioniert
+    a.incrementAndGet(); // workaround mit AtomicInteger
     System.out.println(effectivelyFinal); // erlaubt, weil effectivelyFinal nie zugewiesen wird
 };
-\end{minted}
-\codeblockCaption{Demonstration von limitierten closures in Java}
+\end{codeBlock}
 
 Kotlin wurde anders als Java von Anfang an mit Lambdas entwickelt und weist daher keine solchen Limitationen auf.
 Da Kotlin sich selbst als Sprache mit vielen Elementen aus der funktionalen Programmierung bezeichnet, ist es wichtig,
@@ -50,34 +48,32 @@ einen neuen Code-Block, sondern deklariert ein Lambda.
 Lambda Parameter werden in den geschwungenen Klammern angegeben.\cite{kspecLambdaLiteral}
 
 %! language = kotlin
-\begin{minted}{kotlin}
+\begin{codeBlock}{kotlin}{Demo: Lambda Syntax in Kotlin}
 fun test() {
     {
         println("hi")
     }
 }
-\end{minted}
-\codeblockCaption{
+\end{codeBlock}
+
 Das hier gezeigte \inlineKotlin{println()} wird nie tatsächlich ausgeführt, das es in einem Lambda
-definiert wurde, das selbst nie ausgeführt wird
-}
+definiert wurde, das selbst nie ausgeführt wird.
 
 %! language = kotlin
-\begin{minted}{kotlin}
+\begin{codeBlock}{kotlin}{Demo: Lambda mit Parameter}
 fun test() {
     val lambda: (String) -> Unit = { string -> println(string) }
     lambda("hello")
     lambda("world")
 }
-\end{minted}
-\codeblockCaption{Lambda-Literal mit einem Parameter}
+\end{codeBlock}
 
 Zusätzlich stellt Kotlin einige syntaktische Vereinfachen zur Verfügung, wenn eine Funktion als letzten Parameter
 ein Lambda nimmt.
 In diesem Fall kann das Lambda nämlich außerhalb der Klammern des Funktionsaufrufs geschrieben werden.
 
 %! language = kotlin
-\begin{minted}{kotlin}
+\begin{codeBlock}{kotlin}{Demo: Funktionsaufruf mit Lambda}
 fun test() {
     // repeat ist keine Control-Flow-Struktur, sondern eine normale Funktion, die in der
     // Standard-Bibliothek definiert ist.
@@ -85,13 +81,12 @@ fun test() {
         println("hi")
     }
 }
-\end{minted}
-\codeblockCaption{Demonstration von einem Funktionsaufruf mit Lambda}
+\end{codeBlock}
 
 Wenn die Funktion sonst keine Parameter nimmt, können die Klammern sogar komplett weggelassen werden.
 
 %! language = kotlin
-\begin{minted}{kotlin}
+\begin{codeBlock}{kotlin}{Demo: Syntaktischer Zucker bei Funktionsaufrufen mit Lambdas}
 fun test() {
     run {
     }
@@ -101,7 +96,7 @@ fun test() {
     // ist gleich
     run({ })
 }
-\end{minted}
+\end{codeBlock}
 
 \inlineKotlin{run} ist eine Funktion aus der Standard-Bibliothek, die ein Lambda entgegennimmt und einmal ausführt.
 Diese Funktion wird in der Praxis verwendet, um normale Code-Blöcke zu ersetzen.
@@ -110,19 +105,19 @@ Achtung!
 Ist eine geschwungene Klammer Teil einer syntaktischen Struktur eröffnet sie einen normalen Code-Block, kein Lambda!
 
 %! language = kotlin
-\begin{minted}{kotlin}
+\begin{codeBlock}{kotlin}{Demo: Code-Blöcke in Control-Flow Strukturen}
 fun test() {
     if (someCondition) { // Diese geschwungene Klammer eröffnet kein Lambda!
     }
 }
-\end{minted}
+\end{codeBlock}
 
 Eine weitere Vereinfachung ist, dass ein Lambda, das nur einen Parameter nimmt, diesen nicht explizit angeben muss.
 Stattdessen wird implizit eine lokale Variable namens \inlineKotlin{it} erschaffen.
 Das erleichtert vor allem lange Aufrufketten auf Iterables.
 
 %! language = kotlin
-\begin{minted}{kotlin}
+\begin{codeBlock}{kotlin}{Beispiel: Anwendung von Lambdas mit Listen-Funktionen}
 data class Country(val name: String, val population: Int)
 fun test() {
     val countries = listOf<Country>()
@@ -132,32 +127,13 @@ fun test() {
         .map { it.name }
         .filter { it.endsWith("land") }
         .map { it.first() }
-        .fold("") { acc, cur -> acc + cur }
+        .joinToString()
 }
-\end{minted}
-\codeblockCaption{Praxisnahes Beispiel für Lambdas}
+\end{codeBlock}
 
 Wie im letzten Beispiel ersichtlich, ist es nicht notwendig explizit eine \inlineKotlin{return} expression in einem
 Lambda zu verwenden.
 Stattdessen wird der Wert der letzten Expression im Block automatisch als return-Wert angenommen.
-
-%! language = kotlin
-\begin{minted}{kotlin}
-
-enum class ColorMode { LightMode, DarkMode }
-data class UserPrefs(val selectedColorMode: ColorMode?)
-data class Defaults(val defaultColorMode: ColorMode = ColorMode.DarkMode)
-
-fun test() {
-    val colorPicker: (UserPrefs, Defaults) -> String = { prefs, defaults ->
-        val colorMode = prefs.selectedColorMode ?: defaults.defaultColorMode
-        when (colorMode) { // when ist die letzte Expression im Lambda, daher wird ihr Wert als return-Wert genommen
-            ColorMode.LightMode -> "#ffffff"
-            ColorMode.DarkMode -> "#000000"
-        }
-    }
-}
-\end{minted}
 
 % resets author
 \renewcommand{\kapitelautor}{}

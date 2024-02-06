@@ -54,3 +54,7 @@
 \newcommand{\codeblockCaption}[1]{#1} % might be changed later
 
 \newenvironment{infoBox}{\begin{awesomeblock}[blue]{3pt}{}{magenta}}{\end{awesomeblock}} % todo: make look good
+
+\newenvironment{codeBlock}[2]
+{\VerbatimEnvironment\begin{figure}[H]\def\myenvargumentII{#2}\centering\begin{minted}{#1}}
+{\end{minted}\caption{\myenvargumentII}\end{figure}}
