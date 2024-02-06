@@ -172,6 +172,11 @@ Diese Atlase sind Texturen mit Größen von maximal 4096x4096 Pixeln, die mehrer
 Das minimiert die Anzahl der Texturen, die zur GPU hochgeladen werden müssen.
 Das Verpacken der Atlase findet nicht zu Runtime statt, sondern zu Compile-Time, indem ein Gradle-Task ausgeführt wird.
 
+\begin{figure}[H]
+    \includegraphics[scale=0.5]{example_animation_atlas.png}
+    \caption{Beispiel für Animations-Atlas in 20\% der Original-Auflösung}
+\end{figure}
+
 Die \inlineKotlin{DeferredFrameAnimation} Klasse implementiert die Lade-Logik für Animationen.
 Beim Erstellen einer Instanz dieser Klasse wird eine Nachricht an der ServiceThread geschickt, die diesem befiehlt,
 den Atlas mit den Frames er Animation zu laden.
