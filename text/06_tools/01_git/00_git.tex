@@ -1,0 +1,34 @@
+\section{Git}\label{sec:git}
+
+\renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
+Es gibt diverse VCS (Version Control System) wie zum Beispiel Git oder Mercurial.
+Dieses ermöglicht es, Änderungen an Dateien und Ordnern zu speichern.
+Dadurch kann man wieder zu einem vorherigen "commit" zurückgehen, falls man etwas ungewollt geändert hat.
+
+In diesem Projekt wurde Git verwendet, da es einerseits das meistverbreitete VCS ist und andererseits alle Projektmitglieder bereits Erfahrung damit hatten.
+
+Bei Git sind alle Daten in einem Repository, welcher der Überordner aller Dateien ist.
+In diesem befindet sich auch der ".git" Ordner, in dem alle relevanten Daten über das Repository gespeichert sind.
+Dieses beinhaltet \zB lokale Commits und Branches, aber auch die Adresse des Online-Servers.
+Ein Commit speichert die Änderungen seit dem letzten Commit.
+Dadurch verbraucht das System weniger speicher, als wenn es immer alles speichern würde.
+Beim commit gibt man auch eine message an, welche beschreibt, welche Änderungen durchgeführt wurden.
+Eine Branch ist eine neue separate Entwicklungslinie, das heißt, dass alle Commits nur in dieser angezeigt werden.
+Dies wird vor allem verwendet, um neue Features hinzuzufügen, da dies meistens länger dauert, und eventuell unvollständiger Code "gepushed" wird,
+der anderen Entwicklern Probleme verursachen könnte.
+Wenn ein Feature funktioniert, kann man ein "pull request" erfordern, \dh, dass ein anderer Entwickler den Code durchgeht und sicherstellt,
+dass der Code den Richtlinien entspricht.
+Danach kann man Branches mergen, also zusammenführen.
+
+Ein "push" beschreibt das Hochladen aller lokalen Commits auf den Server.
+Das Gegenstück, also das Herunterladen der Daten, heißt "pull".
+Da man nicht alle Daten auf den Server laden will, da diese eventuell von Gerät zu Gerät anders sein können, wie zum Beispiel die lokale Konfiguration,
+gibt es die Möglichkeit, bestimmte Dateien zu ignorieren, indem man den relativen Pfad in die ".gitignore" Datei schreibt.
+Bei einem pull, push, oder merge kann es zu einem "conflict" kommen, falls zwei verschieden Versionen eine Änderung in der gleichen Zeile haben.
+Diese muss man manuell lösen.
+Dabei werden beide Versionen des Codeabschnitts in die Datei geschrieben, und ein Entwickler muss die falsche Version löschen und einen neuen commit machen.\cite{gitHomePage}
+\input{text/06_tools/01_git/01_workflow.tex}
+\input{text/06_tools/01_git/02_github.tex}
+
+% resets author
+\renewcommand{\kapitelautor}{}
