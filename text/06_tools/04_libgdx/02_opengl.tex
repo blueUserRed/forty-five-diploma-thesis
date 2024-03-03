@@ -1,7 +1,7 @@
 
 \subsection{OpenGL}\label{subsec:opengl}
 
-\renewcommand{\kapitelautor}{Autor: Irgendwer} % todo: replace
+\renewcommand{\kapitelautor}{Autor: Marvin Kurka}
 
 \subsubsection{Renderpipeline}
 
@@ -14,6 +14,155 @@
 %
 % text goes here
 %
+
+\subsection{Anwendungen von Shadern}
+
+In \FF wurden verschiedene Mechanismen für die Umsetzung von Animationen verwendet.
+Einige wurden Frame-by-Frame animiert, bei anderen werden Attribute von Widgets über Zeit verändert.
+Shader allerdings haben sich als ein extrem mächtiges Werkzeug zu Erstellung von Animationen herausgestellt, das es
+ermöglicht komplexe grafische Effekte umzusetzen, die auch noch live auf das Spiel reagieren können.
+
+\subsubsection{Rendering von Postprocessing Effekten}\label{subsubsec:postprocessing-effects}
+
+Bei vielen Effekten, die mit Shadern erzielt werden, handelt es sich um Postprocessing-Effekte.
+Das heißt, dass zuerst das gesamte Spiel normal gerendert wird, und das Resultat dann mittels eines Shaders
+manipuliert wird.
+Um das möglich zu machen, werden Framebuffer, auch Framebufferobject oder FBO genannt, eingesetzt.
+Statt direkt auf den Bildschirm zu rendern, kann stattdessen zu einem Framebuffer gerendert werden, der dann das
+Resultat speichert.\cite{openGlFbo}
+
+Wenn also ein Postprocessing Effekt aktiv ist, wird das Spiel zuerst zu einem Framebuffer gerendert, und dieser dann
+mit dem Postprocessing Shader zu dem Bildschirm.
+Falls mehrere Postprocessing Effekte aktiv sind, ist ein Framebuffer nicht mehr ausreichend, da einen Framebuffer
+zu sich selber zu rendern undefiniertes Verhalten auslöst.\cite{openGlFbo}
+Stattdessen wird eine Technik names Ping-Pong-Rendering verwendet.\cite{pingPongRendering}
+Bei dieser werden zwei Framebuffer zwischen denen hin und her gerendert wird, wobei bei jedem Render-Pass ein
+Postprocessing Effekt angewendet wird.
+Bei dem letzten Effekt wird, statt zu einem Framebuffer, zu dem Bildschirm gerendert.
+
+\subsubsection{Der Screenshake Postprocessor}
+
+Der Screenshake-Postprocessor ist der einzige, der im Vertex-Shader und nicht im Fragment-Shader implementiert ist.
+Er wendet eine Sinus-Funktion an, um jeden Vertex zu verschieben, was ein verzerrt aussehendes Bild bewirkt.
+Schnelles Ein- und Ausschalten dieses Shaders bewirkt den Screenshake Effekt beim Schießen des Revolvers.
+
+\subsubsection{Die Destroy-Animation}
+
+Wenn eine Karte zerstört wird, wird eine Animation abgespielt, bei der die Karte ``zerfressen`` wird.
+Dieser Effekt ist kein Postprocessing-Effekt, da er nur eine Karte und nicht den ganzen Bildschirm betrifft.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{card_destroy.png}
+    \caption{Bild der Animation, wenn eine Karte zerstört wird}
+\end{figure}
+
+Um diesen Effekt zu erzeugen, wird dem Shader nicht nur die Kartentextur, sondern auch eine Noise-Textur mitgegeben.
+Die Verwendung einer Noise-Textur statt im Shader generierten Noise hat den Vorteil, das sie deutlich performanter ist,
+da die Noise-Werte im schon im Vorhinein berechnet sind.
+Sonst müssten diese beim Rendern, im Shader, für jeden Pixel, berechnet werden.
+Vorgefertigte Texturen haben allerdings den Nachteil, dass die Auflösung limitiert ist, und das die Noise-Parameter
+zu Runtime nicht geändert werden können.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.4\textwidth]{perlin.png}
+    \caption{Die verwendete Noise-Textur}
+\end{figure}
+
+Der Shader definiert zwei Thresholds, die mit der Noise-Textur abgeglichen werden.
+Ab dem ersten Threshold wird statt der Kartentextur schwarz gerendert, ab dem zweiten transparent.
+Ein stetiges Erhöhen der Thresholds erzeugt den Destroy-Effekt.
+
+\subsubsection{Die Orb-Animation}
+
+Die Orb-Animationen werden im Spiel verwendet, um zu signalisieren, wenn sich abstrakte Konzepte, die keine wirkliche
+In-Game-Repräsentation hat, von einem Ort zu einem anderen bewegen.
+Ein Beispiel dafür sind Reserves im Kampf oder das Cash am Ende des Kampfes.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{orb_animation.png}
+    \caption{Die Orb-Animation, wenn Reserves gezahlt wurden}
+\end{figure}
+
+Bei der Orb-Animation wird eine beliebige Texture von einem Ort zu einem anderen animiert, wobei sie dabei einen Schweif
+hinterlässt.
+
+Die Orb-Animation verwendet zwei Framebuffer, mit einer Ping-Pong-Strategie, wie im
+Kapitel~\ref{subsubsec:postprocessing-effects} beschrieben.
+Zusätzlich werden diese Framebuffer verwendet, um den Zustand des Schweifs über Frames hinweg zu speichern.
+Das Rendern dieser Animation findet in zwei Stufen statt.
+Zuerst wird der Framebuffer der Orb-Animation geupdated, danach wird die Animation auf den Bildschirm gerendert.
+Der erste Schritt läuft folgendermaßen ab:
+
+Zwei Framebuffer, hier A und B genannt, werden erschaffen, falls sie noch nicht existieren.
+Beide Framebuffer haben nur die halbe Auflösung des Bildschirms, da das Renderzeit spart und durch den Blur-Effekt, der
+im zweiten Schritt angewandt wird, nicht auffällt.
+Zu Beginn enthält B den aktuellen Zustand des Schweifs.
+Framebuffer B wird zu A gerendert, wobei ein spezieller Shader verwendet wird, der den Alpha-Kanal um einen festgelegten
+Wert reduziert.
+Bei dem Rendern des Framebuffers muss darauf geachtet werden, dass die OpenGL Blending Funktion richtig gesetzt ist,
+um zu verhindern, dass der Inhalt der beiden Buffer anhand des Alpha-Werts geblendet wird.
+Stattdessen soll der Farb-Wert des Shader-Outputs ohne Blending einfach übernommen werden.
+Der Wert, um den der Alpha Kanal reduziert wird, wird mit der aktuellen Frametime multipliziert, um eventuelle
+Lagspikes auszugleichen.
+Diese Alpha-Reduktion wird durchgeführt, um dafür zu sorgen, dass der Schweif langsam ausbleicht.
+
+Danach wird die Textur der Animation an der aktuellen Stelle zu Framebuffer A gerendert, um den Schweif um die passierte
+Bewegung zu erweitern.
+Optional kann die Textur auch mehrmals zwischen der letzten und der aktuellen Position gezeichnet werden, was vor allem
+bei schnellen Animationen helfen kann, sichtbare Löcher im Schweif zu vermeiden.
+Zum Schluss des ersten Schrittes werden die Framebuffer getauscht, was heißt, dass A zu B und B zu A wird.
+
+Das Resultat dieses Schrittes ist der Framebuffer B, der in Abständen die Textur der Animation auf transparentem
+Hintergrund enthält, wobei ältere Pixel einen niedrigeren Alpha-Wert haben.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{orb_animation_fbo_B_low_segments.png}
+    \caption{Inhalt des Framebuffer B, auf den Bildschirm gerendert, wobei eine Textur pro Frame gezeichnet wird }
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{orb_animation_fbo_B_high_segments.png}
+    \caption{Inhalt des Framebuffer B, auf den Bildschirm gerendert, wobei 20 Texturen pro Frame gezeichnet werden }
+\end{figure}
+
+Im zweitem Schritt wird die Animation tatsächlich zum Bildschirm gerendert.
+Dabei wird zuerst der Schweif aus Framebuffer B gerendert, und dann die Textur der Animation an der aktuellen Position.
+Zweiteres ist trivial, der erste Teil aber nicht.
+Bevor der Schweif gerendert wird, muss zuerst ein Blur-Effekt angewendet werden, damit die Texturen die zu Framebuffer
+B gerendert wurden miteinander und mit dem Hintergrund verschwimmen.
+
+Für die Orb-Animation wird ein 2-Pass Gaussian Blur verwendet, da dieser oft bessere Ergebnisse liefert als \zB ein
+Box-Blur.\cite{gaussianBlur}
+Allerdings ist ein Gaussian-Bur auch teurer zu berechnen, was aber unter anderem durch die halbierte Auflösung keine
+Probleme macht.
+Ein Blur-Effekt funktioniert, in dem für jeden Pixel die Textur nicht nur an der Stelle des Pixels gesampled wird,
+sondern auch an umliegenden Stellen.
+Die finale Farbe des Pixels ist dann der Schnitt aus all diesen Samples.
+Was den Gaussian Blur von \ua einem Box-Blur unterscheidet ist, das die Samples anhand einer gaußschen Verteilung
+gewichtet werden, was dazu führt, dass Pixel, die näher an der Mitte liegen, einen größeren Einfluss auf das Ergebnis
+haben.\cite{gaussianBlur}
+Diese Gewichte sind in einem Look-up-Table definiert, müssen also nicht jedes Mal berechnet werden.
+
+Eine besondere Herausforderung bei dem Gaussian-Blur Shader war der Umgang mit Transparenzen.
+Ein transparenter Pixel hat, auch wenn er nicht dargestellt wird, eine Farbe (Im Falle der Orb-Animation ist das Schwarz).
+Wenn nun ein Pixel am Rand der Textur ist, wird auch im transparenten Bereich gesampled,
+wo der Shader Schwarz zurückbekommt.
+Das führt zu einer deutlichen Verdunkelung der Pixel am Rand des Schweifs.
+Um dieses Problem zu lösen, wird das gaußsche Gewicht zuerst mit dem Alpha-Wert multiplizert, sodass transparente Pixel
+keine/weniger Einfluss auf das Resultat haben.
+Die tatsächlich verwendeten Gewichte werden gemeinsam mit den Samples aufsummiert und dann dividiert, um den Schnitt zu
+erhalten.
+
+Die Orb-Animation verwendet eine 2-Pass Version des Gaussian Blur, bei der zuerst horizontal, dann vertikal geblurred
+wird.
+Das heist aber auch, dass für den ersten Pass wieder zu einem Framebuffer gerendert werden muss.
+Hier kann aber einfach Framebuffer A verwendet werden, da dieser zu diesem Zeitpunkt nicht in Verwendung ist.
+Zum Schluss des zweiten Schritts wird die Textur der Animation ohne Blur direkt auf den Bildschirm gezeichnet.
 
 % resets author
 \renewcommand{\kapitelautor}{}

@@ -11,7 +11,7 @@ ermöglichen soll, neue Effekte zu definieren ohne viel in vorhandenen Code eing
 Effekte werden in zwei Kategorien eingeteilt: Trait Effekte und normale Effekte.
 Trait Effekte werden nicht von dem Effektsystem verwaltet und werden für alle Situationen verwendet, in denen das
 normale Effetsystem nicht ausreicht.
-So gibt es zm Beispiel den "reinforced" Trait-Effekt, der dafür sorgt, dass eine Bullet immer den ganzen Damage
+So gibt es zm Beispiel den ``reinforced`` Trait-Effekt, der dafür sorgt, dass eine Bullet immer den ganzen Damage
 des Gegners parried, unabhängig von ihrem eigenen Damage-Wert.
 Da diese Logik von dem Parry-System übernommen werden muss, ist dieser Effekt ein Trait-Effekt und wird somit nicht
 über das normale Effektsystem definiert.
@@ -23,7 +23,7 @@ Jedes Mal, wenn der GameController eine Aktion ausführt, die Effekte auslösen 
 im Spiel auf den zu der Aktion passenden Trigger überprüft.
 Trigger können auch kaskadieren, das heißt, wenn \zB die \inlineKotlin{ON_BOUNCE} oder \inlineKotlin{ON_DESTROY}
 Trigger ausgelöst werden, wird automatisch auch der \inlineKotlin{ON_LEAVE} Trigger ausgelöst.
-Definiert eine Karte einen oder mehrere Effekte für diesen Trigger, wird dieser aktiv.
+Definiert eine Karte einen oder mehrere Effekte für diesen Trigger, werden diese aktiv.
 
 Die Effekte machen starken Gebrauch von Timelines, die in Kapitel~\ref{subsec:timelines} erklärt sind.
 Wird ein Effekt ausgelöst, wird die \inlineKotlin{Effect::onTrigger} Funktion aufgerufen, die eine Timeline zurückgibt.
