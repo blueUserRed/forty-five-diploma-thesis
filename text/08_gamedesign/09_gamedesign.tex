@@ -3,17 +3,121 @@
 
 \renewcommand{\kapitelautor}{Autor: Irgendwer} % todo: replace
 
-%
-% text goes here
-%
 
-%Placement matters
+\subsection{Gamedesign behind the Bullets}\label{subsec:gamedesignBehindBullets}
+
+Die Vision von \FF 's Regeln war es, den Spieler dazu zu bringen, den Revolver voll und ganz auszunutzen.
+Damit ist gemeint, den Spieler dazu zu bringen, jegliche Mechaniken des Revolver zu nutzen und kreative Möglichkeiten zu finden ihn auszunutzen.
+Das folgende Problem ist ein Beispiel für das Problem der \FF regeln, welches das Kartdesign beheben musste.
+Der Spieler zieht ganz normal seine Karten, und platziert eine Bullet in dem vordersten Slot des Revolvers.
+Anstatt sich einen Revolver mit mehreren Bullets aufzubauen, platziert er die Bullet und schießt sie sofort weg. Das selbe passiert mit der nächsten Bullet.
+Diese Art von Gameplay ist genau jenes, welcher vermiden werden wollte. Es ist langweilig, uncreativ und fordert keinerei denkanstrengungen oder Gedanken der Spielers.
+Dieses Problem war auch das Problem einer früheren Version von \FF. Um diese Lösung zu beheben wurde ein Designprinzip ins Leben gerufen, welches sich "Placement Matters" nennt.
+
+
+\subsection{Placement matters and you do too :)}\label{subsec:placementMatters}
+
+Placement Matters ist ein Bergiff, welches das Gamedeign von \FF gut beschreibt. Durch den Revolver, seine limitierenden
+Eigenschaften und den limitierten PLatz ensteht durch diese Deisgn Philosphooie wurde die erwünschte Spielweiße der Psieler erreicht.
+Placement Matters, beschreibt das Konzept, das bei dem platzieren einer Bullet der Ort, die Reihenfolge und der Zeitpunkt eine wichtige rolle spielt.
+Durch Trigger wie zum Beispiel dem "On-Rotate" oder "On-Turn-Begin" profetieren manche Bullet davon, am Ende des Revolver platziert zu werden, damit sie trotz der rotation so lange wie möglich im revolver bleiben können.
+Der Statuseffekt "burning" zum Beispiel, erhöht den Schaden der nächsten paar Bullets um 50\%. Durch diesen Effekt, ist es also ratsam, Bullets mit diesem Effekt vor anderen Bullets zu feuern um mehr Schaden rauszuholen.
+Durch Leaders Bullet werden Alle Bullets gestärkt solange sie sich slebst im Revolver befindet. Platziert man sie also
+weiter vorne im revolver, verlieren alle Bullets den Buff, da Leaders Bullet ja vor ihnen den Revolver verlässt.
+Der Effekt von Guarding Angles Bullet bezieht sich zum beispiel auf einen gewissen Slot, nähmlich slot 3, was den Spieler auch dazu bring,die Platzierung seiner Karten genau zu überdenken.
+Diese einschränkungen und Challanges sind der Grundstein für das revolver Gameplay von \FF.
+
+
+
+
+\subsection{Archetype design und effekt design}\label{subsec:placementMatters}
+
+\FF's Karten können grob in archetypes aufgeteilt werden. Ein rachetype in Kartenspielen beschreibt eine bestimmte Strategie, welche Karten verfolgen.
+Spieler können dann basierend auf diesen Archetypes Decks bauen und damit verschiedene Strategien verfolgen.\cite{whatIsAnArchetype}
+
+In \FF wurde versucht, die Archetypes so breit wie möglich zu gestallten. Das bedeutet, dass es schon dezentierte Archetypes
+gibt, jedoch viele Karten in mehreren Archetypes spielbar sind und die Archetypes sich auch überscheiden.
+Während der Entwicklung wurde dieses Konzept als "Broad Archetypes bezeichnet". Gründe für diesen Ansatz sind unter anderem,
+die bereist sehr dezidierten und speziellen spielregeln von \FF  und die zufällige Reihenfolge in der der Spieler die Karten zieht.
+
+Verglichen mit Magic, wo die Archetypes strikter sind und sogar durch Farben von einander getrennt werden, kann der
+Spieler sich nicht direkt aussichen welcher Karten er gerne hätte, sondern muss eine von den drei Karten nehmen, die ihm vorgelegt werden.
+Magics regeln sind auserdem viel breiter gefächter und basieren nicht auf einem lmitierten Konzept wie der Revolver.
+Wenn eine Effekt also "On-Rotate" triggert, ist sie in vielen Decks spielbar und nicht nur in Decks eines Turn Archetypes,
+da die Drehung des Revolvers etwas ist, was oft passiert. Diese Methode erlaubt jedoch auch unmengen an Kombos und da
+viele Karte, nicht alle, miteinander funktionieren, hat der Spieler fast immer eine gutes Erlebniss beim Entdecken einer neuen Combo.
+
+Ein gutes Beispiel für diesen broad arcetypes und die interkonektivität der Archetypes ist zu Biepiel High velocity Bullet.
+High Velococity ist eine 1 Kosten, 0 dmg Karte, welche über den Effekt verfügt, dass sie sie "on-Leave" them gegner Scahden zufügt.
+Für viele Spieler scheint diese Bullet jedoch bizzar. Der On-Leave Trigger ist bei High Velocity dafür verantwortlich,
+dass wenn die Karte geschossen wird, trotzdem der Gegner dmg bekommt, obwohl high veolcity eine 0 bei ihrer dmg value stehen hat.
+Die formolierung des Triiggers erlaubt es, das der Effekt von high veolcity Bullet durch jeglich Art und Weise durch die die bullet den revolver verlässt aktiviert wird.
+Wenn der Spieler High velocity Bullet das erste Mal verwednet ist High velocity bUllet nicht viel anders als eine normale Bullet,
+jedoch stößt er mit der Zeit auf Deputies Bullet. Deputies Bullet hat den effekt, dass wen sie im Revolver platziert wird
+die Karte in Slot 3 wieder in die Hand zurückgegeben wird. Auch hier komm das bereits erwähnte Placement matters in spiel,
+da der spieler sich beusst sein muss, welche Karte auf seine Hand zurüückgegeben wird bevor er deputies Bullet spielt.
+Zuerst wird der Spieler den Effekt von Deputies Bullet als etwas negatives sehen, um den erhörten dmg der Bullet auszugleichen,
+eine bewisste Entscheidung die später noch einmal ins Spiel kommt. Kombiniert mit High Velocity Bullet, kann der eher
+negative effekt von Deputies Bullet verwendet werden, um High velocity den Revolver verlassen zu lassen und damit vorzeitig dem Gegner Schaden zuzufügen.
+Zusätzlich dazu, das der Effekt von Deputies Bullet, umgangssprachlich "bounce" genannt "On-Leave" Effekte triggert,
+ist es eine Möglichkeit Karten mit einem "On-Placedown" Trigger auf die Hand zu geben. Das erlaubt es, den Effekt damit nocheinmal zu aktivieren.
+Eine andere Möglichkeit ist, dass der spieler auf eine "Purge Bullet" stößt. Purge Bullet hat ähnlich wie deputies Bullet
+erhöhten Schaden, dafür ist ihr Effekt, die szerstörung von zwei Bullets neben ihr, wenn sie platziert wird. Dies kann
+jedoch vom Spieler vermieden werden indem er - wieder durch Placement matters- Purge Bullet auf eine Art und weise in
+den revolver platziert, sodas keine Karte neben ihr liergt und damit auch nicht zerstört wird. Ähnlich wie bei Deputies
+Bullet jedoch, kann High veolcity Bullet mit Purge Bullet zerstört wrde, was wiederum als verlassen des Revolvers zählt,
+also den Effekt von High Velocities Bullet aktiviert. Purge Bullet ost außerdem Teil des destroys Archetype, welcher
+darauf abzeihlt, dass Karten zerstört werden im revolver.
+Dieser relativ abgesonderte Rachetype, kann trptzdem mit on-Leave Effekten kombiniert werden, was wiederum das breite Karten design von \FF veranschaulicht.
+
+%destroy und auch das die karten zuerst als etwas negatives gesehen werden und sich der wert später zeigt.
+%wichtig, da der spieler nach und dnach die ganzen möglcihkeiten erkundet und lernt.
+
+Jedoch funktionieren nicht alle \FF Archetypes mit jedem anderen. %würde sonst den spaß aus dem deckbauen nehmen
+
+%halt mit placement matters im hinterkopf
+%broad apporach
+% Archetypes und ihre verbindung zueinander
+
+
+\subsection{Kartensammeln und Kartenpools}\label{subsec:placementMatters}
+%pool, draft usw
+
+
+\subsection{Backback und Deck Gamedesign}\label{subsec:placementMatters}
+%mindestanzahl deck
+%deckbauen, und wie es beinflusst wird durch pools und encounter modifier
+
+\subsection{Encpunter modifier? Was steck dahinter?}\label{subsec:placementMatters}
+
+
+\subsection{Enemy Gamedesign and difficulty scaling}\label{subsec:placementMatters}
+
+
+%special attacks
+%3phasen prinzip
+%difficulty im kampf und auf einer road (auch mit encounter file)
+%witch und die änderungen mit der witch
+
+
+%wichtig waren von marvin die config files
+%challanging, da es nicht wirklich etwas zum Nachlesen gab und das für jedes Spiel anders ist
+
+%noch viel zu tun
+
+
+\subsection{Carddescriptions}\label{subsec:placementMatters}
+
+\subsection{Tutoriel}\label{subsec:placementMatters}
+
 
 %Broad Bullet design für draft
 
-%gegner gamedeign :((((
+%
 
+%gegner gamedesign :((((
 
+\subsection{Wie eine entscheidung das Spiel verändert am Beispiel des Kartennachziehens}\label{subsec:placementMatters}
 
 %angewantes gamedeign: die pinacle of forty-five: Bewtisched Bullet
 
