@@ -185,6 +185,22 @@ ins Spiel und der SPieler muss mit der Stresssituation umgebene und dabei wieter
 
 \subsection{Carddescriptions}\label{subsec:placementMatters}
 
+Wichtig in einem Kartenspiel wie \FF sind die Beschreibungen der Effekte der Karten. Die terminologie der beschreoobungen
+soll konsistent, verständlich und so kurz wie möglich sein, ohne das Information dabei verloren geht. Bei \FF sind
+effekt trigger durch zusammengehängte Wörter gecshriben, verknüft mit dem wort "on" am Phrasen Anfang um zu symbolisieren
+das der effekt "on" diesem event triggered und um den Trigger auch verständlich zumachen ohne ihn zu erklären.
+"On-Placedown" zum beispiel aktiviert den effekt wenn die Bullet in den revolver gelegt wird, also "down geplaced" wird.
+Diese Art von Trigger wird intern "Major Trigger" genannt.
+Übergeordnet über den "Major Triggern" sind die "Trigger Conditions". Sie werden zuerst gecheckt, wie zum Beispiel die "While in Revolver:" Condition.
+Der nachfolgende "On-Turn-Begin" trigger kann nur getriggered werden, wenn die Condition erfüllt ist, also wenn die Bullet sich iim Revolver befindet. %TODO Bild von workers bUllet effekt hier
+sogennate "spezifische Trigger" werden ausgeschrieben, da sie zu lang, zu spezigisch und zu selten für die Schreibweise der "Major Triggern" sind. Ein Beispiel dafür ist
+"Whenever this rotates into the slot that it was originally placed into:".
+
+
+%keywords und statuseffekte---------------------------------------------------------------------------------------------
+%Slots und sloticons
+
+
 \subsection{Tutoriel}\label{subsec:placementMatters}
 
 
