@@ -1,7 +1,8 @@
+\renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
+
 \section{Git}\label{sec:git}
 
-\renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
-Es gibt diverse VCS (Version Control System) wie zum Beispiel Git oder Mercurial.
+Es gibt diverse VCS (Version Control System) wie zum Beispiel Git oder Mercurial.\cite{}
 Dieses ermöglicht es, Änderungen an Dateien und Ordnern zu speichern.
 Dadurch kann man wieder zu einem vorherigen "commit" zurückgehen, falls man etwas ungewollt geändert hat.
 
@@ -11,12 +12,12 @@ Bei Git sind alle Daten in einem Repository, welcher der Überordner aller Datei
 In diesem befindet sich auch der ".git" Ordner, in dem alle relevanten Daten über das Repository gespeichert sind.
 Dieses beinhaltet \zB lokale Commits und Branches, aber auch die Adresse des Online-Servers.
 Ein Commit speichert die Änderungen seit dem letzten Commit.
-Dadurch verbraucht das System weniger speicher, als wenn es immer alles speichern würde.
+Dadurch verbraucht das System weniger Speicher, als wenn es immer alles speichern würde.
 Beim commit gibt man auch eine message an, welche beschreibt, welche Änderungen durchgeführt wurden.
 Eine Branch ist eine neue separate Entwicklungslinie, das heißt, dass alle Commits nur in dieser angezeigt werden.
 Dies wird vor allem verwendet, um neue Features hinzuzufügen, da dies meistens länger dauert, und eventuell unvollständiger Code "gepushed" wird,
 der anderen Entwicklern Probleme verursachen könnte.
-Wenn ein Feature funktioniert, kann man ein "pull request" erfordern, \dh, dass ein anderer Entwickler den Code durchgeht und sicherstellt,
+Wenn ein Feature funktioniert, kann man ein "pull request" erfordern, \dah, dass ein anderer Entwickler den Code durchgeht und sicherstellt,
 dass der Code den Richtlinien entspricht.
 Danach kann man Branches mergen, also zusammenführen.
 
@@ -29,6 +30,3 @@ Diese muss man manuell lösen.
 Dabei werden beide Versionen des Codeabschnitts in die Datei geschrieben, und ein Entwickler muss die falsche Version löschen und einen neuen commit machen.\cite{gitHomePage}
 \input{text/06_tools/01_git/01_workflow.tex}
 \input{text/06_tools/01_git/02_github.tex}
-
-% resets author
-\renewcommand{\kapitelautor}{}
