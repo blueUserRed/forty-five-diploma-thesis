@@ -13,7 +13,6 @@ Bei diesem kann sich der Spieler entweder heilen oder seine maximale Lebensanzah
     \includegraphics[width=1.0\textwidth]{healormaxhpevent.png}
     \caption{Screenshot des HealOrMaxHP-Screens}
 \end{figure}
-
 \renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
 \subsection{Widgets}\label{sec:widgets}
 \renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
@@ -22,6 +21,9 @@ Die meisten werden von jedem Screen gebraucht, wie \zB das Box\-Widget, welches 
 Diese werden im folgenden als gewöhnliche Widgets bezeichnet.
 Es gibt allerdings Elemente, die durch ihre Komplexität oder Dynamik nicht als eine Schachtelung von anderen Elementen dargestellt werden können.
 Diese werden zu ihrem eigenen Widget, welches vom Controller verwaltet wird, wie \zB die Map.
+\renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
+\subsubsection{Widgets in Onj}\label{subsubsec:widgetsinonj}
+\renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
 Alle Widgets sind definiert in \inlineCode{assets/onjschemas/screen.onjschema}.
 Als Beispiel folgt nun das grüne Icon in der Mitte:
 \begin{codeBlock}{onj}{Beispiel: Definition eines Images aus heal\_or\_max\_screen.onj}
@@ -45,8 +47,6 @@ Diese beinhalten in dem oben angeführten Beispiel "name", "zIndex" und "styles"
 Styles werden bei \ref{subsec:stylesystem} genauer beschrieben.
 Es gibt allerdings auch die keys "behaviours" und "dragAndDrop", welche das Verhalten beim Interagieren des Benutzers definieren.
 
-% TODO add here parts about code from kotlin about the image
-
 Ein Beispiel für ein spezielles Widget ist der Backpack:
 \begin{codeBlock}{onj}{Beispiel: Backpack-Widget aus screens.onjschema}
     $Backpack {
@@ -65,7 +65,7 @@ Ein Beispiel für ein spezielles Widget ist der Backpack:
     }
 \end{codeBlock}
 %    Wegen Ziel-H 2a Rucksacksystem
-Der Rucksack ist eigentlich nur eine Box mit mehr Funktionen.
+Der Rucksack ist eigentlich nur eine Box mit erweiterten Funktionen.
 Man kann Kartendecks bauen, benennen und die Karten außerhalb des Decks, der sogenannten Kartenablage, nach gewissen Kriterien sortieren.
 Dadurch, dass es ein eigenes Widget ist, kann und wird es auf mehreren Screen verwendet.
 Es beinhaltet alle Keys, welche auf eine Box hat (alles ab den "widget shared keys"), und zusätzlich die Namen zu bestimmten Konfigurationsfile (cards und backpack), um die Daten richtig darzustellen.
@@ -77,7 +77,18 @@ Diese Elemente werden statt von dem Screen-controller, von dem Backpack Widget v
     \includegraphics[width=1.0\textwidth]{backpack.png}
     \caption{Beispiel: Screenshot des Backpacks}
 \end{figure}
-
+\renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
+\subsubsection{Widgets in Kotlin}\label{subsubsec:widgetsinkotlin}
+\renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
+Bei gdx ist ein Widget immer ein \inlineCode{com.badlogic.gdx.scenes.scene2d.Actor} oder eine Unterklasse davon.
+In Forty-Five werden keine der Klassen von gdx direkt verwendet, sondern immer eigene Extensions, wegen des Style-Systems wie bereits oben beschrieben.
+Weiteres werden sie benötigt, um eigene Events verarbeiten zu können, wie das Hover-Event.
+Programmtechnisch gibt es drei Hauptänderungen, die überschrieben werden:
+\begin{enumerate}
+    \item Die Layout Funktion, welche beschreibt, wo welche Elemente positioniert sind und bei Boxen auch deren Kinderelemente.
+    \item Die Draw Funktion, welche für die Darstellung verantwortlich ist. Das ermöglicht es, Shader hinzuzufügen oder das Style-System einzubauen.
+    \item Interfaces werden hinzugefügt, welche einerseits für das Style System verwendet werden, als auch generell das Arbeiten mit Widgets vereinfacht.
+\end{enumerate}
 \renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
 \subsubsection{Templates}\label{sec:templates}
 \renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
