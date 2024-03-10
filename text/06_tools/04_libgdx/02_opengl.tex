@@ -5,15 +5,112 @@
 
 \subsubsection{Renderpipeline}
 
-%
-% text goes here
-%
+OpenGL definiert eine Abfolge an Schritten, aus denen der Rendering-Prozess besteht.
+Diese Abfolge wird als die OpenGL Renderpipeline bezeichnet.
+Die OpenGL Renderpipeline ist programmierbar: Das heist es können Shaderprogramme in GLSL (der OpenGL Shading Language)
+geschrieben werden, die beschreiben, wie sich bestimme Schritte der Pipeline verhalten.
+Der Schritt im Rendering-Vorgang ist der Vertex Shader, der für jeden Vertex, den das Program spezifiziert hat,
+ausgeführt wird.
+Der Vertex Shader kann dann den jeweiligen Vertex verändern.
+Das erlaubt die Implementation von Transformationen, wie Translation, Skalierung oder Rotation.
+Weiters, wenn in einer 3D-Umgebung gearbeitet wird, findet hier die Projektion in den Screen-Space statt.
+Optional können Tessellation und Geometry Shader definiert werden, welche OpenGL Primitives in kleinere Primitives
+unterteilen oder zusätzliche Geometrie (= zusätzliche Vertexe) generieren.
+Danach durchlaufen die Vertexe den Primitive Assembly Schritt, in dem aus den Vertexen Primitives wie Dreiecke,
+Rechtecke oder Linien gebaut werden.
+Diese Primitives werden anschließend gerastert, was heißt, dass für jeden Pixel, den das Primitive überlappt, ein
+Fragment generiert wird.
+Welche Farbe für jedes Fragment dann tatsächlich gerendert wird, wird vom Fragment Shader entschieden, welcher für jedes
+Fragment ausgeführt wird.
+Der Fragment Shader ist theoretisch optional, wird er jedoch weggelassen, sind die ausgegebenen Farben nicht definiert.\cite{openglRenderPipeline}
 
-\subsubsection{Shaders}
+\subsubsection{Shader}
 
-%
-% text goes here
-%
+Shader erlauben es die OpenGL Renderpipeline zu skripten und werden in der OpenGL Shading Language, kurz GLSL
+geschrieben.
+Sowohl der Vertex Shader, als auch der Tessellation, Geometry und Fragment Shader sind Beispiele für den Einsatz von
+Shadern in der oben beschriebenen Renderpipeline.
+Eine Ausnahme stellen Compute Shader dar.
+Diese sind nicht Teil der Renderpipeline und werden verwendet, um beliebige Operationen auf der GPU durchzuführen.
+Häufig werden diese bei Aufgaben eingesetzt, die sich besonders gut parallelisieren, wie das Trainieren von KIs oder
+das Berechnen von Hashes \zB beim Mining von Kryptowährung.
+Da in \FF nur Vertex und Fragment Shader eingesetzt wurden, werden auch nur diese nun näher erläutert.\cite{openglRenderPipeline}
+
+\subsubsection{Der Vertex Shader}
+
+Der Vertex Shader wird für jeden Vertex eines Meshes ausgeführt, wobei openGL Rückgabewerte cashed und so die mehrfache
+Ausführung eines Vertex Shaders für gleiche Vertexe verhindern kann.
+Der Vertex Shader transformiert den Vertex, üblicherweise mittels einer Projektionsmatrize, die vom Programm übergeben
+wird.
+Unten ist die der Standard Vertex Shader von LibGdx zu sehen.
+
+\begin{codeBlock}{glsl}{Standard Vertex Shader von LibGdx}
+attribute vec4 a_position;
+attribute vec4 a_color;
+attribute vec2 a_texCoord0;
+uniform mat4 u_projTrans;
+varying vec4 v_color;
+varying vec2 v_texCoords;
+
+void main() {
+    v_color = a_color;
+    v_color.a = v_color.a * (255.0/254.0);
+    v_texCoords = a_texCoord0;
+    gl_Position = u_projTrans * a_position;
+}
+\end{codeBlock}
+
+Die mit \inlineGlsl{attribute} markierten Variablen sind Werte, die vom Programm mitgegeben werden und für jede
+Vertex Shader Instanz verschieden sind.
+Das inkludiert \zB die Koordinaten des Vertex.
+Mit \inlineGlsl{uniform} markierte Variablen werden ebenfalls vom Programm mitgegeben, sind aber für alle Shader Instanzen,
+sowohl Vertex als auch Fragment Shader, gleich.
+Mit \inlineGlsl{varying} markierte Variablen werden vom Vertex Shader berechnet und an den Fragment Shader weitergegeben.
+
+Neben der vorher angesprochenen Transformation setzt der Vertex Shader auch einige Werte, die später vom Fragment
+Shader verwendet werden können.
+Dies inkludiert die Textur-Koordinate, die angibt, wo in der Textur der Fragment Shader samplen soll, und die Vertex
+Farbe, die es erlaubt, die Farbe der Textur anzupassen.
+
+Nun ist es aber so, das die Zahl der Fragment Shader Instanzen sich stark von der Zahl der Vertex Shader Instanzen
+unterscheiden kann, da der Fragment Shader für jeden Pixel, den ein Primitive abdeckt, ausgeführt wird.
+Deswegen stellt sich die Frage, wie die Ausgabewerte des Vertex Shader auf die Fragment Shader verteilt werden.
+Wird im Shader nichts anderes spezifiziert, werden alle mit \inlineGlsl{varying} markierten Variablen zwischen den
+Vertexen, aus denen das Primitive besteht, linear interpoliert.\cite{openglVertexShader, openglTypeQualifiers}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{triangle_rendering.png}
+    \caption{Beispiel für die Interpolation der varyings}
+\end{figure}
+
+Oben ist ein Beispiel für diese Interpolation zu sehen.
+Jeder Vertex des Dreiecks definiert eine Farbe, die über eine \inlineGlsl{varying} Variable an den Fragment Shader
+weitergegeben wird.
+Dieser rendert einfach die Farbe die er erhalten hat, ohne sie zu ändern.
+Die Farben der Vertexe sind (im Uhrzeigersinn, oben links beginnend): grün, rot, blau.
+Wie in der Grafik zu sehen ist, werden die Farben zwischen den Vertexen interpoliert, wodurch Pixel, die nicht genau
+an einem Vertex liegen, eine Mischfarbe haben.
+
+\subsubsection{Der Fragment Shader}
+
+Der Fragment Shader wird für jeden Pixel, den ein Primitiv überlappt ausgeführt und bestimmt, welche Farbe final
+gerendert wird.
+Meistens passiert das, indem der Fragment Shader eine Textur an der durch den Vertex Shader bestimmten Textur
+Koordinate sampled.
+Unten ist der Standard Fragment Shader von LibGdx zu sehen.
+
+\begin{codeBlock}{glsl}{Standard Fragment Shader von LibGdx (gekürzt)}
+varying vec4 v_color;
+varying vec2 v_texCoords;
+uniform sampler2D u_texture;
+
+void main() {
+    gl_FragColor = v_color * texture2D(u_texture, v_texCoords);
+}
+\end{codeBlock}
+
+Zusätzlich wird der Wert aus der Textur mit der im Vertex Shader gesetzten Vertex Farbe multipliziert.\cite{openglFragmentShader}
 
 \subsection{Anwendungen von Shadern}
 
@@ -36,13 +133,13 @@ mit dem Postprocessing Shader zu dem Bildschirm.
 Falls mehrere Postprocessing Effekte aktiv sind, ist ein Framebuffer nicht mehr ausreichend, da einen Framebuffer
 zu sich selber zu rendern undefiniertes Verhalten auslöst.\cite{openGlFbo}
 Stattdessen wird eine Technik names Ping-Pong-Rendering verwendet.\cite{pingPongRendering}
-Bei dieser werden zwei Framebuffer zwischen denen hin und her gerendert wird, wobei bei jedem Render-Pass ein
+Bei dieser werden zwei Framebuffer verwendet, zwischen denen hin und her gerendert wird, wobei bei jedem Render-Pass ein
 Postprocessing Effekt angewendet wird.
 Bei dem letzten Effekt wird, statt zu einem Framebuffer, zu dem Bildschirm gerendert.
 
 \subsubsection{Der Screenshake Postprocessor}
 
-Der Screenshake-Postprocessor ist der einzige, der im Vertex-Shader und nicht im Fragment-Shader implementiert ist.
+Der Screenshake-Postprocessor ist der einzige, der im Vertex Shader und nicht im Fragment Shader implementiert ist.
 Er wendet eine Sinus-Funktion an, um jeden Vertex zu verschieben, was ein verzerrt aussehendes Bild bewirkt.
 Schnelles Ein- und Ausschalten dieses Shaders bewirkt den Screenshake Effekt beim Schießen des Revolvers.
 
@@ -66,7 +163,7 @@ zu Runtime nicht geändert werden können.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.4\textwidth]{perlin.png}
+    \includegraphics[width=0.3\textwidth]{perlin.png}
     \caption{Die verwendete Noise-Textur}
 \end{figure}
 
@@ -153,7 +250,7 @@ Ein transparenter Pixel hat, auch wenn er nicht dargestellt wird, eine Farbe (Im
 Wenn nun ein Pixel am Rand der Textur ist, wird auch im transparenten Bereich gesampled,
 wo der Shader Schwarz zurückbekommt.
 Das führt zu einer deutlichen Verdunkelung der Pixel am Rand des Schweifs.
-Um dieses Problem zu lösen, wird das gaußsche Gewicht zuerst mit dem Alpha-Wert multiplizert, sodass transparente Pixel
+Um dieses Problem zu lösen, wird das gaußsche Gewicht zuerst mit dem Alpha-Wert multipliziert, sodass transparente Pixel
 keine/weniger Einfluss auf das Resultat haben.
 Die tatsächlich verwendeten Gewichte werden gemeinsam mit den Samples aufsummiert und dann dividiert, um den Schnitt zu
 erhalten.
