@@ -1,0 +1,17 @@
+
+\section{Sounds}\label{sec:sounds}
+
+\renewcommand{\kapitelautor}{Autor: Marvin Kurka}
+
+In \FF werden alle Sounds von dem SoundPlayer Objekt verwaltet.
+Stellen im Code, die einen Sound abspielen wollen, können die \inlineKotlin{SoundPlayer::situation} Funktion verwenden,
+um ein SoundEvent auszulösen.
+Um herauszufinden, welcher Sound tatsächlich abgespielt werden soll, verwendet der SoundManager die sounds.onj Datei.
+Diese definiert für jedes Event welcher Sound mit welcher Lautstärke abgespielt werden soll.
+
+Außerdem spielt der SoundManger ambient sounds und Musik ab.
+Welche Musik abgespielt wird, hängt vom Screen ab, während die gespielten ambient Sounds von dem Biom abhängen.
+Ambient Sounds werden zufällig nach links oder rechts gepaned.
+
+% resets author
+\renewcommand{\kapitelautor}{}
