@@ -1,0 +1,17 @@
+\renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
+\subsection{Workflow}\label{subsec:workflow}
+
+Der git-workflow für Forty-Five wurde nach den folgenden Punkten umgesetzt:
+\begin{enumerate}
+    \item Beim Arbeiten an einer User-Story erstellt man eine branch namens "ff-xxx-name-of-user-story".
+    \item Dabei sollte man nach folgenden Punkten commiten:
+    \begin{itemize}
+        \item Ein Teil eines Features ist fertig.
+        \item Der Code ist ausführbar.
+            Falls dies nicht der Fall ist, muss man es in der commit-message angeben.
+    \end{itemize}
+    \item Nach der Fertigstellung erstellt man einen pull-request, beginnend mit "[ff-xxx]".
+    \item Der andere Entwickler schreibt Kommentare zu Codestücken, welche nicht optimal sind.
+    \item Der Programmierer bessert den Code aus und eröffnet wieder eine pull-request.
+        Dieser Vorgang wird so oft wiederholt, bis der andere Entwickler die pull-request approved und diese anschließend auf die branch "main" gemerged wird.
+\end{enumerate}
