@@ -33,6 +33,12 @@ was den Spieler dazu bringt, die Platzierung seiner Karten genau zu überdenken.
 sind der Grundstein für das Revolver-Gameplay von \FF.
 
 
+Trotz diesen Einschränkungen ist es wichtig, dem spieler auch gewisse freihete zu überlassen, placement matters darf also
+nicht übertrieben werden, da der Spieler vor lauter einschränkungen und regeln wie was zu platzieren ist die Spaß verliert
+und außerdem nicht seien eigenen spielstil entwickeln kann, wenn der einzig richtoge zug mit einer karte bereits vordefiniert ist.
+
+
+
 \subsection{Archetype design und effekt design}\label{subsec:placementMatters}
 
 FF's Karten können grob in Archetypen aufgeteilt werden. Ein Archetyp in Kartenspielen beschreibt eine bestimmte Strategie, welche Karten verfolgen.
@@ -190,8 +196,28 @@ sie also in die Hand, muss er sich entscheiden ob er die Bullet behält und sein
 er die drei reserves bezahlt und die Bullet damit in den revolver lädt und wegschießt.
 
 
+Die Gegner sind zu configuriert, dass oft Schaden durchgeht, selbst wenn der Spieler mit etwas parried. Mindestanzahl an
+scahden ist 7, da die normale Bullet 6 Schaden macht, also die anfangskarten nicht ausreichen um denn gesammten schaden zu parrien.
+Gegner sind außerdem in phasen eingeteilt, wobei jede Phase immer mehr schaden macht als die letzte. Das wird gemacht,
+damit der CShpieler am Anfang des Kampfes sich einmal ein spielfeld aufzubauen, und er weniger scahden bekommt, wenn
+er ein gutes deck hat und damit den Gegner in wenigen Zügen schon besiegen kann oder sich eine combo aufbauen kann um
+den erhörten schaden irgendwie zu verhindern. Das spielt wiederumm mit dem genre des rogue likes zusammen, da der spieler
+am aAfang des SPieles schlchter sin soll als wenn er schon länger spielt oder schon ein zwei mal gestorben ist.
 
 
+Gegnertypen sind oft um eine Mechanik konzepiert, und sind oft auch counter gegnen bestimmte archetypen oder helfen sogar
+manchmal archetypes, wie z.B die Witch durch das links drehen des revolverdem rotation rachetype hilft.
+
+
+Kämpfe sind definiert in einem Encounter config file, das anhand des progress des spielers passende encounter aus der liste auswählt.
+In dem File werden auuch encounter modifier definiert, damit die schwierigkeit der Kämpfe mit encounter mdfiern besser
+kontrolliert werden kann. Außerdemm können damit illegale encpunte rmdofier combinationen verhindert werden,
+also combinationen, welche nicht miteineander funktioneiren. Je näher der Spieler an der nächsten area ist,
+desdo schwieriger werden die kämpfe. Encounter sind so definiert, das falls ein neuer gegnertyp das erste mal vorkommt,
+zumindest ein mal ein kampf von dem Spieler absolviert wird, bei dem er einmal jur gegnen diesen neuen Gegnertypen kämpft.
+
+
+Auch wenn an den gegnern und deren Difficulty balancing seit einem jahr schon gearbeitet wird, gibt es noch immer vile zu tun und zu verbessern, da das spiel im moment zu einfach ist.
 
 %special attacks
 %3phasen prinzip
@@ -233,7 +259,7 @@ Um Status-Effekte und Trait-Effekte variabel zu halten, werden Parameter verwend
 %Slots und sloticons
 
 
-\subsection{Tutoriel}\label{subsec:placementMatters}
+%\subsection{Tutoriel}\label{subsec:placementMatters}
 
 
 %Broad Bullet design für draft
@@ -271,8 +297,8 @@ um sich mehr auf den Kern von \FF - die Bullets- zu konzentrieren.Das Einführen
 
 
 
-\subsection{Angewanntes Gamedeign: The pinacle of forty-five: Bewitched Bullet}\label{subsec:placementMatters}
-
+%\subsection{Angewanntes Gamedeign: The pinacle of forty-five: Bewitched Bullet}\label{subsec:placementMatters}
+a
 %angewantes gamedeign: die pinacle of forty-five: Bewtisched Bullet
 
 % resets author
