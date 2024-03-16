@@ -221,8 +221,32 @@ Um Status-Effekte und Trait-Effekte variabel zu halten, werden Parameter verwend
 
 %gegner gamedesign :((((
 
-\subsection{Wie eine entscheidung das Spiel verändert am Beispiel des Kartennachziehens}\label{subsec:placementMatters}
+\subsection{Wie eine Entscheidung das Spiel verändert am Beispiel des Kartennachziehens}\label{subsec:placementMatters}
 
+Während der Entwicklung einen Kartenspieles müssen viele Entscheidungen getroffen werden, wie zum Beispiel die Enstcheidung,
+Karten, welche gschossen wurden nun unter das deck wieder zu legen. In früheren \FF versionen wurden geschossene Karten einfach aus dem Kampf entfernt.
+Jedoch waren die Kämpfe dadurch relativ schnell vorbei für den Spieler, da nur mehr normale Bullets gezogen wurden nachdem das Deck leer gezogen wurde.
+Dadurch das das Deck nach der Änderung nie leer wird, bleibt der kampf interessant, anders als mit immer nur der selben normal Bullet.
+Das Spiel wurde auf einen Schlag viel dynamischer und es konnten viel mehr verschiedene und stärkere combos ausgeführt werden. Das "Cylen"
+von karten ist wichtg, da Karten dadurch in einem Kapmf öfters verwendet werden könnten, ohne drei verschiedene AKrten,
+die dasselbe nur ein wenig anders tun in seinem Deck zu haben. Decks sind abweschlungsreicher und das Potenzial der Bullets
+kann besser von dem Spieler benutzt werden.
+
+
+Diese simple Änderung zeigt, wie auch nur die kleinste Entscheidung das Spiel komplett verändern kann, weshalb playtesting
+wichtig für ein Spiel wie \FF ist. Dies wurde auch bei der technischen Umsetzung bedacht, weshalb \FF durch so viele config Files verfügt.
+
+
+\subsection{Gameplay rework ...v23}\label{subsec:placementMatters}
+Über die Entwicklung von \FF gab es viele verschiedene Version, manche mit kleinen Änderungn, manche jedoch mit komplett veränderten Mecahniken und regeln.
+Die Entwicklung der jetztigen version zog sich über 2 Jahre und unzählige änderungen wurden vorgenommen.
+
+
+Unter anderem wurde das damilge schutz system der cover Karten mit dem jetztigen Parry system ausgetauscht. Cover Karten
+war ein zusätzlicher KArtentyp zu den Bullets, hinter welchen sich der Spieler "verstecken" konnte. Bei tests gab es
+jedoch einige Probleme mit den Covern, da sich die Spieler immer nur hinter den Covern verstcekten und sonst nicht wirklich getan haben.
+Um diesem Problem entgegbenzuwirken, wurde die parry mechanik eingeführt, welche auch Bullets zum Schutz des Spielers verwendet,
+um sich mehr auf den Kern von \FF - die Bullets- zu konzentrieren.Das Einführen von Parry makiert den start der jetzigen \FF version.
 
 
 
