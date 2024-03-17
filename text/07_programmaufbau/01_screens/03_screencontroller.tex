@@ -5,11 +5,11 @@
 \renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
 Der Screen-Controller ist die zentrale Steuerungseinheit eines Screens und verwaltet diesen.
 Er ist für die gesamte Logik zuständig als auch für die meisten User-Interkationen.
-Die einzigen Ausnahmen sind komplexe Widgets (siehe~\ref{sec:widgets}) und InputMaps (siehe\ref{sec:key-input-system}).
+Die einzigen Ausnahmen sind komplexe Widgets (siehe~\ref{sec:widgets}) und InputMaps (siehe~\ref{sec:key-input-system}).
 
 Als Beispiel folgen nun Ausschnitte des \inlineCode{HealOrMapHPScreenControllers} erklärt:
 
-\begin{codeBlock}{kotlin}{Beispiel: Screen\-Controller des HealOrMapHP\-Screens}
+\begin{codeBlock}{kotlin}{Beispiel: Screen-Controller des HealOrMapHP-Screens}
     override fun init(onjScreen: OnjScreen, context: Any?) {
         val rnd = Random(context.seed)
         if (context !is HealOrMaxHPMapEvent) throw RuntimeException("context for ${this.javaClass.simpleName} must be a ChooseCardMapEvent")
