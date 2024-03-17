@@ -1,0 +1,17 @@
+\renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
+\section{Screens}\label{sec:screens}
+\renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
+In Forty-Five werden grafische Elemente in onj als Teil eines Screens definiert.
+Dabei sind sich stark voneinander unterscheidende Elemente ein eigener Screen, wie \zB der Kampf, die Karte oder der Shop.
+Ein Screen besteht dabei aus einem Root-Element, in dem Child-Elemente sind.
+Zusätzlich dazu hat jeder Screen einen Screen-Controller, welcher für die Verwaltung des Screens zuständig ist und komplexere Aufgaben in diesem durchführt.
+
+Im Folgenden werden die einzelnen Bestandteile genauer erklärt und als Beispiel ein Teil des HealOrMaxHPScreen genommen.
+Bei diesem kann sich der Spieler entweder heilen oder seine maximale Lebensanzahl erhöhen.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{healormaxhpevent.png}
+    \caption{Screenshot des HealOrMaxHP-Screens}
+\end{figure}
+
+\input{text/07_programmaufbau/01_screens/01_widgets.tex}

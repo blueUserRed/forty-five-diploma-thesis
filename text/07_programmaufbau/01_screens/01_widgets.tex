@@ -1,18 +1,6 @@
-\renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
-\section{Screens}\label{sec:screens}
-\renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
-In Forty-Five werden grafische Elemente in onj als Teil eines Screens definiert.
-Dabei sind sich stark voneinander unterscheidende Elemente ein eigener Screen, wie \zB der Kampf, die Karte oder der Shop.
-Ein Screen besteht dabei aus einem Root-Element, in dem Child-Elemente sind.
-Zusätzlich dazu hat jeder Screen einen Screen-Controller, welcher für die Verwaltung des Screens zuständig ist und komplexere Aufgaben in diesem durchführt.
+%! Author = felix
+%! Date = 17/03/2024
 
-Im Folgenden werden die einzelnen Bestandteile genauer erklärt und als Beispiel ein Teil des HealOrMaxHPScreen genommen.
-Bei diesem kann sich der Spieler entweder heilen oder seine maximale Lebensanzahl erhöhen.
-\begin{figure}[H]
-    \centering
-    \includegraphics[width=1.0\textwidth]{healormaxhpevent.png}
-    \caption{Screenshot des HealOrMaxHP-Screens}
-\end{figure}
 \renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
 \subsection{Widgets}\label{sec:widgets}
 \renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
@@ -81,12 +69,13 @@ Diese Elemente werden statt von dem Screen-controller, von dem Backpack Widget v
 \subsubsection{Widgets in Kotlin}\label{subsubsec:widgetsinkotlin}
 \renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
 Bei gdx ist ein Widget immer ein \inlineCode{com.badlogic.gdx.scenes.scene2d.Actor} oder eine Unterklasse davon.
-In Forty-Five werden keine der Klassen von gdx direkt verwendet, sondern immer eigene Extensions, wegen des Style-Systems wie bereits oben beschrieben.
+In Forty-Five werden keine der Klassen von gdx direkt verwendet, sondern immer eigene Erweiterungen, wegen des Style-Systems wie bereits oben beschrieben.
 Weiteres werden sie benötigt, um eigene Events verarbeiten zu können, wie das Hover-Event.
-Programmtechnisch gibt es drei Hauptänderungen, die überschrieben werden:
+Programmtechnisch gibt es vier Hauptänderungen, die überschrieben werden:
 \begin{enumerate}
     \item Die Layout Funktion, welche beschreibt, wo welche Elemente positioniert sind und bei Boxen auch deren Kinderelemente.
     \item Die Draw Funktion, welche für die Darstellung verantwortlich ist. Das ermöglicht es, Shader hinzuzufügen oder das Style-System einzubauen.
+        Sie wird jeden Frame ein mal ausgeführt und wird daher ebenfalls zum updates von Timelines (siehe \ref{subsec:timelines}) verwendet.
     \item Interfaces werden hinzugefügt, welche einerseits für das Style System verwendet werden, als auch generell das Arbeiten mit Widgets vereinfacht.
 \end{enumerate}
 \renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
@@ -101,6 +90,7 @@ Templates werden allerdings auch an vielen anderen Stellen verwendet, \zB bei de
 Ein templates zeichnet dadurch aus, dass es zusätzlich zu den normalen keys noch einen "template name" und die "template keys" hat.
 Diese sehen bei dem Beispiel screen folgendermaßen aus:
 \begin{codeBlock}{onj}{Beispiel: Ausschnitt eines Templates aus heal\_or\_max\_screen.onj}
+templates: [
     $Box {
         template_name: "healOptionTemplate",
         template_keys: {
@@ -124,8 +114,8 @@ Diese sehen bei dem Beispiel screen folgendermaßen aus:
             },
         ],
     }
+]
 \end{codeBlock}
 Im Programmcode gibt man, wenn man ein template verwenden will, den template name an, und man gibt ein OnjObject mit, welche die zu überschreibenden Daten beinhaltet.
 In diesem Beispiel sind es der angezeigte Text und das Bild, da diese sich von der linken und rechten Seite unterscheiden.
 Weiteres wird über das template auch der interne Name des Widgets gesetzt.
-
