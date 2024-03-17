@@ -1,15 +1,52 @@
 %! Author = felix
 %! Date = 17/03/2024
+\renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
+\subsection{Screen-Controller}\label{subsec:screen-controller}
+\renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
+Der Screen-Controller ist die zentrale Steuerungseinheit eines Screens und verwaltet diesen.
+Er ist für die gesamte Logik zuständig als auch für die meisten User-Interkationen.
+Die einzigen Ausnahmen sind komplexe Widgets (siehe~\ref{sec:widgets}) und InputMaps (siehe\ref{sec:key-input-system}).
 
-% Preamble
-\documentclass[11pt]{article}
+Als Beispiel folgen nun Ausschnitte des \inlineCode{HealOrMapHPScreenControllers} erklärt:
 
-% Packages
-\usepackage{amsmath}
+\begin{codeBlock}{kotlin}{Beispiel: Screen\-Controller des HealOrMapHP\-Screens}
+    override fun init(onjScreen: OnjScreen, context: Any?) {
+        val rnd = Random(context.seed)
+        if (context !is HealOrMaxHPMapEvent) throw RuntimeException("context for ${this.javaClass.simpleName} must be a ChooseCardMapEvent")
+        amount = context.healthRange.random(rnd) to context.maxHPRange.random(rnd)
+        TemplateString.updateGlobalParam(
+            "map.cur_event.heal.lives_new",
+            min(SaveState.playerLives + amount.first, SaveState.maxPlayerLives)
+        )
+        // ...
+    }
+\end{codeBlock}
 
-% Document
-\begin{document}
+Die \inlineCode{init} Methode wird aufgerufen, nachdem alle Elemente dem Screen hinzugefügt worden sind.
+Der context ist ein MapEvent, da dieser Screen nur als Event aufgerufen werden kann.
+Das Event beinhaltet Daten wie den Seed des Events oder der Bereiche, die man geheilt wird.
+Anschließend berechnet der Screen-Controller die Anzahl, die an Leben hinzugefügt werden kann.
+Der Seed ist notwendig, damit diese Zahl immer gleich ist.
+Wäre es immer zufällig, könnte man als Spieler in das Event und wieder zum Startbildschirm gehen.
+Das könnte man so oft wiederholen, bis man die maximale Anzahl an Leben bekommt.
+Der Seed verhindert dies.
+Zuletzt aktualisiert der Screen-Controller noch die Zahlen Texte, damit der Spieler auch sieht, wie viele Leben er dazubekommt.
 
+Weiteres kann dieser Screen "completed", also abgeschlossen, werden.
+Dafür hat er folgende Methode:
+\begin{codeBlock}{kotlin}{Beispiel: Screen\-Controller des HealOrMapHP\-Screens}
+    override fun completed() {
+        SoundPlayer.situation("heal", screen)
+        if ((screen.namedActorOrError(healChosenTarekGeorgWidgetName) as CustomFlexBox).inActorState("selected")) {
+            val newLives = min(SaveState.playerLives + amount.first, SaveState.maxPlayerLives)
+            FortyFiveLogger.debug(logTag, "Lives healed from ${SaveState.playerLives} to $newLives!")
+            SaveState.playerLives = newLives
+        }
+        // ...
+        context?.completed()
+    }
+\end{codeBlock}
 
-
-\end{document}
+Wenn dieser Screen abgeschlossen wird, sieht man, dass ein Sound abgespielt wird.
+Anschließend wird die Option des Spieler überprüft, und falls er sich heilen wollte, werden seine dementsprechend angepasst.
+Zum Schluss wird der "context" ebenfalls abgeschlossen, was in dem Fall heißt, dass man zurück zur Map gelangt und dass man dieses Event nicht mehr ausführen kann.
