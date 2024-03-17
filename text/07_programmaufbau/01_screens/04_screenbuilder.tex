@@ -1,0 +1,14 @@
+%! Author = felix
+%! Date = 17/03/2024
+
+\renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
+\subsection{Screen-Builder}\label{sec:screen-builder}
+\renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
+Der Screen-Builder baut, wie der Name bereits sagt, den Screen aus der onj Datei auf.
+Er liest zuerst die Parameter und Templates und erstellt anschließend die Elemente in einem rekursiven Prozess.
+Dabei wird zuerst das root-Element erstellt, und anschließend die Subelemente davon, und so weiter.
+Für das Erstellen eines Elements gibt es die Methode \inlineCode{getWidget()}, welche abhängig vom in onj angegebenen \inlineCode{OnjNamedObject} daraus ein Widget generiert.
+Anschließend wird unabhängig vom erstellten Element noch \inlineCode{applyWidgetKeysFromOnj()} ausgeführt, welche allgemeine Daten wie \zB den Namen oder die Styles setzt.
+
+Der Screen-Builder wird nach dem erstmaligen Erstellen nur für das Hinzufügen von Widgets mit templates verwendet.
+Dabei kann man entweder Daten mittels dem \inlineCode{$None} OnjObject zu einem bereits bestehenden Element hinzufügen, wie \zB bei Karten oder komplett neue Elemente erzeugen wie die Warnungen im Backpack.
