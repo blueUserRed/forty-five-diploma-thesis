@@ -1,0 +1,58 @@
+%! Author = felix
+%! Date = 17/03/2024
+\renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
+\subsection{Parameter}\label{subsec:parameter}
+\renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
+
+Jeder screen hat in Onj drei Bereiche, welcher die wichtigsten Informationen für diesen Screen beinhaltet.
+
+
+\renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
+\subsubsection{Assets}\label{subsubsec:assets}
+\renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
+Die Assets beschreiben, welche Ressourcen dieser Screen immer laden soll.
+Bei Forty-Five werden normalerweise Ressourcen wie Bilder, Animationen als auch Schriftarten nur im Screen gespeichert.
+Das heißt, dass man sie bei jedem Screen neu lädt.
+Deshalb gibt man dem Screen eine Liste von assets mit, welche Ressourcen der Screen immer benötigt.
+Diese beinhaltet \zB Schriftarten oder Hintergründe.
+Manche Ressourcen, wie \zB Karten, werden erst vom Programm geladen, da es keinen Sinn ergeben würde, jederzeit alle Karten zu laden.
+Darauf wird allerdings genauer bei~\ref{sec:resourcenmanagement} eingegangen.
+
+\renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
+\subsubsection{Viewport}\label{subsubsec:viewport}
+\renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
+Der Viewport beschreibt die logische Anzahl an "Points" pro Screen in der Breite und Höhe.
+Man kann diese Points mit Pixeln vergleichen, es ist allerdings komplett von der eigentlichen Auflösung des Spiels getrennt.
+Er wird verwendet, damit man als Entwickler Elementen bestimmte Größen im Verhältnis zum Screen geben kann.
+Weiteres wird er verwendet, um bei Boxen die Kind-Elemente zu platzieren.
+Diese werden immer nur auf ganzzahlige Points gesetzt, wodurch es bei zu niedriger logischer Auflösung zu nicht korrekt platzierten Elementen kommen kann.
+
+
+\renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
+\subsubsection{Optionen}\label{subsubsec:optionen}
+\renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
+Die Optionen sind der vermutlich wichtigste Parameter eines Screens.
+Sie beinhalten einerseits Elemente wie den Hintergrund, welcher allerdings meistens vom root-element überschrieben wird als auch Parameter für die Musik.
+Andererseits werden auch die InputMaps mitgegeben, welche für einfache User-Interaktionen zuständig sind.
+Diese sind genauer in~\ref{sec:key-input-system} beschrieben.
+Das wichtigste Element ist allerdings der Screen-Controller.
+Dieser ist das zentrale Steuerelement eines Screens und wird bei~\ref{sec:key-input-system} beschrieben. %/ TODO this reference
+Wie das folgende Beispiel zeigt, gibt man dem Screen-Controller die Namen bestimmter Elemente mit, welche dieser verwaltet.
+Das erlaubt es, dass man die Elemente-Struktur des Screens ändern kann, aber trotzdem noch auf die richtigen Elemente im Code referenziert.
+
+\begin{codeBlock}{onj}{Beispiel: Optionen des HealOrMapHP\-Screens}
+options: {
+    background: "hover_detail_background",
+    transitionAwayTime: 1.5,
+    music: "map_theme",
+    playAmbientSounds: true,
+    inputMap: [
+        ...(inputMaps.defaultInputMap),
+        ...(inputMaps.healOrMaxInputMap),
+        ...(inputMaps.addMaxHPInputMap),
+    ],
+    screenController: $HealOrMaxHPScreenController {
+        addLifeActorName: "add_lives_option",
+    }
+}
+\end{codeBlock}
