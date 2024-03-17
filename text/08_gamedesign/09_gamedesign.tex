@@ -6,167 +6,168 @@
 
 \subsection{Gamedesign behind the Bullets}\label{subsec:gamedesignBehindBullets}
 
-Die Vision von \FF 's Regeln war es, den Spieler dazu zu bringen, den Revolver voll und ganz auszunutzen.
-Damit ist gemeint, den Spieler dazu zu bringen, jegliche Mechaniken des Revolver zu nutzen und kreative Möglichkeiten zu finden ihn auszunutzen.
-Das folgende Problem ist ein Beispiel für das Problem der \FF regeln, welches das Kartdesign beheben musste.
-Der Spieler zieht ganz normal seine Karten, und platziert eine Bullet in dem vordersten Slot des Revolvers.
-Anstatt sich einen Revolver mit mehreren Bullets aufzubauen, platziert er die Bullet und schießt sie sofort weg. Das selbe passiert mit der nächsten Bullet.
-Diese Art von Gameplay ist genau jenes, welcher vermiden werden wollte. Es ist langweilig, uncreativ und fordert keinerei denkanstrengungen oder Gedanken der Spielers.
-Dieses Problem war auch das Problem einer früheren Version von \FF. Um diese Lösung zu beheben wurde ein Designprinzip ins Leben gerufen, welches sich "Placement Matters" nennt.
+Die Vision von \FF's Regeln war es, den Spieler dazu zu bringen, den Revolver vollständig auszunutzen. Damit ist gemeint,
+den Spieler dazu zu bringen, jegliche Mechaniken des Revolvers zu nutzen und kreative Möglichkeiten zu finden, ihn auszunutzen.
+Das folgende Problem ist ein Beispiel für das Problem der \FF Regeln, welches das Kartendesign beheben musste.
+Der Spieler zieht ganz normal seine Karten und platziert eine Kugel im vordersten Slot des Revolvers.
+Anstatt sich einen Revolver mit mehreren Kugeln aufzubauen, platziert er die Kugel und schießt sie sofort ab.
+Das Gleiche passiert mit der nächsten Kugel. Diese Art von Gameplay ist genau das, was vermieden werden wollte.
+Es ist langweilig, unkreativ und fordert keinerlei Denkanstrengungen oder Gedanken des Spielers.
+Dieses Problem war auch das Problem einer früheren Version von \FF. Um dieses Problem zu beheben, wurde ein Designprinzip
+ins Leben gerufen, welches sich "Placement Matters" nennt.
 
 
 \subsection{Placement matters and you do too :)}\label{subsec:placementMatters}
 
-Placement Matters ist ein Bergiff, welches das Gamedeign von \FF gut beschreibt. Durch den Revolver, seine limitierenden
-Eigenschaften und den limitierten PLatz ensteht durch diese Deisgn Philosphooie wurde die erwünschte Spielweiße der Psieler erreicht.
-Placement Matters, beschreibt das Konzept, das bei dem platzieren einer Bullet der Ort, die Reihenfolge und der Zeitpunkt eine wichtige rolle spielt.
-Durch Trigger wie zum Beispiel dem "On-Rotate" oder "On-Turn-Begin" profetieren manche Bullet davon, am Ende des Revolver platziert zu werden, damit sie trotz der rotation so lange wie möglich im revolver bleiben können.
-Der Statuseffekt "burning" zum Beispiel, erhöht den Schaden der nächsten paar Bullets um 50\%. Durch diesen Effekt, ist es also ratsam, Bullets mit diesem Effekt vor anderen Bullets zu feuern um mehr Schaden rauszuholen.
-Durch Leaders Bullet werden Alle Bullets gestärkt solange sie sich slebst im Revolver befindet. Platziert man sie also
-weiter vorne im revolver, verlieren alle Bullets den Buff, da Leaders Bullet ja vor ihnen den Revolver verlässt.
-Der Effekt von Guarding Angles Bullet bezieht sich zum beispiel auf einen gewissen Slot, nähmlich slot 3, was den Spieler auch dazu bring,die Platzierung seiner Karten genau zu überdenken.
-Diese einschränkungen und Challanges sind der Grundstein für das revolver Gameplay von \FF.
-
-
+"Placement Matters" ist ein Begriff, der das Gamedesign von \FF gut beschreibt. Durch den Revolver, seine limitierenden
+Eigenschaften und den begrenzten Platz entsteht durch diese Designphilosophie die erwünschte Spielweise der Spieler.
+"Placement Matters" beschreibt das Konzept, dass beim Platzieren einer Kugel der Ort, die Reihenfolge und der Zeitpunkt
+eine wichtige Rolle spielen. Durch Trigger wie zum Beispiel "On-Rotate" oder "On-Turn-Begin" profitieren manche Kugeln davon,
+am Ende des Revolvers platziert zu werden, damit sie trotz der Rotation so lange wie möglich im Revolver bleiben können.
+Der Statuseffekt "Burning" zum Beispiel, erhöht den Schaden der nächsten paar Kugeln um 50\%.
+Durch diesen Effekt ist es also ratsam, Kugeln mit diesem Effekt vor anderen Kugeln zu feuern, um mehr Schaden zu erzielen.
+Durch "Leaders Bullet" werden alle Kugeln gestärkt, solange sie sich selbst im Revolver befinden. Platziert man sie also
+weiter vorne im Revolver, verlieren alle Kugeln den Buff, da "Leaders Bullet" vor ihnen den Revolver verlässt.
+Der Effekt von "Guarding Angles Bullet" wiederum bezieht sich zum Beispiel auf einen bestimmten Slot, nämlich Slot 3,
+was den Spieler dazu bringt, die Platzierung seiner Karten genau zu überdenken. Diese Einschränkungen und Herausforderungen
+sind der Grundstein für das Revolver-Gameplay von \FF.
 
 
 \subsection{Archetype design und effekt design}\label{subsec:placementMatters}
 
-\FF's Karten können grob in archetypes aufgeteilt werden. Ein rachetype in Kartenspielen beschreibt eine bestimmte Strategie, welche Karten verfolgen.
-Spieler können dann basierend auf diesen Archetypes Decks bauen und damit verschiedene Strategien verfolgen.\cite{whatIsAnArchetype}
+FF's Karten können grob in Archetypen aufgeteilt werden. Ein Archetyp in Kartenspielen beschreibt eine bestimmte Strategie, welche Karten verfolgen.
+Spieler können dann basierend auf diesen Archetypen Decks bauen und damit verschiedene Strategien verfolgen.\cite{whatIsAnArchetype}
 
 
-In \FF wurde versucht, die Archetypes so breit wie möglich zu gestallten. Das bedeutet, dass es schon dezentierte Archetypes
-gibt, jedoch viele Karten in mehreren Archetypes spielbar sind und die Archetypes sich auch überscheiden.
-Während der Entwicklung wurde dieses Konzept als "Broad Archetypes bezeichnet". Gründe für diesen Ansatz sind unter anderem,
-die bereist sehr dezidierten und speziellen spielregeln von \FF  und die zufällige Reihenfolge in der der Spieler die Karten zieht.
+In \FF wurde versucht, die Archetypen so breit wie möglich zu gestalten. Das bedeutet, dass es bereits dezidierte Archetypen gibt,
+jedoch viele Karten in mehreren Archetypen spielbar sind und die Archetypen sich auch überschneiden.
+Während der Entwicklung wurde dieses Konzept als "Broad Archetypes" bezeichnet. Gründe für diesen Ansatz sind unter anderem
+die bereits sehr dezidierten und speziellen Spielregeln von \FF und die zufällige Reihenfolge, in der der Spieler die Karten zieht.
 
 
-Verglichen mit Magic, wo die Archetypes strikter sind und sogar durch Farben von einander getrennt werden, kann der
-Spieler sich nicht direkt aussichen welcher Karten er gerne hätte, sondern muss eine von den drei Karten nehmen, die ihm vorgelegt werden.
-Magics regeln sind auserdem viel breiter gefächter und basieren nicht auf einem lmitierten Konzept wie der Revolver.
-Wenn eine Effekt also "On-Rotate" triggert, ist sie in vielen Decks spielbar und nicht nur in Decks eines Rotation Archetypes,
-da die Drehung des Revolvers etwas ist, was oft passiert. Diese Methode erlaubt jedoch auch unmengen an Kombos und da
-viele Karte, nicht alle, miteinander funktionieren, hat der Spieler fast immer eine gutes Erlebniss beim Entdecken einer neuen Combo.
+Im Vergleich zu Magic, wo die Archetypen strenger sind und sogar durch Farben voneinander getrennt werden,
+kann der Spieler sich nicht direkt aussuchen, welche Karten er gerne hätte, sondern muss eine von den drei Karten nehmen,
+die ihm vorgelegt werden. Magics Regeln sind außerdem viel breiter gefächert und basieren nicht auf einem limitierten
+Konzept wie dem Revolver. Wenn ein Effekt also "On-Rotate" auslöst, ist er in vielen Decks spielbar und nicht nur in Decks
+eines Rotation-Archetyps, da die Drehung des Revolvers oft passiert. Diese Methode erlaubt jedoch auch unzählige
+Kombinationen und da viele Karten, nicht alle, miteinander funktionieren, hat der Spieler fast immer ein gutes Erlebnis
+beim Entdecken einer neuen Kombination.\cite{magicarena}
 
 
-Ein gutes Beispiel für diesen broad arcetypes und die interkonektivität der Archetypes ist zu Biepiel High velocity Bullet.
-High Velococity ist eine 1 Kosten, 0 dmg Karte, welche über den Effekt verfügt, dass sie sie "on-Leave" them gegner Scahden zufügt.
-Für viele Spieler scheint diese Bullet jedoch bizzar. Der On-Leave Trigger ist bei High Velocity dafür verantwortlich,
-dass wenn die Karte geschossen wird, trotzdem der Gegner dmg bekommt, obwohl high veolcity eine 0 bei ihrer dmg value stehen hat.
-Die formolierung des Triiggers erlaubt es, das der Effekt von high veolcity Bullet durch jeglich Art und Weise durch die die bullet den revolver verlässt aktiviert wird.
-Wenn der Spieler High velocity Bullet das erste Mal verwednet ist High velocity bUllet nicht viel anders als eine normale Bullet,
-jedoch stößt er mit der Zeit auf Deputies Bullet.
+Ein gutes Beispiel für diese breiten Archetypen und die Interkonnektivität der Archetypen ist zum Beispiel “High Velocity Bullet”.
+”High Velocity” ist eine 1 Kosten, 0 Schaden Karte, die über den Effekt verfügt, dass sie dem Gegner Schaden zufügt, wenn sie "On-Leave" ist.
+Für viele Spieler scheint diese Bullet jedoch bizarr. Der "On-Leave" Trigger ist bei “High Velocity” dafür verantwortlich,
+dass wenn die Karte geschossen wird, der Gegner Schaden bekommt, obwohl “High Velocity Bullet” eine 0 bei ihrer Schaden-Wert hat.
+Die Formulierung des Triggers erlaubt es, dass der Effekt von “High Velocity Bullet” durch jegliche Art und Weise, durch
+die die Bullet den Revolver verlässt, aktiviert wird. Wenn der Spieler “High Velocity Bullet” das erste Mal verwendet,
+ist “High Velocity Bullet” nicht viel anders als eine normale Bullet, jedoch stößt er mit der Zeit auf “Deputies Bullet”.
 
 
-Deputies Bullet hat den effekt, dass wen sie im Revolver platziert wird
-die Karte in Slot 3 wieder in die Hand zurückgegeben wird. Auch hier komm das bereits erwähnte Placement matters in spiel,
-da der spieler sich beusst sein muss, welche Karte auf seine Hand zurüückgegeben wird bevor er deputies Bullet spielt.
-Zuerst wird der Spieler den Effekt von Deputies Bullet als etwas negatives sehen, um den erhörten dmg der Bullet auszugleichen,
-eine bewisste Entscheidung die später noch einmal ins Spiel kommt.
+"Deputies Bullet" hat den Effekt, dass wenn sie im Revolver platziert wird, die Karte im Slot 3 wieder in die Hand
+zurückgegeben wird. Auch hier kommt das bereits erwähnte "Placement matters" ins Spiel, da der Spieler sich bewusst sein
+muss, welche Karte auf seine Hand zurückgegeben wird, bevor er "Deputies Bullet" spielt. Zuerst wird der Spieler den
+Effekt von "Deputies Bullet" als etwas Negatives sehen, um den erhöhten Schaden der Bullet auszugleichen,
+eine bewusste Entscheidung, die später noch einmal ins Spiel kommt.
 
-Kombiniert mit High Velocity Bullet, kann der eher
-negative effekt von Deputies Bullet verwendet werden, um High velocity den Revolver verlassen zu lassen und damit vorzeitig dem Gegner Schaden zuzufügen.
-Zusätzlich dazu, das der Effekt von Deputies Bullet, umgangssprachlich "bounce" genannt "On-Leave" Effekte triggert,
-ist es eine Möglichkeit Karten mit einem "On-Placedown" Trigger auf die Hand zu geben. Das erlaubt es, den Effekt damit nocheinmal zu aktivieren.
-Eine andere Möglichkeit ist, dass der spieler auf eine "Purge Bullet" stößt. Purge Bullet hat ähnlich wie deputies Bullet
-erhöhten Schaden, dafür ist ihr Effekt, die szerstörung von zwei Bullets neben ihr, wenn sie platziert wird. Dies kann
-jedoch vom Spieler vermieden werden indem er - wieder durch Placement matters- Purge Bullet auf eine Art und weise in
-den revolver platziert, sodas keine Karte neben ihr liergt und damit auch nicht zerstört wird. Ähnlich wie bei Deputies
-Bullet jedoch, kann High veolcity Bullet mit Purge Bullet zerstört wrde, was wiederum als verlassen des Revolvers zählt,
-also den Effekt von High Velocities Bullet aktiviert. Purge Bullet ost außerdem Teil des destroys Archetype, welcher
-darauf abzeihlt, dass Karten zerstört werden im revolver.
-Dieser relativ abgesonderte Archetype, kann trptzdem mit on-Leave Effekten kombiniert werden, was wiederum das breite Karten design von \FF veranschaulicht. %TODO bilder der Bullets
+
+Kombiniert mit “High Velocity Bullet”, kann der eher negative Effekt von “Deputies Bullet” verwendet werden, um
+“High Velocity Bullet” den Revolver verlassen zu lassen und damit vorzeitig dem Gegner Schaden zuzufügen.
+Zusätzlich dazu, dass der Effekt von “Deputies Bullet”, umgangssprachlich "Bounce" genannt, "On-Leave" Effekte triggert,
+ist es eine Möglichkeit Karten mit einem "On-Placedown" Trigger auf die Hand zu geben. Das erlaubt es, den Effekt damit noch einmal zu aktivieren.
+Eine andere Möglichkeit ist, dass der Spieler auf eine "Purge Bullet" stößt. “Purge Bullet” hat ähnlich wie “Deputies Bullet”
+erhöhten Schaden, dafür ist ihr Effekt, die Zerstörung von zwei Bullets neben ihr, wenn sie platziert wird.
+Dies kann jedoch vom Spieler vermieden werden indem er - wieder durch Placement Matters- “Purge Bullet” auf eine Art und
+Weise in den Revolver platziert, sodass keine Karte neben ihr liegt und damit auch nicht zerstört wird.
+Ähnlich wie bei “Deputies Bullet” jedoch, kann “High Velocity Bullet” mit “Purge Bullet” zerstört werden, was wiederum als
+Verlassen des Revolvers zählt, also den Effekt von “High Velocities” Bullet aktiviert. “Purge Bullet” ist außerdem Teil
+des Destroy Archetypes, welcher darauf abzielt, dass Karten zerstört werden im Revolver.
+Dieser relativ abgesonderte Archetype, kann trotzdem mit “On-Leave” Effekten kombiniert werden, was wiederum das breite
+Kartendesign von FF veranschaulicht. %TODO bilder der Bullets
 %TODO bild von archetype chart in draw Io umgesetzt
 
 
-Der broad approach ermöglicht den Spieler mit fast jeder neuen Karte die er erhält neue Combos und nutzungsmöglcihkeiten zu endecken.
-Es stärkt außerdem das VErständniss der Spielmechaniken.
-Jedoch funktionieren nicht alle \FF Archetypes mit jedem anderen. %würde sonst den spaß aus dem deckbauen nehmen
-Würde das nähmlcih der Fall sein, wär das Bauen eines Deckes komplett obsolet und der Spieler müsste sich keine
-Gedanken darüber machen wie er sein Deck zusammenstellt.
+Der breite Ansatz ermöglicht es dem Spieler, mit fast jeder neuen Karte, die er erhält, neue Kombinationen und Nutzungsmöglichkeiten zu entdecken.
+Es stärkt außerdem das Verständnis der Spielmechaniken.
+Jedoch funktionieren nicht alle \FF Archetypen mit jedem anderen, es würde sonst den Spaß aus dem Deckbau nehmen
+Wäre das nämlich der Fall, wäre das Bauen eines Decks komplett obsolet und der Spieler müsste sich keine Gedanken darüber machen, wie er sein Deck zusammenstellt.
 
-%halt mit placement matters im hinterkopf
-%broad apporach
-% Archetypes und ihre verbindung zueinander
 
 
 \subsection{Kartensammeln und Kartenpools}\label{subsec:placementMatters}
 
-Durch die Menge an Karten und den Unterschieden in Komplexität zwischen jenen Karten werden Karten in \FF in Pools eingeteilt.
-Diese Kartenpools sind da, um zu kontrollieren, wann welxhe karten von dem Spieler nutzbar sind.
-Es hält komplexe und zu Starke Karten vom Spieler fern, bis der nicht dazu bereit ist, sie zu bekommen.
-Zu dem jetztigen zeitpunkt gibt es Zwei Kartenpools mit jeweils rund 25 Karten. Combos in pool 1 sind oft simplere
-Versionen von den später komplizierteren und stärkeren Combos, welche durch pool 2 Karten möglich sind.
+Durch die Vielzahl an Karten und den Unterschieden in der Komplexität zwischen diesen Karten werden Karten in \FF in Pools eingeteilt.
+Diese Kartenpools dienen dazu, zu kontrollieren, wann welche Karten vom Spieler nutzbar sind.
+Sie halten komplexe und zu starke Karten vom Spieler fern, bis dieser bereit ist, sie zu erhalten.
+Zum jetzigen Zeitpunkt gibt es zwei Kartenpools mit jeweils rund 25 Karten. Combos in Pool 1 sind oft einfachere
+Versionen der später komplizierteren und stärkeren Combos, die durch Pool 2 Karten möglich sind.
 Pool 1 ist darauf ausgelegt, dass die Grundmechaniken von \FF dem Spieler bewusst sind.
 %pool, draft usw
 
 
 \subsection{Backback und Deck Gamedesign}\label{subsec:placementMatters}
 
-Am Anfnag des Spieles beseutz der Spieler mit 7-8 Bullets. Im Laufe des Spieles, sei es durch absolvieret Kämpfe
-oder Map events, sammelt dr Spieler kArten. Wenn eine Karte gesammelt werden, kann der Spieler sich entscheiden,
-ob er die Karte in sein Deck gibt oder in den Backback. Hat er jedoch die Mindestanzahl an Karten in seinem Deck
-noch nicht erreicht, steht ihm nur das hinzufügen zum Deck offen. Erst wenn der Spieler geneug Karten gesammelt hat
-die Mindestanzahl des Deckes einzuhalten kann er KArten aus dem Deck verschieben. Es gibt einige Dinge
-in \FF die das BAuen bzw die Wahl des Deckes beinflussen. Eines davon sind die bereits erwähnten Pools und Archetypes.
-Je nachdem wie viele Bullets von einem bestimmten archetype ein Spieler beseitz, ist sein Deck mehr ausgeprägt oder auch nicht.
-Die fehlenden Karten des Archetypes können aufgefüllt werden durch andere Karten, die ins Dcek passen oder generell immer nutzbar sind.
-Deckdesign in \FF basiert auf dem sogenanten "Drei Säulen Modell"
+Am Anfang des Spiels besitzt der Spieler 7-8 Bullets. Im Laufe des Spiels, sei es durch absolvierte Kämpfe
+oder Map-Events, sammelt der Spieler Karten. Wenn eine Karte gesammelt wird, kann der Spieler sich entscheiden,
+ob er die Karte in sein Deck gibt oder in den Rucksack. Hat er jedoch die Mindestanzahl an Karten in seinem Deck
+noch nicht erreicht, steht ihm nur das Hinzufügen zum Deck offen. Erst wenn der Spieler genug Karten gesammelt hat,
+um die Mindestanzahl des Decks einzuhalten, kann er Karten aus dem Deck verschieben. Es gibt einige Dinge
+in \FF, die das Bauen bzw. die Wahl des Decks beeinflussen. Eines davon sind die bereits erwähnten Pools und Archetypen.
+Je nachdem, wie viele Bullets von einem bestimmten Archetyp ein Spieler besitzt, ist sein Deck mehr ausgeprägt oder auch nicht.
+Die fehlenden Karten des Archetyps können aufgefüllt werden durch andere Karten, die ins Deck passen oder generell immer nutzbar sind.
+Deckdesign in \FF basiert auf dem sogenannten "Drei Säulen Modell".
 
 %mindestanzahl deck
 %deckbauen, und wie es beinflusst wird durch pools und encounter modifier
 
 \subsection{Das drei Säulen Modell}\label{subsec:placementMatters}
 
-Das Drei Säulen Modell bezieht sich auf die Drei "Arten" von Bullets die in einem idealen Deck vorhanden sein sollte.
-Diese Säulen werden auch bei dem designen der archetypes beachtet, da damit sichergestellt wird, das jedes deck über
-die nötigen Möglichkeiten verfügt alle drei Säulen zu erfüllen.
-Diese Säulen sind ein internes Konzept, das dafür verwendet wird, sicherzustellen, dass viele verschiedenen Decks möglich sind
-und nicht durch das Fehlen von bestimmten Karten ausgebremst werden.
-Der Spieler baut decks nach dem Säulenkonzept automatische und durch Ausprobieren, da ihm mit der Zeit bewusst wird, das
-ihm Zum Beipiel die Handkarten immer ausgehen und er dementsprechen maßnahmen ergreift. Dieses richtige deckbauen ist auch Teil der
-Schwierigkeit von \FF, genauso wie das Meistern der Mechaniken.
-Jede dieser Säulen hat außerdem sogenannte "Staples". Also Karten, die in jedem Deck gut sind und auch immer in Decks gegeben werden sollten, falls möglich.
+Das Drei-Säulen-Modell bezieht sich auf die drei "Arten" von Bullets, die in einem idealen Deck vorhanden sein sollten.
+Diese Säulen werden auch beim Designen der Archetypen beachtet, um sicherzustellen, dass jedes Deck über die nötigen
+Möglichkeiten verfügt, alle drei Säulen zu erfüllen. Diese Säulen sind ein internes Konzept, das dafür verwendet wird,
+sicherzustellen, dass viele verschiedene Decks möglich sind und nicht durch das Fehlen von bestimmten Karten ausgebremst
+werden. Der Spieler baut Decks nach dem Säulenkonzept automatisch und durch Ausprobieren, da ihm mit der Zeit bewusst wird,
+dass ihm zum Beispiel die Handkarten immer ausgehen und er dementsprechend Maßnahmen ergreift. Dieses richtige Deckbauen
+ist auch Teil der Schwierigkeit von \FF, genauso wie das Meistern der Mechaniken. Jede dieser Säulen hat außerdem sogenannte "Staples".
+Also Karten, die in jedem Deck gut sind und auch immer in Decks gegeben werden sollten, falls möglich.
 
 
-Die Erste Säule: Resourcen
-Die Säule der Resourcen bezeiht sich auf Karten, welche dem Spieler einen Vorteil verschaffen. Darin ist die beriets
-erwähnte "Value" inkludiert, also ziehen von kArten und erzeugung von Reserves. Durch das verschafft sich der Spieler einen Vorteil,
-da mehr Karten in der Hand mehr Möglichkeiten für Züge bedeuten und die extra reserves auch das Spielen dieser Extrakarten ermöglicht.
-Anders gesagt erlaubt die Resourcen Säule dem Spieler mehr in weniger Zügen zu spielen.
-Staples inkludieren Silver Bullet, in späteren Pools auch Gold Bullet für das Ziehen von KArten und Workers Bullet für das Erzeugen von Reserves.
-Je nach Archetypes gibt es auch kArten wleche die rolle der ersten Säiule in ihrem jeweiligen Arcchetype übernehmen.
-Siehe zum Beispiel gravediggers Bullet für den Destroy Archetype
+Die erste Säule: Ressourcen:
+Die Säule der Ressourcen bezieht sich auf Karten, welche dem Spieler einen Vorteil verschaffen. Darin ist der bereits
+erwähnte "Value" inkludiert, also das Ziehen von Karten und die Erzeugung von Reserven. Dadurch verschafft sich der Spieler einen Vorteil,
+da mehr Karten in der Hand mehr Möglichkeiten für Züge bedeuten und die extra Reserven auch das Spielen dieser Extrakarten ermöglicht.
+Anders gesagt erlaubt die Ressourcen-Säule dem Spieler mehr in weniger Zügen zu spielen.
+Staples inkludieren Silver Bullet, in späteren Pools auch Gold Bullet für das Ziehen von Karten und Workers Bullet für das Erzeugen von Reserven.
+Je nach Archetyp gibt es auch Karten, welche die Rolle der ersten Säule in ihrem jeweiligen Archetyp übernehmen.
+Siehe zum Beispiel "Gravediggers Bullet" für den Destroy-Archetyp.
 
 
-Die Zweite Säule: Schutz
-Die Säule des Schutzes beschäftigt sich damit, Gegnerattacken abzuwehren. Dazu gehören Bullets die dem Spieler Shield
-geben oder besonders stark beim parrien sind. Schutz ist die kleinste und unwichtigste säule der drei, da jede Bullet
-die möglichkeit bietet mit ihr zu parrien und damit SChaden abzuhalten. Jedoch sind auch einfach nur große, starke Bullets
-wichtig, um auch hohe angriffe von gegnern abzublicken. Daduch das jede bullet parrien kann gibt es nicht wirklich Staples,
-Turtle Bullet ist jdoch die beste Wahl für eine simple und starke Schutz-Bullet.
+Die zweite Säule: Schutz:
+Die Säule des Schutzes beschäftigt sich damit, gegnerische Angriffe abzuwehren. Dazu gehören Bullets, die dem Spieler
+Schutz geben oder besonders stark beim Parieren sind. Schutz ist die kleinste und unwichtigste Säule der drei,
+da jede Bullet die Möglichkeit bietet, mit ihr zu parieren und damit Schaden abzuwehren. Jedoch sind auch einfach nur große,
+starke Bullets wichtig, um hohe Angriffe von Gegnern abzublocken. Da jede Bullet parieren kann, gibt es nicht wirklich Staples,
+"Turtle Bullet" ist jedoch die beste Wahl für eine einfache und starke Schutz-Bullet.
 
 
-Die Dritte Säule: Wincon
-Die dritte säule ist der Kern eines Decks und inkludiert alle Karten, welche dafür verwendet werden durch die deckstrategie einen Kamof zu gewinnen.
-Das Wort "Wincon" bezieht sich dabei auf die Wincondition, welche je nach archetype des Decks unterschiedlich ist.
-Ein Rotation Deck hat eine Karten in der dritten Säule als ein Destroy deck. Stables exestieren nur in den jeweiligen Archetypes
-und nicht in der gesamtheit der Wincon, auch wenn es einzelne Karten gibt, welche so stark sind, das sie in mehreren Decks verwendet werden können.
-Ein Beispiel dafür ist Bull et oder Bewitched Bullet.
+Die dritte Säule: Wincon:
+Die dritte Säule ist der Kern eines Decks und beinhaltet alle Karten, die dafür verwendet werden, durch die Deckstrategie einen Kampf zu gewinnen.
+Das Wort "Wincon" bezieht sich dabei auf die Wincondition, welche je nach Archetyp des Decks unterschiedlich ist.
+Ein Rotation Deck hat andere Karten in der dritten Säule als ein Destroy Deck. Stables existieren nur in den jeweiligen Archetypen
+und nicht in der Gesamtheit der Wincon, auch wenn es einzelne Karten gibt, die so stark sind, dass sie in mehreren Decks verwendet werden können.
+Ein Beispiel dafür ist "Bullet" oder "Bewitched Bullet".
 
 
 \subsection{Encounter modifier? Was steck dahinter?}\label{subsec:placementMatters}
 
-Der Spieler at die möglichkeit mehrere Decks zu bauen und zwichen bis zu 5 Dceks hin und her zu wcehseln.
-Um den Spieler dazu zu bringen auch mal ein anderes dck zu spielen und nicht immer das selbs und um mehr
-Abwechslung ins Spiel zu bringen wurden Encounter modifier eingeführt.
-Diese Modfiere ändern die Spielregeln mal leicht, mal schwer und je nachdem haben große auswirkungen daruf wie der spieler das Spiel spielt oder kleine.
-Ein Beispiel für einen Modifier, welcher das Ändern des Decks als Ziel hat ist "Moist". Durch "Moist" verliert jede Bullet einen Schadenspunkt wenn sie sich im revolver dreht.
-Das wirkt sich vorallem auf decks auf, welche auf Rotations basieren. Diese Decks sind noch immer spielbar, jedoch geschwächt.
-Ein Beipiel für einen Encpunter mdifier welcher mehr Abwechslung ins spiel bringt ist "Steel Nerves". "Steel Nerves" führt
-einen Timer ein, welcher, falls er Null erreicht den revolver automatish schießt. Das bringt einen gewissen zeitdruck
-ins Spiel und der SPieler muss mit der Stresssituation umgebene und dabei wieterhin versuchen gute Züge zu spielen um den gegner zu besiegen. %TODO Bilder von Encounter modifier
+Der Spieler hat die Möglichkeit, mehrere Decks zu bauen und zwischen bis zu 5 Decks hin und her zu wechseln.
+Um den Spieler dazu zu bringen, auch mal ein anderes Deck zu spielen und nicht immer das selbe, und um mehr
+Abwechslung ins Spiel zu bringen, wurden Encounter Modifier eingeführt.
+Diese Modifier ändern die Spielregeln mal leicht, mal schwer und je nachdem haben große Auswirkungen darauf, wie der Spieler das Spiel spielt.
+Ein Beispiel für einen Modifier, welcher das Ändern des Decks als Ziel hat, ist "Moist". Durch "Moist" verliert jede Bullet einen Schadenspunkt, wenn sie sich im Revolver dreht.
+Das wirkt sich vor allem auf Decks aus, welche auf Rotationen basieren. Diese Decks sind noch immer spielbar, jedoch geschwächt.
+Ein Beispiel für einen Encounter Modifier, welcher mehr Abwechslung ins Spiel bringt, ist "Steel Nerves". "Steel Nerves" führt
+einen Timer ein, welcher, falls er Null erreicht, den Revolver automatisch schießt. Das bringt einen gewissen Zeitdruck
+ins Spiel und der Spieler muss mit der Stresssituation umgehen und dabei weiterhin versuchen, gute Züge zu spielen, um den Gegner zu besiegen. %TODO Bilder von Encounter Modifier
 
 \subsection{Enemy Gamedesign and difficulty scaling}\label{subsec:placementMatters}
 
@@ -185,19 +186,29 @@ ins Spiel und der SPieler muss mit der Stresssituation umgebene und dabei wieter
 
 \subsection{Carddescriptions}\label{subsec:placementMatters}
 
-Wichtig in einem Kartenspiel wie \FF sind die Beschreibungen der Effekte der Karten. Die terminologie der beschreoobungen
-soll konsistent, verständlich und so kurz wie möglich sein, ohne das Information dabei verloren geht. Bei \FF sind
-effekt trigger durch zusammengehängte Wörter gecshriben, verknüft mit dem wort "on" am Phrasen Anfang um zu symbolisieren
-das der effekt "on" diesem event triggered und um den Trigger auch verständlich zumachen ohne ihn zu erklären.
-"On-Placedown" zum beispiel aktiviert den effekt wenn die Bullet in den revolver gelegt wird, also "down geplaced" wird.
+Wichtig in einem Kartenspiel wie \FF sind die Beschreibungen der Effekte der Karten. Die Terminologie der Beschreibungen
+soll konsistent, verständlich und so kurz wie möglich sein, ohne dass Information dabei verloren geht. Bei \FF sind
+Effekt Trigger durch mit Bindestrichen zusammenhängende Wörter geschrieben, verknüpft mit dem Wort "on" am Phrasen Anfang, um zu symbolisieren,
+dass der Effekt "on" diesem Event getriggert und um den Trigger auch verständlich zu machen ohne ihn zu erklären.
+"On-Placedown" zum Beispiel aktiviert den Effekt, wenn die Kugel in den Revolver gelegt wird, also "down geplaced" wird.
 Diese Art von Trigger wird intern "Major Trigger" genannt.
 Übergeordnet über den "Major Triggern" sind die "Trigger Conditions". Sie werden zuerst gecheckt, wie zum Beispiel die "While in Revolver:" Condition.
-Der nachfolgende "On-Turn-Begin" trigger kann nur getriggered werden, wenn die Condition erfüllt ist, also wenn die Bullet sich iim Revolver befindet. %TODO Bild von workers bUllet effekt hier
-sogennate "spezifische Trigger" werden ausgeschrieben, da sie zu lang, zu spezigisch und zu selten für die Schreibweise der "Major Triggern" sind. Ein Beispiel dafür ist
+Der nachfolgende "On-Turn-Begin" Trigger kann nur getriggert werden, wenn die Condition erfüllt ist, also wenn die Kugel sich im Revolver befindet. %TODO Bild von workers Bullet Effekt hier
+Sogenannte "spezifische Trigger" werden ausgeschrieben, da sie zu lang, zu spezifisch und zu selten für die Schreibweise der "Major Trigger" sind. Ein Beispiel dafür ist
 "Whenever this rotates into the slot that it was originally placed into:".
 
 
-%keywords und statuseffekte---------------------------------------------------------------------------------------------
+Zusätzlich zu abgekürzten Trigger-Bezeichnungen gibt es Keywords. Keywords in \FF sind Effekte, die immer die gleiche
+Erklärung haben und deswegen wird die Erklärung in eine extra Info-Box ausgelagert. %TODO BILD
+Keywords sind ein guter Weg, erfahrenen Spielern die Infos auf einem Blick zu geben, da sie bereits grob wissen, was das
+Keyword bedeutet, trotzdem aber neuen Spielern die Möglichkeit bietet, sich die Erklärung noch einmal durchzulesen.
+Keywords werden angewendet bei Trait-Effekten und Status-Effekten. Trait-Effekte sind extra Eigenschaften für Bullets
+wie zum Beispiel "spray", durch welchen alle Gegner von der Bullet getroffen werden anstatt nur einer.
+Um Status-Effekte und Trait-Effekte variabel zu halten, werden Parameter verwendet. %TODO Bild mit Erklärung zu Parametern noch
+
+
+
+%keywords -> für flvor und damit der psiler der schon läänger spielt nicht immer alles lesen muss. und statuseffekte---------------------------------------------------------------------------------------------
 %Slots und sloticons
 
 
@@ -210,12 +221,36 @@ sogennate "spezifische Trigger" werden ausgeschrieben, da sie zu lang, zu spezig
 
 %gegner gamedesign :((((
 
-\subsection{Wie eine entscheidung das Spiel verändert am Beispiel des Kartennachziehens}\label{subsec:placementMatters}
+\subsection{Wie eine Entscheidung das Spiel verändert am Beispiel des Kartennachziehens}\label{subsec:placementMatters}
+
+Während der Entwicklung einen Kartenspieles müssen viele Entscheidungen getroffen werden, wie zum Beispiel die Enstcheidung,
+Karten, welche gschossen wurden nun unter das deck wieder zu legen. In früheren \FF versionen wurden geschossene Karten einfach aus dem Kampf entfernt.
+Jedoch waren die Kämpfe dadurch relativ schnell vorbei für den Spieler, da nur mehr normale Bullets gezogen wurden nachdem das Deck leer gezogen wurde.
+Dadurch das das Deck nach der Änderung nie leer wird, bleibt der kampf interessant, anders als mit immer nur der selben normal Bullet.
+Das Spiel wurde auf einen Schlag viel dynamischer und es konnten viel mehr verschiedene und stärkere combos ausgeführt werden. Das "Cylen"
+von karten ist wichtg, da Karten dadurch in einem Kapmf öfters verwendet werden könnten, ohne drei verschiedene AKrten,
+die dasselbe nur ein wenig anders tun in seinem Deck zu haben. Decks sind abweschlungsreicher und das Potenzial der Bullets
+kann besser von dem Spieler benutzt werden.
+
+
+Diese simple Änderung zeigt, wie auch nur die kleinste Entscheidung das Spiel komplett verändern kann, weshalb playtesting
+wichtig für ein Spiel wie \FF ist. Dies wurde auch bei der technischen Umsetzung bedacht, weshalb \FF durch so viele config Files verfügt.
+
+
+\subsection{Gameplay rework ...v23}\label{subsec:placementMatters}
+Über die Entwicklung von \FF gab es viele verschiedene Version, manche mit kleinen Änderungn, manche jedoch mit komplett veränderten Mecahniken und regeln.
+Die Entwicklung der jetztigen version zog sich über 2 Jahre und unzählige änderungen wurden vorgenommen.
+
+
+Unter anderem wurde das damilge schutz system der cover Karten mit dem jetztigen Parry system ausgetauscht. Cover Karten
+war ein zusätzlicher KArtentyp zu den Bullets, hinter welchen sich der Spieler "verstecken" konnte. Bei tests gab es
+jedoch einige Probleme mit den Covern, da sich die Spieler immer nur hinter den Covern verstcekten und sonst nicht wirklich getan haben.
+Um diesem Problem entgegbenzuwirken, wurde die parry mechanik eingeführt, welche auch Bullets zum Schutz des Spielers verwendet,
+um sich mehr auf den Kern von \FF - die Bullets- zu konzentrieren.Das Einführen von Parry makiert den start der jetzigen \FF version.
 
 
 
-
-\subsection{The pinacle of forty-five: Bewitched Bullet}\label{subsec:placementMatters}
+\subsection{Angewanntes Gamedeign: The pinacle of forty-five: Bewitched Bullet}\label{subsec:placementMatters}
 
 %angewantes gamedeign: die pinacle of forty-five: Bewtisched Bullet
 
