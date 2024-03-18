@@ -1,0 +1,14 @@
+%! Author = felix
+%! Date = 17/03/2024
+
+\renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
+\subsection{Labels in LibGdx}\label{subsec:labels-in-gdx}
+\renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
+
+Die Hauptbibliothek, die in Forty-Five verwendet wird, hat zur Darstellung von Texten Elemente, welche Labels genannt werden.
+Diese können eine bestimmte Farbe, Schriftart oder Schriftgröße haben.
+Man kann auch manuelle Zeilenumbrüche innerhalb eines Elements machen.
+Diese Funktionen sind gut und funktionieren auch in den meisten Fällen auch, sind allerdings nicht für alles ausreichend.
+Dadurch, dass in Forty-Five viele dynamische Texte vorkommen, ist es zu viel Aufwand, jedes Mal per Hand es zu ändern, wann welcher Zeilenumbruch gesetzt werden soll.
+Weites ist es komplex, die Positionen und Breiten für jedes Element neu zu berechnen, weshalb ein allgemeiner Parser geschrieben wurde, der es etwas simpler löst.
+% todo, nacheinander rendern von zeichen nicht möglich, außerdem farbe nicht möglich, weil wenn input <red>Text</red> fe, würde beim einzeln anzeigen noch das <red> anzeigen, bis es dann programm checkt
