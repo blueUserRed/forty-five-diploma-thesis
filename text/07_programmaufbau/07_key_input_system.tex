@@ -1,5 +1,6 @@
-
 \renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
+
+
 \section{Key-Input System}\label{sec:key-input-system}
 \renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
 
@@ -14,9 +15,10 @@ Diese beinhalten die ALT-, Shift- und Control-keys auf der jeweils linken und re
 Im Folgenden sieht man ein Beispiel von einem Input auf der Map.
 
 \begin{codeBlock}{onj}{Beispiel: Konfiguration eines Key Inputs}
-condition: not(screenState("inStatusbarOverlay")),
-triggers: [
-    {
+{
+    condition: not(screenState("inStatusbarOverlay")),
+    triggers: [
+        {
         keycode: keys.A,
         modifiers: [
         ],
@@ -24,8 +26,10 @@ triggers: [
             direction: "left",
             mapActor: "map"
         }
-    }
-]
+    },
+    //...
+    ]
+}
 \end{codeBlock}
 
 Wie man am Beispiel erkennt, kann man auch bestimmte Bedingungen angeben, wann \bzw ob eine gedrückte Taste überhaupt überprüft werden soll.
