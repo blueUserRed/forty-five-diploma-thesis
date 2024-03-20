@@ -103,3 +103,54 @@ Wenn ein Node gelöscht werden muss, wird wieder überprüft, ob eines der beide
 Durch die Art und Weise wie die Hauptlinie generiert wird, kann es niemals sein, dass sich zwei Hauptlinien überscheiden oder dass zwei Nodes einander zu nahe sind.
 Falls beim Überprüfen, ob alle Linien correct und erlaubt sind, ein Fehler auftritt und etwas geändert werden muss, wird es nochmals wiederholt.
 Das liegt daran, da beispielsweise ein hinzugefügtes Node oder dessen Linien mit Anderen wieder überschneiden könnten.
+
+\subsubsection{Areas}\label{subsubsec:ares}
+Areas sind statisch definiert und jede Road hat immer eine am Anfang und Ende.
+Es gibt allerdings auch noch die Möglichkeit, innerhalb einer Straße weitere Areas zu haben.
+Diese werden an einem der verbundenen Randpunkte zufällig mit einer verstärkten Distanz hinzugefügt, damit diese deutlich erkennbar sind.
+Es erlaubt bei Erweiterungen der Storyline in der Zukunft, dass beispielsweise ein Versteck auf einer Straße zu finden ist.
+
+
+\subsection{Events}\label{subsec:events}
+Nachdem alle Nodes verbunden sind brauchen diese noch Events, die der Spieler ausführen kann.
+Ein Node kann immer nur ein Event beinhalten.
+Allerdings ist es möglich, dass auf dieses direkt ein Folgeevent auftritt, wie \zB nach einem Kampf kann man manchmal eine neue Karte bekommen.
+In Onj kann jedes Event einem von drei Arten angehören:
+
+\begin{enumerate}
+    \item Fixed Events: Sind Events, die immer genau einmal vorkommen.
+    Diese haben noch die Zusatzoption, dass sie, falls möglich, an eine Sackgasse kommen, also an ein Node mit nur einer Verbindung.
+    Man kann auch mehrmals ein Event vom selben Typen hinzufügen, falls man es öfter haben möchte.
+    \item Optional Events: Diese kommen dran, wenn noch Nodes frei sind nach den fixen Events.
+    Diese haben auch eine Gewichtung, damit manche Events wie Kämpfe öfter vorkommen als \zB ein Heilevent.
+    \item Final Event: Das finale Event ist immer das letzte Element auf einer Road und ist dadurch Pflicht für den Spieler.
+    Dieses Event ist allerdings optional und wir meistens für einen Endboss verwendet.
+    Es ist unabhängig von dem wirklich letzten Element, mit dem man die Road wieder verlässt.
+\end{enumerate}
+
+Es gibt verschiedenste Events in Forty-Five wie den Kampf, das Wechseln zwischen Road und Area, diverse Heilmöglichkeiten als auch den Shop.
+Die letzten beiden werden im Folgenden erklärt.
+
+\subsubsection{Shop}\label{subsubsec:shop}
+Im Shop kann der Spieler mit dem gewonnenen Geld Karten kaufen.
+Die Auswahl an Karten wird anhand eines Seeds festgelegt.
+Dieser wird beim ersten Öffnen des Shops generiert.
+Dadurch, dass alles von einem Seed abhängig ist, werden nicht die einzelnen Karten gespeichert, sondern nur der index der Gekauften.
+Weiteres kann der Spieler beim Kauf auswählen, ob er die Karte in sein aktuell ausgewähltes Deck oder in die Kartenablage geben möchte.
+Diese Option steht nur zur Verfügung, falls er auch tatsächlich genug Karten bereits im Deck hat.
+Weiteres gibt es einen Verkäufer, der immer einen zufällig ausgewählten Spruch sagt.
+Beim Auswählen, welche Karten genommen werden, gibt es bestimmte Faktoren, die dies Beeinflussen.
+Einerseits haben Karten einen Raritätsfaktor, der von eins (=häufig) zu drei (=selten) geht.
+Andererseits können zum Beispiel das Biome, die Straße selbst und auch der Verkäufer die Auswahl der Karten beeinflussen und deren Wahrscheinlichkeit verändern.
+Zusätzlich dazu können Karten noch aus dem Pool für diese Auswahl entfernt werden oder der Preis von Karten erhöht oder vertieft werden.
+Im Shop kann keine Karte zweimal vorkommen und wenn eine Karte gekauft ist, wird diese auch nicht ersetzt durch eine Neue.
+
+\subsubsection{Heil Events}\label{subsubsec:heal-event}
+In Forty-Five gibt es zwei verschiedene Arten von Heilungsmöglichkeiten.
+Die eine ist ein simpler Screen, bei dem man nur auf ``accept'' drücken kann und anschließend die angezeigte Anzahl an Leben dazu bekommt.
+Bei der anderen Option muss sich der Spieler entscheiden, ob er sich entweder heilen will oder ob er seine maximale Anzahl an Leben erhöhen möchte.
+Dies könnte ihm in der Zukunft helfen, da am Anfang die Gegner weniger Schaden machen und man eventuell die Leben später braucht.
+Das Erhöhen der Maximalen heilt einen zwar auch um die gleiche Anzahl der gewonnenen Leben, ist allerdings geringer als wenn man nur diese erhöht.
+
+
+
