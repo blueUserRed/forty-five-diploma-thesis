@@ -153,4 +153,24 @@ Dies könnte ihm in der Zukunft helfen, da am Anfang die Gegner weniger Schaden 
 Das Erhöhen der Maximalen heilt einen zwar auch um die gleiche Anzahl der gewonnenen Leben, ist allerdings geringer als wenn man nur diese erhöht.
 
 
+\subsection{Dekorationen}\label{subsec:dekorationen}
+Da eine Karte ohne Dekorationen für einen Spieler uninteressant, werden diese ebenfalls generiert.
+Bevor diese jedoch erstellt werden, werden alle Nodes noch um \inlineCode{MapRestriction.rotation} (in Radianten angegeben) rotiert.
+Es gibt in Forty-Five verschiedenste Dekorationen wie einen Kaktus oder ein Schaf.
+Diese können entweder animiert oder ein statisches Bild sein.
+Es gibt drei Möglichkeiten, wie sie platziert werden können mittels sogenannten \inlineCode{DecorationDistributionFunction}:
+\begin{enumerate}
+    \item Zufällig: Die am häufigsten verwendete Methode ist das zufällige Platzieren.
+    Dabei werden in einem rechteckigen Bereich um alle verbundenen Nodes Dekorationen erstellt.
+    \item Multi-Cluster: Beschreibt ein Verfahren benutzt ein Polygon Noise verfahren, bei dem der rechteckige Bereich in Punkte verteilt wird.
+    Davon bekommt jeder entweder ein ``ok'' oder ``nicht ok''.
+    Wenn anschließend ein Baum platziert wird, wird geschaut, welches der nächste Punkt ist, und etwas wird die Dekoration dann gelöscht oder bleibt.
+    Dies eignet sich vor allem für \zB Wälder, da diese meistens durchgehend sind, aber nicht überall.
+    \item Single-Cluster: SingleCluster beschreibt ein Element, bei dem man Koordinaten angibt und um diese Koordinaten werden in einem ähnlichen Verfahren wie bei MultiCluster die Dekorationen platziert.
+\end{enumerate}
 
+Bei jedem dieser drei Funktionen gibt es zusätzlich zwei Einstellungsmöglichkeiten, die allgemein gültig sind.
+Einerseits kann man entscheiden, ob eine Dekorationsgruppe mit den Wegen zwischen den Nodes auf Kollisionen überprüft werden soll oder nicht.
+Andererseits gibt es die Möglichkeit, dass eine bestimmte Sammlung an Dekorationen gar nicht mit anderen Dekorationen überlappen darf.
+Allgemein gilt für alle, dass sie nicht einzelne Nodes überdecken dürfen.
+Weiteres gibt man bei jeder Funktion die Dichtheit an, was einfach nur beschreibt, wie oft im Vergleich zur gegebenen Fläche versucht wird, eine Dekoration zu platzieren.
