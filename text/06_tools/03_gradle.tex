@@ -4,40 +4,21 @@
 
 \renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
 
-Gradle ist ein Build-Tool, welches benötigte Abhängigkeiten und Code-Bibliotheken automatisch herunterlädt.
+Gradle ist ein build-tool, welches benötigte Abhängigkeiten und Code-Bibliotheken automatisch herunterlädt.
 Mit Gradle wird auch das Kompilieren von Projekten automatisiert.
-Gradle verwendet die JVM (Java Virtual Maschine), wodurch es besonders kompatibel mit Programmiersprachen ist, die auch auf der JVM laufen.
+Gradle verwendet die JVM (Java Virtual Machine), wodurch es besonders kompatibel mit Programmiersprachen ist, die auch auf der JVM laufen.
 Da Kotlin eine davon ist, ist Gradle ideal für Forty-Five.
-Weiteres ist die Einbindung diverser IDEs mit Gradle gegeben, was die Verwendung vereinfacht.
-Bei Gradle gibt es zwei wichtige Konfigurationspunkte für Forty-Five: Tasks und dependencies.
+Weiterhin ist die Einbindung diverser IDEs mit Gradle gegeben, was die Verwendung vereinfacht.
+Bei Gradle gibt es zwei wichtige Konfigurationspunkte für Forty-Five: tasks und dependencies.
 
 \textbf{Tasks}
 
-Tasks sind ausführbare Funktionen in Gradle, welche meistens das eigentliche Programm starten oder builden.
+Tasks sind ausführbare Funktionen in Gradle, welche meistens das eigentliche Programm starten oder bauen.
 Meistens schreibt man diese nicht selbst, sondern sie werden von einer Bibliothek mitgegeben.
 Bei Forty-Five war dies hauptsächlich die Bibliothek gdx.
 
 \textbf{Dependencies}
 
-Dependencies sind Verweise auf andere Codeblöcke, die Gradle benötigt zum Ausführen von Tasks.
-Dabei gibt es zwei verschiedene Bereiche.
-Es gibt Abhängigkeiten, die für Gradle sind, und die für das "fertige Programm".
+Dependencies sind Verweise auf andere Codeblöcke, die Gradle benötigt zum Ausführen von tasks.
+Dabei gibt es zwei verschiedene Bereiche: Es gibt Abhängigkeiten, die für Gradle sind, und jene für das "fertige Programm".
 Diese unterscheiden sich meistens dadurch, dass Gradle auch dependencies für das Testen hat, welche man bei einem build nicht benötigt.\cite{gradleHomePage}
-
-
-%\begin{codeBlock}{gradle}{Beispiel: buildscript in Gradle}
-%    buildscript {
-%        ext.kotlinVersion = '1.7.0'
-%        ext.gdxVersion = '1.11.0'
-%    repositories {
-%        mavenLocal()
-%        // other repositories
-%        jcenter()
-%    }
-%    dependencies {
-%        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
-%        classpath "com.badlogicgames.gdx:gdx-tools:$gdxVersion"
-%        classpath 'edu.sc.seis.launch4j:launch4j:2.5.4'
-%    }
-%}
-%\end{codeBlock}
