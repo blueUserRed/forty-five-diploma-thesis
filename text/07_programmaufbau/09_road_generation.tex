@@ -18,8 +18,8 @@ Die erste Linie, die generiert wird, funktioniert etwas anders als die anderen, 
 Dies geschieht folgendermaßen:
 
 \begin{enumerate}
-    \item Die Hauptlinie wird als erstes erstellt und beginnt mit dem Punkt (0|0).
-    \item Es werden n weitere Punkte generiert, wobei folgende Kriterien gelten, die alle als Einschränkungen der Map angegeben werden:
+    \item Die Hauptlinie wird als erstes erstellt und beginnt mit dem Punkt~(0|0).
+    \item Es werden \inlineCode{nbrOfPoints} weitere Punkte generiert, wobei folgende Kriterien gelten, die alle als Einschränkungen der Map angegeben werden:
     \begin{itemize}
         \item Er hat einen Mindest- und Maximalabstand in sowohl x als auch y Richtung vom vorherigen Punkt.
         \item Er hat einen maximalen Winkel vom vorherigen Punkt.
@@ -44,7 +44,7 @@ Dies geschieht folgendermaßen:
 Die Grafik zeigt, wie bei der Generierung der Punkt am Ende der roten Linie überprüft wird, ob er platziert werden kann.
 Dabei überschreitet sie allerdings den maximalen Abstand zu den darunter liegenden Linien, welcher durch die strichlierten Linien dargestellt wird.
 Dadurch wird der Punkt gelöscht und ein Neuer wird generiert.
-Falls dies drei mal hintereinander nicht funktioniert, wird die x-Koordinate des letzten Punktes übernommen und für die y-Koordinate wird ein zufälliger Wert im erlauben Bereich genommen.
+Falls dies dreimal hintereinander nicht funktioniert, wird die x-Koordinate des letzten Punktes übernommen und für die y-Koordinate wird ein zufälliger Wert im erlaubten Bereich genommen.
 
 
 \subsubsection{Node Verbindungen}\label{subsubsec:node-verbindungen}
@@ -52,42 +52,54 @@ Nachdem nun eine Sammlung an Nodes vorhanden ist, werden diese miteinander Verbu
 Dabei bekommt jedes Node einen freien Platz für jede Richtung, damit nicht zu viele Nodes in die gleiche Richtung miteinander verbunden werden.
 Außerdem wird dadurch die maximale Anzahl an Verbindungen pro Node auf vier limitiert.
 Dies ist wichtig, da man mit jeder Pfeiltaste in nur eine Richtung gehen kann und trotzdem jedes Feld erreichbar sein soll.
-Anschließend wird die Hauptlinie komplett verbunden wodurch ein Weg zum Ende der Straße sichergestellt wird.
+Anschließend wird die Hauptlinie komplett verbunden, wodurch ein Weg zum Ende der Straße sichergestellt wird.
 Daraufhin wird bei jedem dieser Nodes eine Zufallszahl generiert und falls diese einen gewisseen Wert überschreitet, wird eine neue Verbindung in eine zufällige Richtung gestartet.
 Diese Verbindung geht nach folgenden Schritten:
 \begin{enumerate}
-    \item Es wird die Anzahl der gewünschten Verbindeungen zu neuen Nodes mit folgender Formel berechnet:
-%     (sqrt(rnd.nextDouble()) * max * 3 + 0.8).coerceAtMost(3.0).toInt() TODO this formula formel
+    \item Es wird die Anzahl der gewünschten Verbindeungen zu neuen Nodes mit folgender Formel berechnet: \[ \sqrt{rndValue * maxValue * 3 + 0.8}\]
+        Dabei ist \inlineCode{rndValue} eine zufällige Zahl, welche mittels dem Seed generiert wird und maxValue die Anzahl der offenen Verbindungsfelder.
     \item Anschließend werden Nodes gesucht, welche Verbindungen ermöglichen.
     Diese müssen folgende Kriterien erfüllen:
     \begin{itemize}
         \item Es kann entweder das nächste auf der aktuellen Linie, oder eines der nächsten drei Punkte auf der darüber- oder darunterliegenden Linie sein.
         \item Es darf keine Verbindung in die Richtung des Ausgangspunktes geben.
-        Dabei gibt es allerdings immer zwei mögliche Verbindungen, da es beispielsweise wenn es eine Verbindung circa im 45 Grad Winkel versucht, sowohl der linke aus auch untere Slot in Frage kommen.
+        Dabei gibt es allerdings immer zwei mögliche Verbindungen, da es \zB wenn es eine Verbindung circa im 45 Grad Winkel versucht, sowohl der linke aus auch untere Slot infrage kommen.
     \end{itemize}
     \item Anschließend werden, falls vorhanden, zufällige von den möglichen Nodes ausgewählt und eine Verbindung dorthin erstellt.
     \item Diese Prozess wird so oft wiederholt, bis entweder die gewünschte Anzahl der Verbindungen null ist, oder die Hauptlinie wieder erreicht.
-    Das Beenden beim Erreichen der Hauptlinie sorgt dafür, dass der Verlauf der Straße endet sich langsam öffnet und wieder schließt.
-    Würde man dies nicht machen, gäbe es einerseits zu viele Verbindungen, und andererseits sind am Ende zu viele "lose" übrig, die weg von eigentlichen Ziel zeigen.
+    Das Beenden beim Erreichen der Hauptlinie sorgt dafür, dass der Verlauf der Straße sich langsam öffnet und wieder schließt.
+    Würde man dies nicht machen, gäbe es einerseits zu viele Verbindungen, und andererseits sind am Ende zu viele "lose" übrig, die weg vom eigentlichen Ziel zeigen.
 \end{enumerate}
 
 \subsubsection{Verbindungen löschen}\label{subsubsec:verbindungen-loeschen}
 Da die Linien nach dem Verbinden stark durcheinander sein könnten, werden sie bevor sie fertig sind, noch überprüft.
 Wenn beispielsweise zwei Linien einander überschneiden, wird versucht, ein neuer Punkt dazwischen zu platzieren, damit es zu keinen Überschneidungen kommt.
-Weiteres wird eine Linien gelöscht, wenn mindestens einer der nach folgenden Punkte erfüllt ist:
+Weiteres wird eine Linie gelöscht, wenn mindestens einer der nach folgenden Punkte erfüllt ist:
 \begin{itemize}
     \item Zwei Linien überschneiden einander.
     Dabei muss der Überschneidungspunkt sehr nahe an einem der Punkte sein.
     Dies wird mit dem Parameter \inlineCode{pathTotalWidth} festgelegt.
     \item Die Verlängerung einer Linie geht in eine andere Linie hinein.
-    Dies wwird bei der darauffolgenden Abbildung~\ref{fig:line-deletion} weiter erklärt.
-    \item Zwei Nodes sind zu nah zueinandenr.
+    Dies weird bei der darauffolgenden Abbildung~\ref{fig:line-deletion} weiter erklärt.
+    \item Zwei Nodes sind zu nah zueinander.
     Dabei wird nicht nur eine Linie, sondern ein ganzes Node gelöscht.
 \end{itemize}
 
-
+Im Folgenden wird gezeigt, wie die verlängerte Linie von zwei Nodes mit einer gewöhnlichen Verbindung überschneidet und dadurch auch der Löschprozess eingeleitet wird.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.7\textwidth]{line_deletion_example.png}
     \caption{Beispiel: Punktegenerierung mit fehlerhafter Platzierung}\label{fig:line-deletion}
 \end{figure}
+
+Beim Löschen von Linien geht das Programm folgendermaßen vor:
+\begin{enumerate}
+    \item Wenn eines der beiden Linien als Eckpunkt mindestens ein Node auf der Hauptlinie hat, wird die andere gelöscht.
+    \item Wenn eine Linie ein anderes Node zu nahe überschneidet, wird diese gelöscht, da es besser ist, nur eine Linie anstatt ein ganzes Node zu löschen.
+    \item Ansonsten wird zufällig entschieden, welche Linie wegkommt.
+\end{enumerate}
+
+Wenn ein Node gelöscht werden muss, wird wieder überprüft, ob eines der beiden auf der Hauptlinie ist und sollte dies der Fall sein, wird das andere gelöscht.
+Durch die Art und Weise wie die Hauptlinie generiert wird, kann es niemals sein, dass sich zwei Hauptlinien überscheiden oder dass zwei Nodes einander zu nahe sind.
+Falls beim Überprüfen, ob alle Linien correct und erlaubt sind, ein Fehler auftritt und etwas geändert werden muss, wird es nochmals wiederholt.
+Das liegt daran, da beispielsweise ein hinzugefügtes Node oder dessen Linien mit Anderen wieder überschneiden könnten.
