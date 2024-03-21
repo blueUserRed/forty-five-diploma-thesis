@@ -4,15 +4,15 @@
 \section{Key-Input System}\label{sec:key-input-system}
 \renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
 
-Das Key Input System beschreibt fungiert als kleine Logikinstanz zusätzlich zum Screen-Controller.
-Es ist vergleichbar mit komplexen Widgets, da es ebenfalls Teile unabhängig vom aktuellen Screen machen kann.
+Das key-input System fungiert als kleine Logikinstanz zusätzlich zum screen-controller.
+Es ist vergleichbar mit komplexen widgets, da es ebenfalls Teile unabhängig vom aktuellen screen ausführen kann.
 Hauptsächlich wird es auf der Karte und bei dem Heilungsevent verwendet, aber es kommt bei allen Events auch zumindest minimal zum Einsatz.
-Dabei besteht ein Input aus zwei Teilen, dem Trigger und der Priorität.
-Die Priorität ist notwendig, da man \zB beim Bearbeiten des Deck-Namens nicht unabsichtlich die Vollbildschirmansicht verlässt.
-Weiteres gibt man einen key an und eine Aktion, was passieren soll.
-Optional können noch Modifier mitgegeben werden, wenn beispielsweise Strg und dann erst der Key gedrückt werden muss.
-Diese beinhalten die ALT-, Shift- und Control-keys auf der jeweils linken und rechten Seite des Keyboards.
-Im Folgenden sieht man ein Beispiel von einem Input auf der Map.
+Dabei besteht ein Input aus zwei Teilen, dem trigger und der priority.
+Die priority ist notwendig, da man \zB beim Bearbeiten des Deck-Namens nicht unabsichtlich die Vollbildansicht verlassen möchte.
+Weiteres gibt man einen key an und eine Aktion, die ausgeführt werden soll.
+Optional können noch modifiers hinzugefügt werden, wenn beispielsweise Strg und dann erst der key gedrückt werden sollen.
+Diese beinhalten die ALT-, Shift- und Control-Keys auf der jeweils linken und rechten Seite des Keyboards.
+Im Folgenden sieht man ein Beispiel von einem Input auf der Karte.
 
 \begin{codeBlock}{onj}{Beispiel: Konfiguration eines Key Inputs}
 {
@@ -31,11 +31,10 @@ Im Folgenden sieht man ein Beispiel von einem Input auf der Map.
     ]
 }
 \end{codeBlock}
-
 Wie man am Beispiel erkennt, kann man auch bestimmte Bedingungen angeben, wann \bzw ob eine gedrückte Taste überhaupt überprüft werden soll.
-Es funktioniert sehr ähnlich wie bei dem Style-System und sagt in diesem Fall aus, dass man sich auf der Karte nicht bewegen kann, falls man gerade im Backpack ist.
+Es funktioniert sehr ähnlich wie das style system und sagt in diesem Fall aus, dass man sich auf der Karte nicht bewegen kann, falls man gerade im backpack ist.
 
-Weiteres zeigt das Beispiel bestimmte Aktionen.
+Zusätzlich zeigt das Beispiel bestimmte Aktionen.
 Diese werden im Programmcode von der \inlineCode{KeyActionFactory} definiert und ausgeführt.
-Nach dem Hinzufügen der Aktionen werden alle Keys als gewöhnlicher \inlineCode{InputListener} dem Screen hinzugefügt.
-Dies hat den Vorteil, dass man das Key-Input System für bestimmte Elemente deaktivieren kann, da bei LibGdx bei beispielsweise einem Klick oder dem Drücken einer Taste immer von innen nach außen nach \inlineCode{EventListener} gefragt wird.
+Nach dem Hinzufügen der Aktionen werden alle keys als gewöhnlicher \inlineCode{InputListener} dem screen hinzugefügt.
+Dies hat den Vorteil, dass man das key input system für bestimmte Elemente deaktivieren kann, da bei LibGdx bei beispielsweise einem Klick oder dem Drücken einer Taste immer von innen nach außen nach \inlineCode{EventListener} gesucht wird.
