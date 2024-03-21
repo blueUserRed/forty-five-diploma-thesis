@@ -126,7 +126,7 @@ In Onj kann jedes event einer von drei Arten angehören:
     Es ist unabhängig von dem wirklich letzten Element, mit dem man die road wieder verlässt.
 \end{enumerate}
 
-Es gibt verschiedenste events in Forty-Five wie den Kampf, das Wechseln zwischen road und area, diverse Heilmöglichkeiten als auch den Shop.
+Es gibt verschiedenste events in Forty-Five wie das Wechseln zwischen road und area, der shop, diverse Heilmöglichkeiten sowie der kampf.
 Die letzten beiden werden im Folgenden erklärt.
 
 \subsubsection{Shop}\label{subsubsec:shop}
@@ -149,6 +149,14 @@ Die eine ist ein simpler screen, bei dem man nur auf ``accept'' drücken kann un
 Bei der anderen Option muss sich der Spieler entscheiden, ob er sich entweder heilen will oder ob er seine maximale Anzahl an Leben erhöhen möchte.
 Dies könnte ihm in der Zukunft helfen, da am Anfang die Gegner weniger Schaden machen und man eventuell die Leben später braucht.
 Das Erhöhen der maximalen Leben heilt einen zwar auch um die gleiche Anzahl der gewonnenen Leben, ist allerdings geringer als wenn man nur diese erhöht.
+
+\subsubsection{Kampf}\label{subsubsec:kampf}
+Der Kampf funktioniert anders als die anderen events.
+Es wird die Schwierigkeit für den Kampf mitgegeben und der \inlineCode{GameDirector} regelt den Kampf selbst.
+Dieser bestimmt die Anzahl der Gegner als auch die Gegnertypen.
+Es gibt verschiedene Gegner, die jeweils bestimmte Gegnertypen haben können.
+Beispielsweise gibt es die Witch ``Witch\_lvl1'', die bestimmte Aktionen zu einer bestimmten Wahrscheinlichkeit ausführt.
+Diese Wahrscheinlichkeiten werden dem Gegner mitgegeben, während die möglichen Aktionen vom Gegnertyp bestimmt werden.
 
 \subsection{Dekorationen}\label{subsec:dekorationen}
 Da eine Karte ohne Dekorationen für einen Spieler uninteressant wäre, werden diese ebenfalls generiert.
