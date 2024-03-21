@@ -3,11 +3,11 @@
 \renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
 \subsection{Screen-Controller}\label{subsec:screen-controller}
 \renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
-Der Screen-Controller ist die zentrale Steuerungseinheit eines Screens und verwaltet diesen.
-Er ist für die gesamte Logik zuständig als auch für die meisten User-Interkationen.
-Die einzigen Ausnahmen sind komplexe Widgets (siehe~\ref{sec:widgets}) und InputMaps (siehe~\ref{sec:key-input-system}).
 
-Als Beispiel folgen nun Ausschnitte des \inlineCode{HealOrMapHPScreen-Controllers} erklärt:
+Der screen-controller ist die zentrale Steuereinheit eines screens und verwaltet diesen.
+Er ist für die gesamte Logik zuständig sowie für die meisten user-interactions.
+Die einzigen Ausnahmen sind komplexe widgets (siehe~\ref{sec:widgets}) und input maps (siehe~\ref{sec:key-input-system}).
+Als Beispiel folgen nun Ausschnitte des \inlineCode{HealOrMaxHPScreen-Controllers} erklärt:
 
 \begin{codeBlock}{kotlin}{Beispiel: Screen-Controller des HealOrMapHP-Screens}
     override fun init(onjScreen: OnjScreen, context: Any?) {
@@ -22,17 +22,17 @@ Als Beispiel folgen nun Ausschnitte des \inlineCode{HealOrMapHPScreen-Controller
     }
 \end{codeBlock}
 
-Die \inlineCode{init} Methode wird aufgerufen, nachdem alle Elemente dem Screen hinzugefügt worden sind.
-Der context ist ein MapEvent, da dieser Screen nur als Event aufgerufen werden kann.
-Das Event beinhaltet Daten wie den Seed des Events oder der Bereiche, die man geheilt wird.
-Anschließend berechnet der Screen-Controller die Anzahl, die an Leben hinzugefügt werden kann.
-Der Seed ist notwendig, damit diese Zahl immer gleich ist.
-Wäre es immer zufällig, könnte man als Spieler in das Event und wieder zum Startbildschirm gehen.
-Das könnte man so oft wiederholen, bis man die maximale Anzahl an Leben bekommt.
-Der Seed verhindert dies.
-Zuletzt aktualisiert der Screen-Controller noch die Zahlen Texte, damit der Spieler auch sieht, wie viele Leben er dazubekommt.
 
-Weiteres kann dieser Screen "completed", also abgeschlossen, werden.
+Die \inlineCode{init} Methode wird aufgerufen, nachdem alle Elemente dem screen hinzugefügt worden sind.
+Der context ist ein MapEvent, da dieser screen nur als Event aufgerufen werden kann.
+Das Event beinhaltet Daten wie den Seed des Events und die Heil-Bereiche.
+Anschließend berechnet der screen-controller eine zufällige Zahl aus diesen Bereichen und bestimmt dadurch, wie viel man jeweils geheilt werden kann.
+Der Seed ist notwendig, damit diese Zahl immer gleich ist.
+Wäre es immer zufällig, könnte man als Spieler das Event verlassen und wieder betreten.
+Das könnte man so oft wiederholen, bis man die maximale Anzahl an Leben erhält.
+Zuletzt aktualisiert der screen-controller noch die Zahlen Texte, damit der Spieler auch sieht, wie viele Leben er hinzubekommt.
+
+Anschließend kann dieser screen "completed", also abgeschlossen, werden.
 Dafür hat er folgende Methode:
 \begin{codeBlock}{kotlin}{Beispiel: Screen\-Controller des HealOrMapHP\-Screens}
     override fun completed() {
@@ -47,9 +47,9 @@ Dafür hat er folgende Methode:
     }
 \end{codeBlock}
 
-Wenn dieser Screen abgeschlossen wird, sieht man, dass ein Sound abgespielt wird.
-Anschließend wird die Option des Spieler überprüft, und falls er sich heilen wollte, werden seine dementsprechend angepasst.
-Zum Schluss wird der "context" ebenfalls abgeschlossen, was in dem Fall heißt, dass man zurück zur Map gelangt und dass man dieses Event nicht mehr ausführen kann.
+Wenn dieser screen abgeschlossen wird, sieht man, dass ein Sound abgespielt wird.
+Anschließend wird die Option des Spielers überprüft, und falls er sich heilen wollte, wird seine Lebensanzahl dementsprechend angepasst.
+Zum Schluss wird der "context" ebenfalls abgeschlossen, was in diesem Fall heißt, dass man zurück zur Map gelangt und dass man dieses Event nicht mehr ausführen kann.
 
-Dieser Screen hat nicht viele Operationen, wodurch auch der Screen-Controller sehr wenig zu verwalten hat.
-Die meisten anderen Screens haben mehr als nur ein einmaliges Berechnen von zwei Zahlen.
+Dieser screen hat nicht viele Operationen, wodurch auch der screen-controller sehr wenig zu verwalten hat.
+Die meisten anderen screens haben mehr als nur ein einmaliges Berechnen von zwei Zahlen.

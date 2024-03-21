@@ -5,8 +5,8 @@
 \subsection{Syntax}\label{subsec:syntax}
 \renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
 
-Die Syntax ist nur sehr grob vorgegeben, da nur Icons vordefiniert sind.
-Diese werden mit ``\S\S NAME\_DES\_ICONS\S\S''  in den Text eingefügt.
+Die Syntax ist nur sehr grob vorgegeben, da nur icons vordefiniert sind.
+Diese werden mit ``\S\S NAME\_DES\_ICONS\S\S'' in den Text eingefügt.
 In Onj sieht die Konfiguration beispielsweise folgendermaßen aus:
 \begin{codeBlock}{onj}{Beispiel: Konfiguration eines Advanced Text}
 rawText: "Also, there is $1something$1 I wanted to give you before you $3leave$3 §§icon_bye§§",
@@ -38,10 +38,11 @@ Wie man in dem Beispiel sieht, gibt es drei generelle Parameter:
     \item effects: Diese sind der wichtigste Teil, da sie die einzelnen Funktionen und möglichen Änderungen für diesen Text beschreiben.
 \end{itemize}
 
+
 Die Effekte haben immer einen Indikator, der entweder diesen Effekt auf den folgenden Text anwendet oder wieder beendet.
-Mehrere Effekte können den gleichen Indikator haben, was das Schreiben des rawText erleichtert.
-In Forty-Five gibt es vier verschiedene mögliche Effekte: Color, Font, FontSize und Action.
-Die ersten drei machen genau das, was der Name sagt.
+Mehrere Effekte können den gleichen Indikator haben, was das Schreiben des raw text erleichtert.
+In Forty-Five gibt es vier verschiedene mögliche Effekte: color, font, fontSize und action.
+Die ersten drei machen genau das, was der Name sagt, also Farbe, Schriftart und Schriftgröße ändern.
 Eine Aktion beinhaltet alles, was zur Position oder kontinuierlichen Veränderung des Textes beiträgt.
 In dem Beispiel oben sieht man, dass die Aktion ein "shake" ist, also ein Wackeln des Textes.
 Dieser ist in dem Beispiel bereits außerhalb definiert und beinhaltet die Ausdehnung und Geschwindigkeit des Rüttelns.

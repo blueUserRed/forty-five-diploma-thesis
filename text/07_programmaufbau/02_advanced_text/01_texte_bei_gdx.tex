@@ -5,14 +5,15 @@
 \subsection{Labels in LibGdx}\label{subsec:labels-in-gdx}
 \renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
 
-Die Hauptbibliothek, die in Forty-Five verwendet wird, hat zur Darstellung von Texten Elemente, welche Labels genannt werden.
+Die Hauptbibliothek, die in Forty-Five verwendet wird, hat zur Darstellung von Texten Elemente, die labels genannt werden.
 Diese können eine bestimmte Farbe, Schriftart oder Schriftgröße haben.
-Man kann auch manuelle Zeilenumbrüche innerhalb eines Elements machen.
-Diese Funktionen sind gut und funktionieren auch in den meisten Fällen auch, sind allerdings nicht für alles ausreichend.
-Dadurch, dass in Forty-Five viele dynamische Texte vorkommen, ist es zu viel Aufwand, jedes Mal per Hand es zu ändern, wann welcher Zeilenumbruch gesetzt werden soll.
-Weiteres ist es komplex, die Positionen und Breiten für jedes Element neu zu berechnen.
+Man kann auch manuelle Zeilenumbrüche innerhalb eines Elements einfügen.
+Diese Funktionen sind gut und funktionieren auch in den meisten Fällen, sind allerdings nicht für alles ausreichend.
+Dadurch, dass in Forty-Five viele dynamische Texte vorkommen, ist es zu viel Aufwand, jedes Mal per Hand zu ändern, wann welcher Zeilenumbruch gesetzt werden soll.
+Weiteres ist es komplex, die Positionen und Breiten für jedes Element neu zu berechnen und zu überprüfen.
 
-Der größte Nachteil allerdings kam beim Dialog, da der Text erst nacheinander erscheint und vorher nicht beachtet wird, kann es zu folgendem Problem kommen:
+Der größte Nachteil tritt beim Dialog auf, da der Text erst nacheinander erscheint und vorher nicht beachtet wird.
+Dadurch kann es zu folgendem Problem kommen:
 Man will den Text "Ich bin ein \textcolor{red}{roter} Text" nacheinander ausgeben und beispielsweise, um den Text rot zu machen, muss man ein "<red>TEXT</red>" um den Text schreiben.
-Dabei würde es "Ich bin ein <red>roter</red" anzeigen, bevor es zu dem gewollten Endprodukt kommt, da, erst nachdem alle Zeichen vorhanden sind, überprüft wird, ob Hervorhebungen vorhanden sind.
+Dabei würde es "Ich bin ein <red>roter</red" anzeigen, bevor es zu dem gewollten Endprodukt kommt, da erst nachdem alle Zeichen vorhanden sind, überprüft wird, ob Hervorhebungen vorhanden sind.
 Deshalb wurde ein allgemeiner Parser geschrieben, der all diese Probleme löst.

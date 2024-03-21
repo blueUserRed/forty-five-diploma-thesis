@@ -3,38 +3,36 @@
 \section{Savestates}\label{sec:savestates}
 \renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
 
-In Forty-Five gibt es drei verschiedene Savefiles, die unterschiedliche Daten speichern und diverse Zwecke erfüllen.
-Diese sind die permanente und normale Speicherdatei, als auch die User-Präferenzen.
-Jedes dieser drei hat eine default Version, welche beim erstmaligen Starten des Spiels geladen und verwendet werden.
+In Forty-Five gibt es drei verschiedene savefiles, die unterschiedliche Daten speichern und diverse Zwecke erfüllen.
+Diese sind die permanente und normale Speicherdatei, sowie die user preferences.
+Jedes dieser drei hat eine default-Version, die beim erstmaligen Starten des Spiels geladen und verwendet wird.
 Diese werden auch verwendet, falls ein Fehler mit einer aktuell benutzten Datei auftritt.
 Die Unterschiede werden im Folgenden näher erklärt.
 
-
 \subsection{Savefile}\label{subsec:savefile}
 
-Das normale Savefile, das eigentlich nur als Savefile betitelt wird, ist jenes, welches sich über einen einzelnen Run verändert.
+Das normale savefile, das eigentlich nur als savefile betitelt wird, ist jenes, welches sich über einen einzelnen Run verändert.
 Das heißt, während man herumgeht und Karten sammelt, werden diese temporär in diese Datei geschrieben.
 Es beinhaltet beispielsweise:
 \begin{itemize}
     \item Karten: Welche Karten der Spieler aktuell besitzt.
-     Dies beinhaltet auch alle Karten der Decks.
-    \item Decks: Die 5 Konfigurierbaren Decks, also den Namen und die Karten mit den jeweiligen Positionen.
+    Dies beinhaltet auch alle Karten der Decks.
+    \item Decks: Die fünf konfigurierbaren Decks, also den Namen dieser und die Karten mit den jeweiligen Positionen.
     \item Leben: Wie viele Leben der Spieler aktuell hat, als auch die maximale Anzahl der Leben.
     \item Statistiken: Diverse Daten wie \zB die Anzahl der gewonnenen Kämpfe oder der verbrauchten Reserves.
     \item Position: Auf welcher Map und welchem Feld der Spieler steht.
     Zusätzlich dazu auch das davor besuchte Feld, falls man auf einem Kampf steht, welcher einen nur in eine bestimmte Richtung gehen lässt, nämlich zurück.
 \end{itemize}
 
-
-\subsection{permanentes Savefile}\label{subsec:perma-savefile}
-Das permanente Savefile wird, wie der Name sagt, eigentlich niemals zurückgesetzt.
+\subsection{Permanentes Savefile}\label{subsec:perma-savefile}
+Das permanente savefile wird, wie der Name sagt, eigentlich niemals zurückgesetzt.
 Falls diese Datei beim Start des Spiels fehlt, wird es vom Programm wie eine neue Installation gewertet und auch die anderen beiden Speicherdateien werden neu überschrieben.
-Es beinhaltet teilweise über scheidende Daten zur normalen Speicherdatei, wie die Karten die man besitzt.
-Allerdings werden diese nur dann aktualisiert, falls man in eine neue Area (=Stadt) geht, die man noch nie davor besucht.
-Die bereits gesehenen Areas werden auch in dem File gespeichert.
+Es beinhaltet teilweise überschneidende Daten zur normalen Speicherdatei, wie die Karten, die man besitzt.
+Allerdings werden diese nur dann aktualisiert, falls man in eine neue Area (=Stadt) geht, die man noch nie zuvor besucht hat.
+Die bereits gesehenen Areas werden auch in der Datei gespeichert.
 Zusätzlich dazu beinhaltet es noch Daten bezüglich des Tutorials, vor allem welche bereits durchgespielt worden sind.
 
-\subsection{User-Präferenzen}\label{subsec:user-prefs}
-Die User-Präferenzen werden ähnlich wie die permanente Speicherdatei eigentlich nur beim erstmaligen Start neu geladen, da man diese meistens nicht ändern will.
-Sie beinhalten alles, was man in den Einstellungen ändern kann, also die gewünschte Lautstärke für sowohl die Musik als auch die Soundeffekte als auch auf welchem Screen man nach Starten des Spiels sieht.
-Weiteres beinhaltet es die Option, ob der Screen bei bestimmten Aktionen Wackeln darf oder nicht.
+\subsection{User Preferences}\label{subsec:user-prefs}
+Die user preferences werden ähnlich wie die permanente Speicherdatei nur beim erstmaligen Start neu geladen, da man diese meistens nicht ändern will.
+Sie beinhalten alles, was man in den Einstellungen ändern kann, also die gewünschte Lautstärke für sowohl die Musik als auch die Soundeffekte, sowie auf welchem screen man nach dem Starten des Spiels landet.
+Zusätzlich beinhaltet es die Option, ob der screen bei bestimmten Aktionen wackeln darf oder nicht.
