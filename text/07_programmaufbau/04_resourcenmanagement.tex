@@ -149,7 +149,7 @@ eine möglichst hohe Chance zu geben, die Ressource parallel zu laden.
 Ein Image \zB lädt seine dazugehörige Textur erst beim ersten \inlineKotlin{draw()} Aufruf.
 Wenn nun ein Zugriff stattfindet, tritt eine dieser Möglichkeiten ein:
 
-\begin{itemize}
+\begin{liste}
     \item Die Ressource war bereits geladen: Der best Case, die Ressource war beim \inlineKotlin{borrow} Aufruf bereits
         in Verwendung und muss nicht geladen werden.
     \item Die Ressource ist vorbereitet: Der ServiceThread hat die notwendigen Daten bereits geladen, nur noch der
@@ -160,7 +160,7 @@ Wenn nun ein Zugriff stattfindet, tritt eine dieser Möglichkeiten ein:
     \item Die Ressource ist nicht geladen: Der worst Case, der komplette Ladevorgang muss auf dem Main-Thread ausgeführt
         werden.
         Der Main-Thread blockiert in diesem Zeitraum.
-\end{itemize}
+\end{liste}
 
 \subsubsection{Das Laden von FrameAnimations}
 
