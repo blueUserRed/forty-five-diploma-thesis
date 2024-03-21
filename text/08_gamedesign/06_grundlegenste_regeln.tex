@@ -26,7 +26,8 @@ Wie genau der mitgenommene Fortschritt ausschaut ist unterschiedlich von Spiel z
 
 
 Um das Spielerlebnis des Spielers nicht allzu frustrierend zu gestalten, wurden in \FF zwei verschiedene Mechaniken eingeführt.%TODO MECHANIK erklären
-Bei der ersten Mechanik handelt es sich um die Erhöhung der maximalen Lebenspunkte des Spielers bei Heilpunkten im Spiel. Der Spieler hat die Möglichkeit
+Bei der ersten Mechanik handelt es sich um die Erhöhung der maximalen Lebenspunkte, manchmal auch HP-Wert genannt, des Spielers bei Heilpunkten im Spiel.
+Der Spieler hat die Möglichkeit
 sich zu entscheiden, ob er sich lieber nur für diesen Run heilt und dafür auch eine größere Menge an Lebenspunkten erhält, oder ob er
 lieber in das Erhöhen seiner Lebenspunktkapazität investiert. Bei letzterem handelt es sich natürlich um eine kleinere Zahl als bei der anderen Wahl.
 Dies dient dazu, dem Spieler die Entscheidung offen zu halten, entweder etwas Langwieriges aber Bleibendes zu investieren oder lieber noch einmal ordentlich
@@ -69,18 +70,20 @@ Außerdem gibt es auf der Map verteilt noch zusätzliche Events, die der Spieler
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{choosebullet.png}
-    \caption{Eine von drei Karten kann ausgesucht werden.}
+    \caption{Beispiel: Popup, welches nach einem Kampf, oder auch auf der Map als Event erscheinen kann.}
 \end{figure}
 
 Das bringt nicht nur wieder eine Entscheidung des Spielers mit sich, die den Verlauf des Runs ändert, sondern bringt auch mehr Abwechslung,
 da der Spieler nicht immer nur die Karten nehmen kann, die er gerne hätte. Es bringt auch eine Art Entdeckerlust mit sich, da der Spieler
-auf diese Weise natürlich die Karten erst nach und nach sieht und nicht alle gleich auf einmal (siehe z.B. Magic Arena, wo alle Karten sofort in einer eigenen Liste zugänglich sind). %todo: Quelle
+auf diese Weise natürlich die Karten erst nach und nach sieht und nicht alle gleich auf einmal (siehe z.B. Magic Arena,
+wo alle Karten sofort in einer eigenen Liste zugänglich sind), \zit{magicarena}
+und zwingt den Spieler mit begrenzter Wahl und Ressourcen das Beste daraus zu machen.
 
-"It is not that players build a deck in order to play the game, it is that they play the game in order to build a deck."\zit{zitatdeckbuilding}
+"It is not that players build a deck in order to play the game, it is that they play the game in order to build a deck."\zit{zitatdeckbuilding}%TODO direkte zitate
 
-und zwingt den Spieler mit begrenzter Wahl und Ressourcen das Beste daraus zu machen. Diese Designpolitik wird beim Design der Karten beachtet und wird zu einem späteren Zeitpunkt genauer erläutert %TODO macht man das so?
-Viele Rogue-like Deckbuilder haben ein ähnliches System. Inspiriert wurde das Sammeln der Karten in \FF von Spielen wie Inscription und Slay the Spire,
-hat jedoch einen großen Unterschied. Anders als in z.B. Slay the Spire können Karten ganz einfach aus dem Kartendeck entfernt werden, nachdem sie einmal ausgewählt wurden.
+Diese Designpolitik wird beim Design der Karten beachtet und wird zu einem späteren Zeitpunkt genauer erläutert. %TODO macht man das so?
+Viele Rogue-like Deckbuilder haben ein ähnliches System. Inspiriert wurde das Sammeln der Karten in \FF von Spielen wie \quoted{Inscription} und \quoted{Slay the Spire},
+hat jedoch einen großen Unterschied. Anders als in \zB \quoted{Slay the Spire} können Karten ganz einfach aus dem Kartendeck entfernt werden, nachdem sie einmal ausgewählt wurden.
 Karten können aus dem Deck in den Backpack verschoben werden und ermöglichen dadurch ein flexibleres Spielerlebnis.\zit{slaythespire, inscryption, zitatdeckbuilding}
 
 
@@ -132,9 +135,12 @@ Startet der Spieler nun einen Kampf, wird das zuletzt ausgewählte Deck verwende
 
 Während der Spieler über die Map reist, sind Kämpfe unausweichlich.
 
+
+Kämpfe werden auf der Map durch zwei gekreuzte Revolver dargestellt. Um weiter auf der Map fortzuschreiten müssen sie absolviert werden.
+
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{playericon.png}
-    \caption{Kämpfe werden auf der Map durch zwei gekreuzte Revolver dargestellt. Um weiter auf der Map fortzuschreiten müssen sie absolviert werden.}
+    \caption{Beispiel: Eventsymbol für einen Kampf}
 \end{figure}
 
 Gekämpft wird mit den gesammelten Karten, mit dem Ziel, den oder die Gegner zu besiegen und dabei so wenig Lebenspunkte
@@ -142,28 +148,29 @@ wie möglich zu verlieren bzw. nicht zu sterben. Gewonnen hat der Spieler, wenn 
 Ein Kampf ist aufgeteilt in Züge. Immer abwechselnd ist entweder der Spieler oder der Gegner dran. Am Anfang des Kampfes
 werden eine vordefinierte Anzahl an Karten vom Deck des Spielers gezogen.
 Anschließend hat der Spieler die Möglichkeit, nach Belieben seinen Zug auszuführen. Ein Spielerzug wird mit dem "Holster"
-Button beendet, und das Betätigen des Knopfes startet den automatischen Ablauf des Gegnerzuges. Der Gegner führt eine mehr oder weniger zufällige Aktion aus, und danach ist wieder der Zug des Spielers.
+Button beendet, und das Betätigen des Knopfes startet den automatischen Ablauf des Gegnerzuges. Der Gegner führt eine mehr
+oder weniger zufällige Aktion aus, und danach ist wieder der Zug des Spielers.
 Am Start des Zuges des Spielers werden zwei Karten vom Deck gezogen. Pro Zug des Spielers stehen dem Spieler 4 "Reserves"
 zur Verfügung. Diese werden jeweils auch am Anfang des Zuges wieder auf die maximale Anzahl aufgefüllt.
 Reserves können dazu verwendet werden, Karten zu bezahlen und damit auch zu spielen.
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{turngrafic.jpg}
-    \caption{Durch die Kampf Ui werden alle wichtigen Informationen an den Spieler weitergegeben.}
+    \caption{Beispiel: Kampf User-Interface in welchem alle benötigten Infos dargestellt werden.}
 \end{figure}
 
 
 
 \subsection{Karten}\label{Karten}
-Karten in \FF sind Bullets. Jede Bullet hat einen Kosten, die bezahlt werden müssen, um die Karte zu spielen.
-Die Reserven, die für die Bullet benötigt werden, werden automatisch bezahlt, WENN der Spieler sich die Bullet leisten kann, sobald die Bullet gespielt wird.
+Karten in \FF sind Bullets. Jede Bullet hat einen Kosten-Wert, der mit "Reserves" bezahlt werden muss, um die Karte zu spielen, also in den Revolver zu laden.
+Die "Reserves", die für die Bullet benötigt werden, werden automatisch bezahlt, falls der Spieler sich die Bullet leisten kann.
 Das Management von diesen Reserves und die Reihenfolge, in der man die Karten spielt, ist wichtig, um besser in Forty-Five zu werden.
-Jede Bullet hat außerdem einen Damage-Wert, welcher angibt, wie viele Lebenspunkte dem Gegner durch die Karte abgezogen werden,
+Jede Bullet hat außerdem einen Damage-Wert, auch Schadens-Wert oder Dmg-Wert genannt, welcher angibt, wie viele Lebenspunkte dem Gegner durch die Karte abgezogen werden,
 falls die Karte auf den Gegner geschossen wird.
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{bulletgrafic.jpg}
-    \caption{Die wichtigsten Infos werden auf der Karte angezeigt.}
+    \caption{Beiüpiel: Die wichtigsten Infos werden auf der Karte angezeigt.}
 \end{figure}
 
 Fast alle Karten haben außerdem einen einzigartigen Effekt,
@@ -173,14 +180,17 @@ dazu gehört fast immer ein Trigger und der Effekt selbst.
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{hovergrafic.jpg}
-    \caption{Um genauere Infos über den Effekt und Hintergründe der Karte zu erhlaten, kann man über sie drüber hovern.}
+    \caption{Beispiel: Hoverdetails,welche Infos über die karte zeigen}
 \end{figure}
 
 
-Der Trigger gibt an, wann sich der Effekt aktiviert. Es gibt verschiedene Trigger, wie zum Beispiel das Aktivieren des Effektes beim Spielen der Bullet.
+Der Trigger gibt an, wann sich der Effekt aktiviert.
+
+
+Es gibt verschiedene Trigger, wie zum Beispiel das Aktivieren des Effektes beim Spielen der Bullet.
 Zusätzlich zu dem Effekt und dem Trigger steht bei vielen Karten außerdem noch ein Flavortext dabei.
 Ein Flavortext ist ein Spruch, der der Bullet ein wenig Kontext hinzufügt.
-Dies kann passieren durch einen dummen Spruch, einen Witz, eine Anspielung oder einen story- bzw. worldbuilding-relevanten Text.
+Dies kann passieren durch einen Spruch, einen Witz, eine Anspielung oder einen story- \bzw worldbuilding-relevanten Text.
 Falls nötig werden relevante Infos zu dem Effekt in einer extra Box rechts oder links angezeigt.
 Bullets werden, wenn sie gespielt werden in den Revolver geladen.
 
@@ -193,14 +203,14 @@ Drag and Drop in den gewünschten Revolverplatz > Bezahlen der Reserven, Abbruch
 
 
 Der Revolver besteht aus 5 Kammern bzw. Feldern, in die Bullets geladen werden können.
-Sie sind von 1-5 nummeriert.
+Sie sind intern von 1-5 nummeriert.
 Der Revolver kann von dem Spieler geschossen werden. Wenn geschossen wird, wird die Bullet in der obersten Kammer auf den Gegner geschossen.
-Verlässt sie den Revolver, verliert der Gegner Lebenspunkte in Höhe des Dmg Value der geschossenen Bullet.
+Verlässt sie den Revolver, verliert der Gegner Lebenspunkte in Höhe des Damage-Wertes der geschossenen Bullet.
 Die Bullet wird unter das Deck gelegt und der Revolver dreht sich einmal nach rechts.
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{rotategrafic.jpg}
-    \caption{Der Revolver dreht sich normalerweiße nach dem feuern des Revolvers einmal nach rechts.}
+    \caption{Beispiel: Revolverdrehung nach rechts.}
 \end{figure}
 
 
