@@ -150,6 +150,14 @@ Bei der anderen Option muss sich der Spieler entscheiden, ob er sich entweder he
 Dies könnte ihm in der Zukunft helfen, da am Anfang die Gegner weniger Schaden machen und man eventuell die Leben später braucht.
 Das Erhöhen der maximalen Leben heilt einen zwar auch um die gleiche Anzahl der gewonnenen Leben, ist allerdings geringer als wenn man nur diese erhöht.
 
+\subsubsection{Kampf}\label{subsubsec:kampf}
+Der Kampf funktioniert anders als die anderen events.
+Es wird die Schwierigkeit für den Kampf mitgegeben und der \inlineCode{GameDirector} regelt den Kampf selbst.
+Dieser bestimmt die Anzahl der Gegner als auch die Gegnertypen.
+Es gibt verschiedene Gegner, welche jeweils bestimmte Gegnertypen haben können.
+Beispielsweise gibt es die Witch, welche bestimmte Aktionen zu einer bestimmten Wahrscheinlichkeit ausführt.
+Diese Wahrscheinlichkeiten werden dem Gegner mitgegeben, während die möglichen Aktionen der Gegnertyp bestimmt.
+
 \subsection{Dekorationen}\label{subsec:dekorationen}
 Da eine Karte ohne Dekorationen für einen Spieler uninteressant wäre, werden diese ebenfalls generiert.
 Bevor diese jedoch erstellt werden, werden alle nodes noch um \inlineCode{MapRestriction.rotation} (in Radianten angegeben) rotiert.
