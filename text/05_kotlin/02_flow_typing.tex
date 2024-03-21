@@ -62,7 +62,7 @@ fun test() {
 
 Mittels Vereinfachung von komplexen Expressions \bzw desugaring baut der Kotlin-Compiler einen Control-Flow-Graph (CFG)
 auf, der den Control Flow innerhalb einer Funktion modelliert und es dem Compiler erlaubt basierend auf diesem effizient
-Analysen durchzuführen.\cite{kspeCFG}
+Analysen durchzuführen.\zit{kspeCFG}
 Das Smart-Cast-System verwendet den CFG um an einer bestimmten Stelle im Programm die möglichen Typen einer Expression
 (die sogenannte Smart-Cast Sink) zu ermitteln.
 Eine Smart-Cast Sink kann zum Beispiel eine lokale Variable sein, oder eine beliebige Verkettung nicht-mutierbarer
@@ -128,7 +128,7 @@ class A {
 In all diesen Fällen kann der Compiler nicht garantieren, das der Wert der Smart-Cast Sink sich nicht durch Code,
 der nicht im CFG erfasst ist, ändert.
 So enthalten \inlineKotlin{b} und \inlineKotlin{c} zum Beispiel custom Getter, die theoretisch bei jedem Aufruf einen
-anderen Wert zurückgeben könnten.\cite{kspecSmartCasts}
+anderen Wert zurückgeben könnten.\zit{kspecSmartCasts}
 
 % resets author
 \renewcommand{\kapitelautor}{}
