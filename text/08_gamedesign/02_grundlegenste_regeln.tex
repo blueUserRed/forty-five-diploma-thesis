@@ -6,6 +6,7 @@
 %TODO EINLEIDTUNG paar sätze ganz grundlegend
 %TODO GENDERN????
 %TODO rogue like/lite nochmal erklären
+%TODO MECHANIK erklären
 %
 \FF ist ein digitales Kartenspiel im Subgenre des Rogue-lite Deckbuilders.
 Der Spieler bewegt sich über eine Map, die prozentual generiert ist, sammelt Karten und benutzt diese Karten,
@@ -25,8 +26,9 @@ Da es sich bei \FF um ein \quoted{Rogue-lite} und kein \quoted{Rogue-like} hande
 Wie genau der mitgenommene Fortschritt ausschaut ist unterschiedlich von Spiel zu Spiel.\zit{roguelite}
 
 
-Um das Spielerlebnis des Spielers nicht allzu frustrierend zu gestalten, wurden in \FF zwei verschiedene Mechaniken eingeführt.%TODO MECHANIK erklären
-Bei der ersten Mechanik handelt es sich um die Erhöhung der maximalen Lebenspunkte des Spielers bei Heilpunkten im Spiel. Der Spieler hat die Möglichkeit
+Um das Spielerlebnis des Spielers nicht allzu frustrierend zu gestalten, wurden in \FF zwei verschiedene Mechaniken eingeführt.
+Bei der ersten Mechanik handelt es sich um die Erhöhung der maximalen Lebenspunkte, manchmal auch HP-Wert genannt, des Spielers bei Heilpunkten im Spiel.
+Der Spieler hat die Möglichkeit
 sich zu entscheiden, ob er sich lieber nur für diesen Run heilt und dafür auch eine größere Menge an Lebenspunkten erhält, oder ob er
 lieber in das Erhöhen seiner Lebenspunktkapazität investiert. Bei letzterem handelt es sich natürlich um eine kleinere Zahl als bei der anderen Wahl.
 Dies dient dazu, dem Spieler die Entscheidung offen zu halten, entweder etwas Langwieriges aber Bleibendes zu investieren oder lieber noch einmal ordentlich
@@ -69,18 +71,20 @@ Außerdem gibt es auf der Map verteilt noch zusätzliche Events, die der Spieler
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{choosebullet.png}
-    \caption{Eine von drei Karten kann ausgesucht werden.}
+    \caption{Beispiel: Popup, welches nach einem Kampf, oder auch auf der Map als Event erscheinen kann.}
 \end{figure}
 
 Das bringt nicht nur wieder eine Entscheidung des Spielers mit sich, die den Verlauf des Runs ändert, sondern bringt auch mehr Abwechslung,
 da der Spieler nicht immer nur die Karten nehmen kann, die er gerne hätte. Es bringt auch eine Art Entdeckerlust mit sich, da der Spieler
-auf diese Weise natürlich die Karten erst nach und nach sieht und nicht alle gleich auf einmal (siehe z.B. Magic Arena, wo alle Karten sofort in einer eigenen Liste zugänglich sind). %todo: Quelle
+auf diese Weise natürlich die Karten erst nach und nach sieht und nicht alle gleich auf einmal (siehe z.B. Magic Arena,
+wo alle Karten sofort in einer eigenen Liste zugänglich sind), \zit{magicarena}
+und zwingt den Spieler mit begrenzter Wahl und Ressourcen das Beste daraus zu machen.
 
-"It is not that players build a deck in order to play the game, it is that they play the game in order to build a deck."\zit{zitatdeckbuilding}
+"It is not that players build a deck in order to play the game, it is that they play the game in order to build a deck."\zit{zitatdeckbuilding}%TODO direkte zitate
 
-und zwingt den Spieler mit begrenzter Wahl und Ressourcen das Beste daraus zu machen. Diese Designpolitik wird beim Design der Karten beachtet und wird zu einem späteren Zeitpunkt genauer erläutert %TODO macht man das so?
-Viele Rogue-like Deckbuilder haben ein ähnliches System. Inspiriert wurde das Sammeln der Karten in \FF von Spielen wie Inscription und Slay the Spire,
-hat jedoch einen großen Unterschied. Anders als in z.B. Slay the Spire können Karten ganz einfach aus dem Kartendeck entfernt werden, nachdem sie einmal ausgewählt wurden.
+Diese Designpolitik wird beim Design der Karten beachtet und es wird in dem Kapitel \ref{Gamedesign} näher drauf eingegangen.
+Viele Rogue-like Deckbuilder haben ein ähnliches System. Inspiriert wurde das Sammeln der Karten in \FF von Spielen wie \quoted{Inscription} und \quoted{Slay the Spire},
+hat jedoch einen großen Unterschied. Anders als in \zB \quoted{Slay the Spire} können Karten ganz einfach aus dem Kartendeck entfernt werden, nachdem sie einmal ausgewählt wurden.
 Karten können aus dem Deck in den Backpack verschoben werden und ermöglichen dadurch ein flexibleres Spielerlebnis.\zit{slaythespire, inscryption, zitatdeckbuilding}
 
 
@@ -132,9 +136,12 @@ Startet der Spieler nun einen Kampf, wird das zuletzt ausgewählte Deck verwende
 
 Während der Spieler über die Map reist, sind Kämpfe unausweichlich.
 
+
+Kämpfe werden auf der Map durch zwei gekreuzte Revolver dargestellt. Um weiter auf der Map fortzuschreiten müssen sie absolviert werden.
+
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{playericon.png}
-    \caption{Kämpfe werden auf der Map durch zwei gekreuzte Revolver dargestellt. Um weiter auf der Map fortzuschreiten müssen sie absolviert werden.}
+    \caption{Beispiel: Eventsymbol für einen Kampf}
 \end{figure}
 
 Gekämpft wird mit den gesammelten Karten, mit dem Ziel, den oder die Gegner zu besiegen und dabei so wenig Lebenspunkte
@@ -142,28 +149,29 @@ wie möglich zu verlieren bzw. nicht zu sterben. Gewonnen hat der Spieler, wenn 
 Ein Kampf ist aufgeteilt in Züge. Immer abwechselnd ist entweder der Spieler oder der Gegner dran. Am Anfang des Kampfes
 werden eine vordefinierte Anzahl an Karten vom Deck des Spielers gezogen.
 Anschließend hat der Spieler die Möglichkeit, nach Belieben seinen Zug auszuführen. Ein Spielerzug wird mit dem "Holster"
-Button beendet, und das Betätigen des Knopfes startet den automatischen Ablauf des Gegnerzuges. Der Gegner führt eine mehr oder weniger zufällige Aktion aus, und danach ist wieder der Zug des Spielers.
+Button beendet, und das Betätigen des Knopfes startet den automatischen Ablauf des Gegnerzuges. Der Gegner führt eine mehr
+oder weniger zufällige Aktion aus, und danach ist wieder der Zug des Spielers.
 Am Start des Zuges des Spielers werden zwei Karten vom Deck gezogen. Pro Zug des Spielers stehen dem Spieler 4 "Reserves"
 zur Verfügung. Diese werden jeweils auch am Anfang des Zuges wieder auf die maximale Anzahl aufgefüllt.
 Reserves können dazu verwendet werden, Karten zu bezahlen und damit auch zu spielen.
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{turngrafic.jpg}
-    \caption{Durch die Kampf Ui werden alle wichtigen Informationen an den Spieler weitergegeben.}
+    \caption{Beispiel: Kampf User-Interface in welchem alle benötigten Infos dargestellt werden.}
 \end{figure}
 
 
 
 \subsection{Karten}\label{Karten}
-Karten in \FF sind Bullets. Jede Bullet hat einen Kosten, die bezahlt werden müssen, um die Karte zu spielen.
-Die Reserven, die für die Bullet benötigt werden, werden automatisch bezahlt, WENN der Spieler sich die Bullet leisten kann, sobald die Bullet gespielt wird.
+Karten in \FF sind Bullets. Jede Bullet hat einen Kosten-Wert, der mit "Reserves" bezahlt werden muss, um die Karte zu spielen, also in den Revolver zu laden.
+Die "Reserves", die für die Bullet benötigt werden, werden automatisch bezahlt, falls der Spieler sich die Bullet leisten kann.
 Das Management von diesen Reserves und die Reihenfolge, in der man die Karten spielt, ist wichtig, um besser in Forty-Five zu werden.
-Jede Bullet hat außerdem einen Damage-Wert, welcher angibt, wie viele Lebenspunkte dem Gegner durch die Karte abgezogen werden,
+Jede Bullet hat außerdem einen Damage-Wert, auch Schadens-Wert oder Dmg-Wert genannt, welcher angibt, wie viele Lebenspunkte dem Gegner durch die Karte abgezogen werden,
 falls die Karte auf den Gegner geschossen wird.
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{bulletgrafic.jpg}
-    \caption{Die wichtigsten Infos werden auf der Karte angezeigt.}
+    \caption{Beiüpiel: Die wichtigsten Infos werden auf der Karte angezeigt.}
 \end{figure}
 
 Fast alle Karten haben außerdem einen einzigartigen Effekt,
@@ -173,14 +181,17 @@ dazu gehört fast immer ein Trigger und der Effekt selbst.
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{hovergrafic.jpg}
-    \caption{Um genauere Infos über den Effekt und Hintergründe der Karte zu erhlaten, kann man über sie drüber hovern.}
+    \caption{Beispiel: Hoverdetails,welche Infos über die karte zeigen}
 \end{figure}
 
 
-Der Trigger gibt an, wann sich der Effekt aktiviert. Es gibt verschiedene Trigger, wie zum Beispiel das Aktivieren des Effektes beim Spielen der Bullet.
+Der Trigger gibt an, wann sich der Effekt aktiviert.
+
+
+Es gibt verschiedene Trigger, wie zum Beispiel das Aktivieren des Effektes beim Spielen der Bullet.
 Zusätzlich zu dem Effekt und dem Trigger steht bei vielen Karten außerdem noch ein Flavortext dabei.
 Ein Flavortext ist ein Spruch, der der Bullet ein wenig Kontext hinzufügt.
-Dies kann passieren durch einen dummen Spruch, einen Witz, eine Anspielung oder einen story- bzw. worldbuilding-relevanten Text.
+Dies kann passieren durch einen Spruch, einen Witz, eine Anspielung oder einen story- \bzw worldbuilding-relevanten Text.
 Falls nötig werden relevante Infos zu dem Effekt in einer extra Box rechts oder links angezeigt.
 Bullets werden, wenn sie gespielt werden in den Revolver geladen.
 
@@ -193,14 +204,14 @@ Drag and Drop in den gewünschten Revolverplatz > Bezahlen der Reserven, Abbruch
 
 
 Der Revolver besteht aus 5 Kammern bzw. Feldern, in die Bullets geladen werden können.
-Sie sind von 1-5 nummeriert.
+Sie sind intern von 1-5 nummeriert.
 Der Revolver kann von dem Spieler geschossen werden. Wenn geschossen wird, wird die Bullet in der obersten Kammer auf den Gegner geschossen.
-Verlässt sie den Revolver, verliert der Gegner Lebenspunkte in Höhe des Dmg Value der geschossenen Bullet.
+Verlässt sie den Revolver, verliert der Gegner Lebenspunkte in Höhe des Damage-Wertes der geschossenen Bullet.
 Die Bullet wird unter das Deck gelegt und der Revolver dreht sich einmal nach rechts.
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{rotategrafic.jpg}
-    \caption{Der Revolver dreht sich normalerweiße nach dem feuern des Revolvers einmal nach rechts.}
+    \caption{Beispiel: Revolverdrehung nach rechts.}
 \end{figure}
 
 
@@ -210,37 +221,30 @@ Es gibt außerdem einen Trigger, welcher aktiviert wird, wenn die Karte geschoss
 namens On-Shot. Zusätzlich gibt es Karten mit Effekten, welche die Revolverrotation verändern, wie z.B. Bewitched Bullet,
 welche den Revolver nach links statt nach rechts rotiert.
 
-Die Komplexität von \FF kommt vom Meistern des Revolvers.
-Das strategische Platzieren von Bullets, die Reihenfolge der Bullets und das Verstehen, wie eine Revolverrotation sich auf Bullets,
-den Spieler oder den Gegner auswirkt. Die gerade erwähnte Bewitched Bullet kann zum Beispiel dazu verwendet werden, Karten,
-welche davon profitieren, lange im Revolver zu bleiben, weiter von dem Schießen wegzuschieben. Bullet zum Beispiel fügt dem Gegner Schaden zu,
-wenn sich Bullet rotiert im Revolver.
-Bewitched Bullet kann dazu verwendet werden, zwei zusätzliche Rotationen rauszuholen, indem man den Revolver einmal nach
-links dreht, bevor Bullet den Revolver verlässt. Bewitched Bullet kann zum Beispiel auch zum Einschieben von Bullets verwendet
+Die Komplexität von \FF kommt vom Meistern des Revolvers, strategische Platzieren von Bullets, die Reihenfolge der Bullets und das Verstehen,
+wie eine Revolverrotation sich auf Bullets, den Spieler oder den Gegner auswirkt.
+Die gerade erwähnte "Bewitched Bullet" kann zum Beispiel dazu verwendet werden, Karten,
+welche davon profitieren, lange im Revolver zu bleiben, länger von dem geschossen werden anzuhalten. "Bull et" zum Beispiel fügt dem Gegner Schaden zu,
+wenn sie im Revolver rotiert.%TODO BILD BEWITCHED BULLET UND BULL ET
+"Bewitched Bullet" kann dazu verwendet werden, zwei zusätzliche Rotationen rauszuholen, indem man den Revolver einmal nach
+links dreht, bevor "Bull et" den Revolver verlässt. "Bewitched Bullet" kann zum Beispiel auch zum Einschieben von Bullets verwendet
 werden und so weiter und so fort. Die Kombinationsmöglichkeiten sind endlos, und fast jeder Effekt einer Bullet kann mit dem einer
 anderen Bullet verknüpft werden.
 
-
-
-%slots rotationen usw karten weg wenn shot und karten unters deck gelegt wenn shot usw
-
-
-\subsection{Zonen}\label{backpack_and_deck}
-%probbaly unnötig
 
 \subsection{Der Gegner}\label{der_gegner}
 Der Gegner, auf den die Bullets des Spielers geschossen werden, besteht aus mehreren Komponenten.
 Genau wie der Spieler verfügt der Gegner über einen HP-Wert. Wenn der Wert null erreicht, stirbt der Gegner.
 Nachdem der Spieler "End turn" gedrückt hat, beendet er seinen Zug und der Gegner ist dran. Während dem Zug des Spielers
 zeigt der Gegner die Aktion an, die er in seinem Zug ausführen wird.
-Gegneraktionen werden "zufällig ausgewählt aus dem Pool von Aktionen des Gegners.
+Gegneraktionen werden zufällig ausgewählt aus dem Pool von Aktionen des Gegners.
 Jedoch wurden die Aktionen angepasst, um nicht nur Fairness zu garantieren,
 sondern auch eine Balance zwischen zu leicht und zu schwer zu finden.
-Mehr zum Balancen der Gegner kann in 07 Gamedesign nachgelesen werden.
+Mehr zum Balancen der Gegner kann im Kapitel \ref{Gamedesign} nachgelesen werden.
 
 
 Sobald der Gegner dran ist, wird die Aktion automatisch ausgeführt. Je nach Gegnertyp gibt es andere Aktionen,
-die ein Gegner ausführen kann. Universell ist jedoch die Aktion des Schadens zufügens.
+die ein Gegner ausführen kann. Universell ist jedoch die Aktion des Schaden zufügens.
 Es gibt viele verschiedene Arten von Gegneraktionen, die dafür entwickelt wurden, mehr Abwechslung beim Bekämpfen der Gegner zu bieten.
 Außerdem sollte noch erwähnt werden, dass es auch passieren kann, dass der Spieler gegen mehr als einen Gegner kämpft.
 Ist das der Fall, sucht der Spieler das Ziel der Revolverschüsse, indem er auf den gewünschten Gegner klickt.
@@ -248,18 +252,18 @@ Dargestellt durch ein Symbol über dem Kopf des Gegners, sind die Aktionen wenig
 sondern es wird eher erwartet, dass der Spieler die Aktion des Gegners in das Planen seines Zuges miteinbezieht.
 Bei der eben genannten Schadenaktion kann der Spieler darauf reagieren und Schaden verhindern, indem er die Karte parried.
 
-Die Gegner sind entstanden durch das beobachten von Spielen im selben Genre, wie zum Beispiel Slay the Spire. \zit{slaythespire}
+Die Gegner sind entstanden durch das beobachten von Spielen im selben Genre, wie zum Beispiel  \quoted{Slay the Spire}. \zit{slaythespire}
 
 \subsection{Parrying}\label{parrying}
-Das Parieren des Schadens, der vom Gegner verursacht wird, wird in \FF durch Bullet gemacht.
-Die Idee dahinter ist, dass die eigene Bullet verwendet wird, um den Angriff des Gegners abzuhalten, indem man
+Das parieren des Schadens, der vom Gegner verursacht wird, wird in \FF durch Bullets gemacht.
+Die Idee dahinter ist, dass die eigene Bullet dazu verwendet wird, um den Angriff des Gegners abzuhalten, indem man
 seine Bullet gegen die des Gegners schießt.
-Der Spieler bekommt die Wahl, ob er parrieren möchte oder nicht, was durch ein eigenes Popup während des gegnerischen Zugs geregelt wird.
+Der Spieler bekommt die Wahl, ob er parieren möchte oder nicht, was durch ein eigenes Popup während des gegnerischen Zuges geregelt wird.
 Entscheidet sich der Spieler dazu zu parieren, wird dafür die Bullet im vordersten Slot verwendet.
 Dann wird der Schadenswert des Gegners mit dem der Bullet substituiert. Ist der Schadenswert der Bullet größer als der des Gegners,
 geht kein Schaden durch. Ist es andersrum, bekommt der Spieler so viel Schaden wie die Differenz ausmacht.
 Es ist wichtig zu erwähnen, dass nicht geparriert werden muss, sollte der Spieler die Bullet lieber behalten wollen,
-bzw. wenn er der Meinung ist, den Schaden einfach einzustecken zu können. Durch einen Parry geht die Bullet verloren,
+\bzw wenn er der Meinung ist, den Schaden einfach einzustecken zu können. Durch einen Parry geht die Bullet verloren,
 es aktiviert keine Effekte und sie wird danach wieder unters Deck gelegt.
 
 
@@ -278,7 +282,7 @@ Overkill-Cash ist nicht nur eine gute Möglichkeit, Belohnungen anhand der Leist
 sondern löst auch gleichzeitig folgendes Problem: In \FF ist der Aufbau des Revolvers und damit von Combos sehr wichtig.
 Oft kommt es vor, dass der Spieler eine Combo aufgebaut hat, der Gegner jedoch einfach schneller tot ist.
 Das ist nicht nur frustrierend, sondern gibt dem Spieler auch einfach keinen Grund, überhaupt starke Combos aufzubauen,
-wenn er sich einmal über dem Standard-Gegnerschwierigkeitslevel befindet. Overkill-Schaden löst diese beiden Probleme.
+wenn er sich einmal über dem Standard-Gegner-Schwierigkeitslevel befindet. Overkill-Schaden löst diese beiden Probleme.
 
 
 Die zweite Regel bezieht sich auf das Schießen des Revolvers.
