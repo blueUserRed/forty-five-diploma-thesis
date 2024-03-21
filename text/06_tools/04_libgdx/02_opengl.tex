@@ -22,7 +22,7 @@ Diese Primitives werden anschließend gerastert, was heißt, dass für jeden Pix
 Fragment generiert wird.
 Welche Farbe für jedes Fragment dann tatsächlich gerendert wird, wird vom Fragment Shader entschieden, welcher für jedes
 Fragment ausgeführt wird.
-Der Fragment Shader ist theoretisch optional, wird er jedoch weggelassen, sind die ausgegebenen Farben nicht definiert.\cite{openglRenderPipeline}
+Der Fragment Shader ist theoretisch optional, wird er jedoch weggelassen, sind die ausgegebenen Farben nicht definiert.\zit{openglRenderPipeline}
 
 \subsubsection{Shader}
 
@@ -34,7 +34,7 @@ Eine Ausnahme stellen Compute Shader dar.
 Diese sind nicht Teil der Renderpipeline und werden verwendet, um beliebige Operationen auf der GPU durchzuführen.
 Häufig werden diese bei Aufgaben eingesetzt, die sich besonders gut parallelisieren, wie das Trainieren von KIs oder
 das Berechnen von Hashes \zB beim Mining von Kryptowährung.
-Da in \FF nur Vertex und Fragment Shader eingesetzt wurden, werden auch nur diese nun näher erläutert.\cite{openglRenderPipeline}
+Da in \FF nur Vertex und Fragment Shader eingesetzt wurden, werden auch nur diese nun näher erläutert.\zit{openglRenderPipeline}
 
 \subsubsection{Der Vertex Shader}
 
@@ -76,7 +76,7 @@ Nun ist es aber so, das die Zahl der Fragment Shader Instanzen sich stark von de
 unterscheiden kann, da der Fragment Shader für jeden Pixel, den ein Primitive abdeckt, ausgeführt wird.
 Deswegen stellt sich die Frage, wie die Ausgabewerte des Vertex Shader auf die Fragment Shader verteilt werden.
 Wird im Shader nichts anderes spezifiziert, werden alle mit \inlineGlsl{varying} markierten Variablen zwischen den
-Vertexen, aus denen das Primitive besteht, linear interpoliert.\cite{openglVertexShader, openglTypeQualifiers}
+Vertexen, aus denen das Primitive besteht, linear interpoliert.\zit{openglVertexShader, openglTypeQualifiers}
 
 \begin{figure}[H]
     \centering
@@ -110,7 +110,7 @@ void main() {
 }
 \end{codeBlock}
 
-Zusätzlich wird der Wert aus der Textur mit der im Vertex Shader gesetzten Vertex Farbe multipliziert.\cite{openglFragmentShader}
+Zusätzlich wird der Wert aus der Textur mit der im Vertex Shader gesetzten Vertex Farbe multipliziert.\zit{openglFragmentShader}
 
 \subsection{Anwendungen von Shadern}
 
@@ -126,13 +126,13 @@ Das heißt, dass zuerst das gesamte Spiel normal gerendert wird, und das Resulta
 manipuliert wird.
 Um das möglich zu machen, werden Framebuffer, auch Framebufferobject oder FBO genannt, eingesetzt.
 Statt direkt auf den Bildschirm zu rendern, kann stattdessen zu einem Framebuffer gerendert werden, der dann das
-Resultat speichert.\cite{openGlFbo}
+Resultat speichert.\zit{openGlFbo}
 
 Wenn also ein Postprocessing Effekt aktiv ist, wird das Spiel zuerst zu einem Framebuffer gerendert, und dieser dann
 mit dem Postprocessing Shader zu dem Bildschirm.
 Falls mehrere Postprocessing Effekte aktiv sind, ist ein Framebuffer nicht mehr ausreichend, da einen Framebuffer
-zu sich selber zu rendern undefiniertes Verhalten auslöst.\cite{openGlFbo}
-Stattdessen wird eine Technik names Ping-Pong-Rendering verwendet.\cite{pingPongRendering}
+zu sich selber zu rendern undefiniertes Verhalten auslöst.\zit{openGlFbo}
+Stattdessen wird eine Technik names Ping-Pong-Rendering verwendet.\zit{pingPongRendering}
 Bei dieser werden zwei Framebuffer verwendet, zwischen denen hin und her gerendert wird, wobei bei jedem Render-Pass ein
 Postprocessing Effekt angewendet wird.
 Bei dem letzten Effekt wird, statt zu einem Framebuffer, zu dem Bildschirm gerendert.
@@ -234,7 +234,7 @@ Bevor der Schweif gerendert wird, muss zuerst ein Blur-Effekt angewendet werden,
 B gerendert wurden miteinander und mit dem Hintergrund verschwimmen.
 
 Für die Orb-Animation wird ein 2-Pass Gaussian Blur verwendet, da dieser oft bessere Ergebnisse liefert als \zB ein
-Box-Blur.\cite{gaussianBlur}
+Box-Blur.\zit{gaussianBlur}
 Allerdings ist ein Gaussian-Bur auch teurer zu berechnen, was aber unter anderem durch die halbierte Auflösung keine
 Probleme macht.
 Ein Blur-Effekt funktioniert, in dem für jeden Pixel die Textur nicht nur an der Stelle des Pixels gesampled wird,
@@ -242,7 +242,7 @@ sondern auch an umliegenden Stellen.
 Die finale Farbe des Pixels ist dann der Schnitt aus all diesen Samples.
 Was den Gaussian Blur von \ua einem Box-Blur unterscheidet ist, das die Samples anhand einer gaußschen Verteilung
 gewichtet werden, was dazu führt, dass Pixel, die näher an der Mitte liegen, einen größeren Einfluss auf das Ergebnis
-haben.\cite{gaussianBlur}
+haben.\zit{gaussianBlur}
 Diese Gewichte sind in einem Look-up-Table definiert, müssen also nicht jedes Mal berechnet werden.
 
 Eine besondere Herausforderung bei dem Gaussian-Blur Shader war der Umgang mit Transparenzen.

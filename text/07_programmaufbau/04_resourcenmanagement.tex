@@ -4,7 +4,7 @@
 \renewcommand{\kapitelautor}{Autor: Marvin Kurka}
 
 Kotlin, wie auch Java und andere JVM-basierende Sprachen verwendet einen Garbage Collector, kurz GC, um den
-Speicherplatz von nicht mehr verwendetet Objekten freizugeben.\cite{oracleGC}
+Speicherplatz von nicht mehr verwendetet Objekten freizugeben.\zit{oracleGC}
 
 \subsection{Wie funktioniert Garbage Collection?}
 
@@ -15,7 +15,7 @@ Referenz hat.
 Diese werden markiert und der Prozess wird rekursiv für alle Referenzen, die diese Objekte halten, wiederholt.
 Am Ende sind alle Objekte, für die das Programm noch eine gültige Referenz hält markiert.
 In der zweiten Phase werden alle Objekte, die nicht markiert wurden, und demnach nicht mehr erreichbar sind, gelöscht.
-Zusätzlich kann hier eine Defragmentierung stattfinden.\cite{oracleGC}
+Zusätzlich kann hier eine Defragmentierung stattfinden.\zit{oracleGC}
 
 Eine GC durchzuführen ist teuer.
 Erst muss jedes Objekt in der Baumstruktur des Heaps durchgegangen und markiert werden, und dann beim
@@ -23,7 +23,7 @@ Löschen/Defragmentieren müssen große Teile des Heaps kopiert werden.
 Dazu kommt, dass es sich bei Garbage Collections um "Stop the World Events" handelt.
 Da große Teile des GC-Prozesses nicht parallel mit den Application Threads laufen können, muss das
 Programm für die Dauer der Garbage Collection pausiert werden, was sowohl die Geschwindigkeit als auch die
-Responsiveness des Programms beeinträchtigt.\cite{oracleGC}
+Responsiveness des Programms beeinträchtigt.\zit{oracleGC}
 
 Um dieses Problem wenigstens zu mindern, verwendet die JVM eine generational Garbage Collection.
 Die meisten Objekte, die in der Laufzeit eines Programms allokiert werden, haben nur eine sehr geringe Lebenszeit,
@@ -31,7 +31,7 @@ während einige wenige Objekte signifikant längere Lebenszeiten haben.
 Die JVM macht sich das zu Nutze, um den Heap in verschiedene Generation einzuteilen, je nachdem wie viele GCs
 ein Objekt schon überlebt hat.
 Bei einem Minor Garbage Collection Event werden dann nur die jüngeren Generationen durchsucht, während bei einem
-Major Garbage Collection Event der gesamte heap durchsucht wird.\cite{oracleGC}
+Major Garbage Collection Event der gesamte heap durchsucht wird.\zit{oracleGC}
 
 \subsection{Gargabe Collection in Videospielen}
 
@@ -40,7 +40,7 @@ Diese überleben im Idealfall schon die erste minor GC nicht, und müssen deshal
 Generation überführt werden.
 Außerdem ist das allokieren/kopieren/löschen durch die kleine Größe wenig Aufwand.
 Weiters sollten große Objekte im Idealfall nicht im stable State des Programmes allokiert werden, um die Zahl an major
-GCs gering zu halten.\cite{infoqJavaPerformance}
+GCs gering zu halten.\zit{infoqJavaPerformance}
 
 Allerdings ist es gerade in Videospielen so, dass es besonders viele sehr große und langlebige Objekte gibt.
 Texturen, Animationen und Sounds können oft Megabytes an RAM benötigen und werden oft im stable state des Programms
@@ -53,7 +53,7 @@ Außerdem werden oft Ressourcen verwendet, die gar nicht von einer konventionell
 GPU hochgeladen werden müssen.
 Das inkludiert \zB Texturen oder Shader.
 Solche Ressourcen könnten theoretisch über einen Finalizer, der automatisch läuft, bevor die GC ein Objekt collected,
-freigegeben werden, das würde die Performance des GC-Prozesses allerdings weiter verschlechtern.\cite{infoqJavaPerformance}
+freigegeben werden, das würde die Performance des GC-Prozesses allerdings weiter verschlechtern.\zit{infoqJavaPerformance}
 
 Ein weiterer Grund, warum man sich bei großen Objekten nicht auf den GC verlassen sollte, ist, dass oft eine feine
 Kontrolle über große Ressourcen notwendig ist.
@@ -68,14 +68,14 @@ Managen von großen Ressourcen verfolgt.
 In LibGdx werden große Ressourcen durch nativen Code allokiert und nicht vom GC verwaltet.
 Klassen, die solche Ressourcen repräsentieren, implementieren das Disposable-Interface, das die
 \inlineKotlin{Disposable::dispose} Funktion zur Verfügung stellt.
-Diese muss am Ende des Lebenszyklus des Objektes aufgerufen werden, um den allokierten Speicher wieder freizugeben.\cite{libGdxMemoryManagement}
+Diese muss am Ende des Lebenszyklus des Objektes aufgerufen werden, um den allokierten Speicher wieder freizugeben.\zit{libGdxMemoryManagement}
 
 Diese Herangehensweise macht den effizienten Umgang mit Ressourcen möglich und gibt dem Programmierer Kontrolle über
 die Lebenszeit von großen Objekten.
 Allerdings führt das auch dazu, dass viele Fehlerquellen, die durch GC eliminiert wurden, wieder auftreten können.
 Beispiele sind Memory Leaks, die auftreten, wenn eine Ressource nicht wieder freigegeben wird, oder eine
 Use-after-Free-Situation, bei der eine Ressource verwendet wird, obwohl sie eigentlich schon freigegeben wurde, was
-zu undefinierten Verhalten führt.\cite{libGdxMemoryManagement}
+zu undefinierten Verhalten führt.\zit{libGdxMemoryManagement}
 
 \subsection{Der ResourceManager}
 
@@ -121,7 +121,7 @@ Nur ein Thread kann den OpenGL Kontext halten, und dieser Thread ist im Falle vo
 Nur dieser kann dann Operation durchführen, die mit OpenGL zu tun haben, wie \zB Grafiken zu rendern, aber auch nur
 dieser Thread kann Daten zur GPU hochladen.
 Ein Aufruf von \zB dem \inlineKotlin{Texture} Konstruktor von einem Thread ohne OpenGL-Kontext würde zu nicht
-definierten Verhalten führen.\cite{libGdxThreading}
+definierten Verhalten führen.\zit{libGdxThreading}
 
 Um dieses Problem so gut wie möglich zu umgehen, wurde für jeden möglichen Ressourcen-Typ eine Zwei-Schritt Lade Logik
 definiert.

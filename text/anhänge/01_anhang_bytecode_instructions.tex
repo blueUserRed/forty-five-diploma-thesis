@@ -64,12 +64,12 @@ LocalVariableTable:
 Der LVT oder Local Variable Table speichert Informationen zu den lokalen Variablen einer Funktion, die normalerweise
 bei der Kompilation verloren gehen würden.
 Er ist optional und nicht für die korrekte Ausführung des Codes notwendig, kann aber von
-Debuggern verwendet werden.\cite{jvmspecLVT}
+Debuggern verwendet werden.\zit{jvmspecLVT}
 
 Da durch das inlinen der Funktion kein Frame am Callstack generiert wird, geht nützliche Information im Stacktrace
 verloren.
 Diese lokalen Variablen speichern Informationen zu aufgerufenen inline-Funktionen in ihren Namen, die dann von
-Debugging-Tools ausgelesen werden können.\cite{youTrackFakeVariables}
+Debugging-Tools ausgelesen werden können.\zit{youTrackFakeVariables}
 
 \section{Stelle 2: 22-23}
 
@@ -83,7 +83,7 @@ Außerdem führt das zu Problemen beim debuggen, da auch Breakpoints immer auf e
 Deswegen wird für eine inline-Funktion immer ein \inlineCode{nop} ausgegeben, um zu garantieren, dass
 zumindest eine Instruktion für jede inline-Funktion ausgegeben wird.
 Im oberen Code sind zwei \inlineCode{nop} Instruktionen vorhanden, da in Kotlin \inlineKotlin{println} auch eine
-inline-Funktion ist.\cite{youTrackNops}
+inline-Funktion ist.\zit{youTrackNops}
 
 % resets author
 \renewcommand{\kapitelautor}{}
