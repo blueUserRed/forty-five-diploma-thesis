@@ -220,37 +220,30 @@ Es gibt außerdem einen Trigger, welcher aktiviert wird, wenn die Karte geschoss
 namens On-Shot. Zusätzlich gibt es Karten mit Effekten, welche die Revolverrotation verändern, wie z.B. Bewitched Bullet,
 welche den Revolver nach links statt nach rechts rotiert.
 
-Die Komplexität von \FF kommt vom Meistern des Revolvers.
-Das strategische Platzieren von Bullets, die Reihenfolge der Bullets und das Verstehen, wie eine Revolverrotation sich auf Bullets,
-den Spieler oder den Gegner auswirkt. Die gerade erwähnte Bewitched Bullet kann zum Beispiel dazu verwendet werden, Karten,
-welche davon profitieren, lange im Revolver zu bleiben, weiter von dem Schießen wegzuschieben. Bullet zum Beispiel fügt dem Gegner Schaden zu,
-wenn sich Bullet rotiert im Revolver.
-Bewitched Bullet kann dazu verwendet werden, zwei zusätzliche Rotationen rauszuholen, indem man den Revolver einmal nach
-links dreht, bevor Bullet den Revolver verlässt. Bewitched Bullet kann zum Beispiel auch zum Einschieben von Bullets verwendet
+Die Komplexität von \FF kommt vom Meistern des Revolvers, strategische Platzieren von Bullets, die Reihenfolge der Bullets und das Verstehen,
+wie eine Revolverrotation sich auf Bullets, den Spieler oder den Gegner auswirkt.
+Die gerade erwähnte "Bewitched Bullet" kann zum Beispiel dazu verwendet werden, Karten,
+welche davon profitieren, lange im Revolver zu bleiben, länger von dem geschossen werden anzuhalten. "Bull et" zum Beispiel fügt dem Gegner Schaden zu,
+wenn sie im Revolver rotiert.%TODO BILD BEWITCHED BULLET UND BULL ET
+"Bewitched Bullet" kann dazu verwendet werden, zwei zusätzliche Rotationen rauszuholen, indem man den Revolver einmal nach
+links dreht, bevor "Bull et" den Revolver verlässt. "Bewitched Bullet" kann zum Beispiel auch zum Einschieben von Bullets verwendet
 werden und so weiter und so fort. Die Kombinationsmöglichkeiten sind endlos, und fast jeder Effekt einer Bullet kann mit dem einer
 anderen Bullet verknüpft werden.
 
-
-
-%slots rotationen usw karten weg wenn shot und karten unters deck gelegt wenn shot usw
-
-
-\subsection{Zonen}\label{backpack_and_deck}
-%probbaly unnötig
 
 \subsection{Der Gegner}\label{der_gegner}
 Der Gegner, auf den die Bullets des Spielers geschossen werden, besteht aus mehreren Komponenten.
 Genau wie der Spieler verfügt der Gegner über einen HP-Wert. Wenn der Wert null erreicht, stirbt der Gegner.
 Nachdem der Spieler "End turn" gedrückt hat, beendet er seinen Zug und der Gegner ist dran. Während dem Zug des Spielers
 zeigt der Gegner die Aktion an, die er in seinem Zug ausführen wird.
-Gegneraktionen werden "zufällig ausgewählt aus dem Pool von Aktionen des Gegners.
+Gegneraktionen werden zufällig ausgewählt aus dem Pool von Aktionen des Gegners.
 Jedoch wurden die Aktionen angepasst, um nicht nur Fairness zu garantieren,
 sondern auch eine Balance zwischen zu leicht und zu schwer zu finden.
-Mehr zum Balancen der Gegner kann in 07 Gamedesign nachgelesen werden.
+Mehr zum Balancen der Gegner kann im Kapitel \ref{Gamedesign} nachgelesen werden.
 
 
 Sobald der Gegner dran ist, wird die Aktion automatisch ausgeführt. Je nach Gegnertyp gibt es andere Aktionen,
-die ein Gegner ausführen kann. Universell ist jedoch die Aktion des Schadens zufügens.
+die ein Gegner ausführen kann. Universell ist jedoch die Aktion des Schaden zufügens.
 Es gibt viele verschiedene Arten von Gegneraktionen, die dafür entwickelt wurden, mehr Abwechslung beim Bekämpfen der Gegner zu bieten.
 Außerdem sollte noch erwähnt werden, dass es auch passieren kann, dass der Spieler gegen mehr als einen Gegner kämpft.
 Ist das der Fall, sucht der Spieler das Ziel der Revolverschüsse, indem er auf den gewünschten Gegner klickt.
@@ -258,18 +251,18 @@ Dargestellt durch ein Symbol über dem Kopf des Gegners, sind die Aktionen wenig
 sondern es wird eher erwartet, dass der Spieler die Aktion des Gegners in das Planen seines Zuges miteinbezieht.
 Bei der eben genannten Schadenaktion kann der Spieler darauf reagieren und Schaden verhindern, indem er die Karte parried.
 
-Die Gegner sind entstanden durch das beobachten von Spielen im selben Genre, wie zum Beispiel Slay the Spire. \zit{slaythespire}
+Die Gegner sind entstanden durch das beobachten von Spielen im selben Genre, wie zum Beispiel  \quoted{Slay the Spire}. \zit{slaythespire}
 
 \subsection{Parrying}\label{parrying}
-Das Parieren des Schadens, der vom Gegner verursacht wird, wird in \FF durch Bullet gemacht.
-Die Idee dahinter ist, dass die eigene Bullet verwendet wird, um den Angriff des Gegners abzuhalten, indem man
+Das parieren des Schadens, der vom Gegner verursacht wird, wird in \FF durch Bullets gemacht.
+Die Idee dahinter ist, dass die eigene Bullet dazu verwendet wird, um den Angriff des Gegners abzuhalten, indem man
 seine Bullet gegen die des Gegners schießt.
-Der Spieler bekommt die Wahl, ob er parrieren möchte oder nicht, was durch ein eigenes Popup während des gegnerischen Zugs geregelt wird.
+Der Spieler bekommt die Wahl, ob er parieren möchte oder nicht, was durch ein eigenes Popup während des gegnerischen Zuges geregelt wird.
 Entscheidet sich der Spieler dazu zu parieren, wird dafür die Bullet im vordersten Slot verwendet.
 Dann wird der Schadenswert des Gegners mit dem der Bullet substituiert. Ist der Schadenswert der Bullet größer als der des Gegners,
 geht kein Schaden durch. Ist es andersrum, bekommt der Spieler so viel Schaden wie die Differenz ausmacht.
 Es ist wichtig zu erwähnen, dass nicht geparriert werden muss, sollte der Spieler die Bullet lieber behalten wollen,
-bzw. wenn er der Meinung ist, den Schaden einfach einzustecken zu können. Durch einen Parry geht die Bullet verloren,
+\bzw wenn er der Meinung ist, den Schaden einfach einzustecken zu können. Durch einen Parry geht die Bullet verloren,
 es aktiviert keine Effekte und sie wird danach wieder unters Deck gelegt.
 
 
@@ -288,7 +281,7 @@ Overkill-Cash ist nicht nur eine gute Möglichkeit, Belohnungen anhand der Leist
 sondern löst auch gleichzeitig folgendes Problem: In \FF ist der Aufbau des Revolvers und damit von Combos sehr wichtig.
 Oft kommt es vor, dass der Spieler eine Combo aufgebaut hat, der Gegner jedoch einfach schneller tot ist.
 Das ist nicht nur frustrierend, sondern gibt dem Spieler auch einfach keinen Grund, überhaupt starke Combos aufzubauen,
-wenn er sich einmal über dem Standard-Gegnerschwierigkeitslevel befindet. Overkill-Schaden löst diese beiden Probleme.
+wenn er sich einmal über dem Standard-Gegner-Schwierigkeitslevel befindet. Overkill-Schaden löst diese beiden Probleme.
 
 
 Die zweite Regel bezieht sich auf das Schießen des Revolvers.
