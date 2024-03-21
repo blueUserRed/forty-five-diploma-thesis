@@ -5,11 +5,10 @@
 
 Um das Wiederholen von Code so gering wie möglich zu halten, werden in Onj Variablen verwendet, um häufige Strukturen
 zu extrahieren.
-Mittels des Variablennamen kann dan auf diese zugegriffen werden, auch Verknüpfungen mit Punkten sind erlaubt.
+Mittels des Variablennamen kann dann auf diese zugegriffen werden, auch Verknüpfungen mit Punkten sind erlaubt.
 
 %! language = Onj
-\begin{minted}{onj}
-
+\begin{codeBlock}{onj}{Beispiel: Variablen in Onj}
 var number = 5;
 favoriteNumber: number,
 otherNumber: (number + 1) * number,
@@ -23,31 +22,31 @@ favoriteColor: colors.blue,
 
 var fruits = ["apple", "banana", "grape"];
 // auf arrays wird mittels des Indexes zugegriffen
-favoriteFruit = fruits.0,
-\end{minted}
+favoriteFruit: fruits.0,
+\end{codeBlock}
 
 Es können auch drei Punkte verwendet werden, um den Inhalt einer Variable in die aktuelle Struktur zu übernehmen.
 
 %! language = Onj
-\begin{minted}{onj}
+\begin{codeBlock}{onj}{Beispiel: Triple-Dot Syntax in Onj}
 var fruits = ["apple", "pear"];
 fruitSalad: [
     "banana",
     "grape",
     ...fruits
 ],
-\end{minted}
+\end{codeBlock}
 
 Statt bei einem Zugriff einfach den Key-Namen oder den Index anzugeben, kann auch in Klammern eine Expression angegeben
 werden.
 Diese wird evaluiert und das Resultat wird für den Zugriff verwendet.
 
 %! language = Onj
-\begin{minted}{onj}
+\begin{codeBlock}{onj}{Demo: dynamische Zugriffe in Onj}
 var index = 1;
 var arr = [0, 1, 2, 3, 4, 5];
-myValue: arr.(index + 2)
-\end{minted}
+myValue: arr.(index + 2) // => 3
+\end{codeBlock}
 
 % resets author
 \renewcommand{\kapitelautor}{}

@@ -4,7 +4,7 @@
 \renewcommand{\kapitelautor}{Autor: Marvin Kurka}
 
 Unten angegeben ist die vollständige Grammatik für .onj Dateien.
-Der verwendete Syntax ist eine Form der Backus-Naur-Form:
+Der verwendete Syntax ist eine Variante der Backus-Naur-Form:
 
 \begin{itemize}
     \item \inlineCode{?} bedeutet optional
@@ -69,7 +69,7 @@ binaryOperator ::= PLUS | MINUS | STAR | DIV
 \begin{infoBox}
     "as" ist im Parser als ein context dependent keyword, auch soft keyword genannt, implementiert.
     Das heißt, das es nur im Kontext eines import-statements als keyword erkannt wird, anders als \zB var.
-    Dadurch ist es möglich eine variable oder einen key "as" zu nennen.
+    Dadurch ist es möglich eine Variable oder einen key "as" zu nennen.
 \end{infoBox}
 
 % resets author

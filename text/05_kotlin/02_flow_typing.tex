@@ -3,11 +3,11 @@
 
 \renewcommand{\kapitelautor}{Autor: Marvin Kurka}
 
-Flow Typing bedeutet, dass der Compiler Annahmen über den Typen von Variablen machen kann, basierend auf dem Control
+Flow-Typing bedeutet, dass der Compiler Annahmen über den Typen von Variablen machen kann, basierend auf dem Control
 Flow von dem Programm.
 
 %! language = kotlin
-\begin{minted}{kotlin}
+\begin{codeBlock}{kotlin}{Beispiel für Flow-Typing in Kotlin}
 fun test(s: Any?): Unit = when (s) {
 
     null -> println("s is null")
@@ -21,24 +21,19 @@ fun test(s: Any?): Unit = when (s) {
     // s hat durch den anfänglichen null-Check hier den Typ Any
     else -> println("nothing matched with ${s::class.simpleName}")
 }
-\end{minted}
-\codeblockCaption{Demonstration von Flow Typing in Kotlin}
+\end{codeBlock}
 
 Kotlin implementiert Flow-Typing mittels Smart-Casts, die automatisch in den Code eingefügt werden, wenn gewisse
 Control-Flow Instruktionen verwendet werden.
 Das inkludiert \zB whens, ifs, not-null-assertions, casts, is-checks, \usw
 
 %! language = kotlin
-\begin{minted}{kotlin}
-
+\begin{codeBlock}{kotlin}{Mehr Beispiele für die Anwendung von Flow-Typing}
 sealed class A {
-
     object B : A() {
         fun funInB() = 1
     }
-
     object C : A()
-
 }
 
 fun test(nullable: String?, a: A) {
@@ -54,18 +49,16 @@ fun test(nullable: String?, a: A) {
     // a hat jetzt Typ A.B
     a.funInB()
 }
-\end{minted}
-\codeblockCaption{Mehr Beispiele für die Anwendung von Flow-Typing}
+\end{codeBlock}
 
 %! language = kotlin
-\begin{minted}{kotlin}
+\begin{codeBlock}{kotlin}{Demo: Smart-Cast durch Assignment}
 fun test() {
     var a: Any? = ""
     a = 4
     a.inc() // .inc() Aufruf funktioniert, obwohl a als Any? deklariert wurde
 }
-\end{minted}
-\codeblockCaption{Auch ein simples Assignment kann einen Smart Cast einfügen.}
+\end{codeBlock}
 
 Mittels Vereinfachung von komplexen Expressions \bzw desugaring baut der Kotlin-Compiler einen Control-Flow-Graph (CFG)
 auf, der den Control Flow innerhalb einer Funktion modelliert und es dem Compiler erlaubt basierend auf diesem effizient
@@ -76,8 +69,7 @@ Eine Smart-Cast Sink kann zum Beispiel eine lokale Variable sein, oder eine beli
 (mit \inlineKotlin{val} deklarierter) Properties.
 
 %! language = kotlin
-\begin{minted}{kotlin}
-
+\begin{codeBlock}{kotlin}{Demo: Mögliche Smart-Cast Sinks}
 data class Container<T>(val value: T)
 class A {
 
@@ -95,8 +87,7 @@ class A {
         println(c.length) // compile time fehler
     }
 }
-\end{minted}
-\codeblockCaption{Demo von möglichen Smart-Cast Sinks}
+\end{codeBlock}
 
 Wie in dem vorherigen Code-Snippet ersichtlich, ist es nicht erlaubt eine mutierbare Property für Smart-Casts zu
 verwenden.
@@ -107,7 +98,7 @@ Andere instabile Smart-Cast Sinks sind \zB Properties mit custom Gettern, delegi
 in anderen Modulen definiert werden.
 
 %! language = kotlin
-\begin{minted}{kotlin}
+\begin{codeBlock}{kotlin}{Demo: Instabile Smart-Cast Sinks}
 class A {
 
     // Pair ist eine Klasse aus Kotlins Standard-Bibliothek, die in einem anderen Modul definiert ist.
@@ -132,8 +123,7 @@ class A {
     }
 
 }
-\end{minted}
-\codeblockCaption{Demonstration von weiteren instabilen Smart-Cast Sinks}
+\end{codeBlock}
 
 In all diesen Fällen kann der Compiler nicht garantieren, das der Wert der Smart-Cast Sink sich nicht durch Code,
 der nicht im CFG erfasst ist, ändert.

@@ -1,0 +1,24 @@
+\renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
+\subsection{Vokabular}\label{subsec:git-vokabular}
+
+
+\renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
+
+Bei Git gibt es mehrere Fachtermini, die in den folgenden Kapiteln verwendet werden.
+Deshalb werden nun die wichtigsten Begriffe erläutert:
+
+\begin{liste}
+    \item Repository: Der Bereich, in dem alle Dateien gespeichert sind, die versioniert werden sollen.
+    \item Commit: Erstellt eine Version des repository, wobei die Daten inkrementell gespeichert sind, \dah, nur die Änderungen.
+    \item Message: Beschreibung der Änderungen in einem commit.
+    \item Push/Pull: Das Hoch- und Herunterladen aller commits auf \bzw von einem Server.
+    \item Main/Main-branch: Die Hauptentwicklungslinie, die alle fertigen Features beinhaltet und auch für "builds" (=eine fertige Applikation, die man auch auf Steam hochladen kann) verwendet wird.
+    \item Branch: Eine separate Entwicklungslinie, um größere Änderungen meist über einen längeren Zeitraum getrennt von der main-branch zu implementieren.
+    Diese werden vor allem verwendet, um Features hinzuzufügen.
+    \item Merge: Das Zusammenfügen von zwei Branches.
+    \item Pull/Merge request: Wenn ein Merge stattfinden soll, eröffnet man eine Pull Request.
+    Danach prüft ein anderer Entwickler diese und kann entweder akzeptieren, wodurch der Merge stattfindet, oder ablehnen.
+    Dieses Feature wird verwendet, um die Codequalität sicherzustellen.
+    \item Merge Conflict: Ein Konflikt tritt auf, wenn Git nicht automatisch entscheiden kann, welche Änderungen bei einem Merge übernommen werden sollen.
+    Dies kann geschehen, wenn in mehreren Branches der Code in derselben Datei geändert wird.\cite{gitHomePage}
+\end{liste}

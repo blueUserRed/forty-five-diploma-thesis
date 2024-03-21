@@ -38,13 +38,12 @@ So auch in der Sprache Java, die 2014 um die \inlineJava{Optional<T>} Klasse erw
 Diese kann als Wrapper um Werte verwendet werden und stellt Funktionen zur Verfügung, die auf Präsenz eines Wertes
 testen und/oder abhängig davon Code ausführen.
 
-\begin{minted}{java}
+\begin{codeBlock}{java}{Demo: \inlineJava{Optional<T>}}
 getOptionalValue().ifPresentOrElse(
     value -> System.out.println("result was: " + value),
     () -> System.out.println("no value")
 );
-\end{minted}
-\codeblockCaption{Beispiel für die Verwendung von \inlineJava{Optional<T>}}
+\end{codeBlock}
 
 Trotz der höheren Sicherheit findet \inlineJava{Optional<T>} wenig Verwendung, da, durch die nachträgliche und relative
 späte Einführung in die Sprache große Teile der Standard-Bibliothek selbst keine Optionals verwenden (Siehe
@@ -65,11 +64,11 @@ einzubinden, auch wenn mit ihnen gegenüber Optionals einiges an Sicherheit verl
 Da die Java-Standardbibliothek diese Annotations nicht enthält, sind mehrere konkurrierende Bibliotheken entstanden,
 die diese zur Verfügung stellen.
 Zum Beispiel:
-\begin{itemize}
+\begin{liste}
     \item Jetbrains Annotations \url{https://central.sonatype.com/artifact/org.jetbrains/annotations/24.0.1}
     \item The Checker Framework \url{https://checkerframework.org/}
     \item Eclipse \url{https://help.eclipse.org/latest/index.jsp?topic=%2Forg.eclipse.jdt.doc.user%2Ftasks%2Ftask-using_null_type_annotations.htm}
-\end{itemize}
+\end{liste}
 
 Die Programmiersprache Rust, die dafür bekannt ist, hohen Wert auf Sicherheit und fehlerfreien Code zu legen, erlaubt
 gar keine \inlineJava{null}-Werte.
@@ -85,26 +84,21 @@ Das wird mittels eines Fragezeichens hinter dem Typen umgesetzt.
 Der Compiler analysiert zur compile-time welche Werte null sein könnten und gibt einen Fehler aus, wenn mit
 \inlineKotlin{null} nicht richtig umgegangen wird.\cite{kdocNullSafety}
 
-%! language = kotlin
-\begin{minted}{kotlin}
-    var a = "Hello"
-    a = null // Compile-time Fehler
-
-    var b: String? = "Hello"
-    b = null // erlaubt
-\end{minted}
-\codeblockCaption{Variable a hat implizit den Typen \inlineKotlin{String}, der kein null erlaubt.}
+%! language = Kotlin
+\begin{codeBlock}{kotlin}{Demo: Null-Safety in Kotlin}
+var a = "Hello"
+a = null // Compile-time Fehler
+var b: String? = "Hello"
+b = null // erlaubt
+\end{codeBlock}
 
 %! language = kotlin
-\begin{minted}{kotlin}
+\begin{codeBlock}{kotlin}{Demo: Null-Check in Kotlin}
     fun someFunction(string: String?) {
         if (string != null) println(string.length) // erlaubt
         println(string.length) // Compile-time Fehler
     }
-\end{minted}
-\codeblockCaption{
-Bevor Funktionen auf einer Variable, die \inlineKotlin{null} sein könnte aufgerufen werden, ist ein Check erforderlich.
-}
+\end{codeBlock}
 
 Diese Schutzmechanismen zwingen den Programmierer mit \inlineKotlin{null}-Werten sinnvoll umzugehen und helfen so dabei
 Code zu schreiben, der weniger fehleranfällig ist.
@@ -118,7 +112,7 @@ Während if-Bedingungen für \inlineKotlin{null} Checks theoretisch ausreichen, 
 Code, weswegen Kotlin eigene Operatoren für \inlineKotlin{null}-Werte hat.\cite{kdocNullSafety}
 
 %! language = kotlin
-\begin{minted}{kotlin}
+\begin{codeBlock}{kotlin}{Demo: Umgang mit \inlineKotlin{null}-Werten}
 // Der safe call operator führt einen Zugriff nur aus, wenn der Wert nicht null ist
 // Ist der Wert null, gibt auch der operator null zurück
 nullableVariable?.nullableProperty?.someFunction()
@@ -128,8 +122,7 @@ nullableVariable!!.nullableProperty!!.someFunction() // kann NullPointerExceptio
 
 // Der elvis operator überprüft, ob ein Wert null ist, und verwendet dann einen anderen Wert stattdessen
 val result = nullableVariable?.nullableProperty?.someFunction() ?: "default Value"
-\end{minted}
-\codeblockCaption{Demonstration vom Umgang mit \inlineKotlin{null}-Werten}
+\end{codeBlock}
 
 \subsection{Interoperabilität mit Java}
 Ein wichtiger Aspekt von Kotlin ist die gute Kompatibilität mit Java.

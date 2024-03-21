@@ -31,7 +31,7 @@ das Lambda inlinen, was diesen Overhead spart.\cite{kdocInline}
 Beispiel für higher-order inline Funktionen:
 
 %! language = kotlin
-\begin{minted}{kotlin}
+\begin{codeBlock}{kotlin}{Demo: Inline Funktion vs. Normale Funktion}
 fun runLambda(lambda: () -> Unit) = lambda()
 inline fun runLambdaInline(lambda: () -> Unit) = lambda()
 
@@ -43,12 +43,12 @@ fun test() {
         println("runLambdaInline")
     }
 }
-\end{minted}
+\end{codeBlock}
 
 Dieser Code wurde mit kotlinc-jvm 1.9.21 compiled und mit javap 14.0.2 disassembled.
 Unten ist die Disassembly der test-Funktion zu sehen.
 
-\begin{minted}{text}
+\begin{codeBlock}{text}{Disassembly der test-Funktion}
  0: getstatic     #34                 // Field TestKt$test$1.INSTANCE:LTestKt$test$1;
  3: checkcast     #18                 // class kotlin/jvm/functions/Function0
  6: invokestatic  #36                 // Method runLambda:(Lkotlin/jvm/functions/Function0;)V
@@ -63,7 +63,7 @@ Unten ist die Disassembly der test-Funktion zu sehen.
 22: nop
 23: nop
 24: return
-\end{minted}
+\end{codeBlock}
 
 Wie in der Disassembly zu sehen ist, hat der Compiler für das erste Lambda (Offset 0--8) eine eigene Klasse
 (TestKt\$test\$1) erstellt.
@@ -86,12 +86,12 @@ Fällen \inlineKotlin{Object}, ersetzt werden.
 Durch diesen Prozess geht Runtime-Information zu generischen Typen verloren, was \zB dazu führt, dass Casts zu
 generischen Typen in Java nicht funktionieren wie erwartet.\cite{jdocTypeErasure}
 
-\begin{minted}{java}
+\begin{codeBlock}{java}{Demo: Type-Erasure in Java}
 public static <T> T test(Object arg) {
     boolean isInstance = arg instanceof T; // Compile-time Fehler
     return (T) arg; // Warning: Unchecked Cast
 }
-\end{minted}
+\end{codeBlock}
 
 Der Compiler erlaubt den Cast zwar, kann ihn aber nicht tatsächlich durchführen, \dah die Funktion könnte einen Wert
 zurückgeben, der nicht von Typ \inlineJava{T} ist.
@@ -101,9 +101,9 @@ Da der Typ an der Call-site vorhanden ist, kann eine inline Funktion einen gener
 \inlineKotlin{reified} deklarieren, was Casts/is-checks möglich macht.\cite{kdocInline}
 
 %! language = kotlin
-\begin{minted}{kotlin}
+\begin{codeBlock}{kotlin}{Demo: reified Generics}
 inline fun <reified T> Iterable<Any>.findInstance(): T? = this.find { it is T } as T?
-\end{minted}
+\end{codeBlock}
 
 % resets author
 \renewcommand{\kapitelautor}{}

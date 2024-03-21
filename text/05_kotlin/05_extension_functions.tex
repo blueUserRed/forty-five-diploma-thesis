@@ -13,14 +13,14 @@ Das heißt auch, dass Extension Function statisch, also zur compile time, resolv
 Es finden also keine virtuellen Lookups statt.\cite{kdocExtensions}
 
 %! language = kotlin
-\begin{minted}{kotlin}
+\begin{codeBlock}{kotlin}{Beispiel: Praxisnaher Einsatz einer Extension Function}
 fun String.escapeNewLines(): String = this.replace("\n", "\\n")
 
 fun test() {
     val s = "String\nwith\nNewlines"
     println(s.escapeNewLines())
 }
-\end{minted}
+\end{codeBlock}
 
 Wenn Receiver-Typen generische Parameter haben, kann die Extension Function entweder selbst einen generischen Parameter
 verwenden, oder auch einen konkreten Typen einsetzen.
@@ -28,9 +28,9 @@ Das erlaubt es Funktionen zu definieren, die nur verfügbar sind, wenn bestimmte
 eingesetzt wurden, was mit normalen member Functions nicht möglich ist.\cite{kdocExtensions}
 
 %! language = kotlin
-\begin{minted}{kotlin}
+\begin{codeBlock}{kotlin}{Demo: Extension Function mit konkreten Typen als generischen Parameter im Receiver}
 fun Iterable<Int>.evenNumbers(): List<Int> = this.filter { it % 2 == 0 }
-\end{minted}
+\end{codeBlock}
 
 Wichtig zu erwähnen ist auch, dass Encapsulation nicht durch Extension Functions gebrochen wird.
 Das heißt, dass Extension Functions nicht auf private Funktionen/Properties des Receivers zugreifen können.
@@ -42,7 +42,7 @@ Auch hier wird der Receiver-Typ mit einem Punkt vor dem Lambda-Typ geschrieben, 
 \inlineKotlin{this} im Lambda verwendbar.\cite{kdocLambdas}
 
 %! language = kotlin
-\begin{minted}{kotlin}
+\begin{codeBlock}{kotlin}{Demo: Lambda mit Receiver}
 fun <T> createList(listInitializer: MutableList<T>.() -> Unit): List<T> =
     mutableListOf<T>().apply { listInitializer(this) }
 
@@ -55,7 +55,7 @@ fun test() {
         removeFirst()
     }
 }
-\end{minted}
+\end{codeBlock}
 
 % resets author
 \renewcommand{\kapitelautor}{}

@@ -31,6 +31,7 @@
 \newcommand{\zB}{z.\thinspace{}B.\@\xspace}
 \newcommand{\ZB}{Zum Beispiel\xspace}
 \newcommand{\FF}{.Forty-Five\@\xspace}
+\newcommand{\ff}{.Forty-Five\@\xspace}
 
 %% https://github.com/Digital-Media/HagenbergThesis
 \newcommand{\latex}{La\-TeX\xspace} % kein schnoerkeliges LaTeX mehr
@@ -49,8 +50,17 @@
 \newcommand{\inlineCode}[1]{\mintinline{text}{#1}}
 \newcommand{\inlineKotlin}[1]{\mintinline{kotlin}{#1}}
 \newcommand{\inlineOnj}[1]{\mintinline{onj}{#1}}
+\newcommand{\inlineGlsl}[1]{\mintinline{glsl}{#1}}
 \newcommand{\inlineJava}[1]{\mintinline{java}{#1}}
+
+\newcommand{\quoted}[1]{``#1''}
 
 \newcommand{\codeblockCaption}[1]{#1} % might be changed later
 
+\newenvironment{liste}{\begin{itemize}\setlength{\itemsep}{1pt}\setlength{\itemsep}{0pt}\setlength{\parsep}{0pt}}{\end{itemize}}
+
 \newenvironment{infoBox}{\begin{awesomeblock}[blue]{3pt}{}{magenta}}{\end{awesomeblock}} % todo: make look good
+
+\newenvironment{codeBlock}[2]
+{\VerbatimEnvironment\begin{figure}[H]\def\myenvargumentII{#2}\centering\begin{minted}{#1}}
+{\end{minted}\caption{\myenvargumentII}\end{figure}}

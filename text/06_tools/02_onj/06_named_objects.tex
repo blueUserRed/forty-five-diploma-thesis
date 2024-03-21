@@ -3,12 +3,12 @@
 
 \renewcommand{\kapitelautor}{Autor: Marvin Kurka}
 
-Bei der Validation von komplexen Onj-Strukturen kann es unter gewissen Umständen zu Problemen können, vor allem wenn
+Bei der Validation von komplexen Onj-Strukturen kann es unter gewissen Umständen zu Problemen kommen, vor allem wenn
 an einer Stelle mehrere verschiedene Objekte möglich sind.
 Um das Problem besser erkenntlich zu machen, hier ein Beispiel:
 
 %! language = Onj
-\begin{minted}{onj}
+\begin{codeBlock}{onj}{Beispiel: Schlechte Umsetzung einer UI-Struktur 1}
 // onj struktur
 uiElements: [
     {
@@ -21,17 +21,16 @@ uiElements: [
         path: "./some/image.png"
     }
 ]
-\end{minted}
+\end{codeBlock}
 
-%! language = Onj
-\begin{minted}{onj}
+\begin{codeBlock}{onj}{Beispiel: Schlechte Umsetzung einer UI-Struktur 2}
 // onj schema
 var uiElement = {
     type: string,
     ...*
 };
 uiElements: uiElement[]
-\end{minted}
+\end{codeBlock}
 
 Im Schema kann nur garantiert werden, das ein UI-Element einen \inlineOnj{type}-Key hat, alles andere wird offen
 gelassen.
@@ -46,7 +45,7 @@ sind, erlaubt.
 Hier noch einmal das selbe Beispiel, implementiert mit Named Objects:
 
 %! language = Onj
-\begin{minted}{onj}
+\begin{codeBlock}{onj}{Beispiel: Gute Umsetzung einer UI-Struktur 1}
 // onj struktur
 uiElements: [
     $Label {
@@ -57,10 +56,9 @@ uiElements: [
         path: "./some/image.png"
     }
 ]
-\end{minted}
+\end{codeBlock}
 
-%! language = Onj
-\begin{minted}{onj}
+\begin{codeBlock}{onj}{Beispiel: Gute Umsetzung einer UI-Struktur 2}
 // onj schema
 $UiElement {
     $Label {
@@ -72,7 +70,7 @@ $UiElement {
     }
 }
 uiElements: $UiElement[]
-\end{minted}
+\end{codeBlock}
 
 % resets author
 \renewcommand{\kapitelautor}{}

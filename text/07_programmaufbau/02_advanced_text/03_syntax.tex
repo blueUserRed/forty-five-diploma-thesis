@@ -1,0 +1,48 @@
+%! Author = felix
+%! Date = 17/03/2024
+
+\renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
+\subsection{Syntax}\label{subsec:syntax}
+\renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
+
+Die Syntax ist nur sehr grob vorgegeben, da nur icons vordefiniert sind.
+Diese werden mit ``\S\S NAME\_DES\_ICONS\S\S'' in den Text eingefügt.
+In Onj sieht die Konfiguration beispielsweise folgendermaßen aus:
+\begin{codeBlock}{onj}{Beispiel: Konfiguration eines Advanced Text}
+rawText: "Also, there is $1something$1 I wanted to give you before you $3leave$3 §§icon_bye§§",
+defaults: {
+    font: "red_wing",
+    fontScale: 1.0,
+    color: color.forty_white
+},
+effects: [
+    $Color {
+        indicator: "$1",
+        color: color.red
+    },
+    $Action {
+        indicator: "$1",
+        action: shake,
+    },
+    $Color {
+        indicator: "$3",
+        color: color.green
+    },
+]
+\end{codeBlock}
+
+Wie man in dem Beispiel sieht, gibt es drei generelle Parameter:
+\begin{liste}
+    \item rawText: Dieser beinhaltet den Text, der noch zu parsen ist.
+    \item defaults: Enthält alle default Werte, falls nichts anderes gesetzt ist.
+    \item effects: Diese sind der wichtigste Teil, da sie die einzelnen Funktionen und möglichen Änderungen für diesen Text beschreiben.
+\end{liste}
+
+
+Die Effekte haben immer einen Indikator, der entweder diesen Effekt auf den folgenden Text anwendet oder wieder beendet.
+Mehrere Effekte können den gleichen Indikator haben, was das Schreiben des raw text erleichtert.
+In Forty-Five gibt es vier verschiedene mögliche Effekte: color, font, fontSize und action.
+Die ersten drei machen genau das, was der Name sagt, also Farbe, Schriftart und Schriftgröße ändern.
+Eine Aktion beinhaltet alles, was zur Position oder kontinuierlichen Veränderung des Textes beiträgt.
+In dem Beispiel oben sieht man, dass die Aktion ein "shake" ist, also ein Wackeln des Textes.
+Dieser ist in dem Beispiel bereits außerhalb definiert und beinhaltet die Ausdehnung und Geschwindigkeit des Rüttelns.

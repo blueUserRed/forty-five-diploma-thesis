@@ -18,7 +18,7 @@ Sollte jemals eine Variable den Wert Nothing annehmen, was einen logischen Wider
 dass dieser Code niemals erreicht werden kann.\cite{kspeCFG,kspecNothing}
 
 %! language = kotlin
-\begin{minted}{kotlin}
+\begin{codeBlock}{kotlin}{Demo: Funktion mit Rückgabewert Nothing}
 fun getNothing(): Nothing {
     ...
 }
@@ -30,12 +30,11 @@ fun test() {
     // für diesen Code gibt der Compiler eine Warning aus, da er niemals erreicht werden kann
     println("Hello World")
 }
-\end{minted}
-\codeblockCaption{
+\end{codeBlock}
+
 Dadurch das die Funktion \inlineKotlin{getNothing()} den Rückgabewert Nothing hat, der niemals existieren kann,
 weiß der Compiler, dass diese Funktion niemals auf normale Art und Weise returnen kann und in einer Exception
 resultieren muss.
-}
 
 Um den Nothing-Typen tatsächlich nützlich zu machen, sind in Kotlin Statements, die einen Control-Flow Transfer
 verursachen eigentlich Expressions mit dem Rückgabewert Nothing.
@@ -45,7 +44,7 @@ Code niemals ausgeführt wird.
 Damit können diese Expressions den Wert Nothing haben.\cite{kspeCFG}
 
 %! language = kotlin
-\begin{minted}{kotlin}
+\begin{codeBlock}{kotlin}{Beispiel: Verwendung des Nothing-Typen in der Praxis}
 operator fun Int?.plus(other: Int?): Int? {
     // return hat den Wert Nothing, was ein Subtype von Int ist,
     // daher ist die Verwendung nach dem elvis operator erlaubt
@@ -53,23 +52,26 @@ operator fun Int?.plus(other: Int?): Int? {
     val second = other ?: return null
     return first + second
 }
-\end{minted}
-\codeblockCaption{Praktisches Beispiel für die Verwendung des Nothing-Typen}
+\end{codeBlock}
 
 Dadurch das \inlineKotlin{return} in Kotlin eine Expression ist, ist auch der folgende Code gültiges Kotlin:
 
 %! language = kotlin
-\begin{minted}{kotlin}
+\begin{codeBlock}{kotlin}{Demo: Verwendung von \inlineKotlin{return} als Expression}
 fun test() {
     println("Hello")
+    // Nach return darf eine Expression folgen, und da return selbst eine Expression ist, kann diese unendlich verkettet
+    // werden
+    // Der TypeChecker erlaubt diesen Code, da jede Funktion ohne expliziten return-Typ implizit Unit zurückgibt,
+    // und Nothing ein Subtyp von Unit ist
     return return return return return
 }
-\end{minted}
+\end{codeBlock}
 
 Funktionen, die den Rückgabewert Nothing haben, müssen immer eine Exception werfen.
 
 %! language = kotlin
-\begin{minted}{kotlin}
+\begin{codeBlock}{kotlin}{Beispiel: Praxisnaher Einsatz einer Funktion mit Rückgabewert Nothing}
 fun crashProgram(cause: String): Nothing {
     MyLogger.log("Program crashed because of: $cause")
     throw RuntimeException(cause)
@@ -78,15 +80,15 @@ fun crashProgram(cause: String): Nothing {
 fun doSomething(input: String?) {
     otherFunction(input ?: crashProgram("input must not be null"))
 }
-\end{minted}
+\end{codeBlock}
 
 Ein Beispiel für eine Funktion aus der Kotlin Standard-Bibliothek die Nothing zurückgibt, ist die
 \inlineKotlin{TODO()} Funktion.
 
 %! language = kotlin
-\begin{minted}{kotlin}
+\begin{codeBlock}{kotlin}{Demo: Verwendung der \inlineKotlin{TODO()} Funktion}
 fun someFunction(): Int = TODO("not yet implemented")
-\end{minted}
+\end{codeBlock}
 
 Ein weiterer Anwendungsfall von Nothing ist als generischer Parameter, um \zB eine leere Liste zu signalisieren.
 Eine \inlineKotlin{List<Nothing>} muss immer leer sein, da keine Instanz von Nothing existieren kann.

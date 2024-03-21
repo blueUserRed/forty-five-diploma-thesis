@@ -1,19 +1,265 @@
 
 \subsection{OpenGL}\label{subsec:opengl}
 
-\renewcommand{\kapitelautor}{Autor: Irgendwer} % todo: replace
+\renewcommand{\kapitelautor}{Autor: Marvin Kurka}
 
 \subsubsection{Renderpipeline}
 
-%
-% text goes here
-%
+OpenGL definiert eine Abfolge an Schritten, aus denen der Rendering-Prozess besteht.
+Diese Abfolge wird als die OpenGL Renderpipeline bezeichnet.
+Die OpenGL Renderpipeline ist programmierbar: Das heist es können Shaderprogramme in GLSL (der OpenGL Shading Language)
+geschrieben werden, die beschreiben, wie sich bestimme Schritte der Pipeline verhalten.
+Der Schritt im Rendering-Vorgang ist der Vertex Shader, der für jeden Vertex, den das Program spezifiziert hat,
+ausgeführt wird.
+Der Vertex Shader kann dann den jeweiligen Vertex verändern.
+Das erlaubt die Implementation von Transformationen, wie Translation, Skalierung oder Rotation.
+Weiters, wenn in einer 3D-Umgebung gearbeitet wird, findet hier die Projektion in den Screen-Space statt.
+Optional können Tessellation und Geometry Shader definiert werden, welche OpenGL Primitives in kleinere Primitives
+unterteilen oder zusätzliche Geometrie (= zusätzliche Vertexe) generieren.
+Danach durchlaufen die Vertexe den Primitive Assembly Schritt, in dem aus den Vertexen Primitives wie Dreiecke,
+Rechtecke oder Linien gebaut werden.
+Diese Primitives werden anschließend gerastert, was heißt, dass für jeden Pixel, den das Primitive überlappt, ein
+Fragment generiert wird.
+Welche Farbe für jedes Fragment dann tatsächlich gerendert wird, wird vom Fragment Shader entschieden, welcher für jedes
+Fragment ausgeführt wird.
+Der Fragment Shader ist theoretisch optional, wird er jedoch weggelassen, sind die ausgegebenen Farben nicht definiert.\cite{openglRenderPipeline}
 
-\subsubsection{Shaders}
+\subsubsection{Shader}
 
-%
-% text goes here
-%
+Shader erlauben es die OpenGL Renderpipeline zu skripten und werden in der OpenGL Shading Language, kurz GLSL
+geschrieben.
+Sowohl der Vertex Shader, als auch der Tessellation, Geometry und Fragment Shader sind Beispiele für den Einsatz von
+Shadern in der oben beschriebenen Renderpipeline.
+Eine Ausnahme stellen Compute Shader dar.
+Diese sind nicht Teil der Renderpipeline und werden verwendet, um beliebige Operationen auf der GPU durchzuführen.
+Häufig werden diese bei Aufgaben eingesetzt, die sich besonders gut parallelisieren, wie das Trainieren von KIs oder
+das Berechnen von Hashes \zB beim Mining von Kryptowährung.
+Da in \FF nur Vertex und Fragment Shader eingesetzt wurden, werden auch nur diese nun näher erläutert.\cite{openglRenderPipeline}
+
+\subsubsection{Der Vertex Shader}
+
+Der Vertex Shader wird für jeden Vertex eines Meshes ausgeführt, wobei OpenGL Rückgabewerte cashed und so die mehrfache
+Ausführung eines Vertex Shaders für gleiche Vertexe verhindern kann.
+Der Vertex Shader transformiert den Vertex, üblicherweise mittels einer Projektionsmatrize, die vom Programm übergeben
+wird.
+Unten ist die der Standard Vertex Shader von LibGdx zu sehen.
+
+\begin{codeBlock}{glsl}{Standard Vertex Shader von LibGdx}
+attribute vec4 a_position;
+attribute vec4 a_color;
+attribute vec2 a_texCoord0;
+uniform mat4 u_projTrans;
+varying vec4 v_color;
+varying vec2 v_texCoords;
+
+void main() {
+    v_color = a_color;
+    v_color.a = v_color.a * (255.0/254.0);
+    v_texCoords = a_texCoord0;
+    gl_Position = u_projTrans * a_position;
+}
+\end{codeBlock}
+
+Die mit \inlineGlsl{attribute} markierten Variablen sind Werte, die vom Programm mitgegeben werden und für jede
+Vertex Shader Instanz verschieden sind.
+Das inkludiert \zB die Koordinaten des Vertex.
+Mit \inlineGlsl{uniform} markierte Variablen werden ebenfalls vom Programm mitgegeben, sind aber für alle Shader Instanzen,
+sowohl Vertex als auch Fragment Shader, gleich.
+Mit \inlineGlsl{varying} markierte Variablen werden vom Vertex Shader berechnet und an den Fragment Shader weitergegeben.
+
+Neben der vorher angesprochenen Transformation setzt der Vertex Shader auch einige Werte, die später vom Fragment
+Shader verwendet werden können.
+Dies inkludiert die Textur-Koordinate, die angibt, wo in der Textur der Fragment Shader samplen soll, und die Vertex
+Farbe, die es erlaubt, die Farbe der Textur anzupassen.
+
+Nun ist es aber so, das die Zahl der Fragment Shader Instanzen sich stark von der Zahl der Vertex Shader Instanzen
+unterscheiden kann, da der Fragment Shader für jeden Pixel, den ein Primitive abdeckt, ausgeführt wird.
+Deswegen stellt sich die Frage, wie die Ausgabewerte des Vertex Shader auf die Fragment Shader verteilt werden.
+Wird im Shader nichts anderes spezifiziert, werden alle mit \inlineGlsl{varying} markierten Variablen zwischen den
+Vertexen, aus denen das Primitive besteht, linear interpoliert.\cite{openglVertexShader, openglTypeQualifiers}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{triangle_rendering.png}
+    \caption{Beispiel für die Interpolation der varyings}
+\end{figure}
+
+Oben ist ein Beispiel für diese Interpolation zu sehen.
+Jeder Vertex des Dreiecks definiert eine Farbe, die über eine \inlineGlsl{varying} Variable an den Fragment Shader
+weitergegeben wird.
+Dieser rendert einfach die Farbe die er erhalten hat, ohne sie zu ändern.
+Die Farben der Vertexe sind (im Uhrzeigersinn, oben links beginnend): grün, rot, blau.
+Wie in der Grafik zu sehen ist, werden die Farben zwischen den Vertexen interpoliert, wodurch Pixel, die nicht genau
+an einem Vertex liegen, eine Mischfarbe haben.
+
+\subsubsection{Der Fragment Shader}
+
+Der Fragment Shader wird für jeden Pixel, den ein Primitiv überlappt ausgeführt und bestimmt, welche Farbe final
+gerendert wird.
+Meistens passiert das, indem der Fragment Shader eine Textur an der durch den Vertex Shader bestimmten Textur
+Koordinate sampled.
+Unten ist der Standard Fragment Shader von LibGdx zu sehen.
+
+\begin{codeBlock}{glsl}{Standard Fragment Shader von LibGdx (gekürzt)}
+varying vec4 v_color;
+varying vec2 v_texCoords;
+uniform sampler2D u_texture;
+
+void main() {
+    gl_FragColor = v_color * texture2D(u_texture, v_texCoords);
+}
+\end{codeBlock}
+
+Zusätzlich wird der Wert aus der Textur mit der im Vertex Shader gesetzten Vertex Farbe multipliziert.\cite{openglFragmentShader}
+
+\subsection{Anwendungen von Shadern}
+
+In \FF wurden verschiedene Mechanismen für die Umsetzung von Animationen verwendet.
+Einige wurden Frame-by-Frame animiert, bei anderen werden Attribute von Widgets über Zeit verändert.
+Shader allerdings haben sich als ein extrem mächtiges Werkzeug zu Erstellung von Animationen herausgestellt, das es
+ermöglicht komplexe grafische Effekte umzusetzen, die auch noch live auf das Spiel reagieren können.
+
+\subsubsection{Rendering von Postprocessing Effekten}\label{subsubsec:postprocessing-effects}
+
+Bei vielen Effekten, die mit Shadern erzielt werden, handelt es sich um Postprocessing-Effekte.
+Das heißt, dass zuerst das gesamte Spiel normal gerendert wird, und das Resultat dann mittels eines Shaders
+manipuliert wird.
+Um das möglich zu machen, werden Framebuffer, auch Framebufferobject oder FBO genannt, eingesetzt.
+Statt direkt auf den Bildschirm zu rendern, kann stattdessen zu einem Framebuffer gerendert werden, der dann das
+Resultat speichert.\cite{openGlFbo}
+
+Wenn also ein Postprocessing Effekt aktiv ist, wird das Spiel zuerst zu einem Framebuffer gerendert, und dieser dann
+mit dem Postprocessing Shader zu dem Bildschirm.
+Falls mehrere Postprocessing Effekte aktiv sind, ist ein Framebuffer nicht mehr ausreichend, da einen Framebuffer
+zu sich selber zu rendern undefiniertes Verhalten auslöst.\cite{openGlFbo}
+Stattdessen wird eine Technik names Ping-Pong-Rendering verwendet.\cite{pingPongRendering}
+Bei dieser werden zwei Framebuffer verwendet, zwischen denen hin und her gerendert wird, wobei bei jedem Render-Pass ein
+Postprocessing Effekt angewendet wird.
+Bei dem letzten Effekt wird, statt zu einem Framebuffer, zu dem Bildschirm gerendert.
+
+\subsubsection{Der Screenshake Postprocessor}
+
+Der Screenshake-Postprocessor ist der einzige, der im Vertex Shader und nicht im Fragment Shader implementiert ist.
+Er wendet eine Sinus-Funktion an, um jeden Vertex zu verschieben, was ein verzerrt aussehendes Bild bewirkt.
+Schnelles Ein- und Ausschalten dieses Shaders bewirkt den Screenshake Effekt beim Schießen des Revolvers.
+
+\subsubsection{Die Destroy-Animation}
+
+Wenn eine Karte zerstört wird, wird eine Animation abgespielt, bei der die Karte ``zerfressen`` wird.
+Dieser Effekt ist kein Postprocessing-Effekt, da er nur eine Karte und nicht den ganzen Bildschirm betrifft.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.6\textwidth]{card_destroy.png}
+    \caption{Bild der Animation, wenn eine Karte zerstört wird}
+\end{figure}
+
+Um diesen Effekt zu erzeugen, wird dem Shader nicht nur die Kartentextur, sondern auch eine Noise-Textur mitgegeben.
+Die Verwendung einer Noise-Textur statt im Shader generierten Noise hat den Vorteil, das sie deutlich performanter ist,
+da die Noise-Werte im schon im Vorhinein berechnet sind.
+Sonst müssten diese beim Rendern, im Shader, für jeden Pixel, berechnet werden.
+Vorgefertigte Texturen haben allerdings den Nachteil, dass die Auflösung limitiert ist, und das die Noise-Parameter
+zu Runtime nicht geändert werden können.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.3\textwidth]{perlin.png}
+    \caption{Die verwendete Noise-Textur}
+\end{figure}
+
+Der Shader definiert zwei Thresholds, die mit der Noise-Textur abgeglichen werden.
+Ab dem ersten Threshold wird statt der Kartentextur schwarz gerendert, ab dem zweiten transparent.
+Ein stetiges Erhöhen der Thresholds erzeugt den Destroy-Effekt.
+
+\subsubsection{Die Orb-Animation}
+
+Die Orb-Animationen werden im Spiel verwendet, um zu signalisieren, wenn sich abstrakte Konzepte, die keine wirkliche
+In-Game-Repräsentation hat, von einem Ort zu einem anderen bewegen.
+Ein Beispiel dafür sind Reserves im Kampf oder das Cash am Ende des Kampfes.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{orb_animation.png}
+    \caption{Die Orb-Animation, wenn Reserves gezahlt wurden}
+\end{figure}
+
+Bei der Orb-Animation wird eine beliebige Texture von einem Ort zu einem anderen animiert, wobei sie dabei einen Schweif
+hinterlässt.
+
+Die Orb-Animation verwendet zwei Framebuffer, mit einer Ping-Pong-Strategie, wie im
+Kapitel~\ref{subsubsec:postprocessing-effects} beschrieben.
+Zusätzlich werden diese Framebuffer verwendet, um den Zustand des Schweifs über Frames hinweg zu speichern.
+Das Rendern dieser Animation findet in zwei Stufen statt.
+Zuerst wird der Framebuffer der Orb-Animation geupdated, danach wird die Animation auf den Bildschirm gerendert.
+Der erste Schritt läuft folgendermaßen ab:
+
+Zwei Framebuffer, hier A und B genannt, werden erschaffen, falls sie noch nicht existieren.
+Beide Framebuffer haben nur die halbe Auflösung des Bildschirms, da das Renderzeit spart und durch den Blur-Effekt, der
+im zweiten Schritt angewandt wird, nicht auffällt.
+Zu Beginn enthält B den aktuellen Zustand des Schweifs.
+Framebuffer B wird zu A gerendert, wobei ein spezieller Shader verwendet wird, der den Alpha-Kanal um einen festgelegten
+Wert reduziert.
+Bei dem Rendern des Framebuffers muss darauf geachtet werden, dass die OpenGL Blending Funktion richtig gesetzt ist,
+um zu verhindern, dass der Inhalt der beiden Buffer anhand des Alpha-Werts geblendet wird.
+Stattdessen soll der Farb-Wert des Shader-Outputs ohne Blending einfach übernommen werden.
+Der Wert, um den der Alpha Kanal reduziert wird, wird mit der aktuellen Frametime multipliziert, um eventuelle
+Lagspikes auszugleichen.
+Diese Alpha-Reduktion wird durchgeführt, um dafür zu sorgen, dass der Schweif langsam ausbleicht.
+
+Danach wird die Textur der Animation an der aktuellen Stelle zu Framebuffer A gerendert, um den Schweif um die passierte
+Bewegung zu erweitern.
+Optional kann die Textur auch mehrmals zwischen der letzten und der aktuellen Position gezeichnet werden, was vor allem
+bei schnellen Animationen helfen kann, sichtbare Löcher im Schweif zu vermeiden.
+Zum Schluss des ersten Schrittes werden die Framebuffer getauscht, was heißt, dass A zu B und B zu A wird.
+
+Das Resultat dieses Schrittes ist der Framebuffer B, der in Abständen die Textur der Animation auf transparentem
+Hintergrund enthält, wobei ältere Pixel einen niedrigeren Alpha-Wert haben.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{orb_animation_fbo_B_low_segments.png}
+    \caption{Inhalt des Framebuffer B, auf den Bildschirm gerendert, wobei eine Textur pro Frame gezeichnet wird }
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=1.0\textwidth]{orb_animation_fbo_B_high_segments.png}
+    \caption{Inhalt des Framebuffer B, auf den Bildschirm gerendert, wobei 20 Texturen pro Frame gezeichnet werden }
+\end{figure}
+
+Im zweitem Schritt wird die Animation tatsächlich zum Bildschirm gerendert.
+Dabei wird zuerst der Schweif aus Framebuffer B gerendert, und dann die Textur der Animation an der aktuellen Position.
+Zweiteres ist trivial, der erste Teil aber nicht.
+Bevor der Schweif gerendert wird, muss zuerst ein Blur-Effekt angewendet werden, damit die Texturen die zu Framebuffer
+B gerendert wurden miteinander und mit dem Hintergrund verschwimmen.
+
+Für die Orb-Animation wird ein 2-Pass Gaussian Blur verwendet, da dieser oft bessere Ergebnisse liefert als \zB ein
+Box-Blur.\cite{gaussianBlur}
+Allerdings ist ein Gaussian-Bur auch teurer zu berechnen, was aber unter anderem durch die halbierte Auflösung keine
+Probleme macht.
+Ein Blur-Effekt funktioniert, in dem für jeden Pixel die Textur nicht nur an der Stelle des Pixels gesampled wird,
+sondern auch an umliegenden Stellen.
+Die finale Farbe des Pixels ist dann der Schnitt aus all diesen Samples.
+Was den Gaussian Blur von \ua einem Box-Blur unterscheidet ist, das die Samples anhand einer gaußschen Verteilung
+gewichtet werden, was dazu führt, dass Pixel, die näher an der Mitte liegen, einen größeren Einfluss auf das Ergebnis
+haben.\cite{gaussianBlur}
+Diese Gewichte sind in einem Look-up-Table definiert, müssen also nicht jedes Mal berechnet werden.
+
+Eine besondere Herausforderung bei dem Gaussian-Blur Shader war der Umgang mit Transparenzen.
+Ein transparenter Pixel hat, auch wenn er nicht dargestellt wird, eine Farbe (Im Falle der Orb-Animation ist das Schwarz).
+Wenn nun ein Pixel am Rand der Textur ist, wird auch im transparenten Bereich gesampled,
+wo der Shader Schwarz zurückbekommt.
+Das führt zu einer deutlichen Verdunkelung der Pixel am Rand des Schweifs.
+Um dieses Problem zu lösen, wird das gaußsche Gewicht zuerst mit dem Alpha-Wert multipliziert, sodass transparente Pixel
+keine/weniger Einfluss auf das Resultat haben.
+Die tatsächlich verwendeten Gewichte werden gemeinsam mit den Samples aufsummiert und dann dividiert, um den Schnitt zu
+erhalten.
+
+Die Orb-Animation verwendet eine 2-Pass Version des Gaussian Blur, bei der zuerst horizontal, dann vertikal geblurred
+wird.
+Das heist aber auch, dass für den ersten Pass wieder zu einem Framebuffer gerendert werden muss.
+Hier kann aber einfach Framebuffer A verwendet werden, da dieser zu diesem Zeitpunkt nicht in Verwendung ist.
+Zum Schluss des zweiten Schritts wird die Textur der Animation ohne Blur direkt auf den Bildschirm gezeichnet.
 
 % resets author
 \renewcommand{\kapitelautor}{}

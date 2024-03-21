@@ -1,11 +1,182 @@
 
 \section{Road Generation}\label{sec:road-generation}
 
-\renewcommand{\kapitelautor}{Autor: Irgendwer} % todo: replace
+\renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
 
-%
-% text goes here
-%
+Die Generierung von Straßen ist ein sehr wichtiger Punkt in Forty-Five, da sie bei einem neuen Durchlauf für Abwechslung für den Spieler sorgt.
+Es gibt bei der Erstellung von roads bestimmte Parameter, damit trotzdem noch bestimmte Randbedingungen erfüllt werden, wie beispielsweise, dass immer die gleichen Texturen als Dekorationen verwendet werden.
+Im Folgenden wird nun die Entstehung einer street und die dabei gesetzten Parameter näher gebracht.
 
-% resets author
-\renewcommand{\kapitelautor}{}
+\subsection{Node Generation}\label{subsec:node-generation}
+Um eine Straße zu generieren, braucht man als erstes nodes, also Punkte in einem Koordinatensystem.
+Diese werden wiederum anhand von sogenannten \inlineCode{MapNodeLine} erstellt und anschließend miteinander verbunden.
+
+\subsubsection{Line Generation}\label{subsubsec:line-generation}
+Eine Linie nimmt mehrere Parameter: die Anzahl der nodes, die Abstände dazwischen, und die maximale Breite, welche eine Linie zur Verfügung hat.
+Linien werden immer in Richtung rechts gebaut, und erst am Ende wird die gesamte road rotiert.
+Die erste Linie, die generiert wird, funktioniert etwas anders als die anderen, da sie weniger Einschränkungen hat.
+Dies geschieht folgendermaßen:
+
+\begin{enumerate}
+    \item Die Hauptlinie wird als erstes erstellt und beginnt mit dem Punkt~(0|0).
+    \item Es werden \inlineCode{nbrOfPoints} weitere Punkte generiert, wobei folgende Kriterien gelten, die alle als Einschränkungen der map angegeben werden:
+    \begin{liste}
+        \item Er hat einen Mindest- und Maximalabstand in sowohl x als auch y Richtung vom vorherigen Punkt.
+        \item Er hat einen maximalen Winkel vom vorherigen Punkt.
+        \item Er hat einen maximalen Breitenabstand zu dem ersten Punkt auf der Linie in y-Richtung.
+    \end{liste}
+    \item Anschließend wird eine zufällige Richtung ausgewählt, in der die nächste Linie generiert wird, entweder darüber oder darunter.
+    Diese ist immer um genau einen Punkt kürzer als die davor.
+    Das stellt sicher, dass keine Linie länger sein kann als die Hauptlinie und dass es im Normalfall auch nicht zu stark am Ende abschneidet.
+    \item Der neue Startpunkt ist die Hälfte eines normalen Punktes in x-Richtung und dann um die maximal erlaubte Breite in y-Richtung nach oben oder unten, je nachdem was davor entschieden wurde.
+    \item Anschließend werden wieder gleich die nodes berechnet wie bei der Hauptlinie, nur dass ein zusätzlicher Punkt dazukommt:
+    Der Abstand zu der davorliegenden Linie darf in einem Bereich um den zu planierenden Punkt nicht zu weit entfernt sein.
+    Dies vermeidet, dass die Abstände zwischen zwei Linien nicht zu groß sind und dadurch auseinandergehen.
+    Dies wird an der darauffolgenden Grafik~\ref{fig:point-generation} deutlich gezeigt.
+    \item Dann werden die Punkte drei bis fünf so oft wiederholt, wie \inlineCode{maxLines} angibt.
+\end{enumerate}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{node_generation_example.png}
+    \caption{Beispiel: Punktegenerierung mit fehlerhafter Platzierung}\label{fig:point-generation}
+\end{figure}
+Die Grafik zeigt, wie bei der Generierung des Punktes am Ende der roten Linie überprüft wird, ob er platziert werden kann.
+Dabei überschreitet er allerdings den maximalen Abstand zu den darunter liegenden Linien, welcher durch die strichlierten Linien dargestellt wird.
+Dadurch wird der Punkt gelöscht und ein Neuer wird generiert.
+Falls dies dreimal hintereinander nicht funktioniert, wird die x-Koordinate des letzten Punktes übernommen und für die y-Koordinate wird ein zufälliger Wert im erlaubten Bereich genommen.
+
+\subsubsection{Node Verbindungen}\label{subsubsec:node-verbindungen}
+Nachdem nun eine Sammlung an nodes vorhanden ist, werden diese miteinander verbunden.
+Dabei bekommt jedes node einen freien Platz für jede Richtung, damit nicht zu viele nodes in die gleiche Richtung miteinander verbunden werden.
+Außerdem wird dadurch die maximale Anzahl an Verbindungen pro node auf vier limitiert.
+Dies ist wichtig, da man mit jeder Pfeiltaste in nur eine Richtung gehen kann und trotzdem jedes Feld erreichbar sein soll.
+Anschließend wird die Hauptlinie komplett verbunden, wodurch ein Weg zum Ende der Straße sichergestellt wird.
+Daraufhin wird bei jedem dieser nodes eine Zufallszahl generiert und falls diese einen gewissen Wert überschreitet, wird eine neue Verbindung in eine zufällige Richtung gestartet.
+Diese Verbindung geht nach folgenden Schritten:
+\begin{enumerate}
+    \item Es wird die Anzahl der gewünschten Verbindungen zu neuen nodes mit folgender Formel berechnet: \[ \sqrt{\inlineCode{rndValue} * \inlineCode{maxValue} * 3 + 0.8}\]
+        Dabei ist \inlineCode{rndValue} eine zufällige Zahl, welche mittels dem Seed generiert wird und \inlineCode{maxValue} die Anzahl der offenen Verbindungsfelder.
+    \item Anschließend werden nodes gesucht, welche Verbindungen ermöglichen.
+    Diese müssen folgende Kriterien erfüllen:
+    \begin{liste}
+        \item Es kann entweder das nächste auf der aktuellen Linie, oder eines der nächsten drei Punkte auf der darüber- oder darunterliegenden Linie sein.
+        \item Es darf keine Verbindung in die Richtung des Ausgangspunktes geben.
+        Dabei gibt es allerdings immer zwei mögliche Verbindungen, da es \zB wenn es eine Verbindung circa im 45 Grad Winkel versucht wird aufzubauen, sowohl der linke als auch untere Slot infrage kommen.
+    \end{liste}
+    \item Anschließend werden, falls vorhanden, zufällige von den möglichen nodes ausgewählt und eine Verbindung dorthin erstellt.
+    \item Dieser Prozess wird so oft wiederholt, bis entweder die gewünschte Anzahl der Verbindungen null ist, oder die Hauptlinie wieder erreicht.
+    Das Beenden beim Erreichen der Hauptlinie sorgt dafür, dass der Verlauf der road sich langsam öffnet und wieder schließt.
+    Würde man dies nicht machen, gäbe es einerseits zu viele Verbindungen, und andererseits sind am Ende zu viele "lose" übrig, die weg vom eigentlichen Ziel zeigen.
+\end{enumerate}
+
+\subsubsection{Verbindungen löschen}\label{subsubsec:verbindungen-loeschen}
+Da die Linien nach dem Verbinden stark durcheinander sein könnten, werden sie, bevor sie fertig sind, noch überprüft.
+Wenn beispielsweise zwei Linien einander überschneiden, wird versucht, einen neuen Punkt dazwischen zu platzieren, damit es zu keinen Überschneidungen kommt.
+Weiteres wird eine Linie gelöscht, wenn mindestens einer der folgenden Punkte erfüllt ist:
+\begin{liste}
+    \item Zwei Linien überschneiden einander.
+    Dabei muss der Überschneidungspunkt sehr nahe an einem der Punkte sein.
+    Dies wird mit dem Parameter \inlineCode{pathTotalWidth} festgelegt.
+    \item Die Verlängerung einer Linie geht in eine andere Linie hinein.
+    Dies wird bei der darauffolgenden Abbildung~\ref{fig:line-deletion} weiter erklärt.
+    \item Zwei nodes sind zu nah zueinander.
+    Dabei wird nicht nur eine Linie, sondern ein ganzes node gelöscht.
+\end{liste}
+
+Im Folgenden wird gezeigt, wie die verlängerte Linie von zwei nodes mit einer gewöhnlichen Verbindung überschneidet und dadurch auch der Löschprozess eingeleitet wird.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.7\textwidth]{line_deletion_example.png}
+    \caption{Beispiel: Punktegenerierung mit fehlerhafter Platzierung}\label{fig:line-deletion}
+\end{figure}
+
+Beim Löschen von Linien geht das Programm folgendermaßen vor:
+\begin{enumerate}
+    \item Wenn eine der beiden Linien als Eckpunkt mindestens ein node auf der Hauptlinie hat, wird die andere gelöscht.
+    \item Wenn eine Linie ein anderes node zu nahe überschneidet, wird diese gelöscht, da es besser ist, nur eine Linie anstatt ein ganzes node zu löschen.
+    \item Ansonsten wird zufällig entschieden, welche Linie entfernt wird.
+\end{enumerate}
+
+Wenn ein node gelöscht werden muss, wird wieder überprüft, ob eines der beiden auf der Hauptlinie ist und sollte dies der Fall sein, wird das andere gelöscht.
+Durch die Art und Weise, wie die Hauptlinie generiert wird, kann es niemals sein, dass sich zwei Hauptlinien überschneiden oder dass zwei nodes einander zu nahe sind.
+Falls beim Überprüfen, ob alle Linien korrekt und erlaubt sind, ein Fehler auftritt und etwas geändert werden muss, wird der Prozess nochmals wiederholt.
+Das liegt daran, dass beispielsweise ein hinzugefügtes node oder dessen Linien mit anderen wieder überschneiden könnten.
+
+\subsubsection{Areas}\label{subsubsec:areas}
+Areas sind statisch definiert und jede road hat immer eine am Anfang und Ende.
+Es gibt allerdings auch noch die Möglichkeit, innerhalb einer Straße weitere areas zu haben.
+Diese werden an einem der verbundenen Randpunkte zufällig mit einer verstärkten Distanz hinzugefügt, damit diese deutlich erkennbar sind.
+Es erlaubt bei Erweiterungen der Storyline in der Zukunft, dass beispielsweise ein Versteck auf einer Straße zu finden ist.
+
+\subsection{Events}\label{subsec:events}
+Nachdem alle nodes verbunden sind, brauchen diese noch events, die der Spieler ausführen kann.
+Ein node kann immer nur ein Ereignis beinhalten.
+Allerdings ist es möglich, dass auf dieses direkt ein Folgeevent auftritt, wie \zB nach einem Kampf kann man manchmal eine neue Karte bekommen.
+In Onj kann jedes event einer von drei Arten angehören:
+
+\begin{enumerate}
+    \item Fixed Events: Sind events, die immer genau einmal vorkommen.
+    Diese haben noch die Zusatzoption, dass sie, falls möglich, an eine Sackgasse kommen, also an ein node mit nur einer Verbindung.
+    Man kann auch mehrmals ein event vom selben Typen hinzufügen, falls man es öfter haben möchte.
+    \item Optional Events: Diese kommen dran, wenn noch nodes frei sind nach den fixed events.
+    Diese haben auch eine Gewichtung, damit manche events wie Kämpfe öfter vorkommen als \zB ein Heilevent.
+    \item Final Event: Das finale event ist immer das letzte Element auf einer road und ist dadurch Pflicht für den Spieler.
+    Dieses event ist allerdings optional und wird meistens für einen Endboss verwendet.
+    Es ist unabhängig von dem wirklich letzten Element, mit dem man die road wieder verlässt.
+\end{enumerate}
+
+Es gibt verschiedenste events in Forty-Five wie das Wechseln zwischen road und area, der shop, diverse Heilmöglichkeiten sowie der kampf.
+Die letzten beiden werden im Folgenden erklärt.
+
+\subsubsection{Shop}\label{subsubsec:shop}
+Im Shop kann der Spieler mit dem gewonnenen Geld Karten kaufen.
+Die Auswahl an Karten wird anhand eines Seeds festgelegt.
+Dieser wird beim ersten Öffnen des Shops generiert.
+Dadurch, dass alles von einem Seed abhängig ist, werden nicht die einzelnen Karten gespeichert, sondern nur der Index der Gekauften.
+Beim Kauf kann der Spieler auswählen, ob er die Karte in sein aktuell ausgewähltes Deck oder in die Kartenablage geben möchte.
+Diese Option steht nur zur Verfügung, falls er auch tatsächlich genug Karten bereits im Deck hat.
+Weiterhin gibt es einen Verkäufer, der immer einen zufällig ausgewählten Spruch sagt.
+Beim Auswählen, welche Karten genommen werden, gibt es bestimmte Faktoren, die dies beeinflussen.
+Einerseits haben Karten einen Raritätsfaktor, der von eins (=häufig) bis drei (=selten) reicht.
+Andererseits können zum Beispiel das biome, die Straße selbst und auch der Verkäufer die Auswahl der Karten beeinflussen und deren Wahrscheinlichkeit verändern.
+Zusätzlich dazu können Karten noch aus dem Pool für diese Auswahl entfernt werden oder der Preis von Karten erhöht oder reduziert werden.
+Im Shop kann keine Karte zweimal vorkommen und wenn eine Karte gekauft ist, wird diese auch nicht ersetzt durch eine Neue.
+
+\subsubsection{Heal Events}\label{subsubsec:heal-event}
+In Forty-Five gibt es zwei verschiedene Arten von Heilungsmöglichkeiten.
+Die eine ist ein simpler screen, bei dem man nur auf ``accept'' drücken kann und anschließend die angezeigte Anzahl an Leben dazu bekommt.
+Bei der anderen Option muss sich der Spieler entscheiden, ob er sich entweder heilen will oder ob er seine maximale Anzahl an Leben erhöhen möchte.
+Dies könnte ihm in der Zukunft helfen, da am Anfang die Gegner weniger Schaden machen und man eventuell die Leben später braucht.
+Das Erhöhen der maximalen Leben heilt einen zwar auch um die gleiche Anzahl der gewonnenen Leben, ist allerdings geringer als wenn man nur diese erhöht.
+
+\subsubsection{Kampf}\label{subsubsec:kampf}
+Der Kampf funktioniert anders als die anderen events.
+Es wird die Schwierigkeit für den Kampf mitgegeben und der \inlineCode{GameDirector} regelt den Kampf selbst.
+Dieser bestimmt die Anzahl der Gegner als auch die Gegnertypen.
+Es gibt verschiedene Gegner, die jeweils bestimmte Gegnertypen haben können.
+Beispielsweise gibt es die Witch ``Witch\_lvl1'', die bestimmte Aktionen zu einer bestimmten Wahrscheinlichkeit ausführt.
+Diese Wahrscheinlichkeiten werden dem Gegner mitgegeben, während die möglichen Aktionen vom Gegnertyp bestimmt werden.
+
+\subsection{Dekorationen}\label{subsec:dekorationen}
+Da eine Karte ohne Dekorationen für einen Spieler uninteressant wäre, werden diese ebenfalls generiert.
+Bevor diese jedoch erstellt werden, werden alle nodes noch um \inlineCode{MapRestriction.rotation} (in Radianten angegeben) rotiert.
+Es gibt in Forty-Five verschiedenste Dekorationen wie einen Kaktus oder ein Schaf.
+Diese können entweder animiert oder ein statisches Bild sein.
+Es gibt drei Möglichkeiten, wie sie platziert werden können mittels sogenannten \inlineCode{DecorationDistributionFunction}:
+\begin{enumerate}
+    \item Zufällig: Die am häufigsten verwendete Methode ist das zufällige Platzieren.
+    Dabei werden in einem rechteckigen Bereich um alle verbundenen nodes Dekorationen erstellt.
+    \item Multi-Cluster: Beschreibt ein Verfahren, das ein Polygon-Noise-Verfahren benutzt, bei dem der rechteckige Bereich in Punkte unterteilt wird.
+    Davon bekommt jeder entweder ein ``ok'' oder ``nicht ok''.
+    Wenn anschließend ein Baum platziert wird, wird geschaut, welcher der nächste Punkt ist, und die Dekoration wird dann abhängig davon gelöscht oder hinzugefügt.
+    Dies eignet sich vor allem für \zB Wälder, da diese meistens durchgehend sind, aber nicht überall.
+    \item Single-Cluster: SingleCluster beschreibt eine Funktion, bei dem man Koordinaten angibt und um diese Koordinaten werden in einem ähnlichen Verfahren wie bei MultiCluster die Dekorationen platziert.
+\end{enumerate}
+
+Bei jedem dieser drei Verfahren gibt es zusätzlich zwei Einstellungsmöglichkeiten, die allgemein gültig sind.
+Einerseits kann man entscheiden, ob eine Dekorationsgruppe mit den Wegen zwischen den nodes auf Kollisionen überprüft werden soll oder nicht.
+Andererseits gibt es die Möglichkeit, dass eine bestimmte Sammlung an Dekorationen nicht mit anderen Dekorationen überlappen darf.
+Dies wird beispielsweise bei den Schafen verwendet, da diese nicht von Bäumen verdeckt sein sollen.
+Allgemein gilt für alle, dass sie keine nodes auf dem Weg überdecken dürfen.
+Weiteres gibt man bei jeder Funktion die Dichte an, was einfach nur beschreibt, wie oft im Vergleich zur gegebenen Fläche versucht wird, eine Dekoration zu platzieren.
