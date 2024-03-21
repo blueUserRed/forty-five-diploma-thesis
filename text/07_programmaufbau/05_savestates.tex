@@ -4,15 +4,16 @@
 \renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
 
 In Forty-Five gibt es drei verschiedene savefiles, die unterschiedliche Daten speichern und diverse Zwecke erfüllen.
-Diese sind die permanente und normale Speicherdatei, sowie die user preferences.
+Diese sind die permanente und normale Speicherdatei, sowie die user-preferences.
 Jedes dieser drei hat eine default-Version, die beim erstmaligen Starten des Spiels geladen und verwendet wird.
 Diese werden auch verwendet, falls ein Fehler mit einer aktuell benutzten Datei auftritt.
 Die Unterschiede werden im Folgenden näher erklärt.
 
 \subsection{Savefile}\label{subsec:savefile}
 
-Das normale savefile, das eigentlich nur als savefile betitelt wird, ist jenes, welches sich über einen einzelnen Run verändert.
-Das heißt, während man herumgeht und Karten sammelt, werden diese temporär in diese Datei geschrieben.
+Das normale savefile ist jenes, welches sich über einen einzelnen Run verändert.
+Das heißt, während man herumgeht und Karten sammelt, werden diese laufend in diese Datei geschrieben.
+Beim Tod wird diese auf die Daten der permanenten savefiles zurückgesetzt.
 Es beinhaltet beispielsweise:
 \begin{liste}
     \item Karten: Welche Karten der Spieler aktuell besitzt.
@@ -33,6 +34,6 @@ Die bereits gesehenen Areas werden auch in der Datei gespeichert.
 Zusätzlich dazu beinhaltet es noch Daten bezüglich des Tutorials, vor allem welche bereits durchgespielt worden sind.
 
 \subsection{User Preferences}\label{subsec:user-prefs}
-Die user preferences werden ähnlich wie die permanente Speicherdatei nur beim erstmaligen Start neu geladen, da man diese meistens nicht ändern will.
+Die Benutzereinstellungen werden ähnlich wie die permanente Speicherdatei nur beim erstmaligen Start neu geladen, da man diese von einem Run in den nächsten Run übernehmen will.
 Sie beinhalten alles, was man in den Einstellungen ändern kann, also die gewünschte Lautstärke für sowohl die Musik als auch die Soundeffekte, sowie auf welchem screen man nach dem Starten des Spiels landet.
 Zusätzlich beinhaltet es die Option, ob der screen bei bestimmten Aktionen wackeln darf oder nicht.
