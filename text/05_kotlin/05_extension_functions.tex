@@ -10,7 +10,7 @@ Sie werden definiert, indem man vor dem Funktionsnamen einen sogenannten Receive
 Bei dem Aufruf einer Extension Function wird der Receiver als Parameter mitgegeben, und ist dann in der Funktion als
 \inlineKotlin{this} verfügbar.
 Das heißt auch, dass Extension Function statisch, also zur compile time, resolved werden.
-Es finden also keine virtuellen Lookups statt.\cite{kdocExtensions}
+Es finden also keine virtuellen Lookups statt.\zit{kdocExtensions}
 
 %! language = kotlin
 \begin{codeBlock}{kotlin}{Beispiel: Praxisnaher Einsatz einer Extension Function}
@@ -25,7 +25,7 @@ fun test() {
 Wenn Receiver-Typen generische Parameter haben, kann die Extension Function entweder selbst einen generischen Parameter
 verwenden, oder auch einen konkreten Typen einsetzen.
 Das erlaubt es Funktionen zu definieren, die nur verfügbar sind, wenn bestimmte Typen für die generischen Parameter
-eingesetzt wurden, was mit normalen member Functions nicht möglich ist.\cite{kdocExtensions}
+eingesetzt wurden, was mit normalen member Functions nicht möglich ist.\zit{kdocExtensions}
 
 %! language = kotlin
 \begin{codeBlock}{kotlin}{Demo: Extension Function mit konkreten Typen als generischen Parameter im Receiver}
@@ -39,7 +39,7 @@ definiert sind.
 
 Nicht nur Funktionen können Receiver angeben, sondern auch Lambdas.
 Auch hier wird der Receiver-Typ mit einem Punkt vor dem Lambda-Typ geschrieben, und der Receiver ist als
-\inlineKotlin{this} im Lambda verwendbar.\cite{kdocLambdas}
+\inlineKotlin{this} im Lambda verwendbar.\zit{kdocLambdas}
 
 %! language = kotlin
 \begin{codeBlock}{kotlin}{Demo: Lambda mit Receiver}

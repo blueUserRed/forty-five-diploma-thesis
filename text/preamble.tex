@@ -27,7 +27,7 @@
 \makeindex
 
 %%? \usepackage{graphicx}
-\usepackage[numbers]{natbib}
+\usepackage{natbib}
 \PassOptionsToPackage{normalem}{ulem}
 
 \usepackage{ulem}
@@ -49,6 +49,13 @@
 \usepackage{todonotes} % Provides tooltip-like todo notes.
 \usepackage{color}
 \usepackage[binary-units]{siunitx}
+
+\usepackage{geometry}
+\geometry{
+    left = 2cm,
+    right = 2.5cm,
+    bindingoffset = 1.5cm,
+}
 
 %% Override default figure placement To be within the flow of the text rather
 %% than on it's own page.
@@ -86,7 +93,7 @@
 
 \usepackage{fontspec}
 \usepackage{scalefnt}
-%\setmainfont{Aptos} % todo: choose a proper main font
+\setmainfont{Cambria}
 %\newfontfamily\headingfont[]{Redwing-medium.otf}
 \newfontfamily\codefont{JetBrainsMono-Regular.ttf}[NFSSFamily=JetBrainsMonoFamily]
 %\setkomafont{chapter}{\headingfont\scalefont{1.5}}
