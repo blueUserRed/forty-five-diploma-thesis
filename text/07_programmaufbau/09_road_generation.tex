@@ -20,11 +20,11 @@ Dies geschieht folgendermaßen:
 \begin{enumerate}
     \item Die Hauptlinie wird als erstes erstellt und beginnt mit dem Punkt~(0|0).
     \item Es werden \inlineCode{nbrOfPoints} weitere Punkte generiert, wobei folgende Kriterien gelten, die alle als Einschränkungen der map angegeben werden:
-    \begin{itemize}
+    \begin{liste}
         \item Er hat einen Mindest- und Maximalabstand in sowohl x als auch y Richtung vom vorherigen Punkt.
         \item Er hat einen maximalen Winkel vom vorherigen Punkt.
         \item Er hat einen maximalen Breitenabstand zu dem ersten Punkt auf der Linie in y-Richtung.
-    \end{itemize}
+    \end{liste}
     \item Anschließend wird eine zufällige Richtung ausgewählt, in der die nächste Linie generiert wird, entweder darüber oder darunter.
     Diese ist immer um genau einen Punkt kürzer als die davor.
     Das stellt sicher, dass keine Linie länger sein kann als die Hauptlinie und dass es im Normalfall auch nicht zu stark am Ende abschneidet.
@@ -59,11 +59,11 @@ Diese Verbindung geht nach folgenden Schritten:
         Dabei ist \inlineCode{rndValue} eine zufällige Zahl, welche mittels dem Seed generiert wird und \inlineCode{maxValue} die Anzahl der offenen Verbindungsfelder.
     \item Anschließend werden nodes gesucht, welche Verbindungen ermöglichen.
     Diese müssen folgende Kriterien erfüllen:
-    \begin{itemize}
+    \begin{liste}
         \item Es kann entweder das nächste auf der aktuellen Linie, oder eines der nächsten drei Punkte auf der darüber- oder darunterliegenden Linie sein.
         \item Es darf keine Verbindung in die Richtung des Ausgangspunktes geben.
         Dabei gibt es allerdings immer zwei mögliche Verbindungen, da es \zB wenn es eine Verbindung circa im 45 Grad Winkel versucht wird aufzubauen, sowohl der linke als auch untere Slot infrage kommen.
-    \end{itemize}
+    \end{liste}
     \item Anschließend werden, falls vorhanden, zufällige von den möglichen nodes ausgewählt und eine Verbindung dorthin erstellt.
     \item Dieser Prozess wird so oft wiederholt, bis entweder die gewünschte Anzahl der Verbindungen null ist, oder die Hauptlinie wieder erreicht.
     Das Beenden beim Erreichen der Hauptlinie sorgt dafür, dass der Verlauf der road sich langsam öffnet und wieder schließt.
@@ -74,7 +74,7 @@ Diese Verbindung geht nach folgenden Schritten:
 Da die Linien nach dem Verbinden stark durcheinander sein könnten, werden sie, bevor sie fertig sind, noch überprüft.
 Wenn beispielsweise zwei Linien einander überschneiden, wird versucht, einen neuen Punkt dazwischen zu platzieren, damit es zu keinen Überschneidungen kommt.
 Weiteres wird eine Linie gelöscht, wenn mindestens einer der folgenden Punkte erfüllt ist:
-\begin{itemize}
+\begin{liste}
     \item Zwei Linien überschneiden einander.
     Dabei muss der Überschneidungspunkt sehr nahe an einem der Punkte sein.
     Dies wird mit dem Parameter \inlineCode{pathTotalWidth} festgelegt.
@@ -82,7 +82,7 @@ Weiteres wird eine Linie gelöscht, wenn mindestens einer der folgenden Punkte e
     Dies wird bei der darauffolgenden Abbildung~\ref{fig:line-deletion} weiter erklärt.
     \item Zwei nodes sind zu nah zueinander.
     Dabei wird nicht nur eine Linie, sondern ein ganzes node gelöscht.
-\end{itemize}
+\end{liste}
 
 Im Folgenden wird gezeigt, wie die verlängerte Linie von zwei nodes mit einer gewöhnlichen Verbindung überschneidet und dadurch auch der Löschprozess eingeleitet wird.
 \begin{figure}[H]
@@ -126,7 +126,7 @@ In Onj kann jedes event einer von drei Arten angehören:
     Es ist unabhängig von dem wirklich letzten Element, mit dem man die road wieder verlässt.
 \end{enumerate}
 
-Es gibt verschiedenste events in Forty-Five wie den Kampf, das Wechseln zwischen road und area, diverse Heilmöglichkeiten als auch den Shop.
+Es gibt verschiedenste events in Forty-Five wie das Wechseln zwischen road und area, der shop, diverse Heilmöglichkeiten sowie der kampf.
 Die letzten beiden werden im Folgenden erklärt.
 
 \subsubsection{Shop}\label{subsubsec:shop}
@@ -149,6 +149,14 @@ Die eine ist ein simpler screen, bei dem man nur auf ``accept'' drücken kann un
 Bei der anderen Option muss sich der Spieler entscheiden, ob er sich entweder heilen will oder ob er seine maximale Anzahl an Leben erhöhen möchte.
 Dies könnte ihm in der Zukunft helfen, da am Anfang die Gegner weniger Schaden machen und man eventuell die Leben später braucht.
 Das Erhöhen der maximalen Leben heilt einen zwar auch um die gleiche Anzahl der gewonnenen Leben, ist allerdings geringer als wenn man nur diese erhöht.
+
+\subsubsection{Kampf}\label{subsubsec:kampf}
+Der Kampf funktioniert anders als die anderen events.
+Es wird die Schwierigkeit für den Kampf mitgegeben und der \inlineCode{GameDirector} regelt den Kampf selbst.
+Dieser bestimmt die Anzahl der Gegner als auch die Gegnertypen.
+Es gibt verschiedene Gegner, die jeweils bestimmte Gegnertypen haben können.
+Beispielsweise gibt es die Witch ``Witch\_lvl1'', die bestimmte Aktionen zu einer bestimmten Wahrscheinlichkeit ausführt.
+Diese Wahrscheinlichkeiten werden dem Gegner mitgegeben, während die möglichen Aktionen vom Gegnertyp bestimmt werden.
 
 \subsection{Dekorationen}\label{subsec:dekorationen}
 Da eine Karte ohne Dekorationen für einen Spieler uninteressant wäre, werden diese ebenfalls generiert.

@@ -25,7 +25,7 @@ object MyNamespace {
 
 Neben normalen Funktionen stellt Onj noch drei spezielle Arten von Funktionen zur Verfügung:
 
-\begin{itemize}
+\begin{liste}
     \item Conversions: Diese werden mit folgendem Syntax aufgerufen: \inlineOnj{value#function}.
         Solche Funktion werden zum Beispiel verwendet, um einen Wert von einem Datentypen zu einem anderen zu
         konvertieren.
@@ -33,7 +33,7 @@ Neben normalen Funktionen stellt Onj noch drei spezielle Arten von Funktionen zu
         Beispiele sind die pow-Funktion (\inlineOnj{10 pow 5}) oder die in-Funktion (\inlineOnj{3 in [1, 2, 3, 4]}).
     \item Operator Overloading: Solche Funktionen erlauben es zu definieren, wie sich Operatoren wie
         \inlineOnj{+} oder \inlineOnj{*} für eigene Datentypen verhalten.
-\end{itemize}
+\end{liste}
 
 Wird so eine spezielle Funktion verwendet, wird das in der \inlineKotlin{@RegisterOnjFunction} Annotation angegeben.
 

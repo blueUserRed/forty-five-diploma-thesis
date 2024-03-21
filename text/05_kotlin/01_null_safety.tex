@@ -13,7 +13,7 @@ einem Fehler.
 Ein Beispiel für den Einsatz eines Null-Werts ist die \inlineJava{File::getParent} Funktion, die, unter normalen
 Umständen, die übergeordnete Datei zurückgibt.
 Allerdings ist das nicht in allen Fällen möglich, und in diesen wird \inlineJava{null} stattdessen als Rückgabewert
-verwendet.\cite{jdocFile}
+verwendet.\zit{jdocFile}
 Dieser Umstand ist aber nicht in der Funktionssignatur reflektiert, in dieser ist als Rückgabewert einfach
 \inlineJava{String} angegeben.
 Für den Programmierer ist es also nicht sofort offensichtlich, dass ein Wert auch null sein kann, ein Blick in die
@@ -25,16 +25,16 @@ Außerdem haben \inlineJava{null}-Werte die Eigenschaft durch das Programm zu pr
 \inlineJava{null}-Wert am Beginn einer langen Funktionsaufrufskette, kann es zu Situationen kommen in der das Programm
 an einer Stelle crasht, die mit dem eigentlichen Fehler nichts zu tun hat.
 Aus diesen Gründen ist \inlineJava{null} eine häufige Fehlerursache in Java, laut Google sind
-NullPointerExceptions sogar die häufigste Crash-Ursache von Android-Apps im Google Play Store.\cite{androidDevNPE}
+NullPointerExceptions sogar die häufigste Crash-Ursache von Android-Apps im Google Play Store.\zit{androidDevNPE}
 
 \subsection{Lösungsansätze}
 Wie im letzten Absatz argumentiert, ist \inlineJava{null}, wie es in Sprachen wie Java implementiert ist, schlechtes
 Programmiersprachendesign.
 So hat auch Tony Hoare, der im Jahr 1965 zuerst das Konzept eines \inlineJava{null}-Pointers in die Sprache ALGOL W
-eingeführt hat, diese Entscheidung in einer berühmten Präsentation als seinen "Milliarden Dollar Fehler" bezeichnet.\cite{infoqNullRefs}
+eingeführt hat, diese Entscheidung in einer berühmten Präsentation als seinen "Milliarden Dollar Fehler" bezeichnet.\zit{infoqNullRefs}
 Deswegen haben über die Jahre Designer von Programmiersprachen nach Wegen gesucht, optionale Werte auf eine sinnvollere
 und weniger fehleranfällige Weise zu repräsentieren.
-So auch in der Sprache Java, die 2014 um die \inlineJava{Optional<T>} Klasse erweitert wurde.\cite{jdocOptional}
+So auch in der Sprache Java, die 2014 um die \inlineJava{Optional<T>} Klasse erweitert wurde.\zit{jdocOptional}
 Diese kann als Wrapper um Werte verwendet werden und stellt Funktionen zur Verfügung, die auf Präsenz eines Wertes
 testen und/oder abhängig davon Code ausführen.
 
@@ -64,11 +64,11 @@ einzubinden, auch wenn mit ihnen gegenüber Optionals einiges an Sicherheit verl
 Da die Java-Standardbibliothek diese Annotations nicht enthält, sind mehrere konkurrierende Bibliotheken entstanden,
 die diese zur Verfügung stellen.
 Zum Beispiel:
-\begin{itemize}
+\begin{liste}
     \item Jetbrains Annotations \url{https://central.sonatype.com/artifact/org.jetbrains/annotations/24.0.1}
     \item The Checker Framework \url{https://checkerframework.org/}
     \item Eclipse \url{https://help.eclipse.org/latest/index.jsp?topic=%2Forg.eclipse.jdt.doc.user%2Ftasks%2Ftask-using_null_type_annotations.htm}
-\end{itemize}
+\end{liste}
 
 Die Programmiersprache Rust, die dafür bekannt ist, hohen Wert auf Sicherheit und fehlerfreien Code zu legen, erlaubt
 gar keine \inlineJava{null}-Werte.
@@ -76,13 +76,13 @@ Stattdessen bietet sie ein \inlineCode{Option<T>} enum an, dass zwei mögliche W
 \inlineCode{None} und \inlineCode{Some(T)}.
 In vielerlei Hinsicht ist diese Lösung ähnlich zu Javas Optionals, da Rust allerdings keine klassischen
 \inlineJava{null}-Werte erlaubt und die Standard-Bibliothek mit diesem Enum im Hinterkopf designet wurde, funktioniert
-diese Lösung in Rust besser als in Java.\cite{rustDocOptional}
+diese Lösung in Rust besser als in Java.\zit{rustDocOptional}
 
 \subsection{Nulls in Kotlin}
 In Kotlin müssen Typen, die den Wert \inlineKotlin{null} annehmen dürfen, explizit als nullable markiert werden.
 Das wird mittels eines Fragezeichens hinter dem Typen umgesetzt.
 Der Compiler analysiert zur compile-time welche Werte null sein könnten und gibt einen Fehler aus, wenn mit
-\inlineKotlin{null} nicht richtig umgegangen wird.\cite{kdocNullSafety}
+\inlineKotlin{null} nicht richtig umgegangen wird.\zit{kdocNullSafety}
 
 %! language = Kotlin
 \begin{codeBlock}{kotlin}{Demo: Null-Safety in Kotlin}
@@ -103,13 +103,13 @@ b = null // erlaubt
 Diese Schutzmechanismen zwingen den Programmierer mit \inlineKotlin{null}-Werten sinnvoll umzugehen und helfen so dabei
 Code zu schreiben, der weniger fehleranfällig ist.
 Laut Google war das Team von Google Home durch den (teilweisen) Umstieg auf Kotlin in der Lage, die Zahl ihrer
-NullPointerExceptions um 33\% Prozent zu reduzieren.\cite{androidDevGoogleHome}
+NullPointerExceptions um 33\% Prozent zu reduzieren.\zit{androidDevGoogleHome}
 
 Neben dem statischen Überprüfen auf mögliche \inlineKotlin{null}-Werte ist es auch wichtig, den notwendigen
 Syntax und/oder die notwendigen Funktionen zur Verfügung zu stellen, die gebraucht werden, um mit ihnen sinnvoll
 umzugehen.
 Während if-Bedingungen für \inlineKotlin{null} Checks theoretisch ausreichen, führen sie zu langen und schlecht lesbaren
-Code, weswegen Kotlin eigene Operatoren für \inlineKotlin{null}-Werte hat.\cite{kdocNullSafety}
+Code, weswegen Kotlin eigene Operatoren für \inlineKotlin{null}-Werte hat.\zit{kdocNullSafety}
 
 %! language = kotlin
 \begin{codeBlock}{kotlin}{Demo: Umgang mit \inlineKotlin{null}-Werten}
@@ -138,7 +138,7 @@ Diese Herangehensweise hat sich allerdings als nicht praktikabel herausgestellt,
 Checks dadurch notwendig wurden.
 Neue Kotlin Versionen suchen nach den vorher erwähnten Annotations und verwenden diese um herauszufinden, ob ein Type
 nullable ist oder nicht.
-Wird keine solche Annotation gefunden, verwendet Kotlin einen sogenannten Platform Type stattdessen.\cite{kdocNullInterop,kblogNullSafety}
+Wird keine solche Annotation gefunden, verwendet Kotlin einen sogenannten Platform Type stattdessen.\zit{kdocNullInterop,kblogNullSafety}
 
 Platform types werden mit einem Rufzeichen nach dem Typen gekennzeichnet: \inlineKotlin{String!}.
 Diese Typen können nicht direkt definiert werden, sondern entstehen nur bei Interaktion mit Java-Code, wenn der Compiler
@@ -147,7 +147,7 @@ Kotlin schreibt bei Platform Types keine \inlineKotlin{null} Checks vor, gibt ab
 welche gemacht werden.
 Wird ein Platform Typ einer Variable zugewiesen sollte explizit ein Typ angegeben werden, um die nullability zu
 definieren.
-Wird das nicht gemacht, gibt der Compiler eine Warning aus.\cite{kdocNullInterop}
+Wird das nicht gemacht, gibt der Compiler eine Warning aus.\zit{kdocNullInterop}
 
 % resets author
 \renewcommand{\kapitelautor}{}

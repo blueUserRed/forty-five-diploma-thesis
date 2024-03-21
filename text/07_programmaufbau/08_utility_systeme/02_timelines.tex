@@ -6,7 +6,8 @@
 Ein Encounter in \FF ist zu einem großen Teil aus linearen Abfolgen von Aktionen aufgebaut.
 
 Ein Beispiel: Der Spieler drückt die "shoot"-Taste:
-\begin{itemize}
+\begin{liste}
+    \setlength\itemsep{0.2em}
     \item Die Karte im Slot 5 des Revolvers wird entfernt
     \item Dem Gegner wird Schaden hinzugefügt
     \item Die Schadensanimation des Gegners wird gestartet (und läuft ab dann parallel und selbstständig)
@@ -14,7 +15,7 @@ Ein Beispiel: Der Spieler drückt die "shoot"-Taste:
     \item Wenn ja, werden diese ausgeführt
     \item Die Rotations-Animation des Revolvers wird abgespielt
     \item Es wird darauf gewartet, dass die Rotations-Animation fertig ist, bevor weitere Aktionen durchgeführt werden
-\end{itemize}
+\end{liste}
 
 Dieses Beispiel ist etwas simplifiziert, in Wahrheit müssen auch Statuseffekte, Encounter Modifier und weitere Mechaniken
 beachtet werden.

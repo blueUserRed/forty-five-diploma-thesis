@@ -5,12 +5,12 @@ Der Git-workflow für Forty-Five wurde nach den folgenden Punkten umgesetzt:
 \begin{enumerate}
     \item Beim Arbeiten an einer User-Story erstellt man eine branch namens ``ff-xxx-name-of-user-story''.
     \item Dabei sollte man nach folgenden Kriterien einen commit erstellen:
-    \begin{itemize}
+    \begin{liste}
         \item Ein Teil eines Features ist fertig.
         \item Der Code ist ausführbar.
         Falls dies nicht der Fall ist, muss man dies in der commit-message angeben.
-    \end{itemize}
-    \item Nach der Fertigstellung erstellt man einen pull-request, beginnend mit ``[ff-xxx]''.
+    \end{liste}
+    \item Nach der Fertigstellung erstellt man einen pull-request, beginnend mit \quoted{[ff-xxx]}.
     \item Der andere Entwickler schreibt Kommentare zu Codestücken, die nicht optimal sind.
     \item Der Programmierer verbessert den Code und eröffnet wieder eine pull-request.
     Dieser Vorgang wird so oft wiederholt, bis der andere Entwickler die pull-request akzeptiert und diese anschließend auf die branch ``main'' gemerged wird.
@@ -19,6 +19,6 @@ Der Git-workflow für Forty-Five wurde nach den folgenden Punkten umgesetzt:
 Es gibt viele mögliche Erweiterungen für das System.
 Ein Beispiel wäre das Hinzufügen von unit-tests, wodurch sichergestellt werden würde, dass Methoden genau so funktionieren, wie sie sollen.
 Eine weitere Möglichkeit wären end-to-end tests, bei denen ein Programm im GUI (graphical user interface) sich durchklickt und so das gesamte Programm aus Sicht des Endnutzers testet.
-In Forty-Five wurden diese Erweiterungen nicht eingesetzt, da der Arbeitsaufwand für das Schreiben der Tests zu groß wäre im Vergleich zu dem Nutzen, den sie bringen würden.
+In \FF wurden diese Erweiterungen nicht eingesetzt, da der Arbeitsaufwand für das Schreiben der Tests zu groß wäre im Vergleich zu dem Nutzen, den sie bringen würden.
 Weiterhin werden durch pull-requests einzelne Methoden vom jeweils anderen Entwickler überprüft, wodurch zumindest eine kleine Überprüfungsinstanz vorhanden ist.
 Zusätzlich dazu wird jedes hinzugefügte Feature vorher von dem Programmierer so gut wie möglich getestet, um die Gefahr zu verringern, dass bugs unbemerkt auftreten.
