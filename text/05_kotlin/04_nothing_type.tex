@@ -15,7 +15,7 @@ Das heißt, dass niemals eine tatsächliche Instanz von Nothing existieren kann.
 Auf den ersten Blick mag so ein Typ nicht sehr nützlich wirken, er erlaubt den Compiler aber einige nützliche
 Annahmen über den Control Flow zu machen.
 Sollte jemals eine Variable den Wert Nothing annehmen, was einen logischen Widerspruch darstellt, weiß der Compiler,
-dass dieser Code niemals erreicht werden kann.\cite{kspeCFG,kspecNothing}
+dass dieser Code niemals erreicht werden kann.\zit{kspeCFG,kspecNothing}
 
 %! language = kotlin
 \begin{codeBlock}{kotlin}{Demo: Funktion mit Rückgabewert Nothing}
@@ -41,7 +41,7 @@ verursachen eigentlich Expressions mit dem Rückgabewert Nothing.
 Beispiele sind: \inlineKotlin{throw}, \inlineKotlin{return}, \inlineKotlin{break} und \inlineKotlin{continue}.
 Da diese Expressions einen sofortigen Wechsel des Control-Flows verursachen hat das zur Folge, dass der nachfolgende
 Code niemals ausgeführt wird.
-Damit können diese Expressions den Wert Nothing haben.\cite{kspeCFG}
+Damit können diese Expressions den Wert Nothing haben.\zit{kspeCFG}
 
 %! language = kotlin
 \begin{codeBlock}{kotlin}{Beispiel: Verwendung des Nothing-Typen in der Praxis}

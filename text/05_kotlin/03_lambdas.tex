@@ -10,7 +10,7 @@ funktionieren wie man es von anderen Sprachen wie \zB Javascript erwartet.
 Generell ist es so, das ein Lambda Werte, die in äußeren Scopes definiert wurden in einer sogenannten Closure captured
 und so weiter sowohl lesend als auch schreibend auf diese zugreifen kann.
 Java allerdings erlaubt nur den lesenden Zugriff, und nur wenn auch Code außerhalb des Lambdas niemals schreibend auf
-die Variable zugreift.\cite{mdnDocsClosures, jarticleLambdas}
+die Variable zugreift.\zit{mdnDocsClosures, jarticleLambdas}
 
 \begin{codeBlock}{javascript}{Demo: Closures in Javascript}
 function createClosure() {
@@ -39,13 +39,13 @@ Runnable r = () -> {
 
 Kotlin wurde anders als Java von Anfang an mit Lambdas entwickelt und weist daher keine solchen Limitationen auf.
 Da Kotlin sich selbst als Sprache mit vielen Elementen aus der funktionalen Programmierung bezeichnet, ist es wichtig,
-dass Lambdas und Closures so funktionieren wie erwartet und gut in die Sprache integriert sind.\cite{kspecIntroduction}
+dass Lambdas und Closures so funktionieren wie erwartet und gut in die Sprache integriert sind.\zit{kspecIntroduction}
 
 \subsection{Lambda Syntax in Kotlin}
 Ein Aspekt der Kotlins Lambdas von Lambda-Implementation in anderen Sprachen besonders unterscheidet ist der Syntax.
 Eine geschwungene Klammer, die frei im Code auftaucht, eröffnet nicht wie anderen Sprachen wie \zB Java oder Javascript
 einen neuen Code-Block, sondern deklariert ein Lambda.
-Lambda Parameter werden in den geschwungenen Klammern angegeben.\cite{kspecLambdaLiteral}
+Lambda Parameter werden in den geschwungenen Klammern angegeben.\zit{kspecLambdaLiteral}
 
 %! language = kotlin
 \begin{codeBlock}{kotlin}{Demo: Lambda Syntax in Kotlin}
