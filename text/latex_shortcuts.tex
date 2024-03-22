@@ -54,7 +54,8 @@
 \newcommand{\inlineJava}[1]{\mintinline{java}{#1}}
 % \citeauthor \citeyear
 %\newcommand{\zit}[1]{ (vgl. \cite{#1})}
-\newcommand{\zit}[1]{ (vgl. \citeauthor{#1} \citeyear{#1})}
+\newcommand{\zit}[1]{ (vgl. \citeauthor{#1} \citeyear{#1} [online])}
+\newcommand{\zitbuch}[1]{ (vgl. \citeauthor{#1} \citeyear{#1})}
 %\newcommand{\zitt}[2]{(\cite{#1, #2})}
 %\newcommand{\zittt}[3]{(\cite{#1, #2, #3})}
 %\newcommand{\zitttt}[4]{(\cite{#1, #2, #3, #4})}
@@ -62,7 +63,8 @@
 \newcommand{\quoted}[1]{\frqq#1\flqq}
 \newenvironment{coolQuote}{\begin{quote}\itshape\frqq}{\flqq\end{quote}}
 
-\newcommand{\zid}[1]{(\citeauthor{#1} \citeyear{#1})}
+\newcommand{\zid}[1]{(\citeauthor{#1} \citeyear{#1} [online])}
+\newcommand{\zidbuch}[1]{(\citeauthor{#1} \citeyear{#1})}
 
 \newcommand{\codeblockCaption}[1]{#1} % might be changed later
 
