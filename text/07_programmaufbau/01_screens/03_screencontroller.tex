@@ -37,7 +37,7 @@ Dafür hat er folgende Methode:
 \begin{codeBlock}{kotlin}{Beispiel: Screen\-Controller des HealOrMapHP\-Screens}
     override fun completed() {
         SoundPlayer.situation("heal", screen)
-        if ((screen.namedActorOrError(healChosenTarekGeorgWidgetName) as CustomFlexBox).inActorState("selected")) {
+        if ((screen.namedActorOrError(healChosenWidgetName) as CustomFlexBox).inActorState("selected")) {
             val newLives = min(SaveState.playerLives + amount.first, SaveState.maxPlayerLives)
             FortyFiveLogger.debug(logTag, "Lives healed from ${SaveState.playerLives} to $newLives!")
             SaveState.playerLives = newLives
