@@ -5,7 +5,7 @@
 \renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
 
 Der screen-controller ist die zentrale Steuereinheit eines screens und verwaltet diesen.
-Er ist für die gesamte Logik zuständig sowie für die meisten user-interactions.
+Er ist für die gesamte Logik zuständig sowie für die meisten User-interactions.
 Die einzigen Ausnahmen sind komplexe widgets (siehe~\ref{sec:widgets}) und input maps (siehe~\ref{sec:key-input-system}).
 Als Beispiel folgen nun Ausschnitte des \inlineCode{HealOrMaxHPScreen-Controllers} erklärt:
 
@@ -23,14 +23,14 @@ Als Beispiel folgen nun Ausschnitte des \inlineCode{HealOrMaxHPScreen-Controller
 \end{codeBlock}
 
 
-Die \inlineCode{init} Methode wird aufgerufen, nachdem alle Elemente dem screen hinzugefügt worden sind.
-Der context ist ein MapEvent, da dieser screen nur als Event aufgerufen werden kann.
+Die \inlineCode{init} Methode wird aufgerufen, nachdem alle Elemente vom screen geladen worden sind.
+Der Parameter ``context'' ist ein MapEvent, da dieser screen nur als Event aufgerufen werden kann.
 Das Event beinhaltet Daten wie den Seed des Events und die Heil-Bereiche.
 Anschließend berechnet der screen-controller eine zufällige Zahl aus diesen Bereichen und bestimmt dadurch, wie viel man jeweils geheilt werden kann.
 Der Seed ist notwendig, damit diese Zahl immer gleich ist.
 Wäre es immer zufällig, könnte man als Spieler das Event verlassen und wieder betreten.
 Das könnte man so oft wiederholen, bis man die maximale Anzahl an Leben erhält.
-Zuletzt aktualisiert der screen-controller noch die Zahlen Texte, damit der Spieler auch sieht, wie viele Leben er hinzubekommt.
+Zuletzt aktualisiert der screen-controller noch die Zahlen in den Texten, damit der Spieler auch sieht, wie viele Leben er hinzubekommt.
 
 Anschließend kann dieser screen "completed", also abgeschlossen, werden.
 Dafür hat er folgende Methode:
@@ -47,9 +47,9 @@ Dafür hat er folgende Methode:
     }
 \end{codeBlock}
 
-Wenn dieser screen abgeschlossen wird, sieht man, dass ein Sound abgespielt wird.
-Anschließend wird die Option des Spielers überprüft, und falls er sich heilen wollte, wird seine Lebensanzahl dementsprechend angepasst.
+Wie man im Code sieht, wird beim Abschließen des screens ein Sound abgespielt.
+Anschließend wird die Wahl des Spielers überprüft, und falls er sich heilen wollte, wird seine Lebensanzahl entsprechend angepasst.
 Zum Schluss wird der "context" ebenfalls abgeschlossen, was in diesem Fall heißt, dass man zurück zur Map gelangt und dass man dieses Event nicht mehr ausführen kann.
 
-Dieser screen hat nicht viele Operationen, wodurch auch der screen-controller sehr wenig zu verwalten hat.
-Die meisten anderen screens haben mehr als nur ein einmaliges Berechnen von zwei Zahlen.
+Dieser screen hat nicht viele Operationen, wodurch auch der screen-controller sehr wenig zu verwalten hat, weshalb er als Beispiel optimal ist.
+Üblicherweise beinhalten screens komplexere Programmlogiken.
