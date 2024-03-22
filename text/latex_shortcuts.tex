@@ -52,11 +52,12 @@
 \newcommand{\inlineOnj}[1]{\mintinline{onj}{#1}}
 \newcommand{\inlineGlsl}[1]{\mintinline{glsl}{#1}}
 \newcommand{\inlineJava}[1]{\mintinline{java}{#1}}
-
-\newcommand{\zit}[1]{(\cite{#1})}
-\newcommand{\zitt}[2]{(\cite{#1, #2})}
-\newcommand{\zittt}[3]{(\cite{#1, #2, #3})}
-\newcommand{\zitttt}[4]{(\cite{#1, #2, #3, #4})}
+% \citeauthor \citeyear
+%\newcommand{\zit}[1]{ (vgl. \cite{#1})}
+\newcommand{\zit}[1]{ (vgl. \citeauthor{#1} \citeyear{#1})}
+%\newcommand{\zitt}[2]{(\cite{#1, #2})}
+%\newcommand{\zittt}[3]{(\cite{#1, #2, #3})}
+%\newcommand{\zitttt}[4]{(\cite{#1, #2, #3, #4})}
 
 \newcommand{\quoted}[1]{\frqq#1\flqq}
 
