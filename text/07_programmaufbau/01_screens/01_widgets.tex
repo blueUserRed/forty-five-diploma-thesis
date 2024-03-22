@@ -31,7 +31,7 @@ Als Beispiel folgt nun die Konfiguration für das grüne Icon in der Mitte:
         ],
     }
 \end{codeBlock}
-Es gibt diverse Parameter, die nur für images existieren wie \zB ``textureName'' oder ``scaleX'', während andere "widget shared keys" sind, \dah, dass sie für alle gewöhnlichen widgets verfügbar sind.
+Es gibt diverse Parameter, die nur für images existieren wie \zB \quoted{textureName'' oder ``scaleX}, während andere "widget shared keys" sind, \dah, dass sie für alle gewöhnlichen widgets verfügbar sind.
 Davon beinhaltet das oben angeführten Beispiel "name", "zIndex" und "styles".
 Styles werden bei~\ref{subsec:stylesystem} genauer beschrieben.
 Es gibt auch die keys "behaviours" und "dragAndDrop", welche das Verhalten beim Interagieren des Benutzers definieren.
@@ -69,8 +69,8 @@ In \FF werden keine der Klassen von LibGdx direkt verwendet, sondern immer eigen
 Weiteres werden sie benötigt, um eigene events verarbeiten zu können, wie das hover-event.
 Programmtechnisch gibt es vier Hauptänderungen, die überschrieben werden:
 \begin{enumerate}
-    \item Die ``layout'' Funktion, welche beschreibt, wo Elemente positioniert sind und bei Boxen auch deren Kinderelemente.
-    \item Die ``draw'' Funktion, welche für die Darstellung verantwortlich ist. Das ermöglicht es, shader (siehe \ref{subsubsec:shader}) hinzuzufügen oder das style-system einzubauen.
+    \item Die \quoted{layout} Funktion, welche beschreibt, wo Elemente positioniert sind und bei Boxen auch deren Kinderelemente.
+    \item Die \quoted{draw} Funktion, welche für die Darstellung verantwortlich ist. Das ermöglicht es, shader (siehe \ref{subsubsec:shader}) hinzuzufügen oder das style-system einzubauen.
     Sie wird in jedem frame einmal ausgeführt und wird daher ebenfalls für updates von timelines (siehe~\ref{subsec:timelines}) verwendet.
     \item Interfaces werden hinzugefügt, welche einerseits für das style-system verwendet werden, als auch generell das Arbeiten mit widgets vereinfacht.
 \end{enumerate}
@@ -112,6 +112,6 @@ templates: [
     }
 ]
 \end{codeBlock}
-Im Programmcode gibt man, wenn man ein template verwenden will, den ``template name'' an, und man gibt ein \inlineCode{OnjObject} mit, das die zu überschreibenden Daten beinhaltet.
+Im Programmcode gibt man, wenn man ein template verwenden will, den \quoted{template name} an, und man gibt ein \inlineCode{OnjObject} mit, das die zu überschreibenden Daten beinhaltet.
 In diesem Beispiel sind es der angezeigte Text und das Bild, da diese sich von der linken und rechten Seite unterscheiden.
 Zusätzlich wird über das template auch der interne Name des widgets gesetzt.
