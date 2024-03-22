@@ -1,5 +1,5 @@
 \newcommand{\bold}[1]{\textbf{#1}}
-\newcommand{\italic}[1]{\textit{#1}}
+\newcommand{\italic}[1]{\emph{#1}}
 \newcommand{\code}[1]{\texttt{#1}}
 
 % einfaches "siehe ..." - das Ziel muss man markieren mit \label{name} -- macht pandoc automatisch
@@ -60,6 +60,9 @@
 %\newcommand{\zitttt}[4]{(\cite{#1, #2, #3, #4})}
 
 \newcommand{\quoted}[1]{\frqq#1\flqq}
+\newenvironment{coolQuote}{\begin{quote}\itshape\frqq}{\flqq\end{quote}}
+
+\newcommand{\zid}[1]{(\citeauthor{#1} \citeyear{#1})}
 
 \newcommand{\codeblockCaption}[1]{#1} % might be changed later
 
