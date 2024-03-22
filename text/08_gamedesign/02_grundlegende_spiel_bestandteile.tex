@@ -3,16 +3,11 @@
 
 \renewcommand{\kapitelautor}{Autor: Philip Jankovic}
 
-%TODO EINLEIDTUNG paar sätze ganz grundlegend
 %TODO GENDERN????
-%TODO rogue like/lite nochmal erklären
-%TODO MECHANIK erklären
-%TODO COMBO erklären
-%TODO Run erklären
-%TODO hovern erklären
-%TODO QWort Mechanik erklären
-%TODO kapitel umbennenin grundelgene bestandteile des SPieles
 %TODO alle bildescriptions reworken
+
+
+
 
 
 %
@@ -25,6 +20,24 @@ Ein Durchlauf bzw. ein Leben des Spielers wird als \quoted{Run} bezeichnet. Ein 
 Während der Entwicklung wurden jene Elemente, die in das nächste Leben übergehen, als \quoted{Rogue-Lite-Elemente} bezeichnet.
 \zit{roguelikedeckbuilder}
 
+
+\subsection{Begriffserklärung}\label{rogue_lite_elemente}
+Mechanik: In \FF sind Mechaniken einzelne Komponente des Spieles, welche zusammgesetzt das Spiel ergeben.
+
+Combo: In \FF wird eine Combo als eine Kombination von Karten mit guter Synergie zueinander bezeichnet.
+
+Run: Ein Run ist ein Durchlauf in einem Rogue-like oder Rogue-lite Spiel. \zit{zitatdeckbuilding}
+
+Map: Die Karte von \FF, auf der sich der Spieler bewegt und diverse Events auswählt, wie \zB Kämpfe oder Shops.
+
+Road: Eine Road in \FF ist eine zufällig generierter Abschnitt des Spieles. Eine Road befinndet sich immer zwischen zwei Areas.
+
+Area: Nicht zufällig gnerierte Abschnitte der \FF Map.
+
+\begin{infoBox}
+    Note: Zu diesem Zeitpunkt geht es nicht um die Designprinzipien hinter Bestandteilen,
+    sondern nur um die Erklärung jener. Das Gamedesign wird in \ref{Gamedesign} beschrieben.
+\end{infoBox}
 
 
 %zuerst erklären was roads und so sind????
@@ -45,7 +58,7 @@ Lebenspunkte aufzutanken, was bei der zweiten Mechanik ins Spiel kommt.
 
 \begin{figure}[H]
 \includegraphics[width=\textwidth]{healeventgrafic.png}
-\caption{Ein Heilevent}
+\caption{Beispiel: Ein Heilevent}
 \end{figure}
 
 
@@ -53,17 +66,17 @@ Die zweite Mechanik tritt in Kraft, sollte der Spieler  einen Abschnitt des Spie
 gespeichert und sind ab dann selbst nach seinem Tod jederzeit zugänglich und spielbar.
 
 
-Roads werden abschnitte zwischen zwei Areas genannt und werden zufällig generiert. Areas werden nicht zufällig generiert.
+Roads werden Abschnitte zwischen zwei Areas genannt und werden zufällig generiert. Areas werden nicht zufällig generiert.
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{bulletssavedPopup.png}
-    \caption{Das Popup, welches am Ende der Road erscheint um zu zeigen welche Karten gespeichert wurden}
+    \caption{Beispiel: Das Popup, welches am Ende der Road erscheint um zu zeigen welche Karten gespeichert wurden.}
 \end{figure}
 
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{bulletsaved.png}
-    \caption{Karten die gespeichert wurden, werden mit diesem Symbol in der rechten unteren Ecke der Karte markiert.}
+    \caption{Beispiel: Symbol einer bereits gespiecherten Karte}
 \end{figure}
 
 Verknüpft mit der ersten Mechanik
@@ -80,7 +93,7 @@ Nach jedem überlebten Kampf bekommt der Spieler eine neue Karte. Er bekommt dre
 Außerdem gibt es auf der Map verteilt noch zusätzliche Events, die der Spieler aufsuchen kann, um seine Sammlung zu erweitern.
 
 \begin{figure}[H]
-    \includegraphics[width=\textwidth]{choosebullet.png}%TODO bild schneiden
+    \includegraphics[width=\textwidth]{choosebullet.png}
     \caption{Beispiel: Popup, welches nach einem Kampf, oder auch auf der Map als Event erscheinen kann.}
 \end{figure}
 
@@ -102,14 +115,11 @@ Karten können aus dem Deck in den Backpack verschoben werden und ermöglichen d
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{deckandbackpack.png}
-    \caption{Eine Karte kann entweder gleich in das Deck gegeben werden, und ist damit im Kampf aktiv, oder in den Backpack also die reserve verschoben werden.}
-\end{figure}%TODO description
+    \caption{Beispiel: zwei Möglichkeiten, nachdem eine Karte ausgewählt wurde}
+\end{figure}%
 
 \subsection{Backpack und Deck}\label{backpack_and_deck}
-\begin{infoBox}%TODO INFOBOX WEG und dann drüber
-Note: Zu diesem Zeitpunkt geht es nicht um die Designprinzipien hinter dem Deck und den Karten,
-sondern nur um die Erklärung der grundlegenden Mechaniken. Das Gamedesign wird zu einem späteren Zeitpunkt beschrieben.
-\end{infoBox}
+
 Der Backpack und das Deck dienen beide als Speicherort für Karten, mit dem Unterschied, dass die Karten im Deck aktiv im
 Kampf eingesetzt werden und die Karten im Backpack mehr als Reserve gelten.
 Karten können frei zwischen den beiden verschoben werden, solange die festgelegte Mindestanzahl an Karten im Deck eingehalten wird.
@@ -193,7 +203,7 @@ durch die Karte abgezogen werden, falls die Karte auf den Gegner geschossen wird
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{bulletgrafic.jpg}%TODO BILD ändern bullet grafik
-    \caption{Beiüpiel: Die wichtigsten Infos werden auf der Karte angezeigt.}
+    \caption{Beispiel: Die wichtigsten Infos werden auf der Karte angezeigt.}
 \end{figure}
 
 Fast alle Karten haben außerdem einen einzigartigen Effekt,
@@ -243,7 +253,7 @@ Die Bullet wird unter das Deck gelegt und der Revolver dreht sich einmal nach re
 
 \begin{figure}[H]
     \includegraphics[width=\textwidth]{rotategrafic.jpg}
-    \caption{Beispiel: Revolverdrehung nach rechts.}
+    \caption{Beispiel: Revolverdrehung nach rechts}
 \end{figure}
 
 
@@ -323,7 +333,7 @@ Die Overkill-Regel gilt jedoch nur für den aktuellen Zug. Drückt der Spieler a
 Overkill-Cash, das durch Overkillschaden verdiente Geld, ist nicht nur eine gute Möglichkeit, Belohnungen anhand der Leistung des Spielers zu berechnen.
 
 
-sondern löst auch gleichzeitig folgendes Problem: In \FF ist der Aufbau des Revolvers und damit von Combos sehr wichtig.%TODO erklärung für combo
+sondern löst auch gleichzeitig folgendes Problem: In \FF ist der Aufbau des Revolvers und damit von Combos sehr wichtig.
 Oft kommt es vor, dass der Spieler eine Combo aufgebaut hat, der Gegner jedoch einfach schneller tot ist.
 Das ist nicht nur frustrierend, sondern gibt dem Spieler auch einfach keinen Grund, überhaupt starke Combos aufzubauen,
 wenn er sich einmal über dem Standard-Gegner-Schwierigkeitslevel befindet. Overkill-Schaden löst diese beiden Probleme.
