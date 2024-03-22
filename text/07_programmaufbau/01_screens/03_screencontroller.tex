@@ -24,7 +24,7 @@ Als Beispiel folgen nun Ausschnitte des \inlineCode{HealOrMaxHPScreen-Controller
 
 
 Die \inlineCode{init} Methode wird aufgerufen, nachdem alle Elemente vom screen geladen worden sind.
-Der Parameter ``context'' ist ein MapEvent, da dieser screen nur als Event aufgerufen werden kann.
+Der Parameter \quoted{context} ist ein MapEvent, da dieser screen nur als Event aufgerufen werden kann.
 Das Event beinhaltet Daten wie den Seed des Events und die Heil-Bereiche.
 Anschließend berechnet der screen-controller eine zufällige Zahl aus diesen Bereichen und bestimmt dadurch, wie viel man jeweils geheilt werden kann.
 Der Seed ist notwendig, damit diese Zahl immer gleich ist.

@@ -146,7 +146,7 @@ Im Shop kann keine Karte zweimal vorkommen und wenn eine Karte gekauft ist, wird
 
 \subsubsection{Heal Events}\label{subsubsec:heal-event}
 In \FF gibt es zwei verschiedene Arten von Heilungsmöglichkeiten.
-Die eine ist ein simpler screen, bei dem man nur auf ``accept'' drücken kann und anschließend die angezeigte Anzahl an Leben dazu bekommt.
+Die eine ist ein simpler screen, bei dem man nur auf \quoted{accept} drücken kann und anschließend die angezeigte Anzahl an Leben dazu bekommt.
 Bei der anderen Option muss sich der Spieler entscheiden, ob er sich entweder heilen will oder ob er seine maximale Anzahl an Leben erhöhen möchte.
 Dies könnte ihm in der Zukunft helfen, da am Anfang die Gegner weniger Schaden machen und eventuell die zusätzlichen Leben bei stärkeren Gegnern benötigt werden.
 Das Erhöhen der maximalen Leben heilt zwar auch um die gleiche Anzahl der gewonnenen Leben, ist allerdings geringer als nur reine Heilung.
@@ -156,7 +156,7 @@ Der Kampf funktioniert anders als die anderen Events.
 Es wird nur die Schwierigkeit mitgegeben und der \inlineCode{GameDirector} regelt den Kampf selbst.
 Dieser bestimmt die Anzahl der Gegner als auch die Gegnertypen.
 Es gibt verschiedene Gegner, die jeweils einem Gegnertypen angehören können.
-Beispielsweise gibt es die Witch ``Witch\_lvl1'', die bestimmte Aktionen zu einer bestimmten Wahrscheinlichkeit ausführt.
+Beispielsweise gibt es die Witch \quoted{Witch\_lvl1}, die bestimmte Aktionen zu einer bestimmten Wahrscheinlichkeit ausführt.
 Diese Wahrscheinlichkeiten werden dem Gegner mitgegeben, während die möglichen Aktionen vom Gegnertyp bestimmt werden.
 
 \subsection{Dekorationen}\label{subsec:dekorationen}
@@ -169,7 +169,7 @@ Es gibt drei Möglichkeiten, wie sie platziert werden können mittels sogenannte
     \item Zufällig: Die am häufigsten verwendete Methode ist das zufällige Platzieren.
     Dabei werden in einem rechteckigen Bereich um alle verbundenen nodes Dekorationen erstellt.
     \item Multi-Cluster: Beschreibt ein Verfahren, das ein Polygon-Noise-Verfahren benutzt, bei dem der rechteckige Bereich in Punkte unterteilt wird.
-    Davon bekommt jeder entweder ein ``ok'' oder ``nicht ok''.
+    Davon bekommt jeder entweder ein \quoted{ok} oder \quoted{nicht ok}.
     Wenn anschließend ein Baum platziert wird, wird geschaut, welcher der nächste Punkt ist, und die Dekoration wird dann abhängig davon gelöscht oder hinzugefügt.
     Dies eignet sich vor allem für \zB Wälder, da diese meistens durchgehend sind, aber nicht überall.
     \item Single-Cluster: SingleCluster beschreibt eine Funktion, bei dem man Koordinaten angibt und um diese Koordinaten werden in einem ähnlichen Verfahren wie bei MultiCluster die Dekorationen platziert.

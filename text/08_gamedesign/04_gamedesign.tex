@@ -27,19 +27,19 @@ Placement Matters ist ein Begriff, der das Gamedesign von \FF gut beschreibt. Du
 Eigenschaften und den begrenzten Platz entsteht durch diese Designphilosophie die erwünschte Spielweise der Spieler.
 
 Placement Matters beschreibt das Konzept, dass beim Platzieren einer Kugel der Ort, die Reihenfolge und der Zeitpunkt
-eine wichtige Rolle spielen. Durch Trigger wie zum Beispiel "On-Rotate" oder "On-Turn-Begin" profitieren manche Bullets davon,
+eine wichtige Rolle spielen. Durch Trigger wie zum Beispiel \quoted{On-Rotate} oder \quoted{On-Turn-Begin} profitieren manche Bullets davon,
 am Ende des Revolvers platziert zu werden, damit sie trotz der Rotation so lange wie möglich im Revolver bleiben können.
 
 
-Der Statuseffekt "Burning" zum Beispiel, erhöht den Schaden der nächsten paar Bullets um 50\%.
+Der Statuseffekt \quoted{Burning} zum Beispiel, erhöht den Schaden der nächsten paar Bullets um 50\%.
 Durch diesen Effekt ist es also ratsam, Bullets mit diesem Effekt vor anderen Bullets abzufeuern, um mehr Schaden zu erzielen.
 
 
-Durch "Leaders Bullet" werden alle Bullets gestärkt, solange sich "Leaders Bullets" im Revolver befindet. Platziert der Spieler sie also
-weiter vorne im Revolver, verlieren alle Bullets den positiven Effekt, da "Leaders Bullet" vor ihnen den Revolver verlässt.
+Durch \quoted{Leaders Bullet} werden alle Bullets gestärkt, solange sich \quoted{Leaders Bullets} im Revolver befindet. Platziert der Spieler sie also
+weiter vorne im Revolver, verlieren alle Bullets den positiven Effekt, da \quoted{Leaders Bullet} vor ihnen den Revolver verlässt.
 
 
-Der Effekt von "Guarding Angles Bullet" wiederum bezieht sich zum Beispiel auf einen bestimmten Slot, nämlich Slot 3,
+Der Effekt von \quoted{Guarding Angles Bullet} wiederum bezieht sich zum Beispiel auf einen bestimmten Slot, nämlich Slot 3,
 was den Spieler dazu bringt, die Platzierung seiner Karten genau zu überdenken. Diese Einschränkungen und Herausforderungen
 sind der Grundstein für das Revolver-Gameplay von \FF.
 
@@ -58,7 +58,7 @@ Spieler können dann basierend auf diesen Archetypen Decks bauen und damit versc
 
 In \FF wurde versucht, die Archetypen so breit wie möglich zu gestalten. Das bedeutet, dass es bereits dezidierte Archetypen gibt,
 jedoch viele Karten in mehreren Archetypen spielbar sind und die Archetypen sich auch überschneiden.
-Während der Entwicklung wurde dieses Konzept als "Broad Archetypes" bezeichnet. Gründe für diesen Ansatz sind unter anderem
+Während der Entwicklung wurde dieses Konzept als \quoted{Broad Archetypes} bezeichnet. Gründe für diesen Ansatz sind unter anderem
 die sehr speziellen Spielregeln von \FF und die zufällige Reihenfolge, in der der Spieler die Karten erhält.
 
 
@@ -68,55 +68,58 @@ die ihm zufällig vorgelegt werden. Die regeln von \quoted{Magic the Gathering} 
 Konzept wie dem Revolver. \zit{magicarena}
 
 
-Wenn ein Effekt einer Bullet also "On-Rotate" auslöst, ist er in vielen Decks spielbar und nicht nur in Decks
+Wenn ein Effekt einer Bullet also \quoted{On-Rotate} auslöst, ist er in vielen Decks spielbar und nicht nur in Decks
 eines Rotation-Archetyps, da die Drehung des Revolvers häufig passiert.
 
 Die in \FF verwendete Methode der Borad-Archetypes erlaubt dem Spieler unzählige Kombinationen und ermöglicht
 in der Regel ein gutes Spielerlebniss beim Endecken neuer Kombination.
 
 
-Ein gutes Beispiel für diese breiten Archetypen und die Interkonnektivität der Archetypen ist zum Beispiel "High Velocity Bullet".
-"High Velocity Bullet" ist eine ein Kosten, null Schaden Karte, die über den Effekt verfügt, dass sie dem Gegner Schaden zufügt, wenn sie "On-Leave" ist.
-Für viele Spieler scheint diese Bullet jedoch bizarr. Der "On-Leave" Trigger ist bei "High Velocity Bullet" dafür verantwortlich,
-dass wenn die Karte geschossen wird, der Gegner Schaden bekommt, obwohl "High Velocity Bullet" eine null bei ihrem Schadens-Wert hat.
-Die Formulierung des Triggers erlaubt es, dass der Effekt von "High Velocity Bullet" durch jegliche Art und Weise, durch
-die die Bullet den Revolver verlässt, aktiviert wird. Wenn der Spieler "High Velocity Bullet" das erste Mal verwendet,
-ist sie nicht viel anders als eine normale Bullet, jedoch stößt der Spieler mit der Zeit auf "Deputies Bullet".
+Ein gutes Beispiel für diese breiten Archetypen und die Interkonnektivität der Archetypen ist zum Beispiel \quoted{High Velocity Bullet}.
+\quoted{High Velocity Bullet} ist eine ein Kosten, null Schaden Karte, die über den Effekt verfügt, dass sie dem Gegner Schaden zufügt, wenn sie \quoted{On-Leave} ist.
+Für viele Spieler scheint diese Bullet jedoch bizarr. Der \quoted{On-Leave} Trigger ist bei \quoted{High Velocity Bullet} dafür verantwortlich,
+dass wenn die Karte geschossen wird, der Gegner Schaden bekommt, obwohl \quoted{High Velocity Bullet} eine null bei ihrem Schadens-Wert hat.
+Die Formulierung des Triggers erlaubt es, dass der Effekt von \quoted{High Velocity Bullet} durch jegliche Art und Weise, durch
+die die Bullet den Revolver verlässt, aktiviert wird. Wenn der Spieler \quoted{High Velocity Bullet} das erste Mal verwendet,
+ist sie nicht viel anders als eine normale Bullet, jedoch stößt der Spieler mit der Zeit auf \quoted{Deputies Bullet}.
 
 \begin{figure}[H]
-    \includegraphics[width=50\%]{highVB.png}
-    \caption{Beispiel: "High Velocity Bullet"}
+    \centering
+    \includegraphics[width=0.5\textwidth]{highVB.png}
+    \caption{Beispiel: \quoted{High Velocity Bullet}}
 \end{figure}
 
 
-"Deputies Bullet" hat den Effekt, dass wenn sie im Revolver platziert wird, die Karte welche sich im Slot 3 befindet wieder in die Hand
+\quoted{Deputies Bullet} hat den Effekt, dass wenn sie im Revolver platziert wird, die Karte welche sich im Slot 3 befindet wieder in die Hand
 zurückgegeben wird. Auch hier kommt das bereits erwähnte Placement Matters ins Spiel, da der Spieler sich bewusst sein
-muss, welche Karte auf seine Hand zurückgegeben wird, bevor er "Deputies Bullet" spielt. Zuerst wird der Spieler den
-Effekt von "Deputies Bullet" als etwas Negatives sehen, um den erhöhten Schaden der Bullet auszugleichen,
+muss, welche Karte auf seine Hand zurückgegeben wird, bevor er \quoted{Deputies Bullet} spielt. Zuerst wird der Spieler den
+Effekt von \quoted{Deputies Bullet} als etwas Negatives sehen, um den erhöhten Schaden der Bullet auszugleichen,
 eine bewusste Entscheidung, die später noch einmal ins Spiel kommt.
 
 \begin{figure}[H]
-    \includegraphics[width=50\%]{deputiesB.png}
-    \caption{Beispiel: "Deputies Bullet"}
+    \centering
+    \includegraphics[width=0.5\textwidth]{deputiesB.png}
+    \caption{Beispiel: \quoted{Deputies Bullet}}
 \end{figure}
 
-Kombiniert mit "High Velocity Bullet", kann der eher negative Effekt von "Deputies Bullet" verwendet werden, um
-"High Velocity Bullet" den Revolver verlassen zu lassen und damit vorzeitig dem Gegner Schaden zuzufügen.
-Zusätzlich dazu, dass der Effekt von “Deputies Bullet”, umgangssprachlich "Bounce" genannt, "On-Leave" Effekte triggert,
-ist es eine Möglichkeit Karten mit einem "On-Placedown" Trigger auf die Hand zu geben. Das erlaubt es, den Effekt damit noch einmal zu aktivieren.
-Eine andere Möglichkeit ist, dass der Spieler auf eine "Purge Bullet" stößt. "Purge Bullet" hat ähnlich wie "Deputies Bullet"
+Kombiniert mit \quoted{High Velocity Bullet}, kann der eher negative Effekt von \quoted{Deputies Bullet} verwendet werden, um
+\quoted{High Velocity Bullet} den Revolver verlassen zu lassen und damit vorzeitig dem Gegner Schaden zuzufügen.
+Zusätzlich dazu, dass der Effekt von “Deputies Bullet”, umgangssprachlich \quoted{Bounce} genannt, \quoted{On-Leave} Effekte triggert,
+ist es eine Möglichkeit Karten mit einem \quoted{On-Placedown} Trigger auf die Hand zu geben. Das erlaubt es, den Effekt damit noch einmal zu aktivieren.
+Eine andere Möglichkeit ist, dass der Spieler auf eine \quoted{Purge Bullet} stößt. \quoted{Purge Bullet} hat ähnlich wie \quoted{Deputies Bullet}
 erhöhten Schaden, dafür ist ihr Effekt, die Zerstörung von zwei Bullets neben ihr, wenn sie platziert wird.
-Dies kann jedoch vom Spieler vermieden werden indem er - wieder durch Placement Matters- "Purge Bullet" auf eine Art und
+Dies kann jedoch vom Spieler vermieden werden indem er - wieder durch Placement Matters- \quoted{Purge Bullet} auf eine Art und
 Weise in den Revolver platziert, sodass keine Karte neben ihr liegt und damit auch nicht zerstört wird.
-Ähnlich wie bei "Deputies Bullet" jedoch, kann "High Velocity Bullet" mit "Purge Bullet" zerstört werden, was wiederum als
-Verlassen des Revolvers zählt, also den Effekt von "High Velocities" Bullet aktiviert. "Purge Bullet" ist außerdem Teil
+Ähnlich wie bei \quoted{Deputies Bullet} jedoch, kann \quoted{High Velocity Bullet} mit \quoted{Purge Bullet} zerstört werden, was wiederum als
+Verlassen des Revolvers zählt, also den Effekt von \quoted{High Velocities} Bullet aktiviert. \quoted{Purge Bullet} ist außerdem Teil
 des Destroy Archetypes, welcher darauf abzielt, dass Karten im Revolver zerstört werden.
-Dieser relativ abgesonderte Archetype, kann trotzdem mit "On-Leave" Effekten kombiniert werden, was wiederum das breite
+Dieser relativ abgesonderte Archetype, kann trotzdem mit \quoted{On-Leave} Effekten kombiniert werden, was wiederum das breite
 Kartendesign von \FF veranschaulicht.
 
 \begin{figure}[H]
-    \includegraphics[width=50\%]{purgeB.png}
-    \caption{Beispiel: "Purge Bullet"}
+    \centering
+    \includegraphics[width=0.5\textwidth]{purgeB.png}
+    \caption{Beispiel: \quoted{Purge Bullet}}
 \end{figure}
 
 
@@ -129,7 +132,7 @@ Wäre das nämlich der Fall, wäre das Bauen eines Decks komplett obsolet und de
 
 \subsection{Kartensammeln und Kartenpools}\label{subsec:placementMatters}
 
-Durch die Vielzahl an Karten und den Unterschieden in der Komplexität zwischen diesen Karten werden Karten in \FF in "Pools" eingeteilt.
+Durch die Vielzahl an Karten und den Unterschieden in der Komplexität zwischen diesen Karten werden Karten in \FF in \quoted{Pools} eingeteilt.
 Diese Kartenpools dienen der Kontrolle, wann welche Karten vom Spieler nutzbar sind.
 Sie halten komplexe und zu starke Karten vom Spieler fern, bis dieser bereit ist, sie zu erhalten.
 Zum jetzigen Zeitpunkt gibt es zwei Kartenpools mit jeweils rund 25 Karten. Combos in Pool eins sind oft einfachere
@@ -152,48 +155,52 @@ Je nachdem, wie viele Bullets von einem bestimmten Archetyp ein Spieler besitzt,
 Die fehlenden Karten des Archetyps können aufgefüllt werden durch andere Karten, die ins Deck passen oder generell immer nutzbar sind.
 
 
-Das Deckdesign in \FF basiert auf dem sogenannten "Drei Säulen Modell".
+Das Deckdesign in \FF basiert auf dem sogenannten \quoted{Drei Säulen Modell}.
 
 %mindestanzahl deck
 %deckbauen, und wie es beinflusst wird durch pools und encounter modifier
 
 \subsection{Das drei Säulen Modell}\label{subsec:placementMatters}
 
-Das Drei-Säulen-Modell bezieht sich auf die drei "Arten" von Bullets, die in einem idealen Deck vorhanden sein sollten.
+Das Drei-Säulen-Modell bezieht sich auf die drei \quoted{Arten} von Bullets, die in einem idealen Deck vorhanden sein sollten.
 Diese Säulen werden auch beim Designen der Archetypen beachtet, um sicherzustellen, dass jedes Deck über die nötigen
 Möglichkeiten verfügt, alle drei Säulen zu erfüllen. Diese Säulen sind ein internes Konzept.
 Der Spieler baut Decks nach dem Säulenkonzept automatisch und durch Ausprobieren, da ihm mit der Zeit bewusst wird,
 dass ihm \zB die Handkarten immer ausgehen und er dementsprechend Maßnahmen ergreift. Dieses richtige Deckbauen
-ist auch Teil der Schwierigkeit von \FF, genauso wie das Meistern der Mechaniken. Jede dieser Säulen hat außerdem sogenannte "Staples".
+ist auch Teil der Schwierigkeit von \FF, genauso wie das Meistern der Mechaniken. Jede dieser Säulen hat außerdem sogenannte \quoted{Staples}.
 Also Karten, die in jedem Deck gut sind und auch immer in Decks gegeben werden sollten, falls möglich.
 
 
 Die erste Säule: Ressourcen:
 Die Säule der Ressourcen bezieht sich auf Karten, welche dem Spieler einen Vorteil verschaffen. Darin ist der bereits
-erwähnte "Value" inkludiert, also das Ziehen von Karten und die Erzeugung von Reserven. Dadurch verschafft sich der Spieler einen Vorteil,
+erwähnte \quoted{Value} inkludiert, also das Ziehen von Karten und die Erzeugung von Reserven. Dadurch verschafft sich der Spieler einen Vorteil,
 da mehr Karten in der Hand mehr Möglichkeiten für Züge bedeuten und die extra Reserven auch das Spielen dieser Extrakarten ermöglicht.
 Anders gesagt erlaubt die Ressourcen-Säule dem Spieler mehr in weniger Zügen zu spielen.
-Staples inkludieren "Silver Bullet", in späteren Pools auch "Gold Bullet" für das Ziehen von Karten und "Worker Bullet" für das Erzeugen von Reserven.
+Staples inkludieren \quoted{Silver Bullet}, in späteren Pools auch \quoted{Gold Bullet} für das Ziehen von Karten und \quoted{Worker Bullet} für das Erzeugen von Reserven.
 Je nach Archetyp gibt es auch Karten, welche die Rolle der ersten Säule in ihrem jeweiligen Archetyp übernehmen.
-Siehe zum Beispiel "Gravediggers Bullet" für den Destroy-Archetyp.
+Siehe zum Beispiel \quoted{Gravediggers Bullet} für den Destroy-Archetyp.
 
 \begin{figure}[H]
-    \includegraphics[width=50\%]{silverB.png}
+    \centering
+    \includegraphics[width=0.5\textwidth]{silverB.png}
     \caption{Beispiel: "Silver Bullet"}
 \end{figure}
 
 \begin{figure}[H]
-    \includegraphics[width=50\%]{goldB.png}
+    \centering
+    \includegraphics[width=0.5\textwidth]{goldB.png}
     \caption{Beispiel: "Gold Bullet"}
 \end{figure}
 
 \begin{figure}[H]
-    \includegraphics[width=50\%]{workerB.png}
+    \centering
+    \includegraphics[width=0.5\textwidth]{workerB.png}
     \caption{Beispiel: "Worker Bullet"}
 \end{figure}
 
 \begin{figure}[H]
-    \includegraphics[width=50\%]{graveB.png}
+    \centering
+    \includegraphics[width=0.5\textwidth]{graveB.png}
     \caption{Beispiel: "GravediggersBullet Bullet"}
 \end{figure}
 
@@ -206,7 +213,8 @@ starke Bullets wichtig, um hohe Angriffe von Gegnern abzublocken. Da jede Bullet
 "Turtle Bullet" ist jedoch die beste Wahl für eine einfache und starke Schutz-Bullet.
 
 \begin{figure}[H]
-    \includegraphics[width=50\%]{turtleB.png}
+    \centering
+    \includegraphics[width=0.5\textwidth]{turtleB.png}
     \caption{Beispiel: "Turtle Bullet"}
 \end{figure}
 
@@ -218,12 +226,14 @@ und nicht in der Gesamtheit der Wincon, auch wenn es einzelne Karten gibt, die s
 Ein Beispiel dafür ist "Bull et" oder "Bewitched Bullet".
 
 \begin{figure}[H]
-    \includegraphics[width=50\%]{bewitched_Bullet.png}
+    \centering
+    \includegraphics[width=0.5\textwidth]{bewitched_Bullet.png}
     \caption{Beispiel: Bewitched Bullet}
 \end{figure}
 
 \begin{figure}[H]
-    \includegraphics[width=50\%]{bull_et.png}
+    \centering
+    \includegraphics[width=0.5\textwidth]{bull_et.png}
     \caption{Beispiel: Bewitched Bullet}
 \end{figure}
 
