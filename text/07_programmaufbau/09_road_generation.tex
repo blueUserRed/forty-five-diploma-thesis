@@ -3,9 +3,9 @@
 
 \renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
 
-Die Generierung von Straßen ist ein sehr wichtiger Punkt in Forty-Five, da sie bei einem neuen Durchlauf für Abwechslung für den Spieler sorgt.
+Die Generierung von Straßen ist ein sehr wichtiger Punkt in \FF, da sie bei einem neuen Durchlauf für Abwechslung für den Spieler sorgt.
 Es gibt bei der Erstellung von roads bestimmte Parameter, damit trotzdem noch bestimmte Randbedingungen erfüllt werden, wie beispielsweise, dass immer die gleichen Texturen als Dekorationen verwendet werden.
-Im Folgenden wird nun die Entstehung einer street und die dabei gesetzten Parameter näher gebracht.
+Im Folgenden wird nun die Entstehung einer road und die dabei gesetzten Parameter näher gebracht.
 
 \subsection{Node Generation}\label{subsec:node-generation}
 Um eine Straße zu generieren, braucht man als erstes nodes, also Punkte in einem Koordinatensystem.
@@ -19,7 +19,7 @@ Dies geschieht folgendermaßen:
 
 \begin{enumerate}
     \item Die Hauptlinie wird als erstes erstellt und beginnt mit dem Punkt~(0|0).
-    \item Es werden \inlineCode{nbrOfPoints} weitere Punkte generiert, wobei folgende Kriterien gelten, die alle als Einschränkungen der map angegeben werden:
+    \item Es werden \inlineCode{nbrOfPoints} weitere Punkte generiert, wobei folgende Kriterien gelten, die als Einschränkungen der map mitgegeben werden:
     \begin{liste}
         \item Er hat einen Mindest- und Maximalabstand in sowohl x als auch y Richtung vom vorherigen Punkt.
         \item Er hat einen maximalen Winkel vom vorherigen Punkt.
@@ -29,8 +29,8 @@ Dies geschieht folgendermaßen:
     Diese ist immer um genau einen Punkt kürzer als die davor.
     Das stellt sicher, dass keine Linie länger sein kann als die Hauptlinie und dass es im Normalfall auch nicht zu stark am Ende abschneidet.
     \item Der neue Startpunkt ist die Hälfte eines normalen Punktes in x-Richtung und dann um die maximal erlaubte Breite in y-Richtung nach oben oder unten, je nachdem was davor entschieden wurde.
-    \item Anschließend werden wieder gleich die nodes berechnet wie bei der Hauptlinie, nur dass ein zusätzlicher Punkt dazukommt:
-    Der Abstand zu der davorliegenden Linie darf in einem Bereich um den zu planierenden Punkt nicht zu weit entfernt sein.
+    \item Anschließend werden die nodes gleich berechnet wie bei der Hauptlinie, nur dass ein zusätzlicher Punkt dazukommt:
+    Der Abstand zu der davorliegenden Linie darf in einem Bereich um den zu platzierenden Punkt nicht zu weit entfernt sein.
     Dies vermeidet, dass die Abstände zwischen zwei Linien nicht zu groß sind und dadurch auseinandergehen.
     Dies wird an der darauffolgenden Grafik~\ref{fig:point-generation} deutlich gezeigt.
     \item Dann werden die Punkte drei bis fünf so oft wiederholt, wie \inlineCode{maxLines} angibt.
@@ -100,75 +100,76 @@ Beim Löschen von Linien geht das Programm folgendermaßen vor:
 
 Wenn ein node gelöscht werden muss, wird wieder überprüft, ob eines der beiden auf der Hauptlinie ist und sollte dies der Fall sein, wird das andere gelöscht.
 Durch die Art und Weise, wie die Hauptlinie generiert wird, kann es niemals sein, dass sich zwei Hauptlinien überschneiden oder dass zwei nodes einander zu nahe sind.
-Falls beim Überprüfen, ob alle Linien korrekt und erlaubt sind, ein Fehler auftritt und etwas geändert werden muss, wird der Prozess nochmals wiederholt.
+Falls beim Überprüfen, ob alle Linien korrekt und erlaubt sind, ein Fehler auftritt wird dieser korrigiert und der Prozess nochmals wiederholt.
 Das liegt daran, dass beispielsweise ein hinzugefügtes node oder dessen Linien mit anderen wieder überschneiden könnten.
+Durch diesen komplexen Prozess wird ein effizientes Aufbauen der Nodes gewährleistet.
 
 \subsubsection{Areas}\label{subsubsec:areas}
-Areas sind statisch definiert und jede road hat immer eine am Anfang und Ende.
+Areas sind statisch definiert und jede road hat grundsätzlich immer eine am Anfang und Ende.
 Es gibt allerdings auch noch die Möglichkeit, innerhalb einer Straße weitere areas zu haben.
 Diese werden an einem der verbundenen Randpunkte zufällig mit einer verstärkten Distanz hinzugefügt, damit diese deutlich erkennbar sind.
 Es erlaubt bei Erweiterungen der Storyline in der Zukunft, dass beispielsweise ein Versteck auf einer Straße zu finden ist.
 
 \subsection{Events}\label{subsec:events}
-Nachdem alle nodes verbunden sind, brauchen diese noch events, die der Spieler ausführen kann.
+Nachdem alle nodes verbunden sind, brauchen diese noch Events, die der Spieler ausführen kann.
 Ein node kann immer nur ein Ereignis beinhalten.
 Allerdings ist es möglich, dass auf dieses direkt ein Folgeevent auftritt, wie \zB nach einem Kampf kann man manchmal eine neue Karte bekommen.
 In Onj kann jedes event einer von drei Arten angehören:
 
 \begin{enumerate}
-    \item Fixed Events: Sind events, die immer genau einmal vorkommen.
+    \item Fixed Events: Sind Events, die immer genau einmal pro Eintrag vorkommen.
     Diese haben noch die Zusatzoption, dass sie, falls möglich, an eine Sackgasse kommen, also an ein node mit nur einer Verbindung.
     Man kann auch mehrmals ein event vom selben Typen hinzufügen, falls man es öfter haben möchte.
-    \item Optional Events: Diese kommen dran, wenn noch nodes frei sind nach den fixed events.
-    Diese haben auch eine Gewichtung, damit manche events wie Kämpfe öfter vorkommen als \zB ein Heilevent.
-    \item Final Event: Das finale event ist immer das letzte Element auf einer road und ist dadurch Pflicht für den Spieler.
-    Dieses event ist allerdings optional und wird meistens für einen Endboss verwendet.
+    \item Optional Events: Diese werden gewählt, wenn noch nodes nach den fixed events frei sind.
+    Diese haben auch eine Gewichtung, damit manche Events wie Kämpfe öfter vorkommen als \zB ein Heilevent.
+    \item Final Event: Das finale event ist immer das letzte zufällig platzierte Element auf einer road und ist dadurch Pflicht für den Spieler beim Durchqueren.
+    Dieses event ist allerdings optional für die Entwickler und wird meistens für einen Endboss verwendet.
     Es ist unabhängig von dem wirklich letzten Element, mit dem man die road wieder verlässt.
 \end{enumerate}
 
-Es gibt verschiedenste events in Forty-Five wie das Wechseln zwischen road und area, der shop, diverse Heilmöglichkeiten sowie der kampf.
-Die letzten beiden werden im Folgenden erklärt.
+Es gibt verschiedenste Events in \FF wie das Wechseln zwischen road und area, der Shop, diverse Heilmöglichkeiten sowie der Kampf.
+Die letzten drei werden im Folgenden erklärt.
 
 \subsubsection{Shop}\label{subsubsec:shop}
 Im Shop kann der Spieler mit dem gewonnenen Geld Karten kaufen.
 Die Auswahl an Karten wird anhand eines Seeds festgelegt.
 Dieser wird beim ersten Öffnen des Shops generiert.
-Dadurch, dass alles von einem Seed abhängig ist, werden nicht die einzelnen Karten gespeichert, sondern nur der Index der Gekauften.
+Durch die Abhängigkeit von einem Seed werden nicht die einzelnen Karten gespeichert, sondern nur der Index der Gekauften.
 Beim Kauf kann der Spieler auswählen, ob er die Karte in sein aktuell ausgewähltes Deck oder in die Kartenablage geben möchte.
 Diese Option steht nur zur Verfügung, falls er auch tatsächlich genug Karten bereits im Deck hat.
 Weiterhin gibt es einen Verkäufer, der immer einen zufällig ausgewählten Spruch sagt.
 Beim Auswählen, welche Karten genommen werden, gibt es bestimmte Faktoren, die dies beeinflussen.
 Einerseits haben Karten einen Raritätsfaktor, der von eins (=häufig) bis drei (=selten) reicht.
-Andererseits können zum Beispiel das biome, die Straße selbst und auch der Verkäufer die Auswahl der Karten beeinflussen und deren Wahrscheinlichkeit verändern.
+Andererseits können zum Beispiel das Biome (siehe~\ref{sec:biome}), die Straße selbst und auch der Verkäufer die Auswahl der Karten beeinflussen und deren Wahrscheinlichkeit verändern.
 Zusätzlich dazu können Karten noch aus dem Pool für diese Auswahl entfernt werden oder der Preis von Karten erhöht oder reduziert werden.
 Im Shop kann keine Karte zweimal vorkommen und wenn eine Karte gekauft ist, wird diese auch nicht ersetzt durch eine Neue.
 
 \subsubsection{Heal Events}\label{subsubsec:heal-event}
-In Forty-Five gibt es zwei verschiedene Arten von Heilungsmöglichkeiten.
-Die eine ist ein simpler screen, bei dem man nur auf ``accept'' drücken kann und anschließend die angezeigte Anzahl an Leben dazu bekommt.
+In \FF gibt es zwei verschiedene Arten von Heilungsmöglichkeiten.
+Die eine ist ein simpler screen, bei dem man nur auf \quoted{accept} drücken kann und anschließend die angezeigte Anzahl an Leben dazu bekommt.
 Bei der anderen Option muss sich der Spieler entscheiden, ob er sich entweder heilen will oder ob er seine maximale Anzahl an Leben erhöhen möchte.
-Dies könnte ihm in der Zukunft helfen, da am Anfang die Gegner weniger Schaden machen und man eventuell die Leben später braucht.
-Das Erhöhen der maximalen Leben heilt einen zwar auch um die gleiche Anzahl der gewonnenen Leben, ist allerdings geringer als wenn man nur diese erhöht.
+Dies könnte ihm in der Zukunft helfen, da am Anfang die Gegner weniger Schaden machen und eventuell die zusätzlichen Leben bei stärkeren Gegnern benötigt werden.
+Das Erhöhen der maximalen Leben heilt zwar auch um die gleiche Anzahl der gewonnenen Leben, ist allerdings geringer als nur reine Heilung.
 
 \subsubsection{Kampf}\label{subsubsec:kampf}
-Der Kampf funktioniert anders als die anderen events.
-Es wird die Schwierigkeit für den Kampf mitgegeben und der \inlineCode{GameDirector} regelt den Kampf selbst.
+Der Kampf funktioniert anders als die anderen Events.
+Es wird nur die Schwierigkeit mitgegeben und der \inlineCode{GameDirector} regelt den Kampf selbst.
 Dieser bestimmt die Anzahl der Gegner als auch die Gegnertypen.
-Es gibt verschiedene Gegner, die jeweils bestimmte Gegnertypen haben können.
-Beispielsweise gibt es die Witch ``Witch\_lvl1'', die bestimmte Aktionen zu einer bestimmten Wahrscheinlichkeit ausführt.
+Es gibt verschiedene Gegner, die jeweils einem Gegnertypen angehören können.
+Beispielsweise gibt es die Witch \quoted{Witch\_lvl1}, die bestimmte Aktionen zu einer bestimmten Wahrscheinlichkeit ausführt.
 Diese Wahrscheinlichkeiten werden dem Gegner mitgegeben, während die möglichen Aktionen vom Gegnertyp bestimmt werden.
 
 \subsection{Dekorationen}\label{subsec:dekorationen}
-Da eine Karte ohne Dekorationen für einen Spieler uninteressant wäre, werden diese ebenfalls generiert.
+Da eine Karte mit Dekorationen für einen Spieler interessanter ist, werden diese ebenfalls generiert.
 Bevor diese jedoch erstellt werden, werden alle nodes noch um \inlineCode{MapRestriction.rotation} (in Radianten angegeben) rotiert.
-Es gibt in Forty-Five verschiedenste Dekorationen wie einen Kaktus oder ein Schaf.
+Es gibt in \FF verschiedenste Dekorationen wie einen Kaktus oder ein Schaf.
 Diese können entweder animiert oder ein statisches Bild sein.
 Es gibt drei Möglichkeiten, wie sie platziert werden können mittels sogenannten \inlineCode{DecorationDistributionFunction}:
 \begin{enumerate}
     \item Zufällig: Die am häufigsten verwendete Methode ist das zufällige Platzieren.
     Dabei werden in einem rechteckigen Bereich um alle verbundenen nodes Dekorationen erstellt.
     \item Multi-Cluster: Beschreibt ein Verfahren, das ein Polygon-Noise-Verfahren benutzt, bei dem der rechteckige Bereich in Punkte unterteilt wird.
-    Davon bekommt jeder entweder ein ``ok'' oder ``nicht ok''.
+    Davon bekommt jeder entweder ein \quoted{ok} oder \quoted{nicht ok}.
     Wenn anschließend ein Baum platziert wird, wird geschaut, welcher der nächste Punkt ist, und die Dekoration wird dann abhängig davon gelöscht oder hinzugefügt.
     Dies eignet sich vor allem für \zB Wälder, da diese meistens durchgehend sind, aber nicht überall.
     \item Single-Cluster: SingleCluster beschreibt eine Funktion, bei dem man Koordinaten angibt und um diese Koordinaten werden in einem ähnlichen Verfahren wie bei MultiCluster die Dekorationen platziert.
@@ -178,5 +179,5 @@ Bei jedem dieser drei Verfahren gibt es zusätzlich zwei Einstellungsmöglichkei
 Einerseits kann man entscheiden, ob eine Dekorationsgruppe mit den Wegen zwischen den nodes auf Kollisionen überprüft werden soll oder nicht.
 Andererseits gibt es die Möglichkeit, dass eine bestimmte Sammlung an Dekorationen nicht mit anderen Dekorationen überlappen darf.
 Dies wird beispielsweise bei den Schafen verwendet, da diese nicht von Bäumen verdeckt sein sollen.
-Allgemein gilt für alle, dass sie keine nodes auf dem Weg überdecken dürfen.
-Weiteres gibt man bei jeder Funktion die Dichte an, was einfach nur beschreibt, wie oft im Vergleich zur gegebenen Fläche versucht wird, eine Dekoration zu platzieren.
+Allgemein gültig ist, dass keine nodes überdeckt werden dürfen.
+Weiteres gibt man bei jeder Funktion die Dichte an, die beschreibt, wie oft im Verhältnis zur gegebenen Fläche versucht wird, eine Dekoration zu platzieren.
