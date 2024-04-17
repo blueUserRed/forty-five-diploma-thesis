@@ -57,7 +57,7 @@ Der backpack ist eine flexbox mit erweiterten Funktionen.
 Man kann Kartendecks bauen, benennen und die Karten außerhalb des Decks, in der sogenannten Kartenablage, nach gewissen Kriterien sortieren.
 Es ist ein eigenes widget wodurch es auf mehreren screens verwendet werden kann.
 Es beinhaltet alle keys, die auch ein box-widget hat (alles ab den "widget shared keys"), und zusätzlich die Namen zu bestimmten Konfigurationsdateien (cards und backpack), um die Daten richtig darzustellen.
-Diese werden mitgegeben, da es eine schönere Lösung ist, als die Pfade hartkodiert im Code stehen zu haben.
+Diese werden mitgegeben, da es eine bessere Lösung ist, als die Pfade hartkodiert im Code stehen zu haben, da es in Zukunft leichter anpassbar ist.
 Weiters bekommt es die Namen bestimmter child-Elemente.
 Diese Elemente werden statt von dem screen-controller, von dem backpack-widget verwaltet \bzw verwendet.
 
@@ -66,13 +66,13 @@ Diese Elemente werden statt von dem screen-controller, von dem backpack-widget v
 \renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
 Bei LibGdx ist ein widget immer ein \inlineCode{com.badlogic.gdx.scenes.scene2d.Actor} oder eine Unterklasse davon.
 In \FF werden keine der Klassen von LibGdx direkt verwendet, sondern immer eigene Erweiterungen \zB wegen des style-systems.
-Weiteres werden sie benötigt, um eigene events verarbeiten zu können, wie das hover-event.
+Weiters werden sie benötigt, um eigene events verarbeiten zu können, wie das hover-event.
 Programmtechnisch gibt es vier Hauptänderungen, die überschrieben werden:
 \begin{enumerate}
     \item Die \quoted{layout} Funktion, welche beschreibt, wo Elemente positioniert sind und bei Boxen auch deren Kinderelemente.
     \item Die \quoted{draw} Funktion, welche für die Darstellung verantwortlich ist. Das ermöglicht es, shader (siehe \ref{subsubsec:shader}) hinzuzufügen oder das style-system einzubauen.
     Sie wird in jedem frame einmal ausgeführt und wird daher ebenfalls für updates von timelines (siehe~\ref{subsec:timelines}) verwendet.
-    \item Interfaces werden hinzugefügt, welche einerseits für das style-system verwendet werden, als auch generell das Arbeiten mit widgets vereinfacht.
+    \item Interfaces werden hinzugefügt, welche einerseits für das style-system verwendet werden, als auch generell das Arbeiten mit widgets vereinfachen.
 \end{enumerate}
 \renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
 \subsubsection{Templates}\label{sec:templates}
