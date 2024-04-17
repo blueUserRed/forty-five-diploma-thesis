@@ -17,6 +17,8 @@ Sie sind oft kommunikationsorientiert und helfen den Teammitgliedern, sich weite
 \zid{AsanaScrumMaster}
 
 Im Rahmen des Diplomarbeitsprojekts hat der Scrum Master auch die Aufgaben eines Projektleiters übernommen, wie die Organisation und Durchführung von Meetings und ist Ansprechperson für projektspezifische Angelegenheiten gewesen.
+Die Position des Projektleiters war für offizielle Angelegenheiten und Kommunikation notwendig.
+Das ist eine Form des hybriden Projektmanagements, da die Methoden Wasserfall und Kanban kombiniert werden.
 
 %
 \subsubsection{Product Owner}\label{subsubsec:Product-Owner}
@@ -29,25 +31,24 @@ Der Product Owner trägt die Verantwortung für das fertiggestellte Produkt.
 \end{coolQuote}
 \zid{AsanaProductOwner}
 
-Im Rahmen des Diplomarbeitsprojekts hat der Product Owner auch die Aufgaben eines stellvertretenden Projektleiters übernommen, wie die Unterstützung und Hilfe bei Organisation von Meetings und interne Planung und Kommunikation.
+Im Rahmen des Diplomarbeitsprojekts hat der Product Owner auch die Aufgaben eines stellvertretenden Projektleiters übernommen, wie die Unterstützung und Hilfe beim Organisieren von Meetings und der internen Planung und Kommunikation.
 %
 \subsubsection{Development Team}\label{subsubsec:Development-Team}
 %
 Das Entwicklungsteam besteht aus Fachkräften, die während eines Sprints gemeinsam an einem Teil des Projekts oder Produkts arbeiten.
 Sie sind ein selbstorganisiertes Team und tragen die Verantwortung für ihre Arbeitsergebnisse.
 Das Team entscheidet eigenständig, wie viel Arbeit es sich aus dem Product Backlog für den jeweiligen Sprint vornimmt.\zit{DevTeam}
-Im Rahmen des Diplomarbeitsprojekts bestand das Development Team aus einem Leiter, der sich auch mit Sound und Vertrieb beschäftigt hat, zwei Designern und zwei Programmierern zusammengesetzt.
+Im Rahmen des Diplomarbeitsprojekts ist das Development Team aus einem Leiter, der sich auch mit Sound und Vertrieb beschäftigt, zwei Designern und zwei Programmierern zusammengesetzt.
 %
 \subsection{Product Backlog}\label{subsec:product-backlog}
 %
 Ein Product Backlog ist eine Liste von Anforderungen oder Funktionen, die der Kunde gerne in seinem Projekt integriert haben möchte.
 Es dient nicht nur als einfache To-Do-Liste, sondern vielmehr als umfassende Zusammenstellung aller gewünschten Features.
-Das Scrum-Team verwendet der Product Backlog, um diese Funktionen zu priorisieren und zu entscheiden, welche in die nächsten Sprints aufgenommen werden sollen.\zit{ProductBacklog}
+Das Scrum-Team verwendet der Product Backlog, um die Einträge mit der höchsten Priorität zu wählen und zu entscheiden, welche in die nächsten Sprints aufgenommen werden sollen.\zit{ProductBacklog}
 
 Der Sprint Backlog ist eine Liste von Aufgaben, die das Scrum-Team während des Sprints erledigen muss.
 Die Aufgaben werden aus den Anforderungen des Product Backlogs genommen und während des Sprint Plannings festgelegt.
-Zu Beginn des Sprints stehen alle Aufgaben, die noch erledigt werden müssen, in der "To Do"-Spalte des Boards und bilden somit das Sprint Backlog.
-Während des Sprints arbeitet das Team daran, diese Aufgaben abzuschließen.\zit{SprintBacklog}
+Während des Sprints arbeitet das Team daran alle für den Sprint vorgesehenen Aufgaben (Sprint Backlog) abzuschließen.\zit{SprintBacklog}
 
 Weiteres zum Ablauf zur Verwendung des Backlogs unter Kapitel \ref{subsec:Ablauf}
 %
@@ -60,19 +61,20 @@ Dies startet mit einer Planungsphase, dem Sprintplanning, geht über in die Entw
 Zuletzt wird ein Retrospective absolviert, um sich intern, über Positives und Negatives im Sprint, Feedback zu geben. \zit{AsanaSprint}
 %
 \subsection{Ablauf}\label{subsec:Ablauf}
-Der Product Backlog wurde im Projekt vom Projektleiter gepflegt.
+Der Product Backlog wurde im Projekt vom Product Owner verwaltet verwaltet.
 Der Backlog wurde in dem Software Tool Jira umgesetzt.
-Die Aufgaben für einen Sprint wurden während des Sprintplannings in den jeweiligen Sprint Backlog gezogen, um diese nach und nach abzuarbeiten.
-Diese Tasks wurden anschließend im Rahmen des Sprint Reviews überprüft.
-Passend dazu wurden vom Team Sprint Retrospectives durchgeführt, um auf Positives und Mangel hinzuweisen und die Dynamik zu stärken.
-So wurde Aufgaben, während eines Großteils des Projekts durchgeführt, bis es zu der End/Testingphase gelangte.
-Das Team konnte zu Beginn der Testingphase keine Sprint Ziele festlegen, da der Fortschritt von den beim Testing gefundenen Problemen abhängig war.
-Außerdem war es im Vorhinein oft unklar, wie viel Zeit die Behebung von Fehlern in Anspruch nahm.
-Der Backlog wurde deshalb in der Endphase durch Tasks ersetzt, sodass das Entwickler Team auf die gefundenen Fehler reagieren konnte.
+Im Backlog sind User Stories, diese werden in den Sprint Backlog gezogen und darin dann in Tasks =Aufgaben aufgebrochen.
+Größe funktionale Blöcke (mehrere zusammengehörende User Stories)können dann in Epics zusammengefasst werden.
+Die User Stories des Sprints werden anhand der User Stories und Acceptance Criteria im Rahmen des Sprint Reviews überprüft.
+Passend dazu werden vom Team Sprint Retrospectives durchgeführt, um auf Positives und Mangel hinzuweisen und die Dynamik zu stärken.
+Der Scrum Prozess dauert von Beginn des Projekts bis zu Fertigstellung aller programmiertechnischer Userstories, da anschließend die Testung in Form einer Testphase beginnt.
+Das Team kann zu Beginn der Testingphase keine Sprint Ziele festlegen, da der Fortschritt von den beim Testing gefundenen Problemen abhängig war.
+Außerdem war es im Vorhinein oft unklar, wie viel Zeit die Behebung von Fehlern in Anspruch nimmt.
+Der Backlog wurde deshalb in der Endphase durch Tasks ersetzt, sodass das Entwicklerteam auf die gefundenen Fehler reagieren konnte.
 Außerdem war es oft unklar, wie lange es dauert, um eine neue Demo zu testen und Fehler oder fehlende Elemente zu finden.
 
 \subsection{Planning Poker}\label{subsec:Planning-Poker}
-Planning Poker ist eine spielerische Methode, die von Teams verwendet wird, um den Aufwand für ihre Tasks abzuschätzen.
+Planning Poker ist eine spielerische Methode, die von Teams verwendet wird, um den Aufwand für ihre User Stories abzuschätzen.
 Jedes Teammitglied erhält eine Reihe von nummerierten Karten und gibt eine Abschätzung zu jeder Aufgabe ab.
 Die ausgewählten Karten werden dann verdeckt auf den Tisch gelegt und gleichzeitig aufgedeckt.
 Nach einer Diskussion über die individuellen Einschätzungen versucht das Team, sich auf eine gemeinsame Schätzung zu einigen.
