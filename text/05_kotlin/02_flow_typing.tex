@@ -4,7 +4,7 @@
 \renewcommand{\kapitelautor}{Autor: Marvin Kurka}
 
 Flow-Typing bedeutet, dass der Compiler Annahmen über den Typen von Variablen machen kann, basierend auf dem Control
-Flow von dem Programm.
+Flow des Programm.
 
 %! language = kotlin
 \begin{codeBlock}{kotlin}{Beispiel für Flow-Typing in Kotlin}
@@ -72,9 +72,7 @@ Eine Smart-Cast Sink kann zum Beispiel eine lokale Variable sein, oder eine beli
 \begin{codeBlock}{kotlin}{Demo: Mögliche Smart-Cast Sinks}
 data class Container<T>(val value: T)
 class A {
-
     val a = Container<Any>("Hello")
-
     var c: Any = "Hello"
 
     fun test() {
@@ -103,13 +101,8 @@ class A {
 
     // Pair ist eine Klasse aus Kotlins Standard-Bibliothek, die in einem anderen Modul definiert ist.
     val a: Pair<Any, Any> = "Hello" to "World"
-
-    val b: Any by lazy {
-        "Hello"
-    }
-
-    val c: Any
-        get() = "Hello"
+    val b: Any by lazy { "Hello" }
+    val c: Any get() = "Hello"
 
     fun test() {
         a.first as String
@@ -121,7 +114,6 @@ class A {
         c as String
         println(c.length) // compile time Fehler
     }
-
 }
 \end{codeBlock}
 

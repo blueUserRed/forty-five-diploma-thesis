@@ -10,8 +10,8 @@ ermöglichen soll, neue Effekte zu definieren ohne viel in vorhandenen Code eing
 
 Effekte werden in zwei Kategorien eingeteilt: Trait Effekte und normale Effekte.
 Trait Effekte werden nicht von dem Effektsystem verwaltet und werden für alle Situationen verwendet, in denen das
-normale Effetsystem nicht ausreicht.
-So gibt es zm Beispiel den ``reinforced`` Trait-Effekt, der dafür sorgt, dass eine Bullet immer den ganzen Damage
+normale Effektsystem nicht ausreicht.
+So gibt es zum Beispiel den ``reinforced`` Trait-Effekt, der dafür sorgt, dass eine Bullet immer den ganzen Damage
 des Gegners parried, unabhängig von ihrem eigenen Damage-Wert.
 Da diese Logik von dem Parry-System übernommen werden muss, ist dieser Effekt ein Trait-Effekt und wird somit nicht
 über das normale Effektsystem definiert.
@@ -87,7 +87,7 @@ Bullet im Revolver kostet.
 Der letzte Parameter in der \inlineOnj{buffDmg()} Funktion ist ein ActiveChecker, der, wie schon vorher erklärt,
 bestimmt, wann der Damage-Modifier aktiv ist.
 In diesem Fall wird das \inlineKotlin{GamePredicate} \inlineKotlin{TargetedEnemyShieldIsAtLeast} verwendet, um
-festzustellen ob der Enemy gerade Shield hat, und den Modifier nur dann zu aktivieren.
+festzustellen ob der Enemy gerade einen Shield-Wert größer als null hat, und den Modifier nur dann zu aktivieren.
 
 % resets author
 \renewcommand{\kapitelautor}{}

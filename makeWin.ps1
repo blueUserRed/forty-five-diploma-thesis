@@ -10,11 +10,11 @@ cp ../HTL3RLogoRGB.eps .
 cp -r ../text ./text
 cp -r ../images ./images
 
-xelatex ./diplomarbeit.tex -shell-escape -halt-on-error
+xelatex "\def\noMintedCode{}\input{diplomarbeit}" -shell-escape -halt-on-error -output-driver='xdvipdfmx -z3' -no-pdf
 makeindex -c -q diplomarbeit.idx
 bibtex diplomarbeit
-xelatex ./diplomarbeit.tex -shell-escape -halt-on-error
-xelatex ./diplomarbeit.tex -shell-escape -halt-on-error
+xelatex "\def\noMintedCode{}\input{diplomarbeit}" -shell-escape -halt-on-error -output-driver='xdvipdfmx -z3' -no-pdf
+xelatex ./diplomarbeit.tex -shell-escape -halt-on-error -output-driver='xdvipdfmx -z3'
 cp ./diplomarbeit.pdf ../out
 
 cd ..

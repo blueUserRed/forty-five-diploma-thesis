@@ -9,19 +9,17 @@ Mit Gradle wird auch das Kompilieren von Projekten automatisiert.
 Gradle verwendet die JVM (Java Virtual Machine), wodurch es besonders kompatibel mit Programmiersprachen ist, die auch auf der JVM laufen.
 Da Kotlin eine davon ist, ist Gradle ideal für \FF.
 Weiterhin ist die Einbindung von Gradle in diversen IDEs gegeben, was die Verwendung vereinfacht.
-Bei Gradle gibt es zwei wichtige Konfigurationspunkte für \FF: tasks und dependencies.
+Bei Gradle gibt es zwei wichtige Konfigurationspunkte für \FF: tasks und dependencies. \zit{gradleHomePage}
 
 \subsection{Tasks}\label{subsec:tasks}
 
-Tasks sind ausführbare Funktionen in Gradle, die meistens das eigentliche Programm starten oder bauen.
+Tasks sind ausführbare Funktionen in Gradle, die in \FF das eigentliche Programm starten oder bauen.
 Meistens schreibt man diese nicht selbst, sondern sie werden von einer Bibliothek zur Verfügung gestellt.
 Bei \FF war dies hauptsächlich die Bibliothek LibGdx.
+Es wurden diverse Elemente angepasst wie beispielsweise jene, die mit der Programmstruktur zu tun haben.
 
 \subsection{Dependencies}\label{subsec:dependencies}
 
 Dependencies sind Verweise auf andere Codeblöcke, die Gradle zum Ausführen von tasks benötigt.
 Dabei gibt es zwei verschiedene Bereiche: Es gibt Abhängigkeiten die explizit für Gradle sind oder für das \quoted{fertige Programm}.
 Diese unterscheiden sich meistens dadurch, dass Gradle auch dependencies für das Testen verwendet, welche man bei einem build nicht benötigt.\zit{gradleHomePage}
-
-\newpage
-\pagebreak

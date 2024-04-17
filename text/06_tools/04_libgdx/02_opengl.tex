@@ -7,7 +7,7 @@
 
 OpenGL definiert eine Abfolge an Schritten, aus denen der Rendering-Prozess besteht.
 Diese Abfolge wird als die OpenGL Renderpipeline bezeichnet.
-Die OpenGL Renderpipeline ist programmierbar: Das heist es können Shaderprogramme in GLSL (der OpenGL Shading Language)
+Die OpenGL Renderpipeline ist programmierbar: das heist es können Shaderprogramme in GLSL (der OpenGL Shading Language)
 geschrieben werden, die beschreiben, wie sich bestimme Schritte der Pipeline verhalten.
 Der Schritt im Rendering-Vorgang ist der Vertex Shader, der für jeden Vertex, den das Program spezifiziert hat,
 ausgeführt wird.
@@ -76,7 +76,7 @@ Nun ist es aber so, das die Zahl der Fragment Shader Instanzen sich stark von de
 unterscheiden kann, da der Fragment Shader für jeden Pixel, den ein Primitive abdeckt, ausgeführt wird.
 Deswegen stellt sich die Frage, wie die Ausgabewerte des Vertex Shader auf die Fragment Shader verteilt werden.
 Wird im Shader nichts anderes spezifiziert, werden alle mit \inlineGlsl{varying} markierten Variablen zwischen den
-Vertexen, aus denen das Primitive besteht, linear interpoliert.\zit{openglVertexShader, openglTypeQualifiers}
+Vertexen, aus denen das Primitive besteht, linear interpoliert.\zit{openglVertexShader}{openglTypeQualifiers}
 
 \begin{figure}[H]
     \centering
@@ -131,7 +131,7 @@ Resultat speichert.\zit{openGlFbo}
 Wenn also ein Postprocessing Effekt aktiv ist, wird das Spiel zuerst zu einem Framebuffer gerendert, und dieser dann
 mit dem Postprocessing Shader zu dem Bildschirm.
 Falls mehrere Postprocessing Effekte aktiv sind, ist ein Framebuffer nicht mehr ausreichend, da einen Framebuffer
-zu sich selber zu rendern undefiniertes Verhalten auslöst.\zit{openGlFbo}
+zu sich selbst zu rendern undefiniertes Verhalten auslöst.\zit{openGlFbo}
 Stattdessen wird eine Technik names Ping-Pong-Rendering verwendet.\zit{pingPongRendering}
 Bei dieser werden zwei Framebuffer verwendet, zwischen denen hin und her gerendert wird, wobei bei jedem Render-Pass ein
 Postprocessing Effekt angewendet wird.

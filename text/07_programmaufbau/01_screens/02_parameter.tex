@@ -14,7 +14,7 @@ Die assets beschreiben, welche Ressourcen dieser screen immer laden soll.
 Bei \FF werden normalerweise Ressourcen wie Bilder, Animationen sowie Schriftarten nur im screen gespeichert. 
 Das heißt, dass sie bei jedem screen neu geladen werden. 
 Für diese grundlegenden Elemente gibt man dem screen eine Liste an assets mit.
-Manche Ressourcen, wie \zB Karten, werden erst vom Programm geladen, da es keinen Sinn ergeben würde, jederzeit alle Karten zu laden. 
+Manche Ressourcen, wie \zB Karten, werden erst vom Programm geladen, da ein durchgehendes Laden aller Karten zu einer unnötigen Auslastung des RAMs führen würde.
 Darauf wird allerdings genauer bei~\ref{sec:resourcenmanagement} eingegangen.
 
 \renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
@@ -30,7 +30,7 @@ Diese werden immer nur auf ganzzahlige points gesetzt, wodurch es bei zu niedrig
 \subsubsection{Optionen}\label{subsubsec:optionen}
 \renewcommand{\kapitelautor}{Autor: Felix Zwickelstorfer}
 Die Optionen sind der vermutlich wichtigste Parameter eines screens. 
-Sie beinhalten einerseits Elemente wie den Hintergrund sowie Parameter für die Musik.
+Sie beinhalten einerseits Elemente wie den Hintergrund, sowie Parameter für die Musik.
 Andererseits werden auch die input maps mitgegeben, die für einfache User-Interaktionen zuständig sind.
 Diese sind genauer in~\ref{sec:key-input-system} beschrieben. 
 Das wichtigste Element ist der screen-controller.

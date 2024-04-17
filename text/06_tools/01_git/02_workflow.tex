@@ -19,7 +19,8 @@ Der Git-workflow für Forty-Five wurde nach den folgenden Punkten umgesetzt:
 
 Es gibt viele mögliche Erweiterungen für das System.
 Ein Beispiel wäre das Hinzufügen von unit-tests, wodurch sichergestellt werden würde, dass Methoden genau so funktionieren, wie sie sollen.
-Eine weitere Möglichkeit wären end-to-end Tests, bei denen sich ein Programm im GUI (graphical user interface) durchklickt und so das gesamte Programm aus Sicht des Endnutzers testet.
+Eine weitere Möglichkeit wären end-to-end Tests, bei denen sich ein Programm im GUI (graphical user interface) durchklickt und so das gesamte Programm aus Sicht des Endnutzers testet.\zit{UnitVsE2E}
 In \FF wurden diese Erweiterungen nicht eingesetzt, da der Arbeitsaufwand für das Schreiben der Tests zu groß wäre im Vergleich zu dem Nutzen, den sie bringen würden.
+Dies hat sich im Laufe der dritten und vierten Klasse gezeigt, da sich das Programm sehr häufig verändert und dadurch einheitliche Tests nicht möglich wären.
 Weiterhin werden durch pull-requests einzelne Methoden vom jeweils anderen Entwickler überprüft, wodurch zumindest eine minimale Überprüfungsinstanz vorhanden ist.
-Zusätzlich dazu wird jedes hinzugefügte feature vorher von dem Programmierer so gut wie möglich getestet, um die Gefahr zu verringern, dass bugs unbemerkt veröffentlicht werden.
+Zusätzlich dazu wird jedes hinzugefügte feature vorher von dem Programmierer getestet, um die Gefahr zu verringern, dass bugs unbemerkt veröffentlicht werden.

@@ -27,25 +27,11 @@ Das funktioniert nur für numerische Werte.
 Hier ein Beispiel aus \inlineCode{choose_card_screen.onj}, dass das System in Verwendung zeigt.
 
 %! language = Onj
-\begin{codeBlock}{onj}{Beispiel: Definition eines animierten Widgets aus chooseCardScreen.onj}
+\begin{codeBlock}{onj}{Beispiel: Definition eines animierten Widgets aus chooseCardScreen.onj (gekürzt)}
 styles: [
+    // Die nächsten beiden Styles erzeugen eine animierte Bewegung, wenn ein anderes Widget über dieses gedragged wird
     {
-        style_priority: 1, // setzt die priority für alle instructions in diesem style
-        positionType: positionType.absolute,
-        positionRight: 24#percent,
-        width: 18#percent,
-        height: 25.0#percent,
-        alpha: 1.0,
-    },
-    {
-        // reduziert den Alpha-Wert, wenn das Widget disabled ist
-        style_priority: 2,
-        style_condition: actorState("disabled"),
-        alpha: 0.3,
-    },
-    // Die nächsten beiden Styles erzeugen eine animierte Bewegung, wenn ein anderes Widget über dises gedragged wird
-    {
-        style_priority: 2,
+        style_priority: 1,
         positionBottom: -5#percent,
         style_animation: {
             duration: 0.1,
@@ -53,7 +39,7 @@ styles: [
         },
     },
     {
-        style_priority: 3,
+        style_priority: 2,
         style_condition: actorState("draggedHover"),
         positionBottom: 0#percent,
         style_animation: {

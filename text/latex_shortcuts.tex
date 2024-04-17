@@ -47,14 +47,10 @@
 \newcommand{\uva}{u.\thinspace{}v.\thinspace{}a.\@\xspace}
 \newcommand{\uvm}{u.\thinspace{}v.\thinspace{}m.\@\xspace}
 
-\newcommand{\inlineCode}[1]{\mintinline{text}{#1}}
-\newcommand{\inlineKotlin}[1]{\mintinline{kotlin}{#1}}
-\newcommand{\inlineOnj}[1]{\mintinline{onj}{#1}}
-\newcommand{\inlineGlsl}[1]{\mintinline{glsl}{#1}}
-\newcommand{\inlineJava}[1]{\mintinline{java}{#1}}
 % \citeauthor \citeyear
 %\newcommand{\zit}[1]{ (vgl. \cite{#1})}
-\newcommand{\zit}[1]{ (vgl. \citeauthor{#1} \citeyear{#1})}
+\newcommand{\zit}[1]{ (vgl. \citeauthor{#1} \citeyear{#1} [online])}
+\newcommand{\zitbuch}[1]{ (vgl. \citeauthor{#1} \citeyear{#1})}
 %\newcommand{\zitt}[2]{(\cite{#1, #2})}
 %\newcommand{\zittt}[3]{(\cite{#1, #2, #3})}
 %\newcommand{\zitttt}[4]{(\cite{#1, #2, #3, #4})}
@@ -62,14 +58,30 @@
 \newcommand{\quoted}[1]{\frqq#1\flqq}
 \newenvironment{coolQuote}{\begin{quote}\itshape\frqq}{\flqq\end{quote}}
 
-\newcommand{\zid}[1]{(\citeauthor{#1} \citeyear{#1})}
-
-\newcommand{\codeblockCaption}[1]{#1} % might be changed later
+\newcommand{\zid}[1]{(\citeauthor{#1} \citeyear{#1} [online])}
+\newcommand{\zidbuch}[1]{(\citeauthor{#1} \citeyear{#1})}
 
 \newenvironment{liste}{\begin{itemize}\setlength{\itemsep}{1pt}\setlength{\itemsep}{0pt}\setlength{\parsep}{0pt}}{\end{itemize}}
 
-\newenvironment{infoBox}{\begin{awesomeblock}[blue]{3pt}{}{magenta}}{\end{awesomeblock}} % todo: make look good
+%\newenvironment{infoBox}{\begin{awesomeblock}[blue]{3pt}{}{magenta}}{\end{awesomeblock}} % todo: make look good
 
-\newenvironment{codeBlock}[2]
-{\VerbatimEnvironment\begin{figure}[H]\def\myenvargumentII{#2}\centering\begin{minted}{#1}}
-{\end{minted}\caption{\myenvargumentII}\end{figure}}
+\newtcolorbox{infoBox}{%
+    colframe = blue!25,
+    colback  = blue!10,
+    coltitle = blue!20!black,
+}
+
+\newcommand{\inlineCode}[1]{{\codefont\small\detokenize{#1}}}
+\newcommand{\inlineKotlin}[1]{{\codefont\small\detokenize{#1}}}
+\newcommand{\inlineOnj}[1]{{\codefont\small\detokenize{#1}}}
+\newcommand{\inlineOnjNoDetokenizer}[1]{{\codefont\small#1}}
+\newcommand{\inlineGlsl}[1]{{\codefont\small\detokenize{#1}}}
+\newcommand{\inlineJava}[1]{{\codefont\small\detokenize{#1}}}
+
+\ifdefined\noMintedCode
+    \lstnewenvironment{codeBlock}[2]{}{}
+\else
+    \newenvironment{codeBlock}[2]
+    {\VerbatimEnvironment\begin{figure}[H]\def\myenvargumentII{#2}\centering\begin{minted}{#1}}
+    {\end{minted}\caption{\myenvargumentII}\end{figure}}
+\fi

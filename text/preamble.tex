@@ -1,15 +1,14 @@
 
 \setcounter{secnumdepth}{3}
 
-\usepackage[T1]{fontenc}
+%\usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage[english, ngerman]{babel, varioref} % your native language must be the last one!!
+\usepackage[english, ngerman]{babel, varioref} % Deutsch muss letztes sein
 \usepackage{lastpage}
 \usepackage{listings}
 \usepackage{blindtext}
 \usepackage[inline]{enumitem} %% Aufzählungen nicht so weit einrücken
 
-%\setitemize{leftmargin=*}
 % Listen etwas wenige einrücken, erfordert enumitem
 \setitemize{leftmargin=*}
 
@@ -19,70 +18,42 @@
 \graphicspath{ {./images/} }
 \usepackage{float}
 
-
-%%? \usepackage{textcomp}
 \usepackage[hyphens]{url}
 
 \usepackage{makeidx}
 \makeindex
 
-%%? \usepackage{graphicx}
 \usepackage{natbib}
 \PassOptionsToPackage{normalem}{ulem}
 
 \usepackage{ulem}
 \usepackage{needspace}
 
-\setlength\partopsep{0.5ex}%schoenere Listen
+\setlength\partopsep{0.5ex} % schoenere Listen
 
-\usepackage[bottom]{footmisc}%fussnote ganz unten
+\usepackage[bottom]{footmisc} % fussnote ganz unten
 
 \usepackage[]{microtype}
 \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
 
-\usepackage{multirow}   % Allows table elements to span several rows.
-\usepackage{booktabs}   % Improves the typesettings of tables.
-\usepackage{subcaption} % Allows the use of subfigures and enables their referencing.
+%\usepackage{multirow}   % Allows table elements to span several rows.
+%\usepackage{booktabs}   % Improves the typesettings of tables.
+%\usepackage{subcaption} % Allows the use of subfigures and enables their referencing.
 \usepackage[ruled,linesnumbered,algochapter]{algorithm2e} % Enables the writing of pseudo code.
 \usepackage[usenames,dvipsnames,table]{xcolor} % Allows the definition and use of colors. This package has to be included before tikz.
 \usepackage{nag}       % Issues warnings when best practices in writing LaTeX documents are violated.
-\usepackage{todonotes} % Provides tooltip-like todo notes.
+%\usepackage{todonotes} % Provides tooltip-like todo notes.
 \usepackage{color}
-\usepackage[binary-units]{siunitx}
+%\usepackage[binary-units]{siunitx}
 
+% Definiert einen Bundsteg von 1.5cm
+% NUR BEI BEIDSEITIGEN DRUCK!!
 \usepackage{geometry}
 \geometry{
     left = 2cm,
     right = 2.5cm,
     bindingoffset = 1.5cm,
 }
-
-%% Override default figure placement To be within the flow of the text rather
-%% than on it's own page.
-% \usepackage{float}
-% \makeatletter
-% \def\fps@figure{H}
-% \makeatother
-
-%% bei vielen Bildern o.ä sinnvoll: Seite muss nicht bis ganz unten gefüllt werden
-% \raggedbottom
-
-%\usepackage{footbib} %  footcite, needs other tooling
-%% for pandoc2 images
-%\makeatletter
-%\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
-%\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
-%\makeatother
-% Scale images if necessary, so that they will not overflow the page
-% margins by default, and it is still possible to overwrite the defaults
-% using explicit options in \includegraphics[width, height, ...]{}
-%\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
-
-%% bessere Suche im PDF
-%% #+# YGGDRASIL: Auskommentiert, weil er sich sonst beschwert
-% \input{glyphtounicode}
-%\pdfgentounicode=1
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 %  Kopf und Fußzeilen -- links und rechts verschieden
 \newcommand{\kopfseitenummer}{{\bfseries \thepage}}
@@ -93,27 +64,23 @@
 
 \usepackage{fontspec}
 \usepackage{scalefnt}
-%\setmainfont{Cambria}
 
-\setmainfont[
-%    BoldFont={CambriaB.ttf},
-%    ItalicFont={CambriaI.ttf},
-%    BoldItalicFont={CambriaZ.ttf},
-]{Aptos}
+% setzt Schriftart für Fließtext
+% muss installiert sein
+\setmainfont{Aptos}
 
-%\newfontfamily\headingfont[]{Redwing-medium.otf}
+% setzt Schriftart für Code-Blöcke
+% muss installiert sein
 \newfontfamily\codefont{JetBrainsMono-Regular.ttf}[NFSSFamily=JetBrainsMonoFamily]
-%\setkomafont{chapter}{\headingfont\scalefont{1.5}}
-%\setkomafont{section}{\headingfont\scalefont{1.4}}
-%\setkomafont{subsection}{\headingfont\scalefont{1.2}}
-%\setkomafont{subsubsection}{\headingfont\scalefont{1.1}}
+
+
 
 \usepackage[automark,headsepline,footsepline,plainfootsepline]{scrlayer-scrpage}
-%\automark[chapter]{chapter}% Eventuell wenn doppelseitig
 \setkomafont{pageheadfoot}{\normalcolor\footnotesize\scshape}
 \setkomafont{pagenumber}{\normalfont\normalsize}
 \clearpairofpagestyles
-\ihead{\headmark}
+\ihead{\voffset7mm\includegraphics[width=35mm]{logo_red}}
+%\ihead{\headmark}
 \ohead{\kopfbild}
 \ifoot{\kapitelautor}
 \ofoot{\pagemark}
@@ -124,21 +91,10 @@
 % alle Seiten mit Kopfzeile
 \renewcommand{\chapterpagestyle}{scrheadings}
 
-%% Kapitel - aufwändige Kapitelüberschriften
-%Options: Sonny, Lenny, Glenn, Conny, Rejne, Bjarne, Bjornstrup
-%\usepackage[Bjornstrup]{fncychap}
-% Alternative:
-%\usepackage{titlesec}
 
-% Verzeichnisse - aufwändiger
-%\usepackage{tocloft}
-
-%% Code Beispiele
-%% eine Variante
-%\renewcommand{\lstlistingname}{\inputencoding{utf8}Listing}
-%% andere Variante
 \usepackage{minted}
 \usemintedstyle{forty_five_style}
+% Konfig für Code-Blöcke
 \setminted{
     frame=lines,
     framesep=2mm,
@@ -147,23 +103,19 @@
     fontsize=\scriptsize
 }
 
-\usepackage{awesomebox}
-\setlength{\aweboxleftmargin}{1pt}
+%\usepackage{awesomebox}
+%\setlength{\aweboxleftmargin}{1pt}
 
-%% should be last packages
-\usepackage{scrhack}
+%\usepackage{scrhack}
 
 %% glossar
 % kann man löschen falls kein Glossar gebraucht
-\usepackage[acronym, toc]{glossaries}
-\makeglossaries
-\input{text/glossar.tex}
+%\usepackage[acronym, toc]{glossaries}
+%\makeglossaries
+%\input{text/glossar.tex}
 
-% für Titelseite
-% https://www.reddit.com/r/LaTeX/comments/sfyusz/vertical_line_before_all_bullets_in_itemize/
 \usepackage{tcolorbox}
 \tcbuselibrary{xparse,skins,breakable}
-%% Farbe rgb: 255,51,0
 \definecolor{htl3red}{RGB}{255,51,0}
 \newtcolorbox{TitlePageBox}{%
     breakable,
@@ -172,7 +124,6 @@
     borderline west={0.15cm}{3pt}{htl3red},
 }
 
-%% sollte das letzte Package sein
 \usepackage[unicode=true,
     bookmarks=true,bookmarksnumbered=false,bookmarksopen=false,
     breaklinks=true,pdfborder={0 0 0},backref=false,colorlinks=false]
@@ -185,24 +136,12 @@
 }
 \urlstyle{same} % don't use monospace font for urls
 
-% \usepackage{cleveref}  % optional, noch bessere Querverweise
-
-% \usepackage{showkeys} %% DEBUG, Label anzeigen
-
-%% for pandoc
-\providecommand{\tightlist}{%
-    \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
-
-%% braucht man manchmal -- wenn er über passthrough mault -- TODO: warum?
-%\newcommand{\passthrough}[1]{\lstset{mathescape=false}\texttt{#1}\lstset{mathescape=true}}
-
 % Auch Fußnoten bündig ausrichten
 \deffootnote[]{1em}{1em}{\textsuperscript{\thefootnotemark\ }}
-%% setup
 \sloppy % weniger Meldungen
 \voffset7mm % etwas nach unten
 
 %% schöner: 10000 -- gar keine, 1000 als Mittelweg
-\clubpenalty = 1000 % Schusterjungen verhindern
-\widowpenalty = 1000 % Hurenkinder verhindern
-\displaywidowpenalty = 1000
+\clubpenalty = 10000 % Schusterjungen verhindern
+\widowpenalty = 10000 % Hurenkinder verhindern
+\displaywidowpenalty = 10000
