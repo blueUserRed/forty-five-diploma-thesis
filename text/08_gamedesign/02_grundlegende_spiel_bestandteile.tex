@@ -6,13 +6,13 @@
 
 %
 \FF ist ein digitales Kartenspiel im Subgenre des Rogue-lite Deckbuilders.
-Der Spieler bewegt sich über eine Map, die prozentual generiert ist, sammelt Karten und benutzt diese Karten,
+Der Spieler bewegt sich über eine Map, die immer wieder neu generiert wird, sammelt Karten und benutzt diese Karten,
 um Gegner zu bekämpfen. Sollte der Spieler einen Kampf verlieren, stirbt er, seine gesammelten Karten
 gehen verloren und er startet wieder am Anfang. Da es sich jedoch um ein \quoted{Rogue-Lite} handelt und nicht um ein \quoted{Rogue-Like},
 gibt es eine Art von speicherbarem Fortschritt, den der Spieler in sein nächstes Leben mitnehmen kann.
 Ein Durchlauf bzw. ein Leben des Spielers wird als \quoted{Run} bezeichnet. Ein Run endet mit dem Tod des Spielers.
 Während der Entwicklung wurden jene Elemente, die in das nächste Leben übergehen, als \quoted{Rogue-Lite-Elemente} bezeichnet.
-\zit{roguelikedeckbuilder}
+\zit{roguelikedeckbuilder, liteandlike}
 
 
 
@@ -31,7 +31,7 @@ Um das Spielerlebnis des Spielers nicht allzu frustrierend zu gestalten, werden 
 Bei der ersten Mechanik handelt es sich um die Erhöhung der maximalen Lebenspunkte, manchmal auch HP-Wert genannt, des Spielers bei Heilpunkten im Spiel.
 Der Spieler hat die Möglichkeit sich zu entscheiden, ob er sich lieber nur für diesen Run heilt und dafür auch eine größere Menge an Lebenspunkten erhält, oder ob er
 lieber in das Erhöhen seiner Lebenspunktkapazität investiert. Bei letzterem handelt es sich natürlich um eine kleinere Zahl als bei der anderen Wahl.
-Dies dient dazu, dem Spieler die Entscheidung offen zu halten, entweder in etwas Langwieriges aber Bleibendes zu investieren oder lieber noch einmal ordentlich
+Dies dient dazu, dem Spieler die Entscheidung offen zu halten, entweder in etwas Langfristiges aber Bleibendes zu investieren oder lieber noch einmal ordentlich
 Lebenspunkte aufzutanken, was bei der zweiten Mechanik ins Spiel kommt.
 
 \begin{figure}[H]
@@ -49,7 +49,7 @@ Roads werden Abschnitte zwischen zwei Areas genannt und werden zufällig generie
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=\textwidth]{bulletssavedPopup.png}
+    \includegraphics[width=0.3\textwidth]{bulletssavedPopup.png}
     \caption{Beispiel: Das Popup, welches am Ende der Road erscheint um zu zeigen welche Karten gespeichert wurden.}
 \end{figure}
 
@@ -161,8 +161,8 @@ wie möglich zu verlieren \bzw nicht zu sterben.
 Gewonnen hat der Spieler, wenn alle Gegner besiegt wurden.
 
 
-Ein Kampf ist aufgeteilt in Züge. Immer abwechselnd ist entweder der Spieler oder der Gegner dran. Am Anfang des Kampfes
-werden eine vordefinierte Anzahl an Karten vom Deck des Spielers gezogen.
+Ein Kampf ist aufgeteilt in Züge. Immer abwechselnd ist entweder der Spieler oder der Gegner an der Reihe. Am Anfang des Kampfes
+wird eine vordefinierte Anzahl an Karten vom Deck des Spielers gezogen.
 Anschließend hat der Spieler die Möglichkeit, nach Belieben seinen Zug auszuführen. Ein Spielerzug wird mit dem \quoted{Holster}
 Button beendet, und das Betätigen des Knopfes startet den automatischen Ablauf des Gegnerzuges. Der Gegner führt eine -mehr
 oder weniger- zufällige Aktion aus, und danach ist wieder der Zug des Spielers.
@@ -294,7 +294,7 @@ Sobald der Gegner am Zug ist, wird die Aktion automatisch ausgeführt. Je nach G
 die ein Gegner ausführen kann. Universell ist jedoch die Aktion des Schaden zufügens.
 Es gibt viele verschiedene Arten von Gegneraktionen, die dafür entwickelt wurden, mehr Abwechslung beim Bekämpfen der Gegner zu bieten.
 
-Das Gegnerverhalten ist entstanden durch das Beobachten von Spielen im selben Genre, wie zum Beispiel \quoted{Slay the Spire}. \zit{slaythespire}
+Das Gegnerverhalten ist entstanden durch das Beobachten von Spielen im selben Genre, wie zum Beispiel \quoted{Slay the Spire} \zit{slaythespire}.
 
 
 Außerdem sollte noch erwähnt werden, dass es auch passieren kann, dass der Spieler gegen mehr als einen Gegner kämpft.
