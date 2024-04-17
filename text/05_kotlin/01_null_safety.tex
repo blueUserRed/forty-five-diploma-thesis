@@ -108,6 +108,8 @@ NullPointerExceptions um 33\% Prozent zu reduzieren.\zit{androidDevGoogleHome}
 Neben dem statischen Überprüfen auf mögliche \inlineKotlin{null}-Werte ist es auch wichtig, den notwendigen
 Syntax und/oder die notwendigen Funktionen zur Verfügung zu stellen, die gebraucht werden, um mit ihnen sinnvoll
 umzugehen.
+Außerdem ist es wichtig, Syntax für häufige Operationen zur Verfügung zu stellen, um den Umgang mit
+\inlineKotlin{null}-Werten zu erleichtern.
 Während if-Bedingungen für \inlineKotlin{null} Checks theoretisch ausreichen, führen sie zu langen und schlecht lesbaren
 Code, weswegen Kotlin eigene Operatoren für \inlineKotlin{null}-Werte hat.\zit{kdocNullSafety}
 
@@ -134,11 +136,11 @@ Java-Funktionen umgegangen wird, da an der Funktionssignatur nicht erkannt werde
 
 In frühen Kotlin Versionen wurde dieses Problem so umgangen, dass der Kotlin-Compiler alle von Java kommenden Typen als
 nullable interpretiert hat.
-Diese Herangehensweise hat sich allerdings als nicht praktikabel herausgestellt, da absurde Mengen an \inlineKotlin{null}
+Diese Herangehensweise hat sich allerdings als nicht praktikabel herausgestellt, da hohe Mengen an \inlineKotlin{null}
 Checks dadurch notwendig wurden.
 Neue Kotlin Versionen suchen nach den vorher erwähnten Annotations und verwenden diese um herauszufinden, ob ein Type
 nullable ist oder nicht.
-Wird keine solche Annotation gefunden, verwendet Kotlin einen sogenannten Platform Type stattdessen.\zit{kdocNullInterop}\zit{kblogNullSafety1}
+Wird keine solche Annotation gefunden, verwendet Kotlin stattdessen einen sogenannten Platform Type.\zit{kdocNullInterop}\zit{kblogNullSafety1}
 
 \vfill
 \pagebreak
