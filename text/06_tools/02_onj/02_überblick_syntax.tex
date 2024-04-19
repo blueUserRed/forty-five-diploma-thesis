@@ -18,13 +18,10 @@ Onjs Syntax ähnelt stark den von Json, jedoch gibt es einige Unterschiede:
 %! language = Onj
 \begin{codeBlock}{onj}{Demo: Zusäztliche Features in Onj}
 import "color.onj" as color;
-
 use SomeNamespace;
 
 var favoriteColor = color.red;
 var boringColors = [color.black, color.white, color.gray];
-
-string: "a\nstring",
 colors: [color.blue, favoriteColor, ...boringColors,],
 number: 2 + 2 * 2,
 otherNumber: 4 * (10 pow 5),

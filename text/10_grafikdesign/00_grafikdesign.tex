@@ -300,13 +300,16 @@ Effekt im Title Screen. Das Spiel dreht sich rund um die Bullets. Daher ist es w
     \caption{Death Screen von \FF}
 \end{figure}
 
+\vfill
+\pagebreak
+
 \subsection{Map Event Mock-ups}
 
 Auf der Map findet man verschiedene Events. Einen Shop, interagierbare NPCs und Orte, an denen sich der Spieler heilen oder eine neue Karte auswählen kann. Ähnlich zu dem Kampf, erscheint auf der rechten Seite des Screens ein Pop-up Fenster, indem man dieses Event starten, beziehungsweise den Ort betreten kann. Den einzelnen Ereignissen auf der Karte wurden Farben zugewiesen, damit der Spieler diese schneller erkennen kann. Die Icons der Events spielen eine große Rolle, da ein Spieler beim ersten Blick sofort erkennen muss, was er sich bei dem Ereignis ungefähr erwarten kann. Die Symbole wurden mit demselben Pinsel gezeichnet, wie die UI Elemente, um für Einheit im Design zu sorgen. Minimalismus funktioniert, weil unsere Augen und unser Gehirn einem Design nur eine begrenzte Menge an Aufmerksamkeit schenken können. Je simpler Icons sind, desto besser wird die Information übermittelt. \zit{minimalism}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\textwidth]{ereignisseMap.png}
+    \includegraphics[width=0.6\textwidth]{ereignisseMap.png}
     \caption{Nahansicht der Ereignisse auf der Map}
 \end{figure}
 
@@ -321,7 +324,7 @@ Das Letzte Event ist auch ein Heil Event, allerdings hat der Spieler hier keine 
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\textwidth]{mapEventsUI.png}
+    \includegraphics[width=0.8\textwidth]{mapEventsUI.png}
     \caption{Screenshot aus dem Mockup der Map Events}
 \end{figure}
 
@@ -357,15 +360,18 @@ Ein Beispiel für ein Pop-Up, welches nur für Informationen dient, sind die sog
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.6\textwidth]{hoverdetails.png}
+    \includegraphics[width=0.5\textwidth]{hoverdetails.png}
     \caption{Beschreibung der Karte während Hover-Zustand}
 \end{figure}
 
 Während einem Kampf kommt es auch zu gegnerischen Angriffen, die besondere Auswirkungen auf den Kampf haben können, wie beispielsweise die Hexe, die die Revolver Drehrichtung des Spielers für die nächsten \quoted{x} Rotationen ändert. Damit der User das mitbekommt, erscheinen kleine Zeichnungen nacheinander, die im Comic Stil die Animation der Hexe zeigen. Dieses Pop-Up kommt zusätzlich zu den Grafiken mit einer Fläche, die die Aktion des Gegners erklärt und dessen Dauer anzeigt. Die Animation verschwindet nicht von selbst, sondern verschwindet erst nach einem Mausklick, um sicherzustellen, dass der Spielende die Information, die für den Kampf wichtig ist, mitnimmt.
 
+\vfill
+\pagebreak
+
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1.0\textwidth]{enemyAction.png}
+    \includegraphics[width=0.8\textwidth]{enemyAction.png}
     \caption{Animation eines gegnerischen Angriffs}
 \end{figure}
 
@@ -381,7 +387,7 @@ von \FF war es noch unklar, wie viele Einstellungen \FF haben wird. Daher wurde 
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{settingsMenu.png}
+    \includegraphics[width=0.7\textwidth]{settingsMenu.png}
     \caption{Settings Menu mit Ankerpunkten}
 \end{figure}
 
@@ -389,7 +395,7 @@ Das gleiche Layout wurde in \FF auch implementiert, allerdings im Stil aller and
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{settingsMockup.png}
+    \includegraphics[width=0.7\textwidth]{settingsMockup.png}
     \caption{Settings Menu Mock-Up}
 \end{figure}
 
@@ -399,8 +405,8 @@ Für ein Kartenspiel sei es nicht gewöhnlich, dass die Spielkarten, Kugeln sind
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.8\textwidth]{bulletMoodboard.png}
-    \caption*{Moodboard Ausschnitt der Bullet Guidelines. Quelle: \url{https://helpcenter.shirtigo.de/wiki/druckmotiv/vektorgrafik/\#:\~:text\=Grundlage\%20einer\%20Vektorgrafik\%20bilden\%20die,wie\%20Kurven\%2C\%20Kreise\%20oder\%20Polygone}
+    \includegraphics[width=0.7\textwidth]{bulletMoodboard.png}
+    \caption*{Moodboard Ausschnitt der Bullet Guidelines. Quelle: \url{https://helpcenter.shirtigo.de/wiki/druckmotiv/vektorgrafik/\#:\~:text\=Grundlage\%20einer\%20Vektorgrafik\%20bilden\%20die,wie\%20Kurven\%2C\%20Kreise\%20oder\%20Polygone}}
 
 \end{figure}
 
@@ -408,13 +414,13 @@ Spielkarten weisen oft die Symbole \quoted{Pik} und \quoted{Karo} auf. Diese geh
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.4\textwidth]{bullet.png}
+    \includegraphics[width=0.3\textwidth]{bullet.png}
     \caption{Artwork der normalen Bullet}
 \end{figure}
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.4\textwidth]{finalBullet.png}
+    \includegraphics[width=0.3\textwidth]{finalBullet.png}
     \caption{Artwork der Final Bullet}
 \end{figure}
 
@@ -423,12 +429,9 @@ Spielkarten weisen oft die Symbole \quoted{Pik} und \quoted{Karo} auf. Diese geh
 Für die meisten online Kartenspiele ist es üblich, dass diese hunderte, wenn nicht sogar tausende von Karten beinhalten. Diese zu designen, hat einen extrem hohen Zeitaufwand. Daher ist es besonders wichtig, einen guten Workflow zu haben und dafür ist ein Template essenziell. Einerseits wurde sich eine sinnvolle Ordnerstruktur für die hunderten Designs der Karten überlegt, welche dabei hilft, Ordnung zu halten, um schnell auf Bullets zugreifen zu können und um diese zu exportieren. Das Photoshop Template verfügt über mehrere Ordner (Abbildung 8.30), welche die Bereiche einer Karte zuständig sind. Beispielweise sind alle Texte, die auf einer Karte vorkommen, in dem grünen Ordner \quoted{Card Name} oder sind mit der Farbe Grün gekennzeichnet. Der Frame beziehungsweise die Form der Karte wurde mittels einer Quadrat Form mit abgerundeten Ecken erstellt. Diese Sorgt dafür, dass man nur innerhalb des Rahmens beziehungsweise der Karte zeichnen kann, und nicht aus Versehen rauszeichnet. Für den Namen der Bullets wurde eine Schriftart ausgewählt, welche einen rustikalen westlichen Touch hat. Serifen passen dazu besonders gut, da Serifen hauptsächlich in alten Schriftfamilien vorkommen und auch damals schon im wilden Westen verwendet wurden. Letztendlich wurde sich für die Schriftart
 \quoted{Card Characters} entschieden, welche kostenlos und lizenzfrei im Internet zu finden ist, wie auf der Seite \url{https://www.fonts4free.net/}. Wenn Zeichen zu nah aneinander liegen, können Texte aus weiterer Entfernung oder niedriger Auflösung schwerer lesbar sein. Da die Spielkarten – wenn sie in der Hand während eines Kampfes sind – relativ klein sind, musste der Zeichenabstand als auch der Zeilenabstand auf die Größe der Karten angepasst werden, damit die Texte lesbarer sind. Für das Erstellen der meisten Bullets, wurden in dem Template die Ordner Frame, Symbols und Background nicht geändert. Einzelne Karten mit Besonderheiten, wie beispielsweise besonderen Effekten oder Karten, die erst spät im Spiel freigeschaltet werden können, erhalten zum Beispiel einen anderen Hintergrund, damit diese sich von den anderen Bullets abheben.
 
-\vfill
-\pagebreak
-
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.6\textwidth]{bulletTemplate.png}
+    \includegraphics[width=0.45\textwidth]{bulletTemplate.png}
     \caption{Ebenen Struktur der Bullet Template}
 \end{figure}
 
@@ -474,9 +477,7 @@ Arbeiten mit References fast ein Muss, da das einfache Vorstellen der Zeichnung 
 Die Perspektive, Kleidung und Körperposen können von der Reference inspiriert werden.
 Jedoch wird versucht die Reference nicht 100\% abzuzeichnen, sondern auch den eigenen Stil hinzufügen. \zit{referance}
 
-
 Für \FF wurden References von "Pinterest", jedoch auch Inspirationen aus diversen Filmen und anderen Medien gesucht. \zit{pinterest}
-
 
 Ein Beispiel für die Nutzung verschiedenster References ist der Manga \quoted{JOJO's Bizarre Adventure} von Hirohiko Araki\zitbuch{jojo},
 welcher auch eine Inspiration für einige Teile von \FF ist. Nicht nur im Bezug auf die Zeichnungen, sondern auch auf die von dem Autor benützen Krativfindungsmethoden.
@@ -484,9 +485,11 @@ Mehr dazu kann in dem Kapitel \ref{sec:methoden} gelesen werden.
 Araki verwendet eine große Auswahl als References für seine Zeichnungen, vorallem aus der Welt
 der Fashion, was auch in seinem Artstyle zu sehen ist.
 
-
 \FF bezieht auch ein paar References von "JOJO's Bizarre Adventure", jedoch ist die Auswahl der benützten References groß und abwechslungsreich.
 Auch eigene selbst fotografierte Reference-Bilder wurden verwendet für \zB den Main-Charackter des Spieles.
+
+\vfill
+\pagebreak
 
 \begin{figure}[H]
     \centering
@@ -532,7 +535,7 @@ härtere shadows werden durch "Crosshatching" mit dem Outline-Bleistift gemacht.
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.4\textwidth]{crossha.jpg}
+    \includegraphics[width=0.6\textwidth]{crossha.jpg}
     \caption{Beispiel: Crosshatching in \FF}
 \end{figure}
 
